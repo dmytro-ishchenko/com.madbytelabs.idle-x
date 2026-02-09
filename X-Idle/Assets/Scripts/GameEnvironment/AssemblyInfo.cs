@@ -1,3 +1,3 @@
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("com.madbytelabs.piratia.core")]
+[assembly: InternalsVisibleTo("com.madbytelabs.core")]

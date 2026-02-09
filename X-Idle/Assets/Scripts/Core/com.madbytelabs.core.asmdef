@@ -1,0 +1,21 @@
+{
+    "name": "com.madbytelabs.core",
+    "rootNamespace": "",
+    "references": [
+        "com.madbytelabs.data",
+        "com.madbytelabs.environment",
+        "com.madbytelabs.gameplay",
+        "com.madbytelabs.ui",
+        "com.madbytelabs.entity",
+        "com.madbytelabs.sceneLoader"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

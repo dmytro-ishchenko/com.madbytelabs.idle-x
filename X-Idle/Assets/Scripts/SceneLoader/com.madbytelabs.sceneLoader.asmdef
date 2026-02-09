@@ -1,0 +1,17 @@
+{
+    "name": "com.madbytelabs.sceneLoader",
+    "rootNamespace": "",
+    "references": [
+        "com.madbytelabs.piratia.common",
+        "com.madbytelabs.common"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
