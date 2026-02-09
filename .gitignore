@@ -60,3 +60,6 @@ crashlytics-build.properties
 X-Idle/UserSettings/EditorUserSettings.asset
 X-Idle/UserSettings/Layouts/default-2022.dwlt
 
+# macOS Finder files
+.DS_Store
+
