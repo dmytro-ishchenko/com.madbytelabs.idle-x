@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e7fdde1f7f64e8aa63fec2892feebfc, type: 3}
+  m_Name: AssetLibrary
+  m_EditorClassIdentifier: com.madbytelabs.data::Data.ContentLibrary.AssetLibrary
+  m_contentMap:
+    _serializedList:
+    - Key: 8de81064985f4a0531c11d2
+      Value: {fileID: 11400000, guid: 46e6d75c527ec4e6a8abcab75792c3f3, type: 2}
+  m_contextMap:
+    _serializedList:
+    - Key: 8de8358a15dcb68509d62d8
+      Value: {fileID: 11400000, guid: 9d200da10a0bf408b9ab5a89fc0077d9, type: 2}
+  m_gameResourcesMap:
+    _serializedList:
+    - Key: 8de83abfe81b3e261880109
+      Value: {fileID: 11400000, guid: 6368b11a4a9db4721860806690447aff, type: 2}
