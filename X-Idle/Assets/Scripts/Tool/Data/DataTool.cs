@@ -5,9 +5,9 @@ using Data.ContentLibrary.Templates.Context.Building;
 using Data.ContentLibrary.Templates.GameResources;
 using UnityEditor;
 
-namespace Data.Editor
+namespace Tool.Data
 {
-    public class DataEditorTool : UnityEditor.Editor
+    public class DataTool : Editor
     {
         private static readonly string s_libraryPath = "Assets/AssetDataBase/AssetLibrary.asset";
         private static readonly string s_contentPath = "Assets/AssetDataBase/Content/";

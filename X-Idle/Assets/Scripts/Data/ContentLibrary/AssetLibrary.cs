@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using Data.ContentLibrary.Templates;
 using Data.ContentLibrary.Templates.Context.Building;
@@ -13,6 +14,9 @@ namespace Data.ContentLibrary
         [SerializeField] private SerializedDictionary<string, BuildingContext> m_contextMap;
         [SerializeField] private SerializedDictionary<string, GameResourcesTemplate> m_gameResourcesMap;
 
+        public Dictionary<string, ContentTemplate> ContentMap => m_contentMap;
+        public Dictionary<string, BuildingContext> ContextMap => m_contextMap;
+        public Dictionary<string, GameResourcesTemplate> GameResourcesMap => m_gameResourcesMap;
 
         public GameObject GetContent(string id)
         {

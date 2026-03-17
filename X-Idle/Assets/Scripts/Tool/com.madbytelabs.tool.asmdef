@@ -1,8 +1,9 @@
 {
-    "name": "com.madbytelabs.data.editor",
+    "name": "com.madbytelabs.tool",
     "rootNamespace": "",
     "references": [
-        "com.madbytelabs.data"
+        "com.madbytelabs.data",
+        "com.madbytelabs.environment"
     ],
     "includePlatforms": [
         "Editor"
