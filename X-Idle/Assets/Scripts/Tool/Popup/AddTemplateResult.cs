@@ -1,14 +1,16 @@
-using Data.ContentLibrary.Templates;
+using Common.Interface;
 
 namespace Tool.Popup
 {
     public class AddTemplateResult<T> where T : ITemplate
     {
-        public AddTemplateResult() {
+        public AddTemplateResult()
+        {
             Success = false;
         }
 
-        public AddTemplateResult(T entity) {
+        public AddTemplateResult(T entity)
+        {
             Success = true;
             Entity = entity;
         }

@@ -1,3 +1,4 @@
+using Common.Interface;
 using Data.ContentLibrary.Templates.Context;
 using UnityEditor;
 using UnityEngine;
@@ -17,10 +18,15 @@ namespace Data.ContentLibrary.Templates
         public string Description => m_description;
         public GameObject View => m_view;
 
-        public T GetContentContext<T>() where T : ContentContext
+        public IContentContext GetContentContext<T>() where T : IContentContext
         {
             if (m_contentContext != null)
-                return (T)m_contentContext;
+            {
+                if (m_contentContext is T context)
+                {
+                    return context;
+                }
+            }
 
             return null;
         }

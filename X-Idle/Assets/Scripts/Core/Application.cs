@@ -8,7 +8,6 @@ namespace Core
         
         public Application(IBootstrapper bootstrapper)
         {
-            
             bootstrapper.Bootstrap();
         }
     }

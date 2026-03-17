@@ -4,11 +4,9 @@ using UnityEngine.SceneManagement;
 
 namespace SceneLoader
 {
-    internal interface IAppSceneManager
+    internal interface IAppSceneManager : IAppSceneNotify
     {
-        void LoadScene(SceneName sceneName);
+        void LoadScene(SceneName sceneName, LoadSceneMode mode);
         void UnloadScene(SceneName sceneName);
-        event Action<Scene> OnSceneLoaded;
-        event Action<Scene> OnSceneUnloaded;
     }
 }

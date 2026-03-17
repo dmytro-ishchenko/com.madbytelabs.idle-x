@@ -7,7 +7,8 @@
         "com.madbytelabs.gameplay",
         "com.madbytelabs.ui",
         "com.madbytelabs.entity",
-        "com.madbytelabs.sceneLoader"
+        "com.madbytelabs.sceneLoader",
+        "com.madbytelabs.common"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

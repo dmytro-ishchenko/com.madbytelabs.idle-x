@@ -3,7 +3,8 @@
     "rootNamespace": "",
     "references": [
         "com.madbytelabs.data",
-        "com.madbytelabs.environment"
+        "com.madbytelabs.environment",
+        "com.madbytelabs.common"
     ],
     "includePlatforms": [
         "Editor"

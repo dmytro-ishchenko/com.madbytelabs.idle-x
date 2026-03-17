@@ -1,7 +1,10 @@
 {
     "name": "com.madbytelabs.data",
     "rootNamespace": "",
-    "references": ["GUID:d525ad6bd40672747bde77962f1c401e"],
+    "references": [
+        "AYellowpaper.SerializedCollections",
+        "com.madbytelabs.common"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

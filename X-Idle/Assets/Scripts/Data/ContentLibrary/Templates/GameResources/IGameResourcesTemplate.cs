@@ -1,3 +1,4 @@
+using Common.Interface;
 using UnityEngine;
 
 namespace Data.ContentLibrary.Templates.GameResources

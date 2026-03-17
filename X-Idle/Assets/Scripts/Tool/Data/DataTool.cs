@@ -1,4 +1,5 @@
 using System.IO;
+using Common;
 using Data.ContentLibrary;
 using Data.ContentLibrary.Templates;
 using Data.ContentLibrary.Templates.Context.Building;
@@ -11,7 +12,7 @@ namespace Tool.Data
     {
         static AssetLibrary LoadAssetLibrary()
         {
-            return AssetDatabase.LoadAssetAtPath(LibraryUtility.LIBRARY_PATH, typeof(AssetLibrary)) as AssetLibrary;
+            return AssetDatabase.LoadAssetAtPath(AssetPath.LIBRARY_PATH, typeof(AssetLibrary)) as AssetLibrary;
         }
 
 
@@ -36,7 +37,7 @@ namespace Tool.Data
             var newId = ContentUtility.GetId();
 
             content.SetId(ContentUtility.GetId());
-            AssetDatabase.CreateAsset(content, Path.Combine(LibraryUtility.CONTENT_PATH, "NewContent" + ".asset"));
+            AssetDatabase.CreateAsset(content, Path.Combine(AssetPath.CONTENT_PATH, "NewContent" + ".asset"));
             library.AddContent(newId, content);
 
             AssetDatabase.SaveAssets();
@@ -53,7 +54,7 @@ namespace Tool.Data
             var newId = ContentUtility.GetId();
 
             context.SetId(newId);
-            AssetDatabase.CreateAsset(context, Path.Combine(LibraryUtility.CONTEXT_PATH, "NewBuildingContext" + ".asset"));
+            AssetDatabase.CreateAsset(context, Path.Combine(AssetPath.CONTEXT_PATH, "NewBuildingContext" + ".asset"));
 
             library.AddContext(newId, context);
 
@@ -71,7 +72,7 @@ namespace Tool.Data
             var newId = ContentUtility.GetId();
 
             resource.SetId(newId);
-            AssetDatabase.CreateAsset(resource, Path.Combine(LibraryUtility.GAME_RESOURCES_PATH, "NewGameResource" + ".asset"));
+            AssetDatabase.CreateAsset(resource, Path.Combine(AssetPath.GAME_RESOURCES_PATH, "NewGameResource" + ".asset"));
 
 
             library.AddResource(newId, resource);

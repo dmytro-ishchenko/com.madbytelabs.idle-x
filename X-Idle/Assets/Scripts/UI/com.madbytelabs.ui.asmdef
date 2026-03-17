@@ -1,7 +1,11 @@
 {
     "name": "com.madbytelabs.ui",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "com.madbytelabs.environment",
+        "com.madbytelabs.data",
+        "com.madbytelabs.gameplay"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

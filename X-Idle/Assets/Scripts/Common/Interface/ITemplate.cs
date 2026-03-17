@@ -1,4 +1,4 @@
-namespace Data.ContentLibrary.Templates
+namespace Common.Interface
 {
     public interface ITemplate
     {

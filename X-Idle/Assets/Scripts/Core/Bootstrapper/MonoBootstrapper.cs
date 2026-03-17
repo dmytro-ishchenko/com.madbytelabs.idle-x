@@ -1,3 +1,4 @@
+using Common.Enum;
 using Data;
 using GameEntity;
 using GameEnvironment;
@@ -19,12 +20,15 @@ namespace Core.Bootstrapper
 
         public void Bootstrap()
         {
-            IAppSceneSwitcher sceneSwitcher = new  AppSceneSwitcher();
+            IAppSceneLoader sceneLoader = new AppSceneLoader();
             IApplicationData data = new ApplicationData();
-            IEnvironment environment = new Environment();
-            IGameplay gameplay = new Gameplay();
+            IGameplay gameplay = new Gameplay(data, sceneLoader);
+            IEnvironment environment = new Environment(data, sceneLoader);
             IEntitySystem entitySystem = new EntitySystem();
-            IGameUI gameUI = new GameUI();
+            IGameUI gameUI = new GameUI(environment, gameplay);
+            
+            
+            sceneLoader.SwitchToScene(SceneName.Game);
         }
     }
 }

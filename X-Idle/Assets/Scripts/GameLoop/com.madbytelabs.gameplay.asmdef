@@ -1,7 +1,10 @@
 {
     "name": "com.madbytelabs.gameplay",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "com.madbytelabs.data",
+        "com.madbytelabs.sceneLoader"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

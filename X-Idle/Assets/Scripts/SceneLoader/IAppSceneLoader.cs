@@ -3,8 +3,9 @@ using Common.Enum;
 
 namespace SceneLoader
 {
-    public interface IAppSceneSwitcher
+    public interface IAppSceneLoader
     {
+        IAppSceneNotify SceneNotify { get; }
         void SwitchToScene(SceneName sceneName);
         void AddScene(SceneName sceneName);
         void CleanGameScene();
