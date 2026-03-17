@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5ab7197d6980d744fa28af3a3b302f91
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194808
+  packageName: Touch Camera PRO 2026 - Easy Mobile/Desktop/Console Camera Controller
+  packageVersion: 3.3.0
+  assetPath: Assets/Exoa/TouchCameraPro-Demo/Scene/Boundaries/SquareEdgeBoundaries_TopDownOrthoSettings.lighting
+  uploadId: 880524

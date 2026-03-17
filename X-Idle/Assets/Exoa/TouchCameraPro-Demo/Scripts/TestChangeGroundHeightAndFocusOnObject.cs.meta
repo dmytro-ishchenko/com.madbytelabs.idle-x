@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 1bf3c3b6fe9c474418da01c2740681ac
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194808
+  packageName: Touch Camera PRO 2026 - Easy Mobile/Desktop/Console Camera Controller
+  packageVersion: 3.3.0
+  assetPath: Assets/Exoa/TouchCameraPro-Demo/Scripts/TestChangeGroundHeightAndFocusOnObject.cs
+  uploadId: 880524

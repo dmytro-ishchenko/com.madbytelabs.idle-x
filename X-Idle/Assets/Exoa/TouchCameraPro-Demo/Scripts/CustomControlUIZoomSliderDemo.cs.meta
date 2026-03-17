@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e458402d09ad1f7419dc2b77c86438e7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194808
+  packageName: Touch Camera PRO 2026 - Easy Mobile/Desktop/Console Camera Controller
+  packageVersion: 3.3.0
+  assetPath: Assets/Exoa/TouchCameraPro-Demo/Scripts/CustomControlUIZoomSliderDemo.cs
+  uploadId: 880524
