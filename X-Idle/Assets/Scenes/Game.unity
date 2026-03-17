@@ -3861,6 +3861,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4645918064157852, guid: e4e0bcd2daa26844092ab3231558aa6b, type: 3}
   m_PrefabInstance: {fileID: 26726962}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &27132295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 27132297}
+  - component: {fileID: 27132296}
+  m_Layer: 0
+  m_Name: MainBuilding
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &27132296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27132295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15510b7e229145afa453489f592527be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
+  m_id: 8de83badda0f4d0db38c0e1
+  m_contentId: 8de81064985f4a0531c11d2
+--- !u!4 &27132297
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27132295}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 265198128}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &27181128
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31141,6 +31187,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4192456782643160, guid: 33c0c06bf5774ba4d8b693193812aa5b, type: 3}
   m_PrefabInstance: {fileID: 264906058}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &265198126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 265198128}
+  - component: {fileID: 265198127}
+  m_Layer: 0
+  m_Name: PlaceHolderRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &265198127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265198126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81dbecb3d8134517b06db9b0e1aa6faa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceholderRoot
+  m_placeHolders:
+  - {fileID: 27132296}
+--- !u!4 &265198128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265198126}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 27132297}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &266702616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -238231,3 +238324,4 @@ SceneRoots:
   - {fileID: 2080623573}
   - {fileID: 1657861249}
   - {fileID: 519268265}
+  - {fileID: 265198128}

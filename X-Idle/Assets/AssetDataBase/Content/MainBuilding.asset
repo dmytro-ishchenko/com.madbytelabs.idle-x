@@ -10,7 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79d7ef08503b40109edeb158a2dbd099, type: 3}
-  m_Name: DefaultBuilding
+  m_Name: MainBuilding
   m_EditorClassIdentifier: com.madbytelabs.data::Data.ContentLibrary.Templates.ContentTemplate
   m_id: 8de81064985f4a0531c11d2
+  m_name: Main Building
+  m_description: 
   m_view: {fileID: 0}
+  m_contentContext: {fileID: 0}

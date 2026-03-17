@@ -17,9 +17,13 @@ namespace Tool.Inspector
         const string CONTENT_ID = "Content Id";
         const string ADD = "Add";
         const string CHANGE = "Change";
+        const string NAME = "Name";
+        const string SELECT = "Select";
         private AssetLibrary m_library;
         private Label m_contentIdLabel;
+        private Button m_addButton;
         private SerializedProperty m_contentProperty;
+        private VisualElement m_contentViewElement;
 
 
         public override VisualElement CreateInspectorGUI()
@@ -38,7 +42,12 @@ namespace Tool.Inspector
             if (m_contentProperty == null)
             {
                 m_contentProperty = serializedObject.FindProperty("m_contentId");
-                m_inspector.TrackPropertyValue(m_contentProperty, val => { m_contentIdLabel.text = $"{CONTENT_ID}: {m_contentProperty.stringValue}"; });
+                m_inspector.TrackPropertyValue(m_contentProperty, val =>
+                {
+                    m_contentIdLabel.text = $"{CONTENT_ID}: {m_contentProperty.stringValue}";
+                    m_addButton.text = CHANGE;
+                    DrawContent(m_inspector, m_contentProperty.stringValue);
+                });
             }
 
             PlaceHolder placeHolder = (PlaceHolder)target;
@@ -80,37 +89,26 @@ namespace Tool.Inspector
 
             contentRow.Add(m_contentIdLabel);
 
-            if (string.IsNullOrEmpty(placeHolder.ContentId))
+            m_addButton = new Button(AddContent)
             {
-                contentRow.Add(new Button(AddContent)
+                style =
                 {
-                    text = ADD,
-                    style =
-                    {
-                        marginBottom = 5,
-                        backgroundColor = new Color(0.15f, 0.47f, 0.59f, 1),
-                        width = 70,
-                        height = 20
-                    }
-                });
-            }
-            else
-            {
-                contentRow.Add(new Button(AddContent)
-                {
-                    text = CHANGE,
-                    style =
-                    {
-                        marginBottom = 5,
-                        backgroundColor = new Color(0.15f, 0.47f, 0.59f, 1),
-                        width = 70,
-                        height = 20
-                    }
-                });
-            }
+                    marginBottom = 5,
+                    backgroundColor = new Color(0.15f, 0.47f, 0.59f, 1),
+                    width = 70,
+                    height = 20
+                }
+            };
 
+            m_addButton.text = (string.IsNullOrEmpty(placeHolder.ContentId)) ? ADD : CHANGE;
+            contentRow.Add(m_addButton);
 
             m_inspector.Add(contentRow);
+
+            if (!string.IsNullOrEmpty(placeHolder.ContentId))
+            {
+                DrawContent(m_inspector, placeHolder.ContentId);
+            }
 
             return m_inspector;
         }
@@ -140,6 +138,71 @@ namespace Tool.Inspector
             }
 
             popup.InitPopup(m_library.ContentMap.Values.ToList());
+        }
+
+        private void DrawContent(VisualElement root, ContentTemplate template)
+        {
+            m_contentViewElement = new VisualElement()
+            {
+                style =
+                {
+                    marginLeft = 5,
+                    marginRight = 5,
+                    marginTop = 5,
+                    marginBottom = 5,
+                    backgroundColor = new Color(0.4f, 0.4f, 0.4f, 1f)
+                }
+            };
+
+            var contentRow = new VisualElement()
+            {
+                style =
+                {
+                    flexDirection = FlexDirection.Row,
+                    flexShrink = 1f,
+                    marginTop = 5
+                }
+            };
+
+            contentRow.Add(new Label($"{NAME}: {template.Name}")
+            {
+                style =
+                {
+                    marginTop = 5,
+                    marginLeft = 5,
+                    width = 200,
+                    height = 15,
+                    flexGrow = 1
+                }
+            });
+
+
+            contentRow.Add(new Button(() => { LibraryUtility.ViewInProject(template); })
+            {
+                text = SELECT,
+                style =
+                {
+                    marginBottom = 5,
+                    backgroundColor = new Color(0.15f, 0.47f, 0.59f, 1),
+                    width = 70,
+                    height = 20
+                }
+            });
+
+            m_contentViewElement.Add(contentRow);
+
+            root.Add(m_contentViewElement);
+        }
+
+        private void DrawContent(VisualElement root, string contentId)
+        {
+            if (m_library == null)
+                m_library = LibraryUtility.LoadLibrary();
+
+            if (m_library.ContentMap.TryGetValue(contentId, out var template))
+            {
+                DrawContent(root, template);
+            }
         }
     }
 }

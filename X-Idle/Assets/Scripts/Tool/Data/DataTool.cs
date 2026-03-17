@@ -9,14 +9,9 @@ namespace Tool.Data
 {
     public class DataTool : Editor
     {
-        private static readonly string s_libraryPath = "Assets/AssetDataBase/AssetLibrary.asset";
-        private static readonly string s_contentPath = "Assets/AssetDataBase/Content/";
-        private static readonly string s_contextPath = "Assets/AssetDataBase/Context/";
-        private static readonly string s_gameResourcePath = "Assets/AssetDataBase/Game Resources/";
-
         static AssetLibrary LoadAssetLibrary()
         {
-            return AssetDatabase.LoadAssetAtPath(s_libraryPath, typeof(AssetLibrary)) as AssetLibrary;
+            return AssetDatabase.LoadAssetAtPath(LibraryUtility.LIBRARY_PATH, typeof(AssetLibrary)) as AssetLibrary;
         }
 
 
@@ -40,8 +35,8 @@ namespace Tool.Data
 
             var newId = ContentUtility.GetId();
 
-            content.SetId(newId);
-            AssetDatabase.CreateAsset(content, Path.Combine(s_contentPath, "NewContent" + ".asset"));
+            content.SetId(ContentUtility.GetId());
+            AssetDatabase.CreateAsset(content, Path.Combine(LibraryUtility.CONTENT_PATH, "NewContent" + ".asset"));
             library.AddContent(newId, content);
 
             AssetDatabase.SaveAssets();
@@ -58,7 +53,7 @@ namespace Tool.Data
             var newId = ContentUtility.GetId();
 
             context.SetId(newId);
-            AssetDatabase.CreateAsset(context, Path.Combine(s_contextPath, "NewBuildingContext" + ".asset"));
+            AssetDatabase.CreateAsset(context, Path.Combine(LibraryUtility.CONTEXT_PATH, "NewBuildingContext" + ".asset"));
 
             library.AddContext(newId, context);
 
@@ -76,7 +71,7 @@ namespace Tool.Data
             var newId = ContentUtility.GetId();
 
             resource.SetId(newId);
-            AssetDatabase.CreateAsset(resource, Path.Combine(s_gameResourcePath, "NewGameResource" + ".asset"));
+            AssetDatabase.CreateAsset(resource, Path.Combine(LibraryUtility.GAME_RESOURCES_PATH, "NewGameResource" + ".asset"));
 
 
             library.AddResource(newId, resource);

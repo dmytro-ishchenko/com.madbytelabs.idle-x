@@ -10,27 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35a2663e62114adf90e0dddde502e33e, type: 3}
-  m_Name: MainBuilding
+  m_Name: MainBuildingContext
   m_EditorClassIdentifier: com.madbytelabs.data::Data.ContentLibrary.Templates.Context.Building.BuildingContext
   m_id: 8de8358a15dcb68509d62d8
-  buildingLevels:
-  - m_level: 0
-    m_description: 
-    m_mainView: {fileID: 0}
-    m_elements: []
-  - m_level: 0
-    m_description: 
-    m_mainView: {fileID: 0}
-    m_elements: []
-  - m_level: 0
-    m_description: 
-    m_mainView: {fileID: 0}
-    m_elements: []
-  - m_level: 0
-    m_description: 
-    m_mainView: {fileID: 0}
-    m_elements: []
-  - m_level: 0
-    m_description: 
-    m_mainView: {fileID: 0}
-    m_elements: []
+  m_name: Main Building
+  m_description: 
+  m_buildingLevels: []
