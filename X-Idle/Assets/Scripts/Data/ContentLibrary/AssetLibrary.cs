@@ -18,16 +18,27 @@ namespace Data.ContentLibrary
         public Dictionary<string, BuildingContext> ContextMap => m_contextMap;
         public Dictionary<string, GameResourcesTemplate> GameResourcesMap => m_gameResourcesMap;
 
-        public GameObject GetContent(string id)
+        public bool TryGetContentTemplate(string id, out ContentTemplate contentTemplate)
         {
-            if (m_contentMap.TryGetValue(id, out ContentTemplate content))
-            {
-                return Instantiate(content.View);
-            }
-
-
-            return null;
+            if (m_contentMap.TryGetValue(id, out contentTemplate))
+                return true;
+            return false;
         }
+
+        public bool TryGetBuildingContext(string id, out BuildingContext buildingContext)
+        {
+            if (m_contextMap.TryGetValue(id, out buildingContext))
+                return true;
+            return false;
+        }
+
+        public bool TryGetGameResource(string id, out GameResourcesTemplate gameResource)
+        {
+            if (m_gameResourcesMap.TryGetValue(id, out gameResource))
+                return true;
+            return false;
+        }
+
 
 #if UNITY_EDITOR
         public void AddContent(string id, ContentTemplate template)

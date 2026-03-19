@@ -1,4 +1,5 @@
 using System;
+using Common.Pattern.BobbleEvent;
 using GameEnvironment.Factory;
 using UnityEngine;
 
@@ -9,18 +10,23 @@ namespace GameEnvironment.Controller
         [SerializeField] private PlaceholderRoot m_placeholderRoot;
         private IEnvironmentFactory m_factory;
         public event Action OnSceneInitialized;
+        
 
         public void InitContent(IEnvironmentFactory factory)
         {
             m_factory = factory;
-
+            Node = new();
             foreach (var placeHolder in m_placeholderRoot.PlaceHolders)
             {
                 var view = m_factory.GetView(placeHolder.ContentId);
                 view.GameObject.transform.SetParent(placeHolder.transform);
                 view.GameObject.transform.localPosition = Vector3.zero;
                 view.GameObject.transform.localEulerAngles = Vector3.zero;
+
+                Node.AddChild(view.Node);
             }
         }
+
+        public Node Node { get; private set; }
     }
 }
