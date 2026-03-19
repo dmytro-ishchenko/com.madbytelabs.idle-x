@@ -2,7 +2,7 @@ using Common.Model;
 using Common.Pattern.BobbleEvent;
 using UnityEngine;
 
-namespace Common.Interface
+namespace GameEnvironment.Interface
 {
     public interface IContentView : IMonoNode
     {

@@ -123,7 +123,7 @@ namespace Tool.Inspector
 
             popup.ShowUtility();
 
-            void AddBehaviourCallback(AddTemplateResult<ContentTemplate> result)
+            void AddBehaviourCallback(AddTemplateResult<BuildingTemplate> result)
             {
                 popup.OnComplete -= AddBehaviourCallback;
                 if (!result.Success)
@@ -137,10 +137,10 @@ namespace Tool.Inspector
                 EditorApplication.QueuePlayerLoopUpdate();
             }
 
-            popup.InitPopup(m_library.ContentMap.Values.ToList());
+            popup.InitPopup(m_library.Buildings);
         }
 
-        private void DrawContent(VisualElement root, ContentTemplate template)
+        private void DrawContent(VisualElement root, BuildingTemplate template)
         {
             m_contentViewElement = new VisualElement()
             {
@@ -199,7 +199,7 @@ namespace Tool.Inspector
             if (m_library == null)
                 m_library = LibraryUtility.LoadLibrary();
 
-            if (m_library.ContentMap.TryGetValue(contentId, out var template))
+            if (m_library.TryGetBuildingTemplate(contentId, out var template))
             {
                 DrawContent(root, template);
             }

@@ -1,35 +1,25 @@
-using Common.Interface;
-using Data.ContentLibrary.Templates.Context;
+using Data.ContentLibrary.Templates.Context.Building;
+using Data.Interface;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Data.ContentLibrary.Templates
 {
-    public class ContentTemplate : ScriptableObject, IContentTemplate
+    public class BuildingTemplate : ScriptableObject, IBuildingTemplate
     {
         [SerializeField] private string m_id;
         [SerializeField] private string m_name;
         [SerializeField] private string m_description;
         [SerializeField] private GameObject m_view;
-        [SerializeField] ContentContext m_contentContext;
+        [SerializeField] private Image m_icon;
+        [SerializeField] BuildingContext m_buildingContext;
         public string Id => m_id;
 
         public string Name => m_name;
         public string Description => m_description;
         public GameObject View => m_view;
-
-        public IContentContext GetContentContext<T>() where T : IContentContext
-        {
-            if (m_contentContext != null)
-            {
-                if (m_contentContext is T context)
-                {
-                    return context;
-                }
-            }
-
-            return null;
-        }
+        public BuildingContext BuildingContext => m_buildingContext;
 
 
 #if UNITY_EDITOR

@@ -1,9 +1,10 @@
 using Common.Interface;
+using Data.Interface;
 
 namespace GameEnvironment.Factory
 {
     public interface IEnvironmentFactory
     {
-        IContentView GetView(string contentId);
+        IBuildingView GetView(string placeHolderId, string contentId);
     }
 }

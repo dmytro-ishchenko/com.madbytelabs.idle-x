@@ -32,7 +32,7 @@ namespace Tool.Data
         {
             var library = LoadAssetLibrary();
 
-            var content = CreateInstance<ContentTemplate>();
+            var content = CreateInstance<BuildingTemplate>();
 
             var newId = ContentUtility.GetId();
 

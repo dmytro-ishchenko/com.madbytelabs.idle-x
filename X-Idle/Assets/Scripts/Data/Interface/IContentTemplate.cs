@@ -1,6 +1,7 @@
+using Common.Interface;
 using UnityEngine;
 
-namespace Common.Interface
+namespace Data.Interface
 {
     public interface IContentTemplate : ITemplate
     {

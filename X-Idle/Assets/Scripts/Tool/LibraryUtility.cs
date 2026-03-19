@@ -20,9 +20,9 @@ namespace Tool
             {
                 library = (AssetLibrary)AssetDatabase.LoadAssetAtPath(AssetPath.LIBRARY_PATH, typeof(AssetLibrary));
 
-                CheckNull(library.ContentMap);
-                CheckNull(library.ContextMap);
-                CheckNull(library.GameResourcesMap);
+                // CheckNull(library.BuildingsMap);
+                // CheckNull(library.BuildingsBuildingsContextMap);
+                // CheckNull(library.GameResourcesMap);
             }
             else
             {
@@ -35,7 +35,7 @@ namespace Tool
             return library;
         }
 
-        static void CheckNull(Dictionary<string, ContentTemplate> map)
+        static void CheckNull(Dictionary<string, BuildingTemplate> map)
         {
             foreach (var element in map)
             {

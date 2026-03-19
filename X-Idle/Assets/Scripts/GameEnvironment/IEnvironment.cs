@@ -1,10 +1,11 @@
 using System;
-using Common.Events;
+using Data.Events;
 
 namespace GameEnvironment
 {
     public interface IEnvironment
     {
-        event Action<SelectContentEventArgs> OnSelectContent;
+        event Action<BuildingEventArgs> OnCreateBuildingRequest;
+        event Action<BuildingEventArgs> OnUpgradeBuildingRequest;
     }
 }

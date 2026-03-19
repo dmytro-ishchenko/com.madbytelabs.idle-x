@@ -1,7 +1,7 @@
-using Common.Interface;
-using Common.Model;
 using Data.ContentLibrary;
 using Data.ContentLibrary.Templates;
+using Data.Interface;
+using Data.Model;
 using GameEnvironment.View;
 using UnityEngine;
 
@@ -16,9 +16,9 @@ namespace GameEnvironment.Factory
 
         private readonly IAssetLibrary m_assetLibrary;
 
-        public IContentView GetView(string contentId)
+        public IBuildingView GetView(string placeHolderId, string contentId)
         {
-            if (!m_assetLibrary.TryGetContentTemplate(contentId, out ContentTemplate contentTemplate))
+            if (!m_assetLibrary.TryGetBuildingTemplate(contentId, out BuildingTemplate contentTemplate))
             {
                 Debug.LogError($"Content {contentId} not found");
                 return null;
@@ -26,12 +26,12 @@ namespace GameEnvironment.Factory
 
             var view = Object.Instantiate(contentTemplate.View);
 
-            var component = view.GetComponent<ContentView>();
+            var component = view.GetComponent<BuildingView>();
 
-            component.Init(new ContentModel(contentTemplate, 0));
+            component.Init(new BuildingModel(placeHolderId, contentTemplate, 0));
 
 
-            return view.GetComponent<ContentView>();
+            return view.GetComponent<BuildingView>();
         }
     }
 }

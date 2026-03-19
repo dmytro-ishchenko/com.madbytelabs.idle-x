@@ -1,4 +1,4 @@
-namespace Common.Interface
+namespace Data.Interface
 {
     public interface ITemplate
     {

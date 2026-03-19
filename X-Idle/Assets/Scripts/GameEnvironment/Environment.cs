@@ -1,9 +1,10 @@
 using System;
 using Common;
 using Common.Enum;
-using Common.Events;
 using Common.Pattern.BobbleEvent;
 using Data;
+using Data.Enum;
+using Data.Events;
 using GameEnvironment.Controller;
 using GameEnvironment.Factory;
 using SceneLoader;
@@ -17,15 +18,14 @@ namespace GameEnvironment
         public Environment(IApplicationData data, IAppSceneLoader sceneLoader)
         {
             m_applicationData = data;
-            m_sceneLoader = sceneLoader;
             m_factory = new EnvironmentFactory(m_applicationData.AssetLibrary);
             sceneLoader.SceneNotify.OnSceneLoaded += OnSceneLoadedHandler;
         }
 
         private readonly IApplicationData m_applicationData;
-        private readonly IAppSceneLoader m_sceneLoader;
         private readonly IEnvironmentFactory m_factory;
-        public event Action<SelectContentEventArgs> OnSelectContent;
+        public event Action<BuildingEventArgs> OnCreateBuildingRequest;
+        public event Action<BuildingEventArgs> OnUpgradeBuildingRequest;
 
         private void OnSceneLoadedHandler(Scene scene)
         {
@@ -41,8 +41,21 @@ namespace GameEnvironment
         {
             switch (evt.EventName)
             {
-                case "SelectContent":
-                    OnSelectContent?.Invoke((SelectContentEventArgs)evt.EventArgs);
+                case "BuildingAction":
+                    if (evt.EventArgs is BuildingEventArgs args)
+                    {
+                        switch (args.BuildingActionType)
+                        {
+                            case BuildingActionType.CreateBuilding:
+                                OnCreateBuildingRequest?.Invoke((BuildingEventArgs)evt.EventArgs);
+                                break;
+                            case BuildingActionType.UpgradeBuilding:
+                                OnUpgradeBuildingRequest?.Invoke((BuildingEventArgs)evt.EventArgs);
+                                break;
+                        }
+                    }
+
+
                     break;
             }
         }

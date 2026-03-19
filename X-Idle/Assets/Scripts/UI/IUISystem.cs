@@ -1,6 +1,6 @@
 namespace UI
 {
-    public interface IGameUI
+    public interface IUISystem
     {
         
     }

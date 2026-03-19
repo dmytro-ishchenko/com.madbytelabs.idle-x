@@ -13,15 +13,15 @@ namespace Tool.Popup
             maxSize = new Vector2(500, 400);
         }
 
-        private IList<ContentTemplate> m_templates;
+        private IList<BuildingTemplate> m_templates;
 
-        public delegate void AddEntityDelegate(AddTemplateResult<ContentTemplate> data);
+        public delegate void AddEntityDelegate(AddTemplateResult<BuildingTemplate> data);
 
         public event AddEntityDelegate OnComplete;
 
         private void OnDestroy()
         {
-            OnComplete?.Invoke(new AddTemplateResult<ContentTemplate>());
+            OnComplete?.Invoke(new AddTemplateResult<BuildingTemplate>());
         }
 
         public void CreateGUI()
@@ -34,7 +34,7 @@ namespace Tool.Popup
             DrawCustomList();
         }
 
-        public void InitPopup(IList<ContentTemplate> list)
+        public void InitPopup(IList<BuildingTemplate> list)
         {
             m_templates = list;
             DrawTitle("Content List");
@@ -55,7 +55,7 @@ namespace Tool.Popup
                 t => t.Name,
                 t =>
                 {
-                    OnComplete?.Invoke(new AddTemplateResult<ContentTemplate>(t));
+                    OnComplete?.Invoke(new AddTemplateResult<BuildingTemplate>(t));
                     Close();
                 }
             );
