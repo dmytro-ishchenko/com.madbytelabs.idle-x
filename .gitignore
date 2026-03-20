@@ -8,6 +8,7 @@
 /X-Idle/[Uu]ser[Ss]ettings/
 /X-Idle/Assets/_[Tt]emp/
 /X-Idle/.idea
+/X-Idle/.utmp
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
