@@ -4,15 +4,19 @@ using Data.Events;
 using Data.Interface;
 using Data.Model;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 namespace GameEnvironment.View
 {
-    internal class BuildingView : MonoBehaviour, IBuildingView
+    internal class BuildingView : MonoBehaviour, IBuildingView, IPointerDownHandler, IPointerUpHandler
     {
         private float m_threshold = 0.1f;
         private Vector2 m_touchPosition;
         public GameObject GameObject => gameObject;
         public BuildingModel Model { get; private set; }
+
+        public Node Node { get; private set; }
 
         public void Init(BuildingModel model)
         {
@@ -20,14 +24,14 @@ namespace GameEnvironment.View
             Node = new();
         }
 
-        private void OnMouseDown()
+        public void OnPointerDown(PointerEventData eventData)
         {
-            m_touchPosition = Input.mousePosition;
+            m_touchPosition = Mouse.current.position.ReadValue();
         }
 
-        private void OnMouseUp()
+        public void OnPointerUp(PointerEventData eventData)
         {
-            if (Vector3.Distance(m_touchPosition, Input.mousePosition) > m_threshold)
+            if (Vector3.Distance(m_touchPosition, Mouse.current.position.ReadValue()) > m_threshold)
                 return;
 
             if (Model.Level == 0)
@@ -35,7 +39,5 @@ namespace GameEnvironment.View
             else
                 Node.TriggerEvent("BuildingAction", new BuildingEventArgs(Model, BuildingActionType.UpgradeBuilding));
         }
-
-        public Node Node { get; private set; }
     }
 }

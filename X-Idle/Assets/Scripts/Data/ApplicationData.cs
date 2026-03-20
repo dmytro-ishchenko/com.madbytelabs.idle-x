@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using Common;
 using Data.ContentLibrary;
 using Data.Enum;
 using Data.Interface;
 using Data.Model;
-using UnityEditor;
+using UnityEngine;
 
 namespace Data
 {
@@ -20,7 +19,8 @@ namespace Data
             get
             {
                 if (m_assetLibrary == null)
-                    m_assetLibrary = (AssetLibrary)AssetDatabase.LoadAssetAtPath(AssetPath.LIBRARY_PATH, typeof(AssetLibrary));
+                    m_assetLibrary = Resources.Load<AssetLibrary>("AssetLibrary");
+
                 return m_assetLibrary;
             }
         }
@@ -39,9 +39,11 @@ namespace Data
 
             IList<IBuildingTemplate> templates = new List<IBuildingTemplate>();
 
-
             foreach (var buildingTemplate in AssetLibrary.Buildings)
             {
+                if (buildingTemplate.BuildingContext.BuildingType != BuildingType.DestroyedBuilding)
+                    continue;
+
                 var userBuilding = userBuildings.FirstOrDefault(b => b.Template.BuildingContext.BuildingType.Equals(buildingTemplate.BuildingContext.BuildingType));
 
                 if (userBuilding == null || userBuilding.Template.BuildingContext.CanDuplicate)

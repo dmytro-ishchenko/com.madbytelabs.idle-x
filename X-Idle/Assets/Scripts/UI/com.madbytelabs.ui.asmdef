@@ -6,7 +6,8 @@
         "com.madbytelabs.data",
         "com.madbytelabs.sceneLoader",
         "com.madbytelabs.common",
-        "AYellowpaper.SerializedCollections"
+        "AYellowpaper.SerializedCollections",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

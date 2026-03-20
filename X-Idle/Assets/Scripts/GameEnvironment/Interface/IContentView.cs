@@ -1,5 +1,5 @@
-using Common.Model;
 using Common.Pattern.BobbleEvent;
+using Data.Model;
 using UnityEngine;
 
 namespace GameEnvironment.Interface

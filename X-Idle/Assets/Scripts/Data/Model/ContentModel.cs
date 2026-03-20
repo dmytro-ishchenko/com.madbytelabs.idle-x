@@ -1,7 +1,6 @@
-using Common.Interface;
 using Data.Interface;
 
-namespace Common.Model
+namespace Data.Model
 {
     public class ContentModel
     {

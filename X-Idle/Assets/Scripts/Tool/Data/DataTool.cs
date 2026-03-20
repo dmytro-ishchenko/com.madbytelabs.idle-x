@@ -37,7 +37,7 @@ namespace Tool.Data
             var newId = ContentUtility.GetId();
 
             content.SetId(ContentUtility.GetId());
-            AssetDatabase.CreateAsset(content, Path.Combine(AssetPath.CONTENT_PATH, "NewContent" + ".asset"));
+            AssetDatabase.CreateAsset(content, Path.Combine(AssetPath.BUILDINGS_PATH, "NewContent" + ".asset"));
             library.AddContent(newId, content);
 
             AssetDatabase.SaveAssets();
