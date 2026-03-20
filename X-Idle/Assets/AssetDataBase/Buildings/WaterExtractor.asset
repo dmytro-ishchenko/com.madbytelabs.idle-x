@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79d7ef08503b40109edeb158a2dbd099, type: 3}
+  m_Name: WaterExtractor
+  m_EditorClassIdentifier: com.madbytelabs.data::Data.ContentLibrary.Templates.BuildingTemplate
+  m_id: 8de869be52cb35456f6a7b6
+  m_name: Water Extractor
+  m_description: 
+  m_view: {fileID: 0}
+  m_icon: {fileID: 21300000, guid: 6779adec3430d41248ab431d57b199ee, type: 3}
+  m_buildingContext: {fileID: 0}

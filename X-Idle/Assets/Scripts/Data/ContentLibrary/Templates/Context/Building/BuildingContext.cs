@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Data.ContentLibrary.Templates.Context.Building
 {
     [Serializable]
-    public class BuildingContext : ContentContext
+    public class BuildingContext
     {
         [SerializeField] private BuildingType m_buildingType;
         [SerializeField] private bool m_canDuplicate = true;

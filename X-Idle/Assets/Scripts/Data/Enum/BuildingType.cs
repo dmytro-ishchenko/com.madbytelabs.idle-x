@@ -10,5 +10,6 @@ namespace Data.Enum
         ScrapYard = 5,
         Workshop = 6,
         RadioTower = 7,
+        WaterExtractor = 8,
     }
 }

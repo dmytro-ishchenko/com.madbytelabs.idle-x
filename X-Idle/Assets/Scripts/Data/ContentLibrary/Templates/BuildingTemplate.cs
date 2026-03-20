@@ -2,7 +2,6 @@ using Data.ContentLibrary.Templates.Context.Building;
 using Data.Interface;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Data.ContentLibrary.Templates
 {
@@ -12,7 +11,7 @@ namespace Data.ContentLibrary.Templates
         [SerializeField] private string m_name;
         [SerializeField] private string m_description;
         [SerializeField] private GameObject m_view;
-        [SerializeField] private Image m_icon;
+        [SerializeField] private Sprite m_icon;
         [SerializeField] BuildingContext m_buildingContext;
         public string Id => m_id;
 

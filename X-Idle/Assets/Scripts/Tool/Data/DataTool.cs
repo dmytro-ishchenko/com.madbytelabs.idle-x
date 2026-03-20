@@ -27,7 +27,7 @@ namespace Tool.Data
         }
 
 
-        [MenuItem("AFTER/Library/Create New Content", false, 2)]
+        [MenuItem("AFTER/Library/Create New Building", false, 2)]
         public static void CreateNewContent()
         {
             var library = LoadAssetLibrary();
@@ -37,26 +37,8 @@ namespace Tool.Data
             var newId = ContentUtility.GetId();
 
             content.SetId(ContentUtility.GetId());
-            AssetDatabase.CreateAsset(content, Path.Combine(AssetPath.BUILDINGS_PATH, "NewContent" + ".asset"));
+            AssetDatabase.CreateAsset(content, Path.Combine(AssetPath.BUILDINGS_PATH, "NewBuilding" + ".asset"));
             library.AddContent(newId, content);
-
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
-        }
-
-        [MenuItem("AFTER/Library/Context/Building Context", false, 3)]
-        public static void CreateBuildingContext()
-        {
-            var library = LoadAssetLibrary();
-
-            var context = CreateInstance<BuildingContext>();
-
-            var newId = ContentUtility.GetId();
-
-            context.SetId(newId);
-            AssetDatabase.CreateAsset(context, Path.Combine(AssetPath.CONTEXT_PATH, "NewBuildingContext" + ".asset"));
-
-            library.AddContext(newId, context);
 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
