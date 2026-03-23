@@ -56,8 +56,53 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 501838110, guid: 4c1b9d6b74a430b488545d772e209bf2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4946688438191895232, guid: 4c1b9d6b74a430b488545d772e209bf2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4265543958128742300}
+    - targetCorrespondingSourceObject: {fileID: 4946688438191895232, guid: 4c1b9d6b74a430b488545d772e209bf2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8398987703394521713}
   m_SourcePrefab: {fileID: 100100000, guid: 4c1b9d6b74a430b488545d772e209bf2, type: 3}
+--- !u!1 &9197538642555326442 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4946688438191895232, guid: 4c1b9d6b74a430b488545d772e209bf2, type: 3}
+  m_PrefabInstance: {fileID: 4251981095039794474}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &4265543958128742300
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9197538642555326442}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7.8205104, y: 20.670174, z: 10.759417}
+  m_Center: {x: 0.006657362, y: 10.335087, z: 0.5048425}
+--- !u!114 &8398987703394521713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9197538642555326442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8712e76c5624d2fbdccb4424a86ce22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.View.BuildingView

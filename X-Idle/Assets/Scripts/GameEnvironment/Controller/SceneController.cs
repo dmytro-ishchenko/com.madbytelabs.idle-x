@@ -16,6 +16,7 @@ namespace GameEnvironment.Controller
         {
             m_factory = factory;
             Node = new();
+
             foreach (var placeHolder in m_placeholderRoot.PlaceHolders)
             {
                 var view = m_factory.GetView(placeHolder.Id, placeHolder.ContentId);

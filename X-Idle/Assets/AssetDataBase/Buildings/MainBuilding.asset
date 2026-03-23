@@ -15,7 +15,7 @@ MonoBehaviour:
   m_id: 8de86969565a9164d7656fb
   m_name: Main Building
   m_description: 
-  m_view: {fileID: 0}
+  m_view: {fileID: 2441952808027099099, guid: 26cf07683616744e0826bbec1ee88399, type: 3}
   m_icon: {fileID: 21300000, guid: 184b4a7d324a94f26a98564ef7df5955, type: 3}
   m_buildingContext:
     m_buildingType: 1

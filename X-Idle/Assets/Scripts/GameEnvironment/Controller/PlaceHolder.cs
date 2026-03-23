@@ -23,6 +23,18 @@ namespace GameEnvironment.Controller
             m_contentId = id;
             EditorUtility.SetDirty(this);
         }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawCube(transform.localPosition, Vector3.one * 5f);
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawCube(transform.localPosition, Vector3.one * 5f);
+        }
 #endif
     }
 }

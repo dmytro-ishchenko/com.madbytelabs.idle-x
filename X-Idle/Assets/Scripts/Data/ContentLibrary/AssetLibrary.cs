@@ -14,7 +14,6 @@ namespace Data.ContentLibrary
     public class AssetLibrary : ScriptableObject, IAssetLibrary
     {
         [SerializeField] private SerializedDictionary<string, BuildingTemplate> m_buildingsMap;
-        [SerializeField] private SerializedDictionary<string, BuildingContext> m_buildingsContextMap;
         [SerializeField] private SerializedDictionary<string, GameResourcesTemplate> m_gameResourcesMap;
 
         public IList<BuildingTemplate> Buildings => m_buildingsMap.Values.ToList();
@@ -40,13 +39,6 @@ namespace Data.ContentLibrary
             return false;
         }
 
-        public bool TryGetBuildingContext(string id, out BuildingContext buildingContext)
-        {
-            if (m_buildingsContextMap.TryGetValue(id, out buildingContext))
-                return true;
-            return false;
-        }
-
         public bool TryGetGameResource(string id, out GameResourcesTemplate gameResource)
         {
             if (m_gameResourcesMap.TryGetValue(id, out gameResource))
@@ -62,16 +54,16 @@ namespace Data.ContentLibrary
             EditorUtility.SetDirty(this);
         }
 
-        public void AddContext(string id, BuildingContext context)
-        {
-            m_buildingsContextMap.TryAdd(id, context);
-            EditorUtility.SetDirty(this);
-        }
-
         public void AddResource(string newId, GameResourcesTemplate resource)
         {
             m_gameResourcesMap.TryAdd(newId, resource);
             EditorUtility.SetDirty(this);
+        }
+
+        public void ClearLibrary()
+        {
+            m_buildingsMap.Clear();
+            m_gameResourcesMap.Clear();
         }
 #endif
     }

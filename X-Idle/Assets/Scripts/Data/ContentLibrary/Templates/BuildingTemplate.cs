@@ -18,6 +18,7 @@ namespace Data.ContentLibrary.Templates
         public string Name => m_name;
         public string Description => m_description;
         public GameObject View => m_view;
+        public Sprite Icon => m_icon;
         public BuildingContext BuildingContext => m_buildingContext;
 
 

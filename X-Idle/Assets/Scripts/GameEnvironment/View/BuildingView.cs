@@ -34,7 +34,7 @@ namespace GameEnvironment.View
             if (Vector3.Distance(m_touchPosition, Mouse.current.position.ReadValue()) > m_threshold)
                 return;
 
-            if (Model.Level == 0)
+            if (Model.Template.BuildingContext.BuildingType == BuildingType.DestroyedBuilding)
                 Node.TriggerEvent("BuildingAction", new BuildingEventArgs(Model, BuildingActionType.CreateBuilding));
             else
                 Node.TriggerEvent("BuildingAction", new BuildingEventArgs(Model, BuildingActionType.UpgradeBuilding));

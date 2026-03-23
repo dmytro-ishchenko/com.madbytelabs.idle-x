@@ -30,14 +30,5 @@ namespace Tool.Environment
             root.AddPlaceholder(component);
         }
 
-        [MenuItem("AFTER/Scene/Load Content", false, 2)]
-        public static void LoadContent()
-        {
-        }
-
-        [MenuItem("AFTER/Scene/Unload Content", false, 3)]
-        public static void UnloadContent()
-        {
-        }
     }
 }

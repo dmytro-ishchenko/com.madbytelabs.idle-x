@@ -29,19 +29,11 @@ namespace Data
         {
             var userBuildings = m_userData.UserBuildingsData.BuildingsMap.Values.ToList();
 
-            if (userBuildings.Count == 0)
-            {
-                if (AssetLibrary.TryGetBuildingTemplate(BuildingType.MainBuilding, out var template))
-                {
-                    return new BindingList<IBuildingTemplate>() { template };
-                }
-            }
-
             IList<IBuildingTemplate> templates = new List<IBuildingTemplate>();
 
             foreach (var buildingTemplate in AssetLibrary.Buildings)
             {
-                if (buildingTemplate.BuildingContext.BuildingType != BuildingType.DestroyedBuilding)
+                if (buildingTemplate.BuildingContext.BuildingType == BuildingType.DestroyedBuilding || buildingTemplate.BuildingContext.BuildingType == BuildingType.MainBuilding)
                     continue;
 
                 var userBuilding = userBuildings.FirstOrDefault(b => b.Template.BuildingContext.BuildingType.Equals(buildingTemplate.BuildingContext.BuildingType));

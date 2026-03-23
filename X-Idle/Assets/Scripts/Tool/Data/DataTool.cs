@@ -4,7 +4,9 @@ using Data.ContentLibrary;
 using Data.ContentLibrary.Templates;
 using Data.ContentLibrary.Templates.Context.Building;
 using Data.ContentLibrary.Templates.GameResources;
+using Data.Interface;
 using UnityEditor;
+using UnityEngine;
 
 namespace Tool.Data
 {
@@ -36,7 +38,7 @@ namespace Tool.Data
 
             var newId = ContentUtility.GetId();
 
-            content.SetId(ContentUtility.GetId());
+            content.SetId(newId);
             AssetDatabase.CreateAsset(content, Path.Combine(AssetPath.BUILDINGS_PATH, "NewBuilding" + ".asset"));
             library.AddContent(newId, content);
 
@@ -61,6 +63,60 @@ namespace Tool.Data
 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
+        }
+
+
+        [MenuItem("AFTER/Library/Rescan Library", false, 100)]
+        public static void RescanLibrary()
+        {
+            var library = LoadAssetLibrary();
+
+            library.ClearLibrary();
+
+            var buildingTemplates = GetAllInstances<BuildingTemplate>();
+            var resourceTemplates = GetAllInstances<GameResourcesTemplate>();
+
+            foreach (var template in buildingTemplates)
+            {
+                library.AddContent(template.Id, template);
+            }
+
+            foreach (var template in resourceTemplates)
+            {
+                library.AddResource(template.Id, template);
+            }
+
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+        }
+
+        static T[] GetAllInstances<T>() where T : ScriptableObject, ITemplate
+        {
+            string[] guids = AssetDatabase.FindAssets($"t:{typeof(T).Name}", new[] { "Assets/AssetDataBase" });
+            T[] a = new T[guids.Length];
+            for (int i = 0; i < guids.Length; i++)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guids[i]);
+                var instance = AssetDatabase.LoadAssetAtPath<T>(path);
+                a[i] = instance;
+            }
+
+            return a;
+        }
+
+        public static T[] GetAllInstances<T>(string folder) where T : ScriptableObject
+        {
+            string[] guids = AssetDatabase.FindAssets($"t:{typeof(T).Name}", new[] { folder });
+            T[] a = new T[guids.Length];
+            for (int i = 0; i < guids.Length; i++)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guids[i]);
+
+                var instance = AssetDatabase.LoadAssetAtPath<T>(path);
+                a[i] = instance;
+            }
+
+            return a;
         }
     }
 }

@@ -11,7 +11,6 @@ namespace Data.ContentLibrary
         IList<BuildingTemplate> Buildings { get; }
         bool TryGetBuildingTemplate(string id, out BuildingTemplate buildingTemplate);
         bool TryGetBuildingTemplate(BuildingType type, out BuildingTemplate buildingTemplate);
-        bool TryGetBuildingContext(string id, out BuildingContext buildingContext);
         bool TryGetGameResource(string id, out GameResourcesTemplate gameResource);
     }
 }
