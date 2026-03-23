@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7153824704285753458}
   - component: {fileID: 1404969197403118844}
   - component: {fileID: 6045671324291599959}
+  - component: {fileID: 1391567268713803538}
   m_Layer: 0
   m_Name: TouchCamera 1
   m_TagString: MainCamera
@@ -82,7 +83,7 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 0
+  m_HDR: 1
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
@@ -124,7 +125,7 @@ MonoBehaviour:
   PitchSensitivity: 0.25
   PitchClamp: 1
   PitchMinMax: {x: 5, y: 90}
-  allowYawRotation: 1
+  allowYawRotation: 0
   YawSensitivity: 0.25
   YawClamp: 0
   YawMinMax: {x: 5, y: 90}
@@ -178,19 +179,19 @@ MonoBehaviour:
   defaultMode: 1
   rightClickDrag: 0
   middleClickDrag: 0
-  oneFingerDrag: 1
+  oneFingerDrag: 0
   twoFingerDrag: 0
-  twoFingerPinch: 0
+  twoFingerPinch: 2
   scrollWheel: 0
   groundHeight: 0
   groundHeightAnim:
     halfLife: 0.1
     distanceFromTargetToComplete: 0
-  allowPitchRotation: 1
+  allowPitchRotation: 0
   PitchSensitivity: 0.25
   PitchClamp: 1
   PitchMinMax: {x: 5, y: 90}
-  allowYawRotation: 1
+  allowYawRotation: 0
   YawSensitivity: 0.25
   YawClamp: 0
   YawMinMax: {x: 5, y: 90}
@@ -227,7 +228,7 @@ MonoBehaviour:
     maxMagnitude: 0
     accelerationFactor: 100
   rotationInertiaForce: 1
-  minMaxDistance: {x: 3, y: 20}
+  minMaxDistance: {x: 20, y: 50}
   initDistance: 10
   zoomSmoothness: 0
   fov: 55
@@ -260,7 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  movementType: 0
+  movementType: 1
   elasticity: 0.05
   elasticSpace: 5
   bounderiesCollider: {fileID: 0}
@@ -288,7 +289,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -315,3 +316,19 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &1391567268713803538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3747663314381282289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49b4cc203aa6414fae5c798d1d0e7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.PhysicsRaycaster
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0

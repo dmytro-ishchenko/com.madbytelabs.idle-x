@@ -33,9 +33,7 @@ MonoBehaviour:
     - Key: 8de869be52cb27881005886
       Value: {fileID: 11400000, guid: 23504d1c0653544488cf992058090e37, type: 2}
   m_buildingsContextMap:
-    _serializedList:
-    - Key: 8de869c201dc26efde0a251
-      Value: {fileID: 11400000, guid: 64be61ec46eed45b9847bc941f4210d1, type: 2}
+    _serializedList: []
   m_gameResourcesMap:
     _serializedList:
     - Key: 8de83abfe81b3e261880109

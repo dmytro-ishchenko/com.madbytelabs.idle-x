@@ -17,4 +17,7 @@ MonoBehaviour:
   m_description: 
   m_view: {fileID: 0}
   m_icon: {fileID: 21300000, guid: 6ab9d64b9e9e74f819c53bf2eb350e56, type: 3}
-  m_buildingContext: {fileID: 0}
+  m_buildingContext:
+    m_buildingType: 6
+    m_canDuplicate: 1
+    m_buildingLevels: []
