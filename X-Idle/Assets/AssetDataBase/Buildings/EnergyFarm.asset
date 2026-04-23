@@ -15,7 +15,7 @@ MonoBehaviour:
   m_id: 8de869af6ed8a928858cc40
   m_name: Energy Farm
   m_description: 
-  m_view: {fileID: 0}
+  m_view: {fileID: 3050995289237018250, guid: bf6772e29d7a8450ab83c25bea20172c, type: 3}
   m_icon: {fileID: 21300000, guid: b85a36915e63a4b7f8d2660e6c015ac8, type: 3}
   m_buildingContext:
     m_buildingType: 3

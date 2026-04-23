@@ -15,7 +15,7 @@ MonoBehaviour:
   m_id: 8de869b03e662c8e7b1ff7
   m_name: Greenhouse
   m_description: 
-  m_view: {fileID: 0}
+  m_view: {fileID: 8574130953060704172, guid: 348239305469243aaad395c30ef967e8, type: 3}
   m_icon: {fileID: 21300000, guid: 18f71119649d1459c81171010c47c484, type: 3}
   m_buildingContext:
     m_buildingType: 4

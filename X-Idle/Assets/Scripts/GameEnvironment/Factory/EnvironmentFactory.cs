@@ -13,7 +13,7 @@ namespace GameEnvironment.Factory
 
             var component = view.GetComponent<BuildingView>();
 
-            component.Init(new BuildingModel(placeHolderId, contentTemplate, 0));
+            component.Init(new BuildingModel(placeHolderId, contentTemplate, 1));
 
 
             return view.GetComponent<BuildingView>();
