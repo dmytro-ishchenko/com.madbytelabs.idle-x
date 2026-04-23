@@ -2,15 +2,16 @@ fileFormatVersion: 2
 guid: 209cb4a0ddaaefd4c843adf04fb80add
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 11400000
+  mainObjectFileID: -5010649362124108599
   userData: 
   assetBundleName: 
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
   productId: 234254
-  packageName: POLYGON Swamp Marshland - Nature Biomes - Low Poly 3D Art by Synty
-  packageVersion: 1.10.1
+  packageName: POLYGON - Swamp Marshland - Nature Biomes - 3D Environment Art by
+    Synty
+  packageVersion: 1.10.3
   assetPath: Assets/Synty/PolygonNatureBiomes/PNB_Swamp_Marshland/Models/SM_Prop_Sewerpipe_Corner_01_Convex
     2.asset
-  uploadId: 794500
+  uploadId: 866642

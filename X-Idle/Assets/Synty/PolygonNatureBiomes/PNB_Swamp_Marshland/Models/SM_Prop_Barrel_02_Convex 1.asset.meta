@@ -2,15 +2,16 @@ fileFormatVersion: 2
 guid: 7e575b6641fe9954d913bff4c9a559ab
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 11400000
+  mainObjectFileID: 1265525709175256797
   userData: 
   assetBundleName: 
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
   productId: 234254
-  packageName: POLYGON Swamp Marshland - Nature Biomes - Low Poly 3D Art by Synty
-  packageVersion: 1.10.1
+  packageName: POLYGON - Swamp Marshland - Nature Biomes - 3D Environment Art by
+    Synty
+  packageVersion: 1.10.3
   assetPath: Assets/Synty/PolygonNatureBiomes/PNB_Swamp_Marshland/Models/SM_Prop_Barrel_02_Convex
     1.asset
-  uploadId: 794500
+  uploadId: 866642

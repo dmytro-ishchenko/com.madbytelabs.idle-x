@@ -13,19 +13,21 @@ using UnityEngine.SceneManagement;
 
 namespace GameEnvironment
 {
-    internal class Environment : IEnvironment, IRootEventHandler
+    internal class Environment : BobbleDispatcher, IEnvironment
     {
         public Environment(IApplicationData data, IAppSceneLoader sceneLoader)
         {
             m_applicationData = data;
             m_factory = new EnvironmentFactory(m_applicationData.AssetLibrary);
             sceneLoader.SceneNotify.OnSceneLoaded += OnSceneLoadedHandler;
+
+            Subscribe<BuildingRequestEventArgs>(BuildingActionHandler);
         }
 
         private readonly IApplicationData m_applicationData;
         private readonly IEnvironmentFactory m_factory;
-        public event Action<BuildingEventArgs> OnCreateBuildingRequest;
-        public event Action<BuildingEventArgs> OnUpgradeBuildingRequest;
+        public event Action<BuildingRequestEventArgs> OnBuildingActionRequest;
+
 
         private void OnSceneLoadedHandler(Scene scene)
         {
@@ -33,31 +35,13 @@ namespace GameEnvironment
             {
                 var controller = scene.GetComponent<ISceneController>();
                 controller.InitContent(m_factory);
-                controller.Node.SetRootHandler(this);
+                controller.Node.SetDispatcher(this);
             }
         }
 
-        public void Handle(NodeEvent evt)
+        private void BuildingActionHandler(BuildingRequestEventArgs args)
         {
-            switch (evt.EventName)
-            {
-                case "BuildingAction":
-                    if (evt.EventArgs is BuildingEventArgs args)
-                    {
-                        switch (args.BuildingActionType)
-                        {
-                            case BuildingActionType.CreateBuilding:
-                                OnCreateBuildingRequest?.Invoke((BuildingEventArgs)evt.EventArgs);
-                                break;
-                            case BuildingActionType.UpgradeBuilding:
-                                OnUpgradeBuildingRequest?.Invoke((BuildingEventArgs)evt.EventArgs);
-                                break;
-                        }
-                    }
-
-
-                    break;
-            }
+            OnBuildingActionRequest?.Invoke(args);
         }
     }
 }

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 77f09e403c5094e1ab7e7bf399311851
+timeCreated: 1540522588
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131930
+  packageName: POLYGON - City Zombies Pack - Art by Synty
+  packageVersion: 1.7.0
+  assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Father_Male_02.prefab
+  uploadId: 864496

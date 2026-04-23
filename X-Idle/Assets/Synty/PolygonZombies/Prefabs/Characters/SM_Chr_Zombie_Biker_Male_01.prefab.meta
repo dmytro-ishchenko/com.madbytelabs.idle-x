@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3f020bac69fdd469eb70f77e793a3e1c
+timeCreated: 1540522571
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131930
+  packageName: POLYGON - City Zombies Pack - Art by Synty
+  packageVersion: 1.7.0
+  assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Biker_Male_01.prefab
+  uploadId: 864496

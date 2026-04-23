@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Data.Enum;
+using Data.Events;
 using UI.Model;
 using UI.Popup.Controller;
 using UnityEngine;
@@ -13,6 +15,7 @@ namespace UI.Popup
         [SerializeField] private ScrollRect m_scrollRect;
         [SerializeField] Button m_createButton;
         private List<BuildingElement> m_elements = new();
+        private string m_selectedId;
 
         public override void Show<T>(T context)
         {
@@ -26,21 +29,49 @@ namespace UI.Popup
                     element.Init(buildingTemplate);
                     element.gameObject.SetActive(true);
                     m_elements.Add(element);
+                    element.OnSelect += OnSelectHandler;
                 }
 
                 base.Show(context);
             }
+
+            m_createButton.interactable = false;
+            m_selectedId = string.Empty;
+            
+            m_createButton.onClick.AddListener(() =>
+            {
+                if (!string.IsNullOrEmpty(m_selectedId))
+                {
+                    Node.TriggerEvent(new BuildingProcessEventArgs(m_selectedId,BuildingActionType.CreateBuildingRequest));
+                }
+            });
         }
 
         public override void Close()
         {
             foreach (var element in m_elements)
             {
+                element.OnSelect -= OnSelectHandler;
                 Destroy(element.gameObject);
             }
 
             m_elements.Clear();
             base.Close();
         }
+
+        private void OnSelectHandler(BuildingElement element)
+        {
+            foreach (var el in m_elements)
+            {
+                el.Select(false);
+            }
+
+            element.Select(true);
+
+            if (!m_createButton.interactable)
+                m_createButton.interactable = true;
+            m_selectedId = element.Id;
+        }
+
     }
 }

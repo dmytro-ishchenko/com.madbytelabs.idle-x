@@ -7,9 +7,9 @@ namespace Data.Model
         private Dictionary<string, BuildingModel> m_buildingsMap = new();
         public IDictionary<string, BuildingModel> BuildingsMap => m_buildingsMap;
 
-        public bool TryGetBuildingModel(string name, out BuildingModel buildingModel)
+        public bool TryGetBuildingModel(string id, out BuildingModel buildingModel)
         {
-            return m_buildingsMap.TryGetValue(name, out buildingModel);
+            return m_buildingsMap.TryGetValue(id, out buildingModel);
         }
 
         public void AddBuildingModel(string id, BuildingModel buildingModel)

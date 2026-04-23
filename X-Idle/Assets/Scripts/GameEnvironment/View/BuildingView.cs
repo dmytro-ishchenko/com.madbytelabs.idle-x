@@ -35,9 +35,9 @@ namespace GameEnvironment.View
                 return;
 
             if (Model.Template.BuildingContext.BuildingType == BuildingType.DestroyedBuilding)
-                Node.TriggerEvent("BuildingAction", new BuildingEventArgs(Model, BuildingActionType.CreateBuilding));
+                Node.TriggerEvent(new BuildingRequestEventArgs(Model, BuildingActionType.CreateBuildingRequest));
             else
-                Node.TriggerEvent("BuildingAction", new BuildingEventArgs(Model, BuildingActionType.UpgradeBuilding));
+                Node.TriggerEvent(new BuildingRequestEventArgs(Model, BuildingActionType.UpgradeBuildingRequest));
         }
     }
 }

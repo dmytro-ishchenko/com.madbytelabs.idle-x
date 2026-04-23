@@ -15,11 +15,12 @@ namespace UI.Controller
         void Awake()
         {
             Node = new();
+            Node.AddChild(m_popupManager.Node);
         }
 
-        public void ShowSelectBuildingPopup(BuildingModel buildingModel)=> m_popupManager.ShowSelectBuildingPopup(buildingModel);
+        public void ShowSelectBuildingPopup(BuildingModel buildingModel) => m_popupManager.ShowSelectBuildingPopup(buildingModel);
 
-        public void ShowCreateBuildingPopup(CreateBuildingContext context )=> m_popupManager.ShowCreateBuildingPopup(context);
+        public void ShowCreateBuildingPopup(CreateBuildingContext context) => m_popupManager.ShowCreateBuildingPopup(context);
 
         public Node Node { get; private set; }
     }

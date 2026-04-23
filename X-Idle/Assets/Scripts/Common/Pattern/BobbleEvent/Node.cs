@@ -5,29 +5,24 @@ namespace Common.Pattern.BobbleEvent
     public class Node
     {
         private readonly List<Node> m_children = new();
-        private IRootEventHandler m_rootHandler;
-        public IReadOnlyList<Node> Children => m_children;
+        private IBobbleDispatcher m_dispatcher;
 
-
-        public void SetRootHandler(IRootEventHandler rootHandler)
+        public void SetDispatcher(IBobbleDispatcher dispatcher)
         {
-            m_rootHandler = rootHandler;
+            m_dispatcher = dispatcher;
 
             foreach (var child in m_children)
-                child.SetRootHandler(rootHandler);
+                child.SetDispatcher(dispatcher);
         }
 
         public void AddChild(Node child)
         {
             m_children.Add(child);
 
-            if (m_rootHandler != null)
-                child.SetRootHandler(m_rootHandler);
+            if (m_dispatcher != null)
+                child.SetDispatcher(m_dispatcher);
         }
 
-        public void TriggerEvent(string eventType, IEventArgs eventArgs)
-        {
-            m_rootHandler?.Handle(new NodeEvent(eventType, eventArgs));
-        }
+        public void TriggerEvent<T>(T args) where T : IEventArgs => m_dispatcher.Dispatch(args);
     }
 }

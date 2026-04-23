@@ -2,15 +2,16 @@ fileFormatVersion: 2
 guid: ef3bc1aa80c968b4c9fcdcf7e8cfa94b
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 11400000
+  mainObjectFileID: -8723131896970919327
   userData: 
   assetBundleName: 
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
   productId: 234254
-  packageName: POLYGON Swamp Marshland - Nature Biomes - Low Poly 3D Art by Synty
-  packageVersion: 1.10.1
+  packageName: POLYGON - Swamp Marshland - Nature Biomes - 3D Environment Art by
+    Synty
+  packageVersion: 1.10.3
   assetPath: Assets/Synty/PolygonNatureBiomes/PNB_Swamp_Marshland/Models/SM_Prop_Junk_Chair_01_Convex
     1.asset
-  uploadId: 794500
+  uploadId: 866642

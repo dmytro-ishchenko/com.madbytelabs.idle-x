@@ -1,7 +1,15 @@
 fileFormatVersion: 2
-guid: 86505ab1972f8954a826b3321c1e44e8
+guid: 05bfaed39b1494ba19da900e86e913c6
 PrefabImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 234254
+  packageName: POLYGON - Swamp Marshland - Nature Biomes - 3D Environment Art by
+    Synty
+  packageVersion: 1.10.3
+  assetPath: Assets/Synty/PolygonGeneric/Prefabs/Environment/SM_Gen_Env_Ground_Slope_Dirt_01.prefab
+  uploadId: 866642

@@ -2,14 +2,15 @@ fileFormatVersion: 2
 guid: 12f0b633bfad7ca418f420f09b5d4172
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 11400000
+  mainObjectFileID: -2564044381440133068
   userData: 
   assetBundleName: 
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 154193
-  packageName: POLYGON - Apocalypse Pack - Art by Synty
-  packageVersion: 1.19.1
+  productId: 234254
+  packageName: POLYGON - Swamp Marshland - Nature Biomes - 3D Environment Art by
+    Synty
+  packageVersion: 1.10.3
   assetPath: Assets/Synty/PolygonGeneric/Models/Collision/SM_Gen_Prop_Switch_01_Convex.asset
-  uploadId: 827446
+  uploadId: 866642

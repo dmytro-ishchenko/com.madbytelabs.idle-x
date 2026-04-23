@@ -5,7 +5,7 @@ namespace GameEnvironment
 {
     public interface IEnvironment
     {
-        event Action<BuildingEventArgs> OnCreateBuildingRequest;
-        event Action<BuildingEventArgs> OnUpgradeBuildingRequest;
+        event Action<BuildingRequestEventArgs> OnBuildingActionRequest;
+       
     }
 }

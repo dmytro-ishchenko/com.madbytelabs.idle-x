@@ -2,12 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using AYellowpaper.SerializedCollections;
 using Data.ContentLibrary.Templates;
-using Data.ContentLibrary.Templates.Context.Building;
 using Data.ContentLibrary.Templates.GameResources;
 using Data.Enum;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Data.ContentLibrary
 {

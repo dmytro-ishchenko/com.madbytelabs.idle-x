@@ -180,10 +180,14 @@ namespace Exoa.Cameras
 
             if (focusTargetGo == null || !focusTargetGo)
             {
-                StopFollow();
-                return;
+                if (enableFollowGameObject)
+                {
+                    StopFollow();
+                    return;
+                }
             }
 
+            if (focusTargetGo != null && focusTargetGo)
             {
                 Bounds b = focusTargetGo.GetBoundsRecursive();
                 //Log("Bounds:" + b);

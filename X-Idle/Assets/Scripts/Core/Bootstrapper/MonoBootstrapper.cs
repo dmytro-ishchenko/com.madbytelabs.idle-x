@@ -25,10 +25,9 @@ namespace Core.Bootstrapper
             IGameplay gameplay = new Gameplay(data, sceneLoader);
             IEnvironment environment = new Environment(data, sceneLoader);
             IEntitySystem entitySystem = new EntitySystem();
-            IUISystem uiSystem = new UISystem(data,environment, sceneLoader);
+            IUISystem uiSystem = new UISystem(data, environment, sceneLoader);
 
-
-            sceneLoader.SwitchToScene(SceneName.Game);
+            data.InitApplicationData(() => { sceneLoader.SwitchToScene(SceneName.Game); });
         }
     }
 }

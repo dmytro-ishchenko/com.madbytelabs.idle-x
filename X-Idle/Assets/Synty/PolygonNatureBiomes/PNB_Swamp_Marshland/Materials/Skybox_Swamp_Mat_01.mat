@@ -65,6 +65,7 @@ Material:
     - _ReceiveShadows: 1
     - _SpecularHighlights: 1
     - _UV_Based_Toggle: 0
+    - _XRMotionVectorsPass: 1
     - __dirty: 0
     m_Colors:
     - _Bottom_Color: {r: 0.681, g: 0.62753505, b: 0.531861, a: 1}

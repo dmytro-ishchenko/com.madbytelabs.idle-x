@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 1d4d10479b1d647618427830ce04c75c
+timeCreated: 1540522627
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131930
+  packageName: POLYGON - City Zombies Pack - Art by Synty
+  packageVersion: 1.7.0
+  assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_SchoolGirl_Female_01.prefab
+  uploadId: 864496

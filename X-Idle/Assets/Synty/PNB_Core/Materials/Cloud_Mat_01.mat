@@ -107,6 +107,7 @@ Material:
     - _WindNoiseScale1: 0.662
     - _WindWorldScale: 0.02
     - _WindWorldScale1: 2.47
+    - _XRMotionVectorsPass: 1
     - _X_Multiplier: 2
     - _Y_Multi: 0
     - _Y_Multiplier: 0

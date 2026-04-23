@@ -1,11 +1,14 @@
+using Common.Pattern.BobbleEvent;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI.Popup
 {
-    internal class BasePopup : MonoBehaviour, IPopup
+    internal class BasePopup : MonoBehaviour, IPopup, IMonoNode
     {
         [SerializeField] private Button[] m_closeButtons;
+
+        public Node Node { get; } = new();
 
         protected void Awake()
         {
