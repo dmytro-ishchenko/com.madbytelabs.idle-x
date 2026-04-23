@@ -15,7 +15,7 @@ MonoBehaviour:
   m_id: 8de869aee64cb6a1fa1260b
   m_name: Warehouse
   m_description: 
-  m_view: {fileID: 0}
+  m_view: {fileID: 4573677491782839015, guid: d8ea6e9efc37745f5a813147655b8c37, type: 3}
   m_icon: {fileID: 21300000, guid: 01be60f09e42741d1ac35b05b61509cf, type: 3}
   m_buildingContext:
     m_buildingType: 2

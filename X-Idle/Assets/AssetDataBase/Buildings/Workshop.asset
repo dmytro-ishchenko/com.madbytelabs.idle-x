@@ -15,7 +15,7 @@ MonoBehaviour:
   m_id: 8de869b24dd6d00d7326a31
   m_name: Workshop
   m_description: 
-  m_view: {fileID: 0}
+  m_view: {fileID: 4104064214169789485, guid: cb41a5e10c9994682ad15f5a86f6007c, type: 3}
   m_icon: {fileID: 21300000, guid: 6ab9d64b9e9e74f819c53bf2eb350e56, type: 3}
   m_buildingContext:
     m_buildingType: 6

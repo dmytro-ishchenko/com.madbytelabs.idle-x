@@ -15,7 +15,7 @@ MonoBehaviour:
   m_id: 8de869b2d273770a0cc3072
   m_name: Radio Tower
   m_description: 
-  m_view: {fileID: 0}
+  m_view: {fileID: 5740374362491373486, guid: 2da82fd4f184f4fd2bf06ce23dd413ed, type: 3}
   m_icon: {fileID: 21300000, guid: 0c90dda2e811648d9b9b59b2bc4d6b89, type: 3}
   m_buildingContext:
     m_buildingType: 7

@@ -247961,7 +247961,7 @@ MonoBehaviour:
   middleClickDrag: 0
   oneFingerDrag: 0
   twoFingerDrag: 0
-  twoFingerPinch: 0
+  twoFingerPinch: 2
   scrollWheel: 0
   groundHeight: 0
   groundHeightAnim:
@@ -247971,11 +247971,11 @@ MonoBehaviour:
   PitchSensitivity: 0.25
   PitchClamp: 1
   PitchMinMax: {x: 0, y: 90}
-  allowYawRotation: 1
+  allowYawRotation: 0
   YawSensitivity: 0.25
   YawClamp: 0
   YawMinMax: {x: -100, y: 100}
-  maxTranslationSpeed: 3
+  maxTranslationSpeed: 5
   focusRadiusMultiplier: 0.5
   followMove:
     halfLife: 0.1
