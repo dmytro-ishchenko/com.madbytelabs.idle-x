@@ -34,7 +34,8 @@ namespace GameEnvironment
             if (scene.name.Equals(nameof(SceneName.Game)))
             {
                 var controller = scene.GetComponent<ISceneController>();
-                controller.InitContent(m_factory);
+                
+                controller.InitContent(m_applicationData.UserBuildings, m_factory);
                 controller.Node.SetDispatcher(this);
             }
         }

@@ -52,10 +52,10 @@ namespace Tool.Environment
                 sceneTemplate.AddSceneBuilding(new SceneBuildingContext(placeholder.Id, placeholder.ContentId, placeholder.transform.position));
             }
 
-            if (!Directory.Exists(AssetPath.SCENE_PATH))
-                Directory.CreateDirectory(AssetPath.SCENE_PATH);
+            if (!Directory.Exists(AssetPath.SCENE_TEMPLATE_PATH))
+                Directory.CreateDirectory(AssetPath.SCENE_TEMPLATE_PATH);
 
-            AssetDatabase.CreateAsset(sceneTemplate, Path.Combine(AssetPath.SCENE_PATH, "Scene" + ".asset"));
+            AssetDatabase.CreateAsset(sceneTemplate, AssetPath.SCENE_TEMPLATE_PATH);
 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();

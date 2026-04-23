@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Common.Pattern.BobbleEvent;
+using Data.Model;
 using GameEnvironment.Factory;
 using UnityEngine;
 
@@ -12,14 +15,19 @@ namespace GameEnvironment.Controller
         public event Action OnSceneInitialized;
 
 
-        public void InitContent(IEnvironmentFactory factory)
+        public void InitContent(IList<BuildingModel> userBuildings, IEnvironmentFactory factory)
         {
             m_factory = factory;
             Node = new();
 
             foreach (var placeHolder in m_placeholderRoot.PlaceHolders)
             {
-                var view = m_factory.GetView(placeHolder.Id, placeHolder.ContentId);
+                var building = userBuildings.FirstOrDefault(b => b.Id == placeHolder.Id);
+
+                if (building == null)
+                    continue;
+
+                var view = m_factory.GetView(building.Id, building.Template);
                 view.GameObject.transform.SetParent(placeHolder.transform);
                 view.GameObject.transform.localPosition = Vector3.zero;
                 view.GameObject.transform.localEulerAngles = Vector3.zero;

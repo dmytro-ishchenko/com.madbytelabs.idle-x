@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b14cfec603a048848e7b8e7d8479ca32, type: 3}
-  m_Name: Scene
+  m_Name: SceneTemplate
   m_EditorClassIdentifier: com.madbytelabs.data::Data.ContentLibrary.Templates.SceneTemplate
   sceneBuildings:
   - m_id: 8de83badda0f4d0db38c0e1

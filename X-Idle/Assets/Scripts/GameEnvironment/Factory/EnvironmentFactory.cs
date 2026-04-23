@@ -1,5 +1,4 @@
 using Data.ContentLibrary;
-using Data.ContentLibrary.Templates;
 using Data.Interface;
 using Data.Model;
 using GameEnvironment.View;
@@ -16,14 +15,8 @@ namespace GameEnvironment.Factory
 
         private readonly IAssetLibrary m_assetLibrary;
 
-        public IBuildingView GetView(string placeHolderId, string contentId)
+        public IBuildingView GetView(string placeHolderId, IBuildingTemplate contentTemplate)
         {
-            if (!m_assetLibrary.TryGetBuildingTemplate(contentId, out BuildingTemplate contentTemplate))
-            {
-                Debug.LogError($"Content {contentId} not found");
-                return null;
-            }
-
             var view = Object.Instantiate(contentTemplate.View);
 
             var component = view.GetComponent<BuildingView>();

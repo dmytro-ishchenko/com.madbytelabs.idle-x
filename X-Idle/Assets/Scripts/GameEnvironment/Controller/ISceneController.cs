@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using Common.Pattern.BobbleEvent;
+using Data.Model;
 using GameEnvironment.Factory;
 
 namespace GameEnvironment.Controller
@@ -8,6 +10,6 @@ namespace GameEnvironment.Controller
     {
         event Action OnSceneInitialized;
 
-        void InitContent(IEnvironmentFactory assetLibrary);
+        void InitContent(IList<BuildingModel> userBuildings, IEnvironmentFactory assetLibrary);
     }
 }

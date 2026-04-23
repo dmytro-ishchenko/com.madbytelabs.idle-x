@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Data.ContentLibrary;
+using Data.ContentLibrary.Templates;
 using Data.Enum;
 using Data.Events;
 using Data.Interface;
@@ -16,18 +17,31 @@ namespace Data
         private IAssetLibrary m_assetLibrary;
         private UserData m_userData;
         private readonly IDataLoader<UserData> m_userDataLoader = new UserDataLoader();
+        public IList<BuildingModel> UserBuildings => m_userData.UserBuildingsData.BuildingsMap.Values.ToList();
 
         public void InitApplicationData(Action complete)
         {
             m_userData = m_userDataLoader.Load();
             if (m_userData == null)
             {
-                //  m_userData = new UserData();
+                var sceneData = Resources.Load<SceneTemplate>("SceneTemplate");
+
+                List<BuildingModel> buildingsModel = new List<BuildingModel>();
+
+                foreach (var buildingContext in sceneData.SceneBuildings)
+                {
+                    m_assetLibrary.TryGetBuildingTemplate(buildingContext.BuildingTemplateId, out BuildingTemplate buildingTemplate);
+                    buildingsModel.Add(new BuildingModel(buildingContext.Id, buildingTemplate, 1));
+                }
+
+                m_userData = new UserData(buildingsModel);
+
                 m_userDataLoader.Save(m_userData);
             }
 
             complete?.Invoke();
         }
+
 
         public IAssetLibrary AssetLibrary
         {
@@ -35,10 +49,10 @@ namespace Data
             {
                 if (m_assetLibrary == null)
                     m_assetLibrary = Resources.Load<AssetLibrary>("AssetLibrary");
-
                 return m_assetLibrary;
             }
         }
+
 
         public IList<IBuildingTemplate> GetAvailableBuilding()
         {
