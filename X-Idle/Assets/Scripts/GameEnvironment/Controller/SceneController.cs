@@ -13,7 +13,7 @@ namespace GameEnvironment.Controller
         [SerializeField] private PlaceholderRoot m_placeholderRoot;
         private IEnvironmentFactory m_factory;
         public event Action OnSceneInitialized;
-
+        public Node Node { get; private set; }
 
         public void InitContent(IList<BuildingModel> userBuildings, IEnvironmentFactory factory)
         {
@@ -28,16 +28,28 @@ namespace GameEnvironment.Controller
                     continue;
 
                 var view = m_factory.GetView(building.Id, building.Template);
-                view.GameObject.transform.SetParent(placeHolder.transform);
-                view.GameObject.transform.localPosition = Vector3.zero;
-                view.GameObject.transform.localEulerAngles = Vector3.zero;
 
+                placeHolder.AddContent(view);
                 Node.AddChild(view.Node);
             }
 
             OnSceneInitialized?.Invoke();
         }
 
-        public Node Node { get; private set; }
+        public void CreateBuilding(BuildingModel model, IEnvironmentFactory factory)
+        {
+            var placeHolder = m_placeholderRoot.PlaceHolders.FirstOrDefault(b => b.Id == model.Id);
+
+            if (placeHolder == null)
+                return;
+
+            var view = m_factory.GetView(model.Id, model.Template);
+
+            Node.RemoveChild(placeHolder.View.Node);
+            placeHolder.RemoveContent();
+            placeHolder.AddContent(view);
+
+            Node.AddChild(view.Node);
+        }
     }
 }

@@ -15,7 +15,8 @@ namespace UI.Popup
         [SerializeField] private ScrollRect m_scrollRect;
         [SerializeField] Button m_createButton;
         private List<BuildingElement> m_elements = new();
-        private string m_selectedId;
+        private string m_selectedTemplateId;
+        private string m_selectedPlaceHolderId;
 
         public override void Show<T>(T context)
         {
@@ -32,18 +33,21 @@ namespace UI.Popup
                     element.OnSelect += OnSelectHandler;
                 }
 
+                m_selectedPlaceHolderId = model.PlaceholderId;
                 base.Show(context);
             }
 
             m_createButton.interactable = false;
-            m_selectedId = string.Empty;
-            
+            m_selectedTemplateId = string.Empty;
+
             m_createButton.onClick.AddListener(() =>
             {
-                if (!string.IsNullOrEmpty(m_selectedId))
+                if (!string.IsNullOrEmpty(m_selectedTemplateId))
                 {
-                    Node.TriggerEvent(new BuildingProcessEventArgs(m_selectedId,BuildingActionType.CreateBuildingRequest));
+                    Node.TriggerEvent(new BuildingProcessEventArgs(m_selectedPlaceHolderId, m_selectedTemplateId, BuildingActionType.CreateBuildingRequest));
                 }
+
+                Close();
             });
         }
 
@@ -70,8 +74,7 @@ namespace UI.Popup
 
             if (!m_createButton.interactable)
                 m_createButton.interactable = true;
-            m_selectedId = element.Id;
+            m_selectedTemplateId = element.Id;
         }
-
     }
 }

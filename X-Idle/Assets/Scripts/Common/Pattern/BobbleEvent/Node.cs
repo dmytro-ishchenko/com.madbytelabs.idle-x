@@ -24,5 +24,10 @@ namespace Common.Pattern.BobbleEvent
         }
 
         public void TriggerEvent<T>(T args) where T : IEventArgs => m_dispatcher.Dispatch(args);
+
+        public void RemoveChild(Node child)
+        {
+            m_children.Remove(child);
+        }
     }
 }

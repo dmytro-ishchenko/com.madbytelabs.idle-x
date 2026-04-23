@@ -1,3 +1,4 @@
+using Data.Interface;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace GameEnvironment.Controller
 
         public string Id => m_id;
         public string ContentId => m_contentId;
+        public IBuildingView View { get; private set; }
 
 #if UNITY_EDITOR
         public void SetId(string id)
@@ -36,5 +38,18 @@ namespace GameEnvironment.Controller
             Gizmos.DrawCube(transform.localPosition, Vector3.one * 5f);
         }
 #endif
+        public void AddContent(IBuildingView view)
+        {
+            view.GameObject.transform.SetParent(transform);
+            view.GameObject.transform.localPosition = Vector3.zero;
+            view.GameObject.transform.localEulerAngles = Vector3.zero;
+
+            View = view;
+        }
+
+        public void RemoveContent()
+        {
+            Destroy(View.GameObject);
+        }
     }
 }

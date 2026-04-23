@@ -10,6 +10,7 @@ namespace GameEnvironment.Controller
     {
         event Action OnSceneInitialized;
 
-        void InitContent(IList<BuildingModel> userBuildings, IEnvironmentFactory assetLibrary);
+        void InitContent(IList<BuildingModel> userBuildings, IEnvironmentFactory factory);
+        void CreateBuilding(BuildingModel model, IEnvironmentFactory factory);
     }
 }

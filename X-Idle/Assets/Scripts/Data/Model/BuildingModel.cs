@@ -12,12 +12,16 @@ namespace Data.Model
         }
 
         private string m_id;
-        private string m_placeHolderId;
         private IBuildingTemplate m_template;
         private int m_level;
 
         public string Id => m_id;
         public IBuildingTemplate Template => m_template;
         public int Level => m_level;
+
+        public void SetTemplate(IBuildingTemplate template)
+        {
+            m_template = template;
+        }
     }
 }

@@ -18,10 +18,15 @@ namespace Data
         private UserData m_userData;
         private readonly IDataLoader<UserData> m_userDataLoader = new UserDataLoader();
         public IList<BuildingModel> UserBuildings => m_userData.UserBuildingsData.BuildingsMap.Values.ToList();
+        public event Action<BuildingModel> OnBuildingCreated;
 
         public void InitApplicationData(Action complete)
         {
+            if (m_assetLibrary == null)
+                m_assetLibrary = Resources.Load<AssetLibrary>("AssetLibrary");
             m_userData = m_userDataLoader.Load();
+
+
             if (m_userData == null)
             {
                 var sceneData = Resources.Load<SceneTemplate>("SceneTemplate");
@@ -43,24 +48,13 @@ namespace Data
         }
 
 
-        public IAssetLibrary AssetLibrary
-        {
-            get
-            {
-                if (m_assetLibrary == null)
-                    m_assetLibrary = Resources.Load<AssetLibrary>("AssetLibrary");
-                return m_assetLibrary;
-            }
-        }
-
-
         public IList<IBuildingTemplate> GetAvailableBuilding()
         {
             var userBuildings = m_userData.UserBuildingsData.BuildingsMap.Values.ToList();
 
             IList<IBuildingTemplate> templates = new List<IBuildingTemplate>();
 
-            foreach (var buildingTemplate in AssetLibrary.Buildings)
+            foreach (var buildingTemplate in m_assetLibrary.Buildings)
             {
                 if (buildingTemplate.BuildingContext.BuildingType == BuildingType.DestroyedBuilding || buildingTemplate.BuildingContext.BuildingType == BuildingType.MainBuilding)
                     continue;
@@ -78,17 +72,22 @@ namespace Data
 
         public void BuildingProcess(BuildingProcessEventArgs args)
         {
-            switch (args.BuildingActionType)
+            if (m_userData.UserBuildingsData.TryGetBuildingModel(args.BuildingId, out var building))
             {
-                case BuildingActionType.CreateBuildingRequest:
+                switch (args.BuildingActionType)
+                {
+                    case BuildingActionType.CreateBuildingRequest:
+                        if (m_assetLibrary.TryGetBuildingTemplate(args.TemplateId, out var buildingTemplate))
+                        {
+                            building.SetTemplate(buildingTemplate);
+                            OnBuildingCreated?.Invoke(building);
+                        }
 
-                    break;
-                case BuildingActionType.UpgradeBuildingRequest:
-                    if (m_userData.UserBuildingsData.TryGetBuildingModel(args.BuildingId, out var building))
-                    {
-                    }
-
-                    break;
+                        break;
+                    case BuildingActionType.UpgradeBuildingRequest:
+                        Debug.LogError("Upgrade Building");
+                        break;
+                }
             }
         }
     }

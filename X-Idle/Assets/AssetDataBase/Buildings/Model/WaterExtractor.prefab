@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5792974697402105247, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
       propertyPath: m_Name
-      value: SM_Prop_Silo_01 Variant
+      value: WaterExtractor
       objectReference: {fileID: 0}
     - target: {fileID: 6570496116495361829, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
       propertyPath: m_RootOrder
@@ -58,8 +58,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 471236317, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
+    - {fileID: 5432532725965118538, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
+    - {fileID: 7818474295751157888, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6570496116495361829, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7950237327436986320}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5792974697402105247, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
       insertIndex: -1
@@ -68,6 +73,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6460523119539343049}
   m_SourcePrefab: {fileID: 100100000, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
+--- !u!4 &5966887301485603228 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6570496116495361829, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
+  m_PrefabInstance: {fileID: 712047049857339065}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6450690476258816806 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5792974697402105247, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
@@ -106,3 +116,70 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.2680664, y: 10.160596, z: 5.866219}
   m_Center: {x: 0.033238053, y: 5.040486, z: 0.3518815}
+--- !u!1001 &3853953035133030645
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5966887301485603228}
+    m_Modifications:
+    - target: {fileID: 5792974697402105247, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
+      propertyPath: m_Name
+      value: WaterExtractor
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570496116495361829, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
+      propertyPath: m_RootOrder
+      value: 412
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570496116495361829, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570496116495361829, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570496116495361829, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570496116495361829, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570496116495361829, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570496116495361829, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570496116495361829, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570496116495361829, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570496116495361829, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570496116495361829, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 471236317, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
+--- !u!4 &7950237327436986320 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6570496116495361829, guid: 74d2baf69d291584bb28d8661ab58297, type: 3}
+  m_PrefabInstance: {fileID: 3853953035133030645}
+  m_PrefabAsset: {fileID: 0}
