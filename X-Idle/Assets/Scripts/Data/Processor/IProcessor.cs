@@ -1,14 +1,14 @@
 using System;
-using Data.Processor.Context;
 
 namespace Data.Processor
 {
     internal interface IProcessor
     {
-        void StartProcess<T>(T context) where T : IProcessContext;
-        void UpdateContext<T>(T context) where T : IProcessContext;
+        void InitTaskContext(int value);
+        void StartProcess();
+        void UpdateContext(int value);
         void StopProcess();
-
         event Action<int> OnProcess;
+        bool IsStarted { get; }
     }
 }

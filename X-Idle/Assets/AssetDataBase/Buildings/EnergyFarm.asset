@@ -20,4 +20,7 @@ MonoBehaviour:
   m_buildingContext:
     m_buildingType: 3
     m_canDuplicate: 1
+    m_buildingProduction:
+      m_resourcesTemplate: {fileID: 11400000, guid: 319e6a361bd4f45b3b18dd67f12f1374, type: 2}
+      m_amountPerSecond: 1
     m_buildingLevels: []

@@ -15,7 +15,6 @@ using UnityEngine;
 
 namespace Data
 {
-    
     internal class ApplicationData : IApplicationData, ILifecycleDelegate
     {
         public ApplicationData()
@@ -102,11 +101,15 @@ namespace Data
                         {
                             building.SetTemplate(buildingTemplate);
                             OnBuildingCreated?.Invoke(building);
+
+                            m_userDataProcessor.CreateBuildingProcess(m_userData.UserBuildingsData, building);
                         }
 
                         break;
                     case BuildingActionType.UpgradeBuildingRequest:
-                        Debug.LogError("Upgrade Building");
+
+
+                        m_userDataProcessor.UpdateBuildingProcess(m_userData.UserBuildingsData, building);
                         break;
                 }
             }

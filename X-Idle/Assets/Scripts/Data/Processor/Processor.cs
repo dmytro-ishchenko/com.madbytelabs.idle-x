@@ -1,46 +1,50 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Data.Processor.Context;
+using UnityEngine;
 
 namespace Data.Processor
 {
-    internal abstract class Processor : IProcessor
+    internal class Processor : IProcessor
     {
-        private Task m_processTask;
+        private Awaitable m_process;
         private int m_processValue;
-        private CancellationTokenSource m_cancellationTokenSource;
+
         public event Action<int> OnProcess;
+        public bool IsStarted { get; private set; }
 
-        public abstract void StartProcess<T>(T context) where T : IProcessContext;
-        public abstract void UpdateContext<T>(T context) where T : IProcessContext;
 
-        public void StopProcess()
-        {
-            if (m_processTask != null)
-            {
-                m_cancellationTokenSource?.Cancel();
-                m_cancellationTokenSource?.Dispose();
-                m_processTask = null;
-            }
-        }
-
-        protected void InitTaskContext(int value)
+        public void InitTaskContext(int value)
         {
             m_processValue = value;
         }
 
-        protected void StartProcess()
+        public void StartProcess()
         {
-            m_processTask = Task.Run(ProcessData);
+            IsStarted = true;
+
+            m_process = ProcessData();
         }
 
-        private async Task ProcessData()
+        public void UpdateContext(int value)
         {
-            m_cancellationTokenSource = new CancellationTokenSource();
+        }
+
+        public void StopProcess()
+        {
+            if (IsStarted)
+            {
+                m_process.Cancel();
+            }
+
+            IsStarted = false;
+        }
+
+        private async Awaitable ProcessData()
+        {
             while (true)
             {
-                await Task.Delay(1000, m_cancellationTokenSource.Token);
+                await Awaitable.WaitForSecondsAsync(1.0f);
                 OnProcess?.Invoke(m_processValue);
             }
         }
