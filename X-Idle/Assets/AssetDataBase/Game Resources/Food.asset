@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1a67f5cf29c479ea7c0c061a89c5a42, type: 3}
-  m_Name: NewGameResource
+  m_Name: Food
   m_EditorClassIdentifier: com.madbytelabs.data::Data.ContentLibrary.Templates.GameResources.GameResourcesTemplate
-  m_id: 8de83abfe81b3e261880109
-  m_name: 
+  m_id: 8dea21adcf29092145e5fb3
+  m_name: Food
+  m_resourcesType: 3
   m_description: 
+  m_icon: {fileID: 21300000, guid: 061856a1ffd754c8abffa27135758a36, type: 3}
