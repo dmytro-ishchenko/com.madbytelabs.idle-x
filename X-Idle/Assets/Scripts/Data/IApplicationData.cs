@@ -10,10 +10,12 @@ namespace Data
     {
         void InitApplicationData(Action complete);
         IList<BuildingModel> UserBuildings { get; }
+        UserResources UserResources { get; }
 
         IList<IBuildingTemplate> GetAvailableBuilding();
         void BuildingProcess(BuildingProcessEventArgs args);
 
+        event Action<UserResources> OnUserResourcesChanged;
         event Action<BuildingModel> OnBuildingCreated;
     }
 }

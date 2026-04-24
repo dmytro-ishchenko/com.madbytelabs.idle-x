@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Commom.Lifecycle;
+using Common.Lifecycle;
 using Data.ContentLibrary;
 using Data.ContentLibrary.Templates;
 using Data.Enum;
@@ -8,17 +10,28 @@ using Data.Events;
 using Data.Interface;
 using Data.Loader;
 using Data.Model;
+using Data.Processor;
 using UnityEngine;
 
 namespace Data
 {
-    internal class ApplicationData : IApplicationData
+    
+    internal class ApplicationData : IApplicationData, ILifecycleDelegate
     {
+        public ApplicationData()
+        {
+            LifecycleManager.Instance.AddDelegate(this);
+        }
+
         private IAssetLibrary m_assetLibrary;
         private UserData m_userData;
+        private readonly UserDataProcessor m_userDataProcessor = new();
         private readonly IDataLoader<UserData> m_userDataLoader = new UserDataLoader();
         public IList<BuildingModel> UserBuildings => m_userData.UserBuildingsData.BuildingsMap.Values.ToList();
+        public UserResources UserResources => m_userData.UserResources;
         public event Action<BuildingModel> OnBuildingCreated;
+        public event Action<UserResources> OnUserResourcesChanged;
+
 
         public void InitApplicationData(Action complete)
         {
@@ -44,7 +57,15 @@ namespace Data
                 m_userDataLoader.Save(m_userData);
             }
 
+            m_userData.UserResources.OnUserResourcesChanged += OnResourcesChangedHandler;
+            m_userDataProcessor.StartProcessing(m_userData);
+
             complete?.Invoke();
+        }
+
+        private void OnResourcesChangedHandler(UserResources data)
+        {
+            OnUserResourcesChanged?.Invoke(data);
         }
 
 
@@ -89,6 +110,19 @@ namespace Data
                         break;
                 }
             }
+        }
+
+        public void OnApplicationQuit()
+        {
+            m_userDataProcessor.StopProcessing();
+        }
+
+        public void OnApplicationFocus(bool hasFocus)
+        {
+        }
+
+        public void OnApplicationPause(bool pauseStatus)
+        {
         }
     }
 }

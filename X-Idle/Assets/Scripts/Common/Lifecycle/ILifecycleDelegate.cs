@@ -1,4 +1,4 @@
-namespace Commom.Lifecycle
+namespace Common.Lifecycle
 {
     public interface ILifecycleDelegate
     {
