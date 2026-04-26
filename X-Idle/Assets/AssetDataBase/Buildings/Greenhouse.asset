@@ -34,4 +34,5 @@ MonoBehaviour:
     m_buildingProduction:
       m_resourcesTemplate: {fileID: 11400000, guid: 15dbc4242f61d444ca5d76f79a398d91, type: 2}
       m_amount: 1
+      m_levelMultiplier: 1.13
     m_buildingLevelsView: []

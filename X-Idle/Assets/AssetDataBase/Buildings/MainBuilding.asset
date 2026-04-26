@@ -29,5 +29,6 @@ MonoBehaviour:
     m_resourcesRequirements: []
     m_buildingProduction:
       m_resourcesTemplate: {fileID: 0}
-      m_amountPerSecond: 0
+      m_amount: 0
+      m_levelMultiplier: 0.05
     m_buildingLevelsView: []

@@ -10,6 +10,7 @@ namespace Data.Model
         public float Water { get; private set; }
         public float Food { get; private set; }
         public float Data { get; private set; }
+        public float Parts { get; private set; }
 
         internal void SetScrap(float value)
         {
@@ -38,6 +39,11 @@ namespace Data.Model
         internal void SetData(float value)
         {
             Data = value;
+        }
+
+        internal void SetParts(float value)
+        {
+            Parts = value;
         }
     }
 }

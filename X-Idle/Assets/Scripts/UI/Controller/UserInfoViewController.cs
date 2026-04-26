@@ -10,6 +10,8 @@ namespace UI.Controller
         [SerializeField] private TMP_Text m_energyLabel;
         [SerializeField] private TMP_Text m_foodLabel;
         [SerializeField] private TMP_Text m_waterLabel;
+        [SerializeField] private TMP_Text m_partsLabel;
+        [SerializeField] private TMP_Text m_dataLabel;
 
         public void UpdateUserResources(UserResources userResources)
         {
@@ -17,6 +19,8 @@ namespace UI.Controller
             m_energyLabel.text = ConvertValue(userResources.Energy);
             m_foodLabel.text = ConvertValue(userResources.Food);
             m_waterLabel.text = ConvertValue(userResources.Water);
+            m_partsLabel.text = ConvertValue(userResources.Parts);
+            m_dataLabel.text = ConvertValue(userResources.Data);
         }
 
         string ConvertValue(float value)
