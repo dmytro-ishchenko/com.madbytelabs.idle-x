@@ -7,6 +7,7 @@ using Data.ContentLibrary;
 using Data.ContentLibrary.Templates;
 using Data.Enum;
 using Data.Events;
+using Data.Factory;
 using Data.Interface;
 using Data.Loader;
 using Data.Model;
@@ -24,11 +25,13 @@ namespace Data
 
         private IAssetLibrary m_assetLibrary;
         private UserData m_userData;
+        private IBuildingFactory m_buildingFactory;
         private readonly UserDataProcessor m_userDataProcessor = new();
         private readonly IDataLoader<UserData> m_userDataLoader = new UserDataLoader();
         public IList<BuildingModel> UserBuildings => m_userData.UserBuildingsData.BuildingsMap.Values.ToList();
         public UserResources UserResources => m_userData.UserResources;
         public event Action<BuildingModel> OnBuildingCreated;
+        public event Action<ActionErrorModel> OnActionError;
         public event Action<UserResources> OnUserResourcesChanged;
 
 
@@ -56,6 +59,8 @@ namespace Data
                 m_userDataLoader.Save(m_userData);
             }
 
+
+            m_buildingFactory = new BuildingFactory(m_assetLibrary);
             m_userData.UserResources.OnUserResourcesChanged += OnResourcesChangedHandler;
             m_userDataProcessor.StartProcessing(m_userData);
 
@@ -92,26 +97,28 @@ namespace Data
 
         public void BuildingProcess(BuildingProcessEventArgs args)
         {
-            if (m_userData.UserBuildingsData.TryGetBuildingModel(args.BuildingId, out var building))
+            switch (args.BuildingActionType)
             {
-                switch (args.BuildingActionType)
-                {
-                    case BuildingActionType.CreateBuildingRequest:
-                        if (m_assetLibrary.TryGetBuildingTemplate(args.TemplateId, out var buildingTemplate))
-                        {
-                            building.SetTemplate(buildingTemplate);
-                            OnBuildingCreated?.Invoke(building);
+                case BuildingActionType.CreateBuildingRequest:
+                    if (m_buildingFactory.TryCreateBuilding(m_userData, args, out BuildingModel newBuildingModel))
+                    {
+                        OnBuildingCreated?.Invoke(newBuildingModel);
+                        m_userDataProcessor.CreateBuildingProcess(m_userData.UserBuildingsData, newBuildingModel);
+                    }
+                    else
+                    {
+                        OnActionError?.Invoke(new ActionErrorModel(ActionErrorType.CreateBuilding));
+                    }
 
-                            m_userDataProcessor.CreateBuildingProcess(m_userData.UserBuildingsData, building);
-                        }
+                    break;
+                case BuildingActionType.UpgradeBuildingRequest:
 
-                        break;
-                    case BuildingActionType.UpgradeBuildingRequest:
+                    if (m_buildingFactory.TryUpgradeBuilding(m_userData, args, out BuildingModel updatedBuildingModel))
+                    {
+                        m_userDataProcessor.UpdateBuildingProcess(m_userData.UserBuildingsData, updatedBuildingModel);
+                    }
 
-
-                        m_userDataProcessor.UpdateBuildingProcess(m_userData.UserBuildingsData, building);
-                        break;
-                }
+                    break;
             }
         }
 

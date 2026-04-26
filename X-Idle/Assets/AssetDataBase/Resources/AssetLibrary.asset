@@ -16,20 +16,20 @@ MonoBehaviour:
     _serializedList:
     - Key: 8de81064985f4a0531c11d2
       Value: {fileID: 11400000, guid: 46e6d75c527ec4e6a8abcab75792c3f3, type: 2}
-    - Key: 8de869af6ed8a928858cc40
-      Value: {fileID: 11400000, guid: 777c1ff5dad7d4b3dbb4bb8f61dfd548, type: 2}
-    - Key: 8de869b03e662c8e7b1ff7
-      Value: {fileID: 11400000, guid: 2abc8aa79a0d8424fb4c61570741dad2, type: 2}
     - Key: 8de86969565a9164d7656fb
       Value: {fileID: 11400000, guid: 1273d6ba27e934636b958d9796cb2c2e, type: 2}
-    - Key: 8de869b2d273770a0cc3072
-      Value: {fileID: 11400000, guid: 9c337db8653a54f1c9ac9fc99c2ee735, type: 2}
+    - Key: 8de869af6ed8a928858cc40
+      Value: {fileID: 11400000, guid: 777c1ff5dad7d4b3dbb4bb8f61dfd548, type: 2}
     - Key: 8de869b109b89b25ec328ff
       Value: {fileID: 11400000, guid: f8b450312a01543cf883da32e44572c5, type: 2}
-    - Key: 8de869aee64cb6a1fa1260b
-      Value: {fileID: 11400000, guid: a90579310e0df48fd9c9410088687286, type: 2}
     - Key: 8de869be52cb35456f6a7b6
       Value: {fileID: 11400000, guid: 23504d1c0653544488cf992058090e37, type: 2}
+    - Key: 8de869aee64cb6a1fa1260b
+      Value: {fileID: 11400000, guid: a90579310e0df48fd9c9410088687286, type: 2}
+    - Key: 8de869b03e662c8e7b1ff7
+      Value: {fileID: 11400000, guid: 2abc8aa79a0d8424fb4c61570741dad2, type: 2}
+    - Key: 8de869b2d273770a0cc3072
+      Value: {fileID: 11400000, guid: 9c337db8653a54f1c9ac9fc99c2ee735, type: 2}
     - Key: 8de869b24dd6d00d7326a31
       Value: {fileID: 11400000, guid: d6cc9141deeea4a02b2626607b37e487, type: 2}
   m_gameResourcesMap:

@@ -23,5 +23,10 @@ namespace Data.Model
         {
             m_template = template;
         }
+
+        public void SetLevel(int level)
+        {
+            m_level = level;
+        }
     }
 }

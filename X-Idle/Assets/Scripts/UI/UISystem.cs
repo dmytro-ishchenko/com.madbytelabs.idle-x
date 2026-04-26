@@ -9,6 +9,7 @@ using GameEnvironment;
 using SceneLoader;
 using UI.Controller;
 using UI.Model;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace UI
@@ -41,10 +42,12 @@ namespace UI
                 m_gameUIController = scene.GetComponent<IGameUIController>();
                 m_gameUIController.Node.SetDispatcher(this);
                 m_applicationData.OnUserResourcesChanged += OnUserResourcesChangedHandler;
+                m_applicationData.OnActionError += OnActionErrorHandler;
 
                 m_gameUIController.UpdateUserInfo(m_applicationData.UserResources);
             }
         }
+
 
         private void OnUserResourcesChangedHandler(UserResources data)
         {
@@ -68,6 +71,11 @@ namespace UI
         private void BuildingProcessHandler(BuildingProcessEventArgs args)
         {
             m_applicationData.BuildingProcess(args);
+        }
+
+        private void OnActionErrorHandler(ActionErrorModel args)
+        {
+            Debug.LogError($"ActionError {args.ActionErrorType}");
         }
     }
 }

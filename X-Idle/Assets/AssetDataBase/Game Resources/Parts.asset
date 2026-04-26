@@ -17,3 +17,4 @@ MonoBehaviour:
   m_resourcesType: 7
   m_description: 
   m_icon: {fileID: 21300000, guid: 9ec288d5c6ce34da78238953c1077875, type: 3}
+  m_baseCapacity: 30

@@ -8,5 +8,8 @@ namespace Data.ContentLibrary.Templates.Context.Building
     {
         [SerializeField] private string m_templateId;
         [SerializeField] private int m_level;
+
+        public string TemplateId => m_templateId;
+        public int Level => m_level;
     }
 }

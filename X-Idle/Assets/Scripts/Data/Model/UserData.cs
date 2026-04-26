@@ -13,7 +13,7 @@ namespace Data.Model
             {
                 foreach (var building in buildings)
                 {
-                    UserBuildingsData.BuildingsMap.Add(building.Id, building);
+                    UserBuildingsData.AddStartBuildingModel(building.Id, building);
                 }
             }
         }
@@ -23,8 +23,5 @@ namespace Data.Model
 
         public UserResources UserResources { get; private set; } = new();
         public UserBuildingsData UserBuildingsData { get; }
-    
-
-        
     }
 }

@@ -17,17 +17,22 @@ namespace Data.Processor
         }
 
         private UserResources m_userResources;
+        private BuildingModel m_mainBuildingModel;
 
         private readonly IProcessor m_scrapProcessor;
         private readonly IProcessor m_energyProcessor;
         private readonly IProcessor m_foodProcessor;
         private readonly IProcessor m_waterProcessor;
 
+
         public void StartProcessing(UserData userData)
         {
             m_userResources = userData.UserResources;
 
-            ReviewUserBuildings(userData.UserBuildingsData.BuildingsMap.Values.ToList());
+            userData.UserBuildingsData.TryGetBuildingsByType(BuildingType.MainBuilding, out var mainBuildingModels);
+            m_mainBuildingModel = mainBuildingModels.ElementAt(0);
+
+            ReviewUserBuildings(userData.UserBuildingsData);
         }
 
         public void StopProcessing()
@@ -35,7 +40,7 @@ namespace Data.Processor
             m_energyProcessor.StopProcess();
         }
 
-        public void CreateBuildingProcess(UserBuildingsData userData, BuildingModel buildingModel)
+        public void CreateBuildingProcess(UserBuildingsData buildingsData, BuildingModel buildingModel)
         {
             if (buildingModel.Template.BuildingContext.BuildingProduction == null || buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate == null)
                 return;
@@ -43,21 +48,21 @@ namespace Data.Processor
             switch (buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.ResourcesType)
             {
                 case ResourcesType.Scrap:
-                    ReviewScrap(GetBuildingsByResourcesType(userData.BuildingsMap.Values.ToList(), ResourcesType.Scrap));
+                    ReviewScrap(GetBuildingsByResourcesType(buildingsData, ResourcesType.Scrap));
                     break;
                 case ResourcesType.Energy:
-                    ReviewEnergy(GetBuildingsByResourcesType(userData.BuildingsMap.Values.ToList(), ResourcesType.Energy));
+                    ReviewEnergy(GetBuildingsByResourcesType(buildingsData, ResourcesType.Energy));
                     break;
                 case ResourcesType.Food:
-                    ReviewFood(GetBuildingsByResourcesType(userData.BuildingsMap.Values.ToList(), ResourcesType.Food));
+                    ReviewFood(GetBuildingsByResourcesType(buildingsData, ResourcesType.Food));
                     break;
                 case ResourcesType.Water:
-                    ReviewWater(GetBuildingsByResourcesType(userData.BuildingsMap.Values.ToList(), ResourcesType.Water));
+                    ReviewWater(GetBuildingsByResourcesType(buildingsData, ResourcesType.Water));
                     break;
             }
         }
 
-        public void UpdateBuildingProcess(UserBuildingsData userData, BuildingModel buildingModel)
+        public void UpdateBuildingProcess(UserBuildingsData buildingsData, BuildingModel buildingModel)
         {
             if (buildingModel.Template.BuildingContext.BuildingProduction == null || buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate == null)
                 return;
@@ -65,36 +70,39 @@ namespace Data.Processor
             switch (buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.ResourcesType)
             {
                 case ResourcesType.Scrap:
-                    ReviewScrap(GetBuildingsByResourcesType(userData.BuildingsMap.Values.ToList(), ResourcesType.Scrap));
+                    ReviewScrap(GetBuildingsByResourcesType(buildingsData, ResourcesType.Scrap));
                     break;
                 case ResourcesType.Energy:
-                    ReviewEnergy(GetBuildingsByResourcesType(userData.BuildingsMap.Values.ToList(), ResourcesType.Energy));
+                    ReviewEnergy(GetBuildingsByResourcesType(buildingsData, ResourcesType.Energy));
                     break;
                 case ResourcesType.Food:
-                    ReviewFood(GetBuildingsByResourcesType(userData.BuildingsMap.Values.ToList(), ResourcesType.Food));
+                    ReviewFood(GetBuildingsByResourcesType(buildingsData, ResourcesType.Food));
                     break;
                 case ResourcesType.Water:
-                    ReviewWater(GetBuildingsByResourcesType(userData.BuildingsMap.Values.ToList(), ResourcesType.Water));
+                    ReviewWater(GetBuildingsByResourcesType(buildingsData, ResourcesType.Water));
                     break;
             }
         }
 
-        void ReviewUserBuildings(List<BuildingModel> list)
+        void ReviewUserBuildings(UserBuildingsData buildingsData)
         {
-            ReviewScrap(GetBuildingsByResourcesType(list, ResourcesType.Scrap));
-            ReviewEnergy(GetBuildingsByResourcesType(list, ResourcesType.Energy));
-            ReviewFood(GetBuildingsByResourcesType(list, ResourcesType.Food));
-            ReviewWater(GetBuildingsByResourcesType(list, ResourcesType.Water));
+            ReviewScrap(GetBuildingsByResourcesType(buildingsData, ResourcesType.Scrap));
+            ReviewEnergy(GetBuildingsByResourcesType(buildingsData, ResourcesType.Energy));
+            ReviewFood(GetBuildingsByResourcesType(buildingsData, ResourcesType.Food));
+            ReviewWater(GetBuildingsByResourcesType(buildingsData, ResourcesType.Water));
         }
 
-        List<BuildingModel> GetBuildingsByResourcesType(List<BuildingModel> list, ResourcesType resourcesType)
+        ICollection<BuildingModel> GetBuildingsByResourcesType(UserBuildingsData buildingsData, ResourcesType resourcesType)
         {
-            return list.Where(b => b.Template.BuildingContext.BuildingProduction != null &&
-                                   b.Template.BuildingContext.BuildingProduction.ResourcesTemplate != null &&
-                                   b.Template.BuildingContext.BuildingProduction.ResourcesTemplate.ResourcesType == resourcesType).ToList();
+            if (buildingsData.TryGetBuildingsByResourcesType(resourcesType, out var buildings))
+            {
+                return buildings;
+            }
+
+            return null;
         }
 
-        void ReviewScrap(List<BuildingModel> list)
+        void ReviewScrap(ICollection<BuildingModel> list)
         {
             if (list == null || list.Count == 0)
                 return;
@@ -108,7 +116,7 @@ namespace Data.Processor
             }
         }
 
-        void ReviewEnergy(List<BuildingModel> list)
+        void ReviewEnergy(ICollection<BuildingModel> list)
         {
             if (list == null || list.Count == 0)
                 return;
@@ -123,7 +131,7 @@ namespace Data.Processor
             }
         }
 
-        void ReviewFood(List<BuildingModel> list)
+        void ReviewFood(ICollection<BuildingModel> list)
         {
             if (list == null || list.Count == 0)
                 return;
@@ -137,7 +145,7 @@ namespace Data.Processor
             }
         }
 
-        void ReviewWater(List<BuildingModel> list)
+        void ReviewWater(ICollection<BuildingModel> list)
         {
             if (list == null || list.Count == 0)
                 return;
@@ -151,12 +159,20 @@ namespace Data.Processor
             }
         }
 
-        float GetAmount(List<BuildingModel> list)
+        float GetAmount(ICollection<BuildingModel> list)
         {
             float amount = 0;
+
+            var mainBuildingBonus = 1 + m_mainBuildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * (m_mainBuildingModel.Level - 1);
+
+            var energyFactor = 1;
+            var waterFactor = 1;
+
             foreach (var model in list)
             {
-                amount += model.Template.BuildingContext.BuildingProduction.Amount;
+                var value = (model.Template.BuildingContext.BuildingProduction.Amount + (model.Level - 1) * model.Template.BuildingContext.BuildingProduction.LevelMultiplier) *
+                            energyFactor * waterFactor * mainBuildingBonus;
+                amount += value;
             }
 
             return amount;

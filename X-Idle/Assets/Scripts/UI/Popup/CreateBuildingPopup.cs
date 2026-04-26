@@ -60,6 +60,9 @@ namespace UI.Popup
             }
 
             m_elements.Clear();
+
+            m_createButton.onClick.RemoveAllListeners();
+
             base.Close();
         }
 

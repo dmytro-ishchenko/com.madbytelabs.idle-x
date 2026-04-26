@@ -14,8 +14,8 @@ namespace Data
 
         IList<IBuildingTemplate> GetAvailableBuilding();
         void BuildingProcess(BuildingProcessEventArgs args);
-
         event Action<UserResources> OnUserResourcesChanged;
         event Action<BuildingModel> OnBuildingCreated;
+        event Action<ActionErrorModel> OnActionError;
     }
 }
