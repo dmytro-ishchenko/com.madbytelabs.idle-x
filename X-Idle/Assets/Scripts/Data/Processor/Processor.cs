@@ -1,6 +1,4 @@
 using System;
-using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Data.Processor
@@ -8,13 +6,13 @@ namespace Data.Processor
     internal class Processor : IProcessor
     {
         private Awaitable m_process;
-        private int m_processValue;
+        private float m_processValue;
 
-        public event Action<int> OnProcess;
+        public event Action<float> OnProcess;
         public bool IsStarted { get; private set; }
 
 
-        public void InitTaskContext(int value)
+        public void InitTaskContext(float value)
         {
             m_processValue = value;
         }
@@ -26,7 +24,7 @@ namespace Data.Processor
             m_process = ProcessData();
         }
 
-        public void UpdateContext(int value)
+        public void UpdateContext(float value)
         {
         }
 

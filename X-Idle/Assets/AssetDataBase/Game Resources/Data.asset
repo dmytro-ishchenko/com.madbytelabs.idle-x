@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1a67f5cf29c479ea7c0c061a89c5a42, type: 3}
+  m_Name: Data
+  m_EditorClassIdentifier: com.madbytelabs.data::Data.ContentLibrary.Templates.GameResources.GameResourcesTemplate
+  m_id: 8dea37bdfe554581616d280
+  m_name: Data
+  m_resourcesType: 5
+  m_description: 
+  m_icon: {fileID: 21300000, guid: 21e0b61ec9e294ef987fe405ec20051c, type: 3}

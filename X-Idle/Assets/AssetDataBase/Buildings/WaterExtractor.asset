@@ -19,8 +19,17 @@ MonoBehaviour:
   m_icon: {fileID: 21300000, guid: 6779adec3430d41248ab431d57b199ee, type: 3}
   m_buildingContext:
     m_buildingType: 8
+    m_cost:
+      m_scrapCost: 25
+      m_scrapCostGrowth: 1.15
+      m_partsCost: 0
+      m_partsCostGrowth: 0
     m_canDuplicate: 1
+    m_buildingRequirements:
+    - m_templateId: 8de86969565a9164d7656fb
+      m_level: 2
+    m_resourcesRequirements: []
     m_buildingProduction:
       m_resourcesTemplate: {fileID: 11400000, guid: 8baf30164c64c4ec89994b836434ba4a, type: 2}
-      m_amountPerSecond: 1
-    m_buildingLevels: []
+      m_amount: 2
+    m_buildingLevelsView: []

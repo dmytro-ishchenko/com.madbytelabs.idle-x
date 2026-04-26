@@ -151,12 +151,12 @@ namespace Data.Processor
             }
         }
 
-        int GetAmount(List<BuildingModel> list)
+        float GetAmount(List<BuildingModel> list)
         {
-            int amount = 0;
+            float amount = 0;
             foreach (var model in list)
             {
-                amount += model.Template.BuildingContext.BuildingProduction.AmountPerSecond;
+                amount += model.Template.BuildingContext.BuildingProduction.Amount;
             }
 
             return amount;

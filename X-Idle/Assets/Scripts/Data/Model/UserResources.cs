@@ -5,33 +5,39 @@ namespace Data.Model
     public class UserResources
     {
         internal event Action<UserResources> OnUserResourcesChanged;
-        public int Scrap { get; private set; }
-        public int Energy { get; private set; }
-        public int Water { get; private set; }
-        public int Food { get; private set; }
+        public float Scrap { get; private set; }
+        public float Energy { get; private set; }
+        public float Water { get; private set; }
+        public float Food { get; private set; }
+        public float Data { get; private set; }
 
-        internal void SetScrap(int value)
+        internal void SetScrap(float value)
         {
             Scrap = value;
             OnUserResourcesChanged?.Invoke(this);
         }
 
-        internal void SetEnergy(int value)
+        internal void SetEnergy(float value)
         {
             Energy = value;
             OnUserResourcesChanged?.Invoke(this);
         }
 
-        internal void SetWater(int value)
+        internal void SetWater(float value)
         {
             Water = value;
             OnUserResourcesChanged?.Invoke(this);
         }
 
-        internal void SetFood(int value)
+        internal void SetFood(float value)
         {
             Food = value;
             OnUserResourcesChanged?.Invoke(this);
+        }
+
+        internal void SetData(float value)
+        {
+            Data = value;
         }
     }
 }

@@ -4,11 +4,11 @@ namespace Data.Processor
 {
     internal interface IProcessor
     {
-        void InitTaskContext(int value);
+        void InitTaskContext(float value);
         void StartProcess();
-        void UpdateContext(int value);
+        void UpdateContext(float value);
         void StopProcess();
-        event Action<int> OnProcess;
+        event Action<float> OnProcess;
         bool IsStarted { get; }
     }
 }

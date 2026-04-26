@@ -8,8 +8,10 @@ namespace Data.ContentLibrary.Templates.Context.Building
     public class BuildingProductionModel
     {
         [SerializeField] GameResourcesTemplate m_resourcesTemplate;
-        [SerializeField] private int m_amountPerSecond;
+        [SerializeField] private float m_amount;
+        [SerializeField] private float m_levelMultiplier;
         public IGameResourcesTemplate ResourcesTemplate => m_resourcesTemplate;
-        public int AmountPerSecond => m_amountPerSecond;
+        public float Amount => m_amount;
+        public float LevelMultiplier => m_levelMultiplier;
     }
 }

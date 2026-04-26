@@ -19,7 +19,7 @@ namespace UI.Controller
             m_waterLabel.text = ConvertValue(userResources.Water);
         }
 
-        string ConvertValue(int value)
+        string ConvertValue(float value)
         {
             if (value >= 1000000)
             {
