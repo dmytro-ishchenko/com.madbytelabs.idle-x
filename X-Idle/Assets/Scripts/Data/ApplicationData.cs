@@ -30,6 +30,7 @@ namespace Data
         private readonly IDataLoader<UserData> m_userDataLoader = new UserDataLoader();
         public IList<BuildingModel> UserBuildings => m_userData.UserBuildingsData.BuildingsMap.Values.ToList();
         public UserResources UserResources => m_userData.UserResources;
+        public UserBuildingsData UserBuildingsData => m_userData.UserBuildingsData;
         public event Action<BuildingModel> OnBuildingCreated;
         public event Action<ActionErrorModel> OnActionError;
         public event Action<UserResources> OnUserResourcesChanged;
@@ -84,9 +85,15 @@ namespace Data
                 if (buildingTemplate.BuildingContext.BuildingType == BuildingType.DestroyedBuilding || buildingTemplate.BuildingContext.BuildingType == BuildingType.MainBuilding)
                     continue;
 
-                var userBuilding = userBuildings.FirstOrDefault(b => b.Template.BuildingContext.BuildingType.Equals(buildingTemplate.BuildingContext.BuildingType));
+                var buildings = userBuildings.Where(b => b.Template.BuildingContext.BuildingType.Equals(buildingTemplate.BuildingContext.BuildingType)).ToList();
 
-                if (userBuilding == null || userBuilding.Template.BuildingContext.CanDuplicate)
+                if (buildings.Count > 0)
+                {
+                    var building = buildings[0];
+                    if (building.Template.BuildingContext.DuplicateModel.CanDuplicate && buildings.Count < building.Template.BuildingContext.DuplicateModel.MaxDuplicateAmount)
+                        templates.Add(buildingTemplate);
+                }
+                else
                 {
                     templates.Add(buildingTemplate);
                 }

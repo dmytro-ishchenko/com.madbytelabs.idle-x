@@ -7,7 +7,7 @@ namespace UI.Controller
     internal interface IGameUIController : IMonoNode
     {
         void UpdateUserInfo(UserResources resources);
-        void ShowSelectBuildingPopup(BuildingModel buildingModel);
+        void ShowUpgradeBuildingPopup(UpgradeBuildingContext context);
         void ShowCreateBuildingPopup(CreateBuildingContext context);
     }
 }

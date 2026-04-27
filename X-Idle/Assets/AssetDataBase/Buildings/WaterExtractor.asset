@@ -20,13 +20,16 @@ MonoBehaviour:
   m_buildingContext:
     m_buildingType: 8
     m_cost:
-      m_scrapCost: 25
-      m_scrapCostGrowth: 1.15
-      m_partsCost: 0
-      m_partsCostGrowth: 0
-    m_canDuplicate: 1
+      m_costModels:
+      - m_gameResourcesType: 1
+        m_cost: 25
+        m_costGrowth: 1.15
+      m_upgradeTimeCost: 0
+    m_duplicateModel:
+      m_canDuplicate: 1
+      m_maxDuplicateAmount: 3
     m_buildingRequirements:
-    - m_templateId: 8de86969565a9164d7656fb
+    - m_buildingType: 1
       m_level: 2
     m_resourcesRequirements: []
     m_buildingProduction:

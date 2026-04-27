@@ -1,6 +1,6 @@
 namespace Data.Enum
 {
-    public enum ResourcesType
+    public enum GameResourceType
     {
         None = 0,
         Scrap = 1,

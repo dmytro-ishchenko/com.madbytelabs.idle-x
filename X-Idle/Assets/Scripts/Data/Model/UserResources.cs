@@ -1,49 +1,27 @@
 using System;
+using System.Collections.Generic;
+using Data.Enum;
 
 namespace Data.Model
 {
     public class UserResources
     {
         internal event Action<UserResources> OnUserResourcesChanged;
-        public float Scrap { get; private set; }
-        public float Energy { get; private set; }
-        public float Water { get; private set; }
-        public float Food { get; private set; }
-        public float Data { get; private set; }
-        public float Parts { get; private set; }
 
-        internal void SetScrap(float value)
+        Dictionary<GameResourceType, float> m_resources = new Dictionary<GameResourceType, float>();
+
+        public float GetGameResourceValue(GameResourceType type)
         {
-            Scrap = value;
+            return m_resources.GetValueOrDefault(type, 0f);
+        }
+
+        public void SetGameResource(GameResourceType type, float value)
+        {
+            if (!m_resources.TryGetValue(type, out _))
+                m_resources.Add(type, value);
+            else
+                m_resources[type] = value;
             OnUserResourcesChanged?.Invoke(this);
-        }
-
-        internal void SetEnergy(float value)
-        {
-            Energy = value;
-            OnUserResourcesChanged?.Invoke(this);
-        }
-
-        internal void SetWater(float value)
-        {
-            Water = value;
-            OnUserResourcesChanged?.Invoke(this);
-        }
-
-        internal void SetFood(float value)
-        {
-            Food = value;
-            OnUserResourcesChanged?.Invoke(this);
-        }
-
-        internal void SetData(float value)
-        {
-            Data = value;
-        }
-
-        internal void SetParts(float value)
-        {
-            Parts = value;
         }
     }
 }

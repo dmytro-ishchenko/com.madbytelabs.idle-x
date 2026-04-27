@@ -45,19 +45,19 @@ namespace Data.Processor
             if (buildingModel.Template.BuildingContext.BuildingProduction == null || buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate == null)
                 return;
 
-            switch (buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.ResourcesType)
+            switch (buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.GameResourceType)
             {
-                case ResourcesType.Scrap:
-                    ReviewScrap(GetBuildingsByResourcesType(buildingsData, ResourcesType.Scrap));
+                case GameResourceType.Scrap:
+                    ReviewScrap(GetBuildingsByResourcesType(buildingsData, GameResourceType.Scrap));
                     break;
-                case ResourcesType.Energy:
-                    ReviewEnergy(GetBuildingsByResourcesType(buildingsData, ResourcesType.Energy));
+                case GameResourceType.Energy:
+                    ReviewEnergy(GetBuildingsByResourcesType(buildingsData, GameResourceType.Energy));
                     break;
-                case ResourcesType.Food:
-                    ReviewFood(GetBuildingsByResourcesType(buildingsData, ResourcesType.Food));
+                case GameResourceType.Food:
+                    ReviewFood(GetBuildingsByResourcesType(buildingsData, GameResourceType.Food));
                     break;
-                case ResourcesType.Water:
-                    ReviewWater(GetBuildingsByResourcesType(buildingsData, ResourcesType.Water));
+                case GameResourceType.Water:
+                    ReviewWater(GetBuildingsByResourcesType(buildingsData, GameResourceType.Water));
                     break;
             }
         }
@@ -67,34 +67,34 @@ namespace Data.Processor
             if (buildingModel.Template.BuildingContext.BuildingProduction == null || buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate == null)
                 return;
 
-            switch (buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.ResourcesType)
+            switch (buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.GameResourceType)
             {
-                case ResourcesType.Scrap:
-                    ReviewScrap(GetBuildingsByResourcesType(buildingsData, ResourcesType.Scrap));
+                case GameResourceType.Scrap:
+                    ReviewScrap(GetBuildingsByResourcesType(buildingsData, GameResourceType.Scrap));
                     break;
-                case ResourcesType.Energy:
-                    ReviewEnergy(GetBuildingsByResourcesType(buildingsData, ResourcesType.Energy));
+                case GameResourceType.Energy:
+                    ReviewEnergy(GetBuildingsByResourcesType(buildingsData, GameResourceType.Energy));
                     break;
-                case ResourcesType.Food:
-                    ReviewFood(GetBuildingsByResourcesType(buildingsData, ResourcesType.Food));
+                case GameResourceType.Food:
+                    ReviewFood(GetBuildingsByResourcesType(buildingsData, GameResourceType.Food));
                     break;
-                case ResourcesType.Water:
-                    ReviewWater(GetBuildingsByResourcesType(buildingsData, ResourcesType.Water));
+                case GameResourceType.Water:
+                    ReviewWater(GetBuildingsByResourcesType(buildingsData, GameResourceType.Water));
                     break;
             }
         }
 
         void ReviewUserBuildings(UserBuildingsData buildingsData)
         {
-            ReviewScrap(GetBuildingsByResourcesType(buildingsData, ResourcesType.Scrap));
-            ReviewEnergy(GetBuildingsByResourcesType(buildingsData, ResourcesType.Energy));
-            ReviewFood(GetBuildingsByResourcesType(buildingsData, ResourcesType.Food));
-            ReviewWater(GetBuildingsByResourcesType(buildingsData, ResourcesType.Water));
+            ReviewScrap(GetBuildingsByResourcesType(buildingsData, GameResourceType.Scrap));
+            ReviewEnergy(GetBuildingsByResourcesType(buildingsData, GameResourceType.Energy));
+            ReviewFood(GetBuildingsByResourcesType(buildingsData, GameResourceType.Food));
+            ReviewWater(GetBuildingsByResourcesType(buildingsData, GameResourceType.Water));
         }
 
-        ICollection<BuildingModel> GetBuildingsByResourcesType(UserBuildingsData buildingsData, ResourcesType resourcesType)
+        ICollection<BuildingModel> GetBuildingsByResourcesType(UserBuildingsData buildingsData, GameResourceType gameResourceType)
         {
-            if (buildingsData.TryGetBuildingsByResourcesType(resourcesType, out var buildings))
+            if (buildingsData.TryGetBuildingsByResourcesType(gameResourceType, out var buildings))
             {
                 return buildings;
             }
@@ -111,7 +111,7 @@ namespace Data.Processor
 
             if (!m_scrapProcessor.IsStarted)
             {
-                m_scrapProcessor.OnProcess += (value) => { m_userResources.SetScrap(m_userResources.Scrap + value); };
+                m_scrapProcessor.OnProcess += (value) => { SetGameResource(GameResourceType.Scrap, value); };
                 m_scrapProcessor.StartProcess();
             }
         }
@@ -126,7 +126,7 @@ namespace Data.Processor
 
             if (!m_energyProcessor.IsStarted)
             {
-                m_energyProcessor.OnProcess += (value) => { m_userResources.SetEnergy(m_userResources.Energy + value); };
+                m_energyProcessor.OnProcess += (value) => { SetGameResource(GameResourceType.Energy, value); };
                 m_energyProcessor.StartProcess();
             }
         }
@@ -140,7 +140,7 @@ namespace Data.Processor
 
             if (!m_foodProcessor.IsStarted)
             {
-                m_foodProcessor.OnProcess += (value) => { m_userResources.SetFood(m_userResources.Food + value); };
+                m_foodProcessor.OnProcess += (value) => { SetGameResource(GameResourceType.Food, value); };
                 m_foodProcessor.StartProcess();
             }
         }
@@ -154,9 +154,14 @@ namespace Data.Processor
 
             if (!m_waterProcessor.IsStarted)
             {
-                m_waterProcessor.OnProcess += (value) => { m_userResources.SetWater(m_userResources.Water + value); };
+                m_waterProcessor.OnProcess += (value) => { SetGameResource(GameResourceType.Water, value); };
                 m_waterProcessor.StartProcess();
             }
+        }
+
+        void SetGameResource(GameResourceType gameResourceType, float value)
+        {
+            m_userResources.SetGameResource(gameResourceType, m_userResources.GetGameResourceValue(gameResourceType) + value);
         }
 
         float GetAmount(ICollection<BuildingModel> list)

@@ -1,3 +1,4 @@
+using Data.Enum;
 using Data.Model;
 using UnityEngine;
 using TMPro;
@@ -15,12 +16,12 @@ namespace UI.Controller
 
         public void UpdateUserResources(UserResources userResources)
         {
-            m_skrapLabel.text = ConvertValue(userResources.Scrap);
-            m_energyLabel.text = ConvertValue(userResources.Energy);
-            m_foodLabel.text = ConvertValue(userResources.Food);
-            m_waterLabel.text = ConvertValue(userResources.Water);
-            m_partsLabel.text = ConvertValue(userResources.Parts);
-            m_dataLabel.text = ConvertValue(userResources.Data);
+            m_skrapLabel.text = ConvertValue(userResources.GetGameResourceValue(GameResourceType.Scrap));
+            m_energyLabel.text = ConvertValue(userResources.GetGameResourceValue(GameResourceType.Energy));
+            m_foodLabel.text = ConvertValue(userResources.GetGameResourceValue(GameResourceType.Food));
+            m_waterLabel.text = ConvertValue(userResources.GetGameResourceValue(GameResourceType.Water));
+            m_partsLabel.text = ConvertValue(userResources.GetGameResourceValue(GameResourceType.Parts));
+            m_dataLabel.text = ConvertValue(userResources.GetGameResourceValue(GameResourceType.Data));
         }
 
         string ConvertValue(float value)

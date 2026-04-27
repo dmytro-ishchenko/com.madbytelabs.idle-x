@@ -1,5 +1,6 @@
 using Data.Enum;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Data.ContentLibrary.Templates.GameResources
 {
@@ -7,13 +8,13 @@ namespace Data.ContentLibrary.Templates.GameResources
     {
         [SerializeField] private string m_id;
         [SerializeField] private string m_name;
-        [SerializeField] ResourcesType m_resourcesType;
+        [FormerlySerializedAs("m_resourcesType")] [SerializeField] GameResourceType mGameResourceType;
         [SerializeField] private string m_description;
         [SerializeField] private Sprite m_icon;
         [SerializeField] private float m_baseCapacity;
         public string Id => m_id;
         public string Name => m_name;
-        public ResourcesType ResourcesType => m_resourcesType;
+        public GameResourceType GameResourceType => mGameResourceType;
         public string Description => m_description;
         public Sprite Icon => m_icon;
         public float BaseCapacity => m_baseCapacity;

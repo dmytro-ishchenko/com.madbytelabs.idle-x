@@ -27,9 +27,7 @@ namespace Data.Factory
                     {
                         foreach (var element in buildRequirements)
                         {
-                            m_assetLibrary.TryGetBuildingTemplate(element.TemplateId, out var requiredTemplate);
-
-                            if (!userData.UserBuildingsData.TryGetBuildingsByType(requiredTemplate.BuildingContext.BuildingType, out var requiredBuildings))
+                            if (!userData.UserBuildingsData.TryGetBuildingsByType(element.BuildingType, out var requiredBuildings))
                             {
                                 buildingModel = null;
                                 return false;

@@ -1,6 +1,5 @@
 using AYellowpaper.SerializedCollections;
 using Common.Pattern.BobbleEvent;
-using Data.Model;
 using UI.Enum;
 using UI.Model;
 using UnityEngine;
@@ -28,11 +27,11 @@ namespace UI.Popup
             }
         }
 
-        public void ShowSelectBuildingPopup(BuildingModel buildingModel)
+        public void ShowUpgradeBuildingPopup(UpgradeBuildingContext context)
         {
-            if (m_popupMap.TryGetValue(PopupType.SelectBuilding, out BasePopup popup))
+            if (m_popupMap.TryGetValue(PopupType.UpgradeBuilding, out BasePopup popup))
             {
-                popup.Show(buildingModel);
+                popup.Show(context);
             }
         }
     }

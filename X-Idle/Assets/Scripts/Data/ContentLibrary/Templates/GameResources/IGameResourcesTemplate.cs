@@ -6,7 +6,7 @@ namespace Data.ContentLibrary.Templates.GameResources
 {
     public interface IGameResourcesTemplate : ITemplate
     {
-        ResourcesType ResourcesType { get; }
+        GameResourceType GameResourceType { get; }
         Sprite Icon { get; }
     }
 }

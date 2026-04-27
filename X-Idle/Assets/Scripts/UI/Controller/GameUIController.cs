@@ -19,9 +19,8 @@ namespace UI.Controller
 
         public void UpdateUserInfo(UserResources resources) => m_userInfo.UpdateUserResources(resources);
 
-        public void ShowSelectBuildingPopup(BuildingModel buildingModel) => m_popupManager.ShowSelectBuildingPopup(buildingModel);
-
         public void ShowCreateBuildingPopup(CreateBuildingContext context) => m_popupManager.ShowCreateBuildingPopup(context);
+        public void ShowUpgradeBuildingPopup(UpgradeBuildingContext context) => m_popupManager.ShowUpgradeBuildingPopup(context);
 
         public Node Node { get; private set; }
     }

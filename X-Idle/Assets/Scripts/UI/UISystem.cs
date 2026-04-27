@@ -63,7 +63,7 @@ namespace UI
                     m_gameUIController.ShowCreateBuildingPopup(new CreateBuildingContext(args.BuildingModel.Id, m_applicationData.GetAvailableBuilding()));
                     break;
                 case BuildingActionType.UpgradeBuildingRequest:
-                    m_gameUIController.ShowSelectBuildingPopup(args.BuildingModel);
+                    m_gameUIController.ShowUpgradeBuildingPopup(new UpgradeBuildingContext(m_applicationData.UserResources, m_applicationData.UserBuildingsData, args.BuildingModel));
                     break;
             }
         }

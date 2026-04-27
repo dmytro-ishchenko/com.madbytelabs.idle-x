@@ -8,7 +8,7 @@ namespace Data.Model
     {
         private readonly Dictionary<string, BuildingModel> m_buildingsMap = new();
         private readonly Dictionary<BuildingType, List<BuildingModel>> m_buildingsMapByType = new();
-        private readonly Dictionary<ResourcesType, List<BuildingModel>> m_buildingsMapByResourcesType = new();
+        private readonly Dictionary<GameResourceType, List<BuildingModel>> m_buildingsMapByResourcesType = new();
         public IReadOnlyDictionary<string, BuildingModel> BuildingsMap => m_buildingsMap;
 
 
@@ -49,10 +49,10 @@ namespace Data.Model
 
             if (buildingModel.Template.BuildingContext.BuildingProduction is { ResourcesTemplate: not null })
             {
-                if (!m_buildingsMapByResourcesType.TryGetValue(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.ResourcesType, out List<BuildingModel> byResourceModels))
+                if (!m_buildingsMapByResourcesType.TryGetValue(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.GameResourceType, out List<BuildingModel> byResourceModels))
                 {
                     byResourceModels = new List<BuildingModel>();
-                    m_buildingsMapByResourcesType.Add(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.ResourcesType, byResourceModels);
+                    m_buildingsMapByResourcesType.Add(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.GameResourceType, byResourceModels);
                     byResourceModels.Add(buildingModel);
                 }
             }
@@ -71,7 +71,7 @@ namespace Data.Model
 
             if (buildingModel.Template.BuildingContext.BuildingProduction is { ResourcesTemplate: not null })
             {
-                if (m_buildingsMapByResourcesType.TryGetValue(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.ResourcesType, out list))
+                if (m_buildingsMapByResourcesType.TryGetValue(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.GameResourceType, out list))
                 {
                     int index = list.FindIndex(e => e.Id.Equals(buildingModel.Id));
                     if (index >= 0)
@@ -94,7 +94,7 @@ namespace Data.Model
             return false;
         }
 
-        public bool TryGetBuildingsByResourcesType(ResourcesType type, out ICollection<BuildingModel> buildings)
+        public bool TryGetBuildingsByResourcesType(GameResourceType type, out ICollection<BuildingModel> buildings)
         {
             if (m_buildingsMapByResourcesType.TryGetValue(type, out var list))
             {
