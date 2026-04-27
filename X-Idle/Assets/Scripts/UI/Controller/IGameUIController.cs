@@ -9,5 +9,6 @@ namespace UI.Controller
         void UpdateUserInfo(UserResources resources);
         void ShowUpgradeBuildingPopup(UpgradeBuildingContext context);
         void ShowCreateBuildingPopup(CreateBuildingContext context);
+        void ShowCreateBuildingErrorPopup(CreateBuildingErrorContext context);
     }
 }

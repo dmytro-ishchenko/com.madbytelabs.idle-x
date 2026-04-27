@@ -11,10 +11,10 @@ namespace UI.Model
             BuildingModel = buildingModel;
         }
 
-        public readonly BuildingModel BuildingModel { get; }
+        public BuildingModel BuildingModel { get; }
 
-        public readonly UserResources UserResources { get; }
+        public UserResources UserResources { get; }
 
-        public readonly UserBuildingsData UserBuildingsData { get; }
+        public UserBuildingsData UserBuildingsData { get; }
     }
 }

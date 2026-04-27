@@ -6,13 +6,11 @@ namespace Data.Events
 {
     public struct BuildingRequestEventArgs : IEventArgs
     {
-        public BuildingRequestEventArgs(BuildingModel buildingModel, BuildingActionType buildingActionType)
+        public BuildingRequestEventArgs(string id)
         {
-            BuildingModel = buildingModel;
-            BuildingActionType = buildingActionType;
+            BuildingId = id;
         }
 
-        public BuildingModel BuildingModel { get; }
-        public BuildingActionType BuildingActionType { get; }
+        public string BuildingId { get; }
     }
 }

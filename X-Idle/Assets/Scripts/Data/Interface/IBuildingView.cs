@@ -8,7 +8,6 @@ namespace Data.Interface
     {
         GameObject GameObject { get; }
 
-        BuildingModel Model { get; }
         void Init(BuildingModel model);
     }
 }

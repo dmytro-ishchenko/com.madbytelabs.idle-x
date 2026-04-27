@@ -1,8 +1,7 @@
-using System.Collections.Generic;
-using System.Linq;
 using Data.ContentLibrary;
 using Data.Events;
 using Data.Model;
+using Data.Utility;
 
 namespace Data.Factory
 {
@@ -19,38 +18,13 @@ namespace Data.Factory
         {
             if (m_assetLibrary.TryGetBuildingTemplate(args.TemplateId, out var buildingTemplate))
             {
-                if (userData.UserBuildingsData.TryGetBuildingModel(args.BuildingId, out var building))
+                if (DataUtility.CanCreateBuilding(userData.UserBuildingsData, buildingTemplate))
                 {
-                    var buildRequirements = buildingTemplate.BuildingContext.BuildingRequirements;
-
-                    if (buildRequirements is { Count: > 0 })
-                    {
-                        foreach (var element in buildRequirements)
-                        {
-                            if (!userData.UserBuildingsData.TryGetBuildingsByType(element.BuildingType, out var requiredBuildings))
-                            {
-                                buildingModel = null;
-                                return false;
-                            }
-
-                            foreach (var model in requiredBuildings)
-                            {
-                                if (model.Level >= element.Level)
-                                {
-                                    userData.UserBuildingsData.CreateBuilding(building.Id, buildingTemplate);
-                                    buildingModel = building;
-                                    return true;
-                                }
-                            }
-
-                            buildingModel = null;
-                            return false;
-                        }
-                    }
-                    else
+                    if (userData.UserBuildingsData.TryGetBuildingModel(args.BuildingId, out var building))
                     {
                         userData.UserBuildingsData.CreateBuilding(building.Id, buildingTemplate);
                         buildingModel = building;
+
                         return true;
                     }
                 }
@@ -66,6 +40,16 @@ namespace Data.Factory
             {
                 if (userData.UserBuildingsData.TryGetBuildingModel(args.BuildingId, out var building))
                 {
+                    foreach (var model in buildingTemplate.BuildingContext.UpgradeCostModel.CostModels)
+                    {
+                        userData.UserResources.SetGameResource(model.GameResourceType,
+                            userData.UserResources.GetGameResourceValue(model.GameResourceType) -
+                            model.Cost * model.CostGrowth * building.Level);
+                    }
+
+                    building.SetLevel(building.Level + 1);
+                    buildingModel = building;
+                    return true;
                 }
             }
 

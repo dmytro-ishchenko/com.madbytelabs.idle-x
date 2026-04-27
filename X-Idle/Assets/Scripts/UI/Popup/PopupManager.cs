@@ -34,5 +34,13 @@ namespace UI.Popup
                 popup.Show(context);
             }
         }
+
+        public void ShowCreateBuildingErrorPopup(CreateBuildingErrorContext context)
+        {
+            if (m_popupMap.TryGetValue(PopupType.CreateBuildingError, out BasePopup popup))
+            {
+                popup.Show(context);
+            }
+        }
     }
 }

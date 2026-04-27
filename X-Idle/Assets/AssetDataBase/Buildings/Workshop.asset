@@ -19,12 +19,12 @@ MonoBehaviour:
   m_icon: {fileID: 21300000, guid: 6ab9d64b9e9e74f819c53bf2eb350e56, type: 3}
   m_buildingContext:
     m_buildingType: 6
-    m_cost:
+    m_upgradeCost:
       m_costModels:
-      - m_gameResourcesType: 1
+      - m_gameResourceType: 1
         m_cost: 50
         m_costGrowth: 1.15
-      - m_gameResourcesType: 7
+      - m_gameResourceType: 7
         m_cost: 5
         m_costGrowth: 1.12
       m_upgradeTimeCost: 0
@@ -34,11 +34,11 @@ MonoBehaviour:
     m_buildingRequirements:
     - m_buildingType: 1
       m_level: 3
-    m_resourcesRequirements:
-    - m_gameResourceType: 2
-      m_use: 2
     m_buildingProduction:
       m_resourcesTemplate: {fileID: 11400000, guid: de8cabd4836d34c529dba6c8ce814f3e, type: 2}
       m_amount: 1
       m_levelMultiplier: 1.12
+    m_resourcesRequirements:
+    - m_gameResourceType: 2
+      m_amount: 2
     m_buildingLevelsView: []

@@ -10,7 +10,6 @@ namespace Data
     {
         void InitApplicationData(Action complete);
 
-
         IList<BuildingModel> UserBuildings { get; }
         UserResources UserResources { get; }
         UserBuildingsData UserBuildingsData { get; }
@@ -19,5 +18,6 @@ namespace Data
         event Action<UserResources> OnUserResourcesChanged;
         event Action<BuildingModel> OnBuildingCreated;
         event Action<ActionErrorModel> OnActionError;
+        event Action<BuildingModel> OnBuildingUpdated;
     }
 }

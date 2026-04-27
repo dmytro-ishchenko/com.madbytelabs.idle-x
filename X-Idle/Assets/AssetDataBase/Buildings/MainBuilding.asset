@@ -19,7 +19,7 @@ MonoBehaviour:
   m_icon: {fileID: 21300000, guid: 184b4a7d324a94f26a98564ef7df5955, type: 3}
   m_buildingContext:
     m_buildingType: 1
-    m_cost:
+    m_upgradeCost:
       m_costModels:
       - m_gameResourceType: 1
         m_cost: 200
@@ -29,9 +29,9 @@ MonoBehaviour:
       m_canDuplicate: 0
       m_maxDuplicateAmount: 0
     m_buildingRequirements: []
-    m_resourcesRequirements: []
     m_buildingProduction:
       m_resourcesTemplate: {fileID: 0}
       m_amount: 0
       m_levelMultiplier: 0.05
+    m_resourcesRequirements: []
     m_buildingLevelsView: []

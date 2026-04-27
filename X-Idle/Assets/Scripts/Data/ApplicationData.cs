@@ -12,6 +12,7 @@ using Data.Interface;
 using Data.Loader;
 using Data.Model;
 using Data.Processor;
+using Data.Utility;
 using UnityEngine;
 
 namespace Data
@@ -28,11 +29,13 @@ namespace Data
         private IBuildingFactory m_buildingFactory;
         private readonly UserDataProcessor m_userDataProcessor = new();
         private readonly IDataLoader<UserData> m_userDataLoader = new UserDataLoader();
+
         public IList<BuildingModel> UserBuildings => m_userData.UserBuildingsData.BuildingsMap.Values.ToList();
         public UserResources UserResources => m_userData.UserResources;
         public UserBuildingsData UserBuildingsData => m_userData.UserBuildingsData;
         public event Action<BuildingModel> OnBuildingCreated;
         public event Action<ActionErrorModel> OnActionError;
+        public event Action<BuildingModel> OnBuildingUpdated;
         public event Action<UserResources> OnUserResourcesChanged;
 
 
@@ -62,11 +65,13 @@ namespace Data
 
 
             m_buildingFactory = new BuildingFactory(m_assetLibrary);
+
             m_userData.UserResources.OnUserResourcesChanged += OnResourcesChangedHandler;
             m_userDataProcessor.StartProcessing(m_userData);
 
             complete?.Invoke();
         }
+
 
         private void OnResourcesChangedHandler(UserResources data)
         {
@@ -114,7 +119,8 @@ namespace Data
                     }
                     else
                     {
-                        OnActionError?.Invoke(new ActionErrorModel(ActionErrorType.CreateBuilding));
+                        m_assetLibrary.TryGetBuildingTemplate(args.TemplateId, out BuildingTemplate buildingTemplate);
+                        OnActionError?.Invoke(new ActionErrorModel(ActionErrorType.CreateBuilding, buildingTemplate));
                     }
 
                     break;
@@ -122,6 +128,7 @@ namespace Data
 
                     if (m_buildingFactory.TryUpgradeBuilding(m_userData, args, out BuildingModel updatedBuildingModel))
                     {
+                        OnBuildingUpdated?.Invoke(updatedBuildingModel);
                         m_userDataProcessor.UpdateBuildingProcess(m_userData.UserBuildingsData, updatedBuildingModel);
                     }
 

@@ -9,7 +9,6 @@ using GameEnvironment;
 using SceneLoader;
 using UI.Controller;
 using UI.Model;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace UI
@@ -57,13 +56,14 @@ namespace UI
 
         private void OnBuildingActionRequestHandler(BuildingRequestEventArgs args)
         {
-            switch (args.BuildingActionType)
+            m_applicationData.UserBuildingsData.TryGetBuildingModel(args.BuildingId, out BuildingModel buildingModel);
+            switch (buildingModel.Template.BuildingContext.BuildingType)
             {
-                case BuildingActionType.CreateBuildingRequest:
-                    m_gameUIController.ShowCreateBuildingPopup(new CreateBuildingContext(args.BuildingModel.Id, m_applicationData.GetAvailableBuilding()));
+                case BuildingType.DestroyedBuilding:
+                    m_gameUIController.ShowCreateBuildingPopup(new CreateBuildingContext(args.BuildingId, m_applicationData.GetAvailableBuilding()));
                     break;
-                case BuildingActionType.UpgradeBuildingRequest:
-                    m_gameUIController.ShowUpgradeBuildingPopup(new UpgradeBuildingContext(m_applicationData.UserResources, m_applicationData.UserBuildingsData, args.BuildingModel));
+                default:
+                    m_gameUIController.ShowUpgradeBuildingPopup(new UpgradeBuildingContext(m_applicationData.UserResources, m_applicationData.UserBuildingsData, buildingModel));
                     break;
             }
         }
@@ -75,7 +75,7 @@ namespace UI
 
         private void OnActionErrorHandler(ActionErrorModel args)
         {
-            Debug.LogError($"ActionError {args.ActionErrorType}");
+            m_gameUIController.ShowCreateBuildingErrorPopup(new CreateBuildingErrorContext(m_applicationData.UserResources, m_applicationData.UserBuildingsData, args.BuildingTemplate));
         }
     }
 }

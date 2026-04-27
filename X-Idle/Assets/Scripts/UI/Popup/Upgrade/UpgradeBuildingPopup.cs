@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AYellowpaper.SerializedCollections;
 using Data.Enum;
-using Data.Model;
+using Data.Events;
 using TMPro;
 using UI.Model;
 using UnityEngine;
@@ -30,6 +30,9 @@ namespace UI.Popup.Upgrade
                 m_level.text = model.BuildingModel.Level.ToString();
                 m_icon.sprite = model.BuildingModel.Template.Icon;
                 int elementIndex = 1;
+
+                List<bool> requirementsFollowList = new List<bool>();
+
                 if (model.BuildingModel.Template.BuildingContext.BuildingType != BuildingType.MainBuilding)
                 {
                     foreach (var element in model.BuildingModel.Template.BuildingContext.BuildingRequirements)
@@ -40,10 +43,13 @@ namespace UI.Popup.Upgrade
 
                             foreach (var requiredElement in requiredBuildings)
                             {
+                                buildingFollow = false;
                                 if (requiredElement.Level >= element.Level)
                                 {
                                     buildingFollow = true;
                                 }
+
+                                requirementsFollowList.Add(buildingFollow);
                             }
 
                             var requirementElement = Instantiate(m_requiredElements[RequireElementType.Building], m_root);
@@ -59,16 +65,18 @@ namespace UI.Popup.Upgrade
                     }
                 }
 
+
                 foreach (var element in model.BuildingModel.Template.BuildingContext.UpgradeCostModel.CostModels)
                 {
                     bool resourceFollow = false;
-
-                    float requiredResource = element.Cost * (model.BuildingModel.Level) * model.BuildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier;
+                    float requiredResource = element.Cost * (model.BuildingModel.Level) * element.CostGrowth;
 
                     if (model.UserResources.GetGameResourceValue(element.GameResourceType) > requiredResource)
                     {
                         resourceFollow = true;
                     }
+
+                    requirementsFollowList.Add(resourceFollow);
 
                     var requirementElement = Instantiate(m_requiredElements[RequireElementType.Resource], m_root);
                     requirementElement.Init(resourceFollow, $"{element.GameResourceType} : {requiredResource}");
@@ -79,6 +87,24 @@ namespace UI.Popup.Upgrade
                     m_requirementViews.Add(requirementElement);
 
                     elementIndex += 1;
+                }
+
+                if (requirementsFollowList.Count == 0)
+                    m_upgrade.interactable = false;
+                else
+                {
+                    var notRequire = requirementsFollowList.FindIndex(x => x == false);
+                    if (notRequire >= 0)
+                        m_upgrade.interactable = false;
+                    else
+                    {
+                        m_upgrade.interactable = true;
+                        m_upgrade.onClick.AddListener(() =>
+                        {
+                            Node.TriggerEvent(new BuildingProcessEventArgs(model.BuildingModel.Id, model.BuildingModel.Template.Id, BuildingActionType.UpgradeBuildingRequest));
+                            Close();
+                        });
+                    }
                 }
 
                 base.Show(context);
@@ -93,6 +119,7 @@ namespace UI.Popup.Upgrade
             }
 
             m_requirementViews.Clear();
+            m_upgrade.onClick.RemoveAllListeners();
 
             base.Close();
         }

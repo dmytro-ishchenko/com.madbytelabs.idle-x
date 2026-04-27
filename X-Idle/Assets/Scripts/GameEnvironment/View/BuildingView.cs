@@ -1,5 +1,4 @@
 using Common.Pattern.BobbleEvent;
-using Data.Enum;
 using Data.Events;
 using Data.Interface;
 using Data.Model;
@@ -13,14 +12,15 @@ namespace GameEnvironment.View
     {
         private float m_threshold = 0.1f;
         private Vector2 m_touchPosition;
+        private string m_id;
         public GameObject GameObject => gameObject;
-        public BuildingModel Model { get; private set; }
+
 
         public Node Node { get; } = new();
 
         public void Init(BuildingModel model)
         {
-            Model = model;
+            m_id = model.Id;
         }
 
         public void OnPointerDown(PointerEventData eventData)
@@ -42,10 +42,8 @@ namespace GameEnvironment.View
             if (Vector3.Distance(m_touchPosition, Touchscreen.current.position.ReadValue()) > m_threshold)
                 return;
 #endif
-            if (Model.Template.BuildingContext.BuildingType == BuildingType.DestroyedBuilding)
-                Node.TriggerEvent(new BuildingRequestEventArgs(Model, BuildingActionType.CreateBuildingRequest));
-            else
-                Node.TriggerEvent(new BuildingRequestEventArgs(Model, BuildingActionType.UpgradeBuildingRequest));
+
+            Node.TriggerEvent(new BuildingRequestEventArgs(m_id));
         }
     }
 }
