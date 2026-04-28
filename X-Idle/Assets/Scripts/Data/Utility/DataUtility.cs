@@ -126,7 +126,7 @@ namespace Data.Utility
 
         public static float UpgradeResourceCost(float cost, int buildingLevel, float costGrowth)
         {
-            return (float)Math.Round(cost * costGrowth * buildingLevel);
+            return cost * costGrowth * buildingLevel;
         }
 
         public static float GetMainBuildingBonus(int level, float levelMultiplier)

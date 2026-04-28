@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.data::Data.ContentLibrary.Templates.GameResources.GameResourcesTemplate
   m_id: 8dea21abd8bcd2c3583485f
   m_name: Energy
-  m_resourcesType: 2
+  m_gameResourceType: 2
   m_description: 
   m_icon: {fileID: 21300000, guid: 6fdd9c8c1148940e9a6a8a1b7161d00d, type: 3}
   m_baseCapacity: 40

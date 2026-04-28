@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.data::Data.ContentLibrary.Templates.GameResources.GameResourcesTemplate
   m_id: 8de83abfe81b3e261880109
   m_name: Scrap
-  m_resourcesType: 1
+  m_gameResourceType: 1
   m_description: 
   m_icon: {fileID: 21300000, guid: 6db0d89e8a7e84f208ee54e20927564e, type: 3}
   m_baseCapacity: 100

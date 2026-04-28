@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.data::Data.ContentLibrary.Templates.GameResources.GameResourcesTemplate
   m_id: 8dea21adcf29092145e5fb3
   m_name: Food
-  m_resourcesType: 3
+  m_gameResourceType: 3
   m_description: 
   m_icon: {fileID: 21300000, guid: 061856a1ffd754c8abffa27135758a36, type: 3}
   m_baseCapacity: 50

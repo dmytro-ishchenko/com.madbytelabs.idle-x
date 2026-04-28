@@ -2,6 +2,7 @@ using Data.Enum;
 using Data.Model;
 using UnityEngine;
 using TMPro;
+using UI.Utility;
 
 namespace UI.Controller
 {
@@ -16,30 +17,12 @@ namespace UI.Controller
 
         public void UpdateUserResources(UserResources userResources)
         {
-            m_skrapLabel.text = ConvertValue(userResources.GetGameResourceValue(GameResourceType.Scrap));
-            m_energyLabel.text = ConvertValue(userResources.GetGameResourceValue(GameResourceType.Energy));
-            m_foodLabel.text = ConvertValue(userResources.GetGameResourceValue(GameResourceType.Food));
-            m_waterLabel.text = ConvertValue(userResources.GetGameResourceValue(GameResourceType.Water));
-            m_partsLabel.text = ConvertValue(userResources.GetGameResourceValue(GameResourceType.Parts));
-            m_dataLabel.text = ConvertValue(userResources.GetGameResourceValue(GameResourceType.Data));
-        }
-
-        string ConvertValue(float value)
-        {
-            if (value >= 1000000)
-            {
-                float val = value / 1000000f;
-                return val.ToString("0.###");
-            }
-            else if (value >= 1000)
-            {
-                float val = value / 1000f;
-                return val.ToString("0.###");
-            }
-            else
-            {
-                return value.ToString();
-            }
+            m_skrapLabel.text = UiUtility.ValueToString(userResources.GetGameResourceValue(GameResourceType.Scrap));
+            m_energyLabel.text = UiUtility.ValueToString(userResources.GetGameResourceValue(GameResourceType.Energy));
+            m_foodLabel.text = UiUtility.ValueToString(userResources.GetGameResourceValue(GameResourceType.Food));
+            m_waterLabel.text = UiUtility.ValueToString(userResources.GetGameResourceValue(GameResourceType.Water));
+            m_partsLabel.text = UiUtility.ValueToString(userResources.GetGameResourceValue(GameResourceType.Parts));
+            m_dataLabel.text = UiUtility.ValueToString(userResources.GetGameResourceValue(GameResourceType.Data));
         }
     }
 }
