@@ -117,7 +117,6 @@ namespace Data
                     if (m_buildingFactory.TryCreateBuilding(m_userData, args, out BuildingModel newBuildingModel))
                     {
                         OnBuildingCreated?.Invoke(newBuildingModel);
-                        m_userDataProcessor.CreateBuildingProcess(m_userData.UserBuildingsData, newBuildingModel);
                     }
                     else
                     {
@@ -133,7 +132,6 @@ namespace Data
                     if (m_buildingFactory.TryUpgradeBuilding(m_userData, args, out BuildingModel updatedBuildingModel))
                     {
                         OnBuildingUpdated?.Invoke(updatedBuildingModel);
-                        m_userDataProcessor.UpdateBuildingProcess(m_userData.UserBuildingsData, updatedBuildingModel);
                     }
 
                     break;

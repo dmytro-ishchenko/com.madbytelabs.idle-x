@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Data.ContentLibrary.Templates;
 using Data.Enum;
 
@@ -9,6 +10,7 @@ namespace Data.Model
         private readonly Dictionary<string, BuildingModel> m_buildingsMap = new();
         private readonly Dictionary<BuildingType, List<BuildingModel>> m_buildingsMapByType = new();
         private readonly Dictionary<GameResourceType, List<BuildingModel>> m_buildingsMapByResourcesType = new();
+        private readonly Dictionary<GameResourceType, List<BuildingModel>> m_buildingsMapByUsResourcesType = new();
         public IReadOnlyDictionary<string, BuildingModel> BuildingsMap => m_buildingsMap;
 
 
@@ -57,6 +59,20 @@ namespace Data.Model
 
                 byResourceModels.Add(buildingModel);
             }
+
+            if (buildingModel.Template.BuildingContext.ResourcesUse != null)
+            {
+                foreach (var resourcesUseModel in buildingModel.Template.BuildingContext.ResourcesUse)
+                {
+                    if (!m_buildingsMapByUsResourcesType.TryGetValue(resourcesUseModel.GameResource.GameResourceType, out List<BuildingModel> byUseResourceModels))
+                    {
+                        byUseResourceModels = new List<BuildingModel>();
+                        m_buildingsMapByUsResourcesType.Add(resourcesUseModel.GameResource.GameResourceType, byUseResourceModels);
+                    }
+
+                    byUseResourceModels.Add(buildingModel);
+                }
+            }
         }
 
         void RemoveBuildingFromHelpMaps(BuildingModel buildingModel)
@@ -68,6 +84,9 @@ namespace Data.Model
                 {
                     list.RemoveAt(index);
                 }
+
+                if (list.Count == 0)
+                    m_buildingsMapByType.Remove(buildingModel.Template.BuildingContext.BuildingType);
             }
 
             if (buildingModel.Template.BuildingContext.BuildingProduction is { ResourcesTemplate: not null })
@@ -78,6 +97,27 @@ namespace Data.Model
                     if (index >= 0)
                     {
                         list.RemoveAt(index);
+                    }
+
+                    if (list.Count == 0)
+                        m_buildingsMapByResourcesType.Remove(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.GameResourceType);
+                }
+            }
+
+            if (buildingModel.Template.BuildingContext.ResourcesUse != null)
+            {
+                foreach (var resourcesUseModel in buildingModel.Template.BuildingContext.ResourcesUse)
+                {
+                    if (m_buildingsMapByUsResourcesType.TryGetValue(resourcesUseModel.GameResource.GameResourceType, out list))
+                    {
+                        int index = list.FindIndex(e => e.Id.Equals(buildingModel.Id));
+                        if (index >= 0)
+                        {
+                            list.RemoveAt(index);
+                        }
+
+                        if (list.Count == 0)
+                            m_buildingsMapByUsResourcesType.Remove(resourcesUseModel.GameResource.GameResourceType);
                     }
                 }
             }
@@ -95,9 +135,31 @@ namespace Data.Model
             return false;
         }
 
-        public bool TryGetBuildingsByResourcesType(GameResourceType type, out ICollection<BuildingModel> buildings)
+        public bool TryGetBuildingsByResourceType(GameResourceType type, out ICollection<BuildingModel> buildings)
         {
             if (m_buildingsMapByResourcesType.TryGetValue(type, out var list))
+            {
+                buildings = list;
+                return true;
+            }
+
+            buildings = null;
+            return false;
+        }
+
+        public List<GameResourceType> GetUsingResources()
+        {
+            return m_buildingsMapByUsResourcesType.Keys.ToList();
+        }
+
+        public List<GameResourceType> GetProductionResources()
+        {
+            return m_buildingsMapByResourcesType.Keys.ToList();
+        }
+
+        public bool TryGetBuildingsByUseResourceType(GameResourceType type, out ICollection<BuildingModel> buildings)
+        {
+            if (m_buildingsMapByUsResourcesType.TryGetValue(type, out var list))
             {
                 buildings = list;
                 return true;

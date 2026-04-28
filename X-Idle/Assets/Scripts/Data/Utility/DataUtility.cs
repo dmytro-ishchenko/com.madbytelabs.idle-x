@@ -133,5 +133,16 @@ namespace Data.Utility
         {
             return 1 + levelMultiplier * (level - 1);
         }
+
+        public static float GetResourceUse(float baseUse, int buildingLevel, float levelMultiplier)
+        {
+            return baseUse * levelMultiplier * buildingLevel;
+        }
+
+        public static float GetProductionAmount(BuildingModel mainBuildingModel, BuildingModel buildingModel, float useResourcesMultiplier)
+        {
+            return (buildingModel.Template.BuildingContext.BuildingProduction.Amount + (buildingModel.Level - 1) * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier) *
+                   GetMainBuildingBonus(mainBuildingModel.Level, mainBuildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier) * useResourcesMultiplier;
+        }
     }
 }
