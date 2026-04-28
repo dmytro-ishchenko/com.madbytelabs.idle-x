@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Data.Enum;
 using Data.Events;
-using UI.Model;
+using Data.Model.Popup;
 using UI.Popup.Controller;
 using UnityEngine;
 using UnityEngine.UI;

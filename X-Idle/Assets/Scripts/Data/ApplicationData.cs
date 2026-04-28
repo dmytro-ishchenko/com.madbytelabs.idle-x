@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Commom.Lifecycle;
 using Common.Lifecycle;
 using Data.ContentLibrary;
 using Data.ContentLibrary.Templates;
@@ -11,6 +10,8 @@ using Data.Factory;
 using Data.Interface;
 using Data.Loader;
 using Data.Model;
+using Data.Model.Error;
+using Data.Model.Popup;
 using Data.Processor;
 using Data.Utility;
 using UnityEngine;
@@ -36,6 +37,7 @@ namespace Data
         public event Action<BuildingModel> OnBuildingCreated;
         public event Action<ActionErrorModel> OnActionError;
         public event Action<BuildingModel> OnBuildingUpdated;
+
         public event Action<UserResources> OnUserResourcesChanged;
 
 
@@ -120,7 +122,9 @@ namespace Data
                     else
                     {
                         m_assetLibrary.TryGetBuildingTemplate(args.TemplateId, out BuildingTemplate buildingTemplate);
-                        OnActionError?.Invoke(new ActionErrorModel(ActionErrorType.CreateBuilding, buildingTemplate));
+
+                        OnActionError?.Invoke(new ActionErrorModel(ActionErrorType.CreateBuilding,
+                            DataUtility.GetCreateBuildingRequirementContext(m_userData.UserResources, m_userData.UserBuildingsData, buildingTemplate)));
                     }
 
                     break;
@@ -135,6 +139,11 @@ namespace Data
                     break;
             }
         }
+
+
+        public UpgradeBuildingContext GetUpgradeBuildingContext(BuildingModel buildingModel) =>
+            DataUtility.GetUpgradeBuildingContext(buildingModel, m_userData.UserResources, m_userData.UserBuildingsData);
+
 
         public void OnApplicationQuit()
         {

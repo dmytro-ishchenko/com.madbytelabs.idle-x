@@ -42,9 +42,8 @@ namespace Data.Factory
                 {
                     foreach (var model in buildingTemplate.BuildingContext.UpgradeCostModel.CostModels)
                     {
-                        userData.UserResources.SetGameResource(model.GameResourceType,
-                            userData.UserResources.GetGameResourceValue(model.GameResourceType) -
-                            model.Cost * model.CostGrowth * building.Level);
+                        userData.UserResources.SetGameResource(model.GameResource.GameResourceType,
+                            userData.UserResources.GetGameResourceValue(model.GameResource.GameResourceType) - DataUtility.UpgradeResourceCost(model.Cost, building.Level, model.CostGrowth));
                     }
 
                     building.SetLevel(building.Level + 1);

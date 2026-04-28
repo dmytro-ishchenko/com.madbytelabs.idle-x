@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Data.Events;
 using Data.Interface;
 using Data.Model;
+using Data.Model.Error;
+using Data.Model.Popup;
 
 namespace Data
 {
@@ -19,5 +21,6 @@ namespace Data
         event Action<BuildingModel> OnBuildingCreated;
         event Action<ActionErrorModel> OnActionError;
         event Action<BuildingModel> OnBuildingUpdated;
+        UpgradeBuildingContext GetUpgradeBuildingContext(BuildingModel buildingModel);
     }
 }

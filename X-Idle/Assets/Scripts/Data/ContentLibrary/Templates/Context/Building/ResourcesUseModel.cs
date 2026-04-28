@@ -1,5 +1,5 @@
 using System;
-using Data.Enum;
+using Data.ContentLibrary.Templates.GameResources;
 using UnityEngine;
 
 namespace Data.ContentLibrary.Templates.Context.Building
@@ -7,10 +7,10 @@ namespace Data.ContentLibrary.Templates.Context.Building
     [Serializable]
     public class ResourcesUseModel
     {
-        [SerializeField] private GameResourceType m_gameResourceType;
+        [SerializeField] private GameResourcesTemplate m_gameResource;
         [SerializeField] private float m_amount;
 
-        public GameResourceType GameResourceType => m_gameResourceType;
+        public GameResourcesTemplate GameResource => m_gameResource;
         public float Amount => m_amount;
     }
 }

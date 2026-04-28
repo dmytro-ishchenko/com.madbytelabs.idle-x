@@ -53,8 +53,9 @@ namespace Data.Model
                 {
                     byResourceModels = new List<BuildingModel>();
                     m_buildingsMapByResourcesType.Add(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.GameResourceType, byResourceModels);
-                    byResourceModels.Add(buildingModel);
                 }
+
+                byResourceModels.Add(buildingModel);
             }
         }
 

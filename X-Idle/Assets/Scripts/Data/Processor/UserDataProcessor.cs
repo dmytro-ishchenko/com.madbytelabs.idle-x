@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Data.Enum;
 using Data.Model;
+using Data.Utility;
 using UnityEngine;
 
 namespace Data.Processor
@@ -167,16 +168,13 @@ namespace Data.Processor
         float GetAmount(ICollection<BuildingModel> list)
         {
             float amount = 0;
-
-            var mainBuildingBonus = 1 + m_mainBuildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * (m_mainBuildingModel.Level - 1);
-
             var energyFactor = 1;
             var waterFactor = 1;
 
             foreach (var model in list)
             {
                 var value = (model.Template.BuildingContext.BuildingProduction.Amount + (model.Level - 1) * model.Template.BuildingContext.BuildingProduction.LevelMultiplier) *
-                            energyFactor * waterFactor * mainBuildingBonus;
+                            energyFactor * waterFactor * DataUtility.GetMainBuildingBonus(m_mainBuildingModel.Level, m_mainBuildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier);
                 amount += value;
             }
 

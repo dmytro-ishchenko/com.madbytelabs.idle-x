@@ -1,6 +1,7 @@
 using Common.Pattern.BobbleEvent;
 using Data.Model;
-using UI.Model;
+using Data.Model.Error;
+using Data.Model.Popup;
 using UI.Popup;
 using UnityEngine;
 
@@ -21,7 +22,7 @@ namespace UI.Controller
 
         public void ShowCreateBuildingPopup(CreateBuildingContext context) => m_popupManager.ShowCreateBuildingPopup(context);
         
-        public void ShowCreateBuildingErrorPopup(CreateBuildingErrorContext context)=> m_popupManager.ShowCreateBuildingErrorPopup(context);
+        public void ShowCreateBuildingErrorPopup(ActionErrorModel model)=> m_popupManager.ShowCreateBuildingErrorPopup(model);
         
         public void ShowUpgradeBuildingPopup(UpgradeBuildingContext context) => m_popupManager.ShowUpgradeBuildingPopup(context);
 

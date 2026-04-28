@@ -21,7 +21,7 @@ MonoBehaviour:
     m_buildingType: 3
     m_upgradeCost:
       m_costModels:
-      - m_gameResourceType: 1
+      - m_gameResourceTemplate: {fileID: 11400000, guid: 6368b11a4a9db4721860806690447aff, type: 2}
         m_cost: 20
         m_costGrowth: 1.15
       m_upgradeTimeCost: 0
@@ -30,10 +30,10 @@ MonoBehaviour:
       m_maxDuplicateAmount: 3
     m_buildingRequirements:
     - m_buildingType: 1
-      m_level: 1
+      m_requredLevel: 1
     m_buildingProduction:
       m_resourcesTemplate: {fileID: 11400000, guid: 319e6a361bd4f45b3b18dd67f12f1374, type: 2}
       m_amount: 10
       m_levelMultiplier: 1.12
-    m_resourcesRequirements: []
+    m_resourcesUse: []
     m_buildingLevelsView: []

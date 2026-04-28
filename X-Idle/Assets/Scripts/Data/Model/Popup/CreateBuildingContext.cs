@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Data.Interface;
 
-namespace UI.Model
+namespace Data.Model.Popup
 {
-    public struct CreateBuildingContext
+    public struct CreateBuildingContext : IShowPopupContext
     {
         public CreateBuildingContext(string placeholderId, IList<IBuildingTemplate> buildings)
         {

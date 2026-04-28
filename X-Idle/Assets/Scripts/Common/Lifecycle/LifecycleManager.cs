@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using Commom.Pattern;
-using Common.Lifecycle;
 
-namespace Commom.Lifecycle
+namespace Common.Lifecycle
 {
     public class LifecycleManager : MonoSingleton<LifecycleManager>
     {

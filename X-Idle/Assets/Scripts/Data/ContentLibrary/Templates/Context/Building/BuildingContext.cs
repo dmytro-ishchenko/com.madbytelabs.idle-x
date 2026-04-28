@@ -13,14 +13,14 @@ namespace Data.ContentLibrary.Templates.Context.Building
         [SerializeField] private DuplicateModel m_duplicateModel;
         [SerializeField] private List<BuildingRequirementModel> m_buildingRequirements;
         [SerializeField] private BuildingProductionModel m_buildingProduction;
-        [SerializeField] private List<ResourcesUseModel> m_resourcesRequirements;
+        [SerializeField] private List<ResourcesUseModel> m_resourcesUse;
         [SerializeField] private List<BuildingLevelModelView> m_buildingLevelsView;
 
         public BuildingType BuildingType => m_buildingType;
         public UpgradeCostModel UpgradeCostModel => m_upgradeCost;
         public DuplicateModel DuplicateModel => m_duplicateModel;
         public BuildingProductionModel BuildingProduction => m_buildingProduction;
-        public List<ResourcesUseModel> ResourcesRequirements => m_resourcesRequirements;
+        public List<ResourcesUseModel> ResourcesUse => m_resourcesUse;
         public List<BuildingRequirementModel> BuildingRequirements => m_buildingRequirements;
         public List<BuildingLevelModelView> BuildingLevelsView => m_buildingLevelsView;
     }

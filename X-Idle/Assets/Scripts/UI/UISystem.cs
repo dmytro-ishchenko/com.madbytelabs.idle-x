@@ -5,10 +5,11 @@ using Data;
 using Data.Enum;
 using Data.Events;
 using Data.Model;
+using Data.Model.Error;
+using Data.Model.Popup;
 using GameEnvironment;
 using SceneLoader;
 using UI.Controller;
-using UI.Model;
 using UnityEngine.SceneManagement;
 
 namespace UI
@@ -63,7 +64,10 @@ namespace UI
                     m_gameUIController.ShowCreateBuildingPopup(new CreateBuildingContext(args.BuildingId, m_applicationData.GetAvailableBuilding()));
                     break;
                 default:
-                    m_gameUIController.ShowUpgradeBuildingPopup(new UpgradeBuildingContext(m_applicationData.UserResources, m_applicationData.UserBuildingsData, buildingModel));
+
+                    m_applicationData.GetUpgradeBuildingContext(buildingModel);
+                    
+                    m_gameUIController.ShowUpgradeBuildingPopup(m_applicationData.GetUpgradeBuildingContext(buildingModel));
                     break;
             }
         }
@@ -75,7 +79,7 @@ namespace UI
 
         private void OnActionErrorHandler(ActionErrorModel args)
         {
-            m_gameUIController.ShowCreateBuildingErrorPopup(new CreateBuildingErrorContext(m_applicationData.UserResources, m_applicationData.UserBuildingsData, args.BuildingTemplate));
+            m_gameUIController.ShowCreateBuildingErrorPopup(args);
         }
     }
 }

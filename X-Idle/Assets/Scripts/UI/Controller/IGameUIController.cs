@@ -1,6 +1,7 @@
 using Common.Pattern.BobbleEvent;
 using Data.Model;
-using UI.Model;
+using Data.Model.Error;
+using Data.Model.Popup;
 
 namespace UI.Controller
 {
@@ -9,6 +10,6 @@ namespace UI.Controller
         void UpdateUserInfo(UserResources resources);
         void ShowUpgradeBuildingPopup(UpgradeBuildingContext context);
         void ShowCreateBuildingPopup(CreateBuildingContext context);
-        void ShowCreateBuildingErrorPopup(CreateBuildingErrorContext context);
+        void ShowCreateBuildingErrorPopup(ActionErrorModel model);
     }
 }

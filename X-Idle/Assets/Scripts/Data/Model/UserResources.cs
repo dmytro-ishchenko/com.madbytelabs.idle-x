@@ -20,7 +20,7 @@ namespace Data.Model
             if (!m_resources.TryGetValue(type, out _))
                 m_resources.Add(type, value);
             else
-                m_resources[type] = value;
+                m_resources[type] = (float)Math.Round(value);
             OnUserResourcesChanged?.Invoke(this);
         }
     }

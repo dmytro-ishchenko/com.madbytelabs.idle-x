@@ -1,7 +1,8 @@
 using AYellowpaper.SerializedCollections;
 using Common.Pattern.BobbleEvent;
+using Data.Model.Error;
+using Data.Model.Popup;
 using UI.Enum;
-using UI.Model;
 using UnityEngine;
 
 namespace UI.Popup
@@ -35,11 +36,11 @@ namespace UI.Popup
             }
         }
 
-        public void ShowCreateBuildingErrorPopup(CreateBuildingErrorContext context)
+        public void ShowCreateBuildingErrorPopup(ActionErrorModel model)
         {
             if (m_popupMap.TryGetValue(PopupType.CreateBuildingError, out BasePopup popup))
             {
-                popup.Show(context);
+                popup.Show(model.GetContext<CreateBuildingRequirementsContext>());
             }
         }
     }

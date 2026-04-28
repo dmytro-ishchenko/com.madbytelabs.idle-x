@@ -8,9 +8,9 @@ namespace Data.ContentLibrary.Templates.Context.Building
     public class BuildingRequirementModel
     {
         [SerializeField] private BuildingType m_buildingType;
-        [SerializeField] private int m_level;
+        [SerializeField] private int m_requredLevel;
 
         public BuildingType BuildingType => m_buildingType;
-        public int Level => m_level;
+        public int RequiredLevel => m_requredLevel;
     }
 }
