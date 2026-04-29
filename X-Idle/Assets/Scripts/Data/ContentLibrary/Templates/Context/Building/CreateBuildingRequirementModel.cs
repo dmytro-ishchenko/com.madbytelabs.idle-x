@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Data.ContentLibrary.Templates.Context.Building
 {
     [Serializable]
-    public class BuildingRequirementModel
+    public class CreateBuildingRequirementModel
     {
         [SerializeField] private BuildingType m_buildingType;
         [SerializeField] private int m_requredLevel;

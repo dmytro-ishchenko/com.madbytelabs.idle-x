@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Data.ContentLibrary.Templates;
 using Data.ContentLibrary.Templates.GameResources;
-using Data.Enum;
 using Data.Model;
 using Data.Model.Popup;
 using UnityEngine;
@@ -15,7 +14,7 @@ namespace Data.Utility
     {
         public static bool CanCreateBuilding(UserBuildingsData buildingsData, BuildingTemplate template)
         {
-            var buildRequirements = template.BuildingContext.BuildingRequirements;
+            var buildRequirements = template.BuildingContext.CreateBuildingRequirements;
 
             if (buildRequirements is { Count: > 0 })
             {
@@ -45,11 +44,11 @@ namespace Data.Utility
         {
             List<BuildingContextModel> buildings = null;
 
-            if (buildingTemplate.BuildingContext.BuildingRequirements is { Count: > 0 })
+            if (buildingTemplate.BuildingContext.CreateBuildingRequirements is { Count: > 0 })
             {
                 buildings = new List<BuildingContextModel>();
 
-                foreach (var element in buildingTemplate.BuildingContext.BuildingRequirements)
+                foreach (var element in buildingTemplate.BuildingContext.CreateBuildingRequirements)
                 {
                     if (userBuildingsData.TryGetBuildingsByType(element.BuildingType, out var requiredBuildings))
                     {
@@ -77,10 +76,10 @@ namespace Data.Utility
 
             int notMeetRequirements = 0;
 
-            if (buildingModel.Template.BuildingContext.BuildingRequirements != null)
+            if (buildingModel.Template.BuildingContext.UpgradeBuildingRequirements != null)
             {
                 buildings = new List<BuildingContextModel>();
-                foreach (var element in buildingModel.Template.BuildingContext.BuildingRequirements)
+                foreach (var element in buildingModel.Template.BuildingContext.UpgradeBuildingRequirements)
                 {
                     if (userBuildingsData.TryGetBuildingsByType(element.BuildingType, out var requiredBuildings))
                     {
@@ -96,9 +95,11 @@ namespace Data.Utility
 
                         var building = requiredBuildings.ElementAt(0);
 
-                        buildings.Add(new BuildingContextModel(building.Template.BuildingContext.BuildingType, building.Template.Name, building.Level, element.RequiredLevel));
+                        int requireLevel = Mathf.CeilToInt((float)(buildingModel.Level + 1) / element.LevelMultiplier);
 
-                        if (level < element.RequiredLevel)
+                        buildings.Add(new BuildingContextModel(building.Template.BuildingContext.BuildingType, building.Template.Name, building.Level, requireLevel));
+
+                        if (requireLevel > buildingModel.Level)
                         {
                             notMeetRequirements += 1;
                         }
