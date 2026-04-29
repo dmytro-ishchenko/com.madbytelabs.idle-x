@@ -1,8 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Data.ContentLibrary;
 using Data.Enum;
 using Data.Model;
 using Data.Utility;
+using UnityEngine;
 
 namespace Data.Processor
 {
@@ -11,11 +14,14 @@ namespace Data.Processor
         private UserResources m_userResources;
         private UserBuildingsData m_userBuildingsData;
         private BuildingModel m_mainBuildingModel;
+        private ICollection<BuildingModel> m_warehouseModels;
+        private IAssetLibrary m_assetLibrary;
         private readonly IProcessor m_resourcesProcessor = new Processor();
         private readonly Dictionary<GameResourceType, float> m_productionMultipliers = new();
 
-        public void StartProcessing(UserData userData)
+        public void StartProcessing(IAssetLibrary assetLibrary, UserData userData)
         {
+            m_assetLibrary = assetLibrary;
             m_userResources = userData.UserResources;
             m_userBuildingsData = userData.UserBuildingsData;
 
@@ -30,6 +36,8 @@ namespace Data.Processor
         {
             var usingResourcesList = m_userBuildingsData.GetUsingResources();
             m_productionMultipliers.Clear();
+
+            m_userBuildingsData.TryGetBuildingsByType(BuildingType.Warehouse, out m_warehouseModels);
 
             if (usingResourcesList is { Count: > 0 })
             {
@@ -74,6 +82,7 @@ namespace Data.Processor
             }
         }
 
+
         bool TryProcessResource(GameResourceType type, out float amount)
         {
             if (m_userBuildingsData.TryGetBuildingsByResourceType(type, out var buildings))
@@ -86,7 +95,6 @@ namespace Data.Processor
             return false;
         }
 
-
         public void StopProcessing()
         {
             m_resourcesProcessor.StopProcess();
@@ -96,7 +104,11 @@ namespace Data.Processor
 
         void SetGameResource(GameResourceType gameResourceType, float value)
         {
-            m_userResources.SetGameResource(gameResourceType, m_userResources.GetGameResourceValue(gameResourceType) + value);
+            m_assetLibrary.TryGetGameResource(gameResourceType, out var resource);
+
+            var amount = Math.Clamp(m_userResources.GetGameResourceValue(gameResourceType) + value, 0, DataUtility.GetResourceMaxCapacity(resource, m_warehouseModels));
+            
+            m_userResources.SetGameResource(gameResourceType, amount);
         }
 
         float GetAmount(ICollection<BuildingModel> list)

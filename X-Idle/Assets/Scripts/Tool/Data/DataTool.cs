@@ -59,7 +59,7 @@ namespace Tool.Data
             AssetDatabase.CreateAsset(resource, Path.Combine(AssetPath.GAME_RESOURCES_PATH, "NewGameResource" + ".asset"));
 
 
-            library.AddResource(newId, resource);
+            library.AddResource(resource);
 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
@@ -83,7 +83,7 @@ namespace Tool.Data
 
             foreach (var template in resourceTemplates)
             {
-                library.AddResource(template.Id, template);
+                library.AddResource(template);
             }
 
             AssetDatabase.SaveAssets();

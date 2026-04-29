@@ -69,7 +69,7 @@ namespace Data
             m_buildingFactory = new BuildingFactory(m_assetLibrary);
 
             m_userData.UserResources.OnUserResourcesChanged += OnResourcesChangedHandler;
-            m_userDataProcessor.StartProcessing(m_userData);
+            m_userDataProcessor.StartProcessing(m_assetLibrary,m_userData);
 
             complete?.Invoke();
         }

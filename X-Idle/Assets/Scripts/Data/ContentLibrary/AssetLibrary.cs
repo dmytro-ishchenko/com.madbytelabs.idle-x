@@ -12,7 +12,7 @@ namespace Data.ContentLibrary
     public class AssetLibrary : ScriptableObject, IAssetLibrary
     {
         [SerializeField] private SerializedDictionary<string, BuildingTemplate> m_buildingsMap;
-        [SerializeField] private SerializedDictionary<string, GameResourcesTemplate> m_gameResourcesMap;
+        [SerializeField] private SerializedDictionary<GameResourceType, GameResourcesTemplate> m_gameResourcesMap;
 
         public IList<BuildingTemplate> Buildings => m_buildingsMap.Values.ToList();
 
@@ -22,24 +22,11 @@ namespace Data.ContentLibrary
                 return true;
             return false;
         }
+        
 
-        public bool TryGetBuildingTemplate(BuildingType type, out BuildingTemplate buildingTemplate)
+        public bool TryGetGameResource(GameResourceType type, out GameResourcesTemplate gameResource)
         {
-            var template = m_buildingsMap.Values.ToList().First();
-
-            if (template != null)
-            {
-                buildingTemplate = template;
-                return true;
-            }
-
-            buildingTemplate = null;
-            return false;
-        }
-
-        public bool TryGetGameResource(string id, out GameResourcesTemplate gameResource)
-        {
-            if (m_gameResourcesMap.TryGetValue(id, out gameResource))
+            if (m_gameResourcesMap.TryGetValue(type, out gameResource))
                 return true;
             return false;
         }
@@ -52,9 +39,9 @@ namespace Data.ContentLibrary
             EditorUtility.SetDirty(this);
         }
 
-        public void AddResource(string newId, GameResourcesTemplate resource)
+        public void AddResource(GameResourcesTemplate resource)
         {
-            m_gameResourcesMap.TryAdd(newId, resource);
+            m_gameResourcesMap.TryAdd(resource.GameResourceType, resource);
             EditorUtility.SetDirty(this);
         }
 

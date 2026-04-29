@@ -2,8 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Data.ContentLibrary.Templates;
+using Data.ContentLibrary.Templates.GameResources;
+using Data.Enum;
 using Data.Model;
 using Data.Model.Popup;
+using UnityEngine;
 
 
 namespace Data.Utility
@@ -143,6 +146,47 @@ namespace Data.Utility
         {
             return (buildingModel.Template.BuildingContext.BuildingProduction.Amount + (buildingModel.Level - 1) * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier) *
                    GetMainBuildingBonus(mainBuildingModel.Level, mainBuildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier) * useResourcesMultiplier;
+        }
+
+
+        public static float GetResourceMaxCapacity(GameResourcesTemplate resource, ICollection<BuildingModel> warehouseModels)
+        {
+            if (warehouseModels is { Count: > 0 })
+            {
+                float maxCapacity = 0;
+                foreach (var warehouseModel in warehouseModels)
+                {
+                    maxCapacity += GetCapacity(resource, warehouseModel.Level);
+                }
+
+                return maxCapacity;
+            }
+            else
+                return resource.BaseCapacity;
+        }
+
+        public static int GetCapacity(GameResourcesTemplate resource, int warehouseLevel)
+        {
+            return Mathf.RoundToInt(resource.BaseCapacity + GetWarehouseBonus(warehouseLevel) * resource.StorageFactor);
+        }
+
+        private static int GetWarehouseBonus(int level)
+        {
+            return level switch
+            {
+                0 => 0,
+                1 => 100,
+                2 => 250,
+                3 => 500,
+                4 => 900,
+                5 => 1500,
+                6 => 2400,
+                7 => 3600,
+                8 => 5200,
+                9 => 7300,
+                10 => 10000,
+                _ => 10000 + (level - 10) * 3000
+            };
         }
     }
 }

@@ -37,5 +37,5 @@ MonoBehaviour:
       m_levelMultiplier: 1.15
     m_resourcesUse:
     - m_gameResource: {fileID: 11400000, guid: 319e6a361bd4f45b3b18dd67f12f1374, type: 2}
-      m_amount: 1
+      m_amount: 5
     m_buildingLevelsView: []

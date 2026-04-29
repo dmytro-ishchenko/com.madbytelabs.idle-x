@@ -10,7 +10,6 @@ namespace Data.ContentLibrary
     {
         IList<BuildingTemplate> Buildings { get; }
         bool TryGetBuildingTemplate(string id, out BuildingTemplate buildingTemplate);
-        bool TryGetBuildingTemplate(BuildingType type, out BuildingTemplate buildingTemplate);
-        bool TryGetGameResource(string id, out GameResourcesTemplate gameResource);
+        bool TryGetGameResource(GameResourceType type, out GameResourcesTemplate gameResource);
     }
 }
