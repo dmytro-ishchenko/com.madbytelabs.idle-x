@@ -21,6 +21,7 @@ namespace Data
         event Action<BuildingModel> OnBuildingCreated;
         event Action<ActionErrorModel> OnActionError;
         event Action<BuildingModel> OnBuildingUpdated;
+        event Action<BuildingModel> OnBuildingDeleted;
         UpgradeBuildingContext GetUpgradeBuildingContext(BuildingModel buildingModel);
     }
 }

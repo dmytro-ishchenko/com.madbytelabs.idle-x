@@ -24,6 +24,10 @@ namespace Data.Model
                 m_resources.Add(type, value);
             else
                 m_resources[type] = value;
+        }
+
+        public void InvokeUpdateResources()
+        {
             OnUserResourcesChanged?.Invoke(this);
         }
     }

@@ -37,6 +37,7 @@ namespace Data
         public event Action<BuildingModel> OnBuildingCreated;
         public event Action<ActionErrorModel> OnActionError;
         public event Action<BuildingModel> OnBuildingUpdated;
+        public event Action<BuildingModel> OnBuildingDeleted;
 
         public event Action<UserResources> OnUserResourcesChanged;
 
@@ -69,7 +70,7 @@ namespace Data
             m_buildingFactory = new BuildingFactory(m_assetLibrary);
 
             m_userData.UserResources.OnUserResourcesChanged += OnResourcesChangedHandler;
-            m_userDataProcessor.StartProcessing(m_assetLibrary,m_userData);
+            m_userDataProcessor.StartProcessing(m_assetLibrary, m_userData);
 
             complete?.Invoke();
         }
@@ -132,6 +133,13 @@ namespace Data
                     if (m_buildingFactory.TryUpgradeBuilding(m_userData, args, out BuildingModel updatedBuildingModel))
                     {
                         OnBuildingUpdated?.Invoke(updatedBuildingModel);
+                    }
+
+                    break;
+                case BuildingActionType.DeleteBuildingRequest:
+                    if (m_buildingFactory.TryDeleteBuilding(m_userData, args, out BuildingModel defaultBuildingModel))
+                    {
+                        OnBuildingDeleted?.Invoke(defaultBuildingModel);
                     }
 
                     break;

@@ -58,7 +58,9 @@ namespace Data.Processor
                         }
                     }
 
+
                     var currentAmount = m_userResources.GetGameResourceValue(resource);
+
                     if (currentAmount < useAmount)
                     {
                         m_productionMultipliers.TryAdd(resource, currentAmount / useAmount);
@@ -80,6 +82,8 @@ namespace Data.Processor
                     }
                 }
             }
+
+            m_userResources.InvokeUpdateResources();
         }
 
 
@@ -107,7 +111,7 @@ namespace Data.Processor
             m_assetLibrary.TryGetGameResource(gameResourceType, out var resource);
 
             var amount = Math.Clamp(m_userResources.GetGameResourceValue(gameResourceType) + value, 0, DataUtility.GetResourceMaxCapacity(resource, m_warehouseModels));
-            
+
             m_userResources.SetGameResource(gameResourceType, amount);
         }
 

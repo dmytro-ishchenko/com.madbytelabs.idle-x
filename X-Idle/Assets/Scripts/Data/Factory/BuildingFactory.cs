@@ -1,4 +1,6 @@
 using Data.ContentLibrary;
+using Data.ContentLibrary.Templates;
+using Data.Enum;
 using Data.Events;
 using Data.Model;
 using Data.Utility;
@@ -46,7 +48,26 @@ namespace Data.Factory
                             userData.UserResources.GetGameResourceValue(model.GameResource.GameResourceType) - DataUtility.UpgradeResourceCost(model.Cost, building.Level, model.CostGrowth));
                     }
 
+                    userData.UserResources.InvokeUpdateResources();
+
                     building.SetLevel(building.Level + 1);
+                    buildingModel = building;
+                    return true;
+                }
+            }
+
+            buildingModel = null;
+            return false;
+        }
+
+        public bool TryDeleteBuilding(UserData userData, BuildingProcessEventArgs args, out BuildingModel buildingModel)
+        {
+            if (m_assetLibrary.TryGetBuildingTemplateByType(BuildingType.DestroyedBuilding, out var template))
+            {
+                if (userData.UserBuildingsData.TryGetBuildingModel(args.BuildingId, out var building))
+                {
+                    userData.UserBuildingsData.DeleteBuilding(building.Id, template);
+                    building.SetLevel(1);
                     buildingModel = building;
                     return true;
                 }

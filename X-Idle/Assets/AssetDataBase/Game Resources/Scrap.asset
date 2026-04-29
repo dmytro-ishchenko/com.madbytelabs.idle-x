@@ -18,3 +18,4 @@ MonoBehaviour:
   m_description: 
   m_icon: {fileID: 21300000, guid: 6db0d89e8a7e84f208ee54e20927564e, type: 3}
   m_baseCapacity: 100
+  m_storageFactor: 1

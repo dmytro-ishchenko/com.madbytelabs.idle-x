@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.data::Data.ContentLibrary.Templates.GameResources.GameResourcesTemplate
   m_id: 8dea37bdfe554581616d280
   m_name: Data
-  m_resourcesType: 5
+  m_gameResourceType: 5
   m_description: 
   m_icon: {fileID: 21300000, guid: 21e0b61ec9e294ef987fe405ec20051c, type: 3}
   m_baseCapacity: 20
+  m_storageFactor: 0.2

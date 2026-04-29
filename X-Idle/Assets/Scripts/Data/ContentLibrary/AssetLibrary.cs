@@ -22,7 +22,22 @@ namespace Data.ContentLibrary
                 return true;
             return false;
         }
-        
+
+        public bool TryGetBuildingTemplateByType(BuildingType type, out BuildingTemplate buildingTemplate)
+        {
+            foreach (var building in m_buildingsMap.Values)
+            {
+                if (building.BuildingContext.BuildingType == type)
+                {
+                    buildingTemplate = building;
+                    return true;
+                }
+            }
+
+            buildingTemplate = null;
+            return false;
+        }
+
 
         public bool TryGetGameResource(GameResourceType type, out GameResourcesTemplate gameResource)
         {

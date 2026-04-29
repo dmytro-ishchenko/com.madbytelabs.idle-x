@@ -39,6 +39,18 @@ namespace Data.Model
             }
         }
 
+        public void DeleteBuilding(string id, BuildingTemplate buildingTemplate)
+        {
+            if (m_buildingsMap.TryGetValue(id, out var buildingModel))
+            {
+                RemoveBuildingFromHelpMaps(buildingModel);
+
+                buildingModel.SetTemplate(buildingTemplate);
+
+                AddBuildingToHelpMaps(buildingModel);
+            }
+        }
+        
         void AddBuildingToHelpMaps(BuildingModel buildingModel)
         {
             if (!m_buildingsMapByType.TryGetValue(buildingModel.Template.BuildingContext.BuildingType, out List<BuildingModel> buildingModels))
@@ -168,5 +180,7 @@ namespace Data.Model
             buildings = null;
             return false;
         }
+
+      
     }
 }

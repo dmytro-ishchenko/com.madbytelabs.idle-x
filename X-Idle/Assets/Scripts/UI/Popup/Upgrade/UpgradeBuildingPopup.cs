@@ -20,6 +20,7 @@ namespace UI.Popup.Upgrade
         [SerializeField] private SerializedDictionary<RequireElementType, RequiredElementView> m_requiredElements;
         [SerializeField] private Transform m_root;
         [SerializeField] private Button m_upgrade;
+        [SerializeField] private Button m_destroy;
 
         private readonly List<RequiredElementView> m_requirementViews = new();
 
@@ -49,7 +50,7 @@ namespace UI.Popup.Upgrade
                 foreach (var element in model.Resources)
                 {
                     var requirementElement = Instantiate(m_requiredElements[RequireElementType.Resource], m_root);
-                    
+
                     requirementElement.Init(element.Count >= element.RequireAmount, $"{element.Name} : {UiUtility.ValueToString(element.RequireAmount)}");
 
                     requirementElement.TryGetComponent<RectTransform>(out var rectTransform);
@@ -72,6 +73,12 @@ namespace UI.Popup.Upgrade
                     });
                 }
 
+                m_destroy.onClick.AddListener(() =>
+                {
+                    Node.TriggerEvent(new BuildingProcessEventArgs(model.Id, model.TemplateId, BuildingActionType.DeleteBuildingRequest));
+                    Close();
+                });
+
                 base.Show(context);
             }
         }
@@ -85,6 +92,7 @@ namespace UI.Popup.Upgrade
 
             m_requirementViews.Clear();
             m_upgrade.onClick.RemoveAllListeners();
+            m_destroy.onClick.RemoveAllListeners();
 
             base.Close();
         }

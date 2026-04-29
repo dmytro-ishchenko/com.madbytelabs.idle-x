@@ -33,7 +33,7 @@ MonoBehaviour:
       m_requredLevel: 1
     m_buildingProduction:
       m_resourcesTemplate: {fileID: 0}
-      m_amount: 100
+      m_amount: 0
       m_levelMultiplier: 0
     m_resourcesUse: []
     m_buildingLevelsView: []

@@ -23,12 +23,15 @@ namespace GameEnvironment
             sceneLoader.SceneNotify.OnSceneLoaded += OnSceneLoadedHandler;
 
             data.OnBuildingCreated += OnBuildingCreatedHandler;
+
+
+            data.OnBuildingDeleted += OnBuildingDeletedHandler;
             Subscribe<BuildingRequestEventArgs>(BuildingActionHandler);
         }
 
         private readonly IApplicationData m_applicationData;
         private readonly IEnvironmentFactory m_factory;
-        private  ISceneController  m_sceneController;
+        private ISceneController m_sceneController;
         public event Action<BuildingRequestEventArgs> OnBuildingActionRequest;
 
 
@@ -47,10 +50,15 @@ namespace GameEnvironment
         {
             OnBuildingActionRequest?.Invoke(args);
         }
-        
+
         private void OnBuildingCreatedHandler(BuildingModel model)
         {
-            m_sceneController.CreateBuilding(model,m_factory);
+            m_sceneController.CreateBuilding(model, m_factory);
+        }
+        
+        private void OnBuildingDeletedHandler(BuildingModel model)
+        {
+            m_sceneController.DeleteBuilding(model, m_factory);
         }
     }
 }

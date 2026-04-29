@@ -18,9 +18,6 @@ namespace Data.Model
             }
         }
 
-        public event Action<UserResources> OnUserResourcesChanged;
-
-
         public UserResources UserResources { get; private set; } = new();
         public UserBuildingsData UserBuildingsData { get; }
     }

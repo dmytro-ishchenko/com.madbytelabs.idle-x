@@ -27,13 +27,11 @@ namespace UI
             m_sceneLoader.SceneNotify.OnSceneLoaded += OnSceneLoadedHandler;
             Subscribe<BuildingProcessEventArgs>(BuildingProcessHandler);
         }
-
-
+        
         private readonly IApplicationData m_applicationData;
         private readonly IEnvironment m_environment;
         private readonly IAppSceneLoader m_sceneLoader;
         private IGameUIController m_gameUIController;
-
 
         private void OnSceneLoadedHandler(Scene scene)
         {

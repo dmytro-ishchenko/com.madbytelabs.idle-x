@@ -51,5 +51,21 @@ namespace GameEnvironment.Controller
 
             Node.AddChild(view.Node);
         }
+
+        public void DeleteBuilding(BuildingModel model, IEnvironmentFactory factory)
+        {
+            var placeHolder = m_placeholderRoot.PlaceHolders.FirstOrDefault(b => b.Id == model.Id);
+
+            if (placeHolder == null)
+                return;
+
+            var view = m_factory.GetView(model.Id, model.Template);
+
+            Node.RemoveChild(placeHolder.View.Node);
+            placeHolder.RemoveContent();
+            placeHolder.AddContent(view);
+
+            Node.AddChild(view.Node);
+        }
     }
 }

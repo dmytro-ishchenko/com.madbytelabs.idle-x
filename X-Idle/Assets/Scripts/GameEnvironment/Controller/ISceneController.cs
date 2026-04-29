@@ -12,5 +12,6 @@ namespace GameEnvironment.Controller
 
         void InitContent(IList<BuildingModel> userBuildings, IEnvironmentFactory factory);
         void CreateBuilding(BuildingModel model, IEnvironmentFactory factory);
+        void DeleteBuilding(BuildingModel model, IEnvironmentFactory mFactory);
     }
 }
