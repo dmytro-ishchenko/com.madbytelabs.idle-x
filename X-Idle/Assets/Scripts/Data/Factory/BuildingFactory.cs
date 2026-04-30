@@ -1,5 +1,4 @@
 using Data.ContentLibrary;
-using Data.ContentLibrary.Templates;
 using Data.Enum;
 using Data.Events;
 using Data.Model;
@@ -26,11 +25,14 @@ namespace Data.Factory
                     {
                         userData.UserBuildingsData.CreateBuilding(building.Id, buildingTemplate);
 
-                        userData.UserPlaceHolderData.UpdatePlaceHolderStatus(building.Id, new PlaceholderModel(building.Id, PlaceHolderStatus.Occupied));
+                        if (userData.UserPlaceHolderData.PlaceHolderDataMap.TryGetValue(building.Id, out var placeHolder))
+                        {
+                            userData.UserPlaceHolderData.UpdatePlaceHolderStatus(building.Id, new PlaceholderModel(placeHolder.Id, PlaceHolderStatus.Occupied, placeHolder.PlaceHolderType));
 
-                        buildingModel = building;
+                            buildingModel = building;
 
-                        return true;
+                            return true;
+                        }
                     }
                 }
             }
@@ -71,11 +73,13 @@ namespace Data.Factory
                 {
                     userData.UserBuildingsData.DeleteBuilding(building.Id, template);
                     building.SetLevel(1);
+                    if (userData.UserPlaceHolderData.PlaceHolderDataMap.TryGetValue(building.Id, out var placeHolder))
+                    {
+                        userData.UserPlaceHolderData.UpdatePlaceHolderStatus(placeHolder.Id, new PlaceholderModel(building.Id, PlaceHolderStatus.Unlocked, placeHolder.PlaceHolderType));
 
-                    userData.UserPlaceHolderData.UpdatePlaceHolderStatus(building.Id, new PlaceholderModel(building.Id, PlaceHolderStatus.Unlocked));
-
-                    buildingModel = building;
-                    return true;
+                        buildingModel = building;
+                        return true;
+                    }
                 }
             }
 

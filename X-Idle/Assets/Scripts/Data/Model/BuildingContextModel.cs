@@ -1,6 +1,6 @@
 using Data.Enum;
 
-namespace Data.Model.Popup
+namespace Data.Model
 {
     public class BuildingContextModel
     {

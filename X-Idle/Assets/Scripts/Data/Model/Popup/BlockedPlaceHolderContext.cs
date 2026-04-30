@@ -1,22 +1,14 @@
-using System.Collections.Generic;
-
 namespace Data.Model.Popup
 {
     public struct BlockedPlaceHolderContext
     {
-        public BlockedPlaceHolderContext(string id, string description, IList<BuildingContextModel> buildings, IList<ResourceContextModel> resources, bool canUpgrade)
+        public BlockedPlaceHolderContext(string id, PlaceHolderRequirementsModel requirementsModel)
         {
             Id = id;
-            Description = description;
-            Buildings = buildings;
-            Resources = resources;
-            CanUpgrade = canUpgrade;
+            RequirementsModel = requirementsModel;
         }
 
         public string Id { get; }
-        public string Description { get; }
-        public IList<BuildingContextModel> Buildings { get; }
-        public IList<ResourceContextModel> Resources { get; }
-        public bool CanUpgrade { get; }
+        public PlaceHolderRequirementsModel RequirementsModel { get; }
     }
 }

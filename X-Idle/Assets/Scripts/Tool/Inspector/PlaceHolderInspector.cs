@@ -1,6 +1,7 @@
 using System.Linq;
 using Data.ContentLibrary;
 using Data.ContentLibrary.Templates;
+using Data.Enum;
 using GameEnvironment.Controller;
 using Tool.Popup;
 using UnityEditor;
@@ -23,6 +24,7 @@ namespace Tool.Inspector
         private Label m_contentIdLabel;
         private Button m_addButton;
         private SerializedProperty m_contentProperty;
+        private SerializedProperty m_placeHolderTypeProperty;
         private VisualElement m_contentViewElement;
 
 
@@ -63,6 +65,14 @@ namespace Tool.Inspector
                     alignSelf = Align.FlexStart
                 }
             });
+
+            var enumField = new EnumField("Placeholder Type", placeHolder.Type);
+
+            enumField.Init(placeHolder.Type);
+            enumField.RegisterValueChangedCallback(evt => { placeHolder.SetType((PlaceHolderType)evt.newValue); });
+
+            m_inspector.Add(enumField);
+
 
             var contentRow = new VisualElement()
             {

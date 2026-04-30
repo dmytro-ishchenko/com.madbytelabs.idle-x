@@ -24,9 +24,9 @@ namespace UI.Popup.Blocked
             {
                 int elementIndex = 1;
 
-                if (model.Buildings != null)
+                if (model.RequirementsModel.Buildings != null)
                 {
-                    foreach (var element in model.Buildings)
+                    foreach (var element in model.RequirementsModel.Buildings)
                     {
                         var requirementElement = Instantiate(m_requiredElements[RequireElementType.Building], m_root);
                         requirementElement.Init(element.Level >= element.RequireLevel, $"{element.Name} Level: {element.RequireLevel}");
@@ -40,9 +40,9 @@ namespace UI.Popup.Blocked
                     }
                 }
 
-                if (model.Resources != null)
+                if (model.RequirementsModel.Resources != null)
                 {
-                    foreach (var element in model.Resources)
+                    foreach (var element in model.RequirementsModel.Resources)
                     {
                         var requirementElement = Instantiate(m_requiredElements[RequireElementType.Resource], m_root);
 
@@ -57,7 +57,7 @@ namespace UI.Popup.Blocked
                     }
                 }
 
-                if (!model.CanUpgrade)
+                if (!model.RequirementsModel.CanUpgrade)
                     m_unblock.interactable = false;
                 else
                 {

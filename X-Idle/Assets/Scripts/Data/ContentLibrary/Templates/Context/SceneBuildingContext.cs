@@ -1,4 +1,5 @@
 using System;
+using Data.Enum;
 using UnityEngine;
 
 namespace Data.ContentLibrary.Templates.Context
@@ -8,16 +9,17 @@ namespace Data.ContentLibrary.Templates.Context
     {
         [SerializeField] private string m_id;
         [SerializeField] private string m_buildingTemplateId;
-        [SerializeField] private Vector3 m_position;
+        [SerializeField] private PlaceHolderType m_placeHolderType;
+
         public string Id => m_id;
         public string BuildingTemplateId => m_buildingTemplateId;
-        public Vector3 Position => m_position;
+        public PlaceHolderType PlaceHolderType => m_placeHolderType;
 
-        public SceneBuildingContext(string id, string buildingTemplateId, Vector3 position)
+        public SceneBuildingContext(string id, string buildingTemplateId, PlaceHolderType type)
         {
             m_id = id;
             m_buildingTemplateId = buildingTemplateId;
-            m_position = position;
+            m_placeHolderType = type;
         }
     }
 }

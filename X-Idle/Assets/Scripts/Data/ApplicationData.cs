@@ -4,6 +4,7 @@ using System.Linq;
 using Common.Lifecycle;
 using Data.ContentLibrary;
 using Data.ContentLibrary.Templates;
+using Data.ContentLibrary.Templates.Placeholder;
 using Data.Enum;
 using Data.Events;
 using Data.Factory;
@@ -26,6 +27,7 @@ namespace Data
         }
 
         private IAssetLibrary m_assetLibrary;
+        private IPlaceholderMapTemplate m_placeholderMapTemplate;
         private UserData m_userData;
         private IBuildingFactory m_buildingFactory;
         private readonly UserDataProcessor m_userDataProcessor = new();
@@ -47,6 +49,10 @@ namespace Data
         {
             if (m_assetLibrary == null)
                 m_assetLibrary = Resources.Load<AssetLibrary>("AssetLibrary");
+
+            if (m_placeholderMapTemplate == null)
+                m_placeholderMapTemplate = Resources.Load<PlaceholderMapTemplate>("PlaceholderMap");
+
             m_userData = m_userDataLoader.Load();
 
             if (m_userData == null)
@@ -64,7 +70,8 @@ namespace Data
                     m_assetLibrary.TryGetBuildingTemplate(buildingContext.BuildingTemplateId, out BuildingTemplate buildingTemplate);
                     buildingsModels.Add(new BuildingModel(buildingContext.Id, buildingTemplate, 1));
 
-                    placeHolderData.AddPlaceHolder(buildingContext.Id, new PlaceholderModel(buildingContext.Id, GetPlaceHolderStatus(index, buildingTemplate)));
+                    placeHolderData.AddPlaceHolder(buildingContext.Id,
+                        new PlaceholderModel(buildingContext.Id, DataUtility.GetPlaceHolderStatus(index, buildingTemplate), buildingContext.PlaceHolderType));
                     index++;
                 }
 
@@ -81,18 +88,6 @@ namespace Data
             m_userDataProcessor.StartProcessing(m_assetLibrary, m_userData);
 
             complete?.Invoke();
-        }
-
-        PlaceHolderStatus GetPlaceHolderStatus(int index, BuildingTemplate template)
-        {
-            if (template.BuildingContext.BuildingType != BuildingType.DestroyedBuilding)
-                return PlaceHolderStatus.Occupied;
-            if (index < 5)
-                return PlaceHolderStatus.Unlocked;
-            else if (index < 10)
-                return PlaceHolderStatus.Locked;
-            else
-                return PlaceHolderStatus.Blocked;
         }
 
 
@@ -173,6 +168,11 @@ namespace Data
 
         public UpgradeBuildingContext GetUpgradeBuildingContext(BuildingModel buildingModel) =>
             DataUtility.GetUpgradeBuildingContext(buildingModel, m_userData.UserResources, m_userData.UserBuildingsData);
+
+        public PlaceHolderRequirementsModel GetPlaceHolderRequirements(string id)
+        {
+            return DataUtility.GetPlaceHolderRequirements(id, m_placeholderMapTemplate, m_userData.UserPlaceHolderData, m_userData.UserBuildingsData, m_userData.UserResources);
+        }
 
 
         public void OnApplicationQuit()

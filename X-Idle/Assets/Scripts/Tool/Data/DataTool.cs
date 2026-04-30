@@ -4,6 +4,7 @@ using Data.ContentLibrary;
 using Data.ContentLibrary.Templates;
 using Data.ContentLibrary.Templates.Context.Building;
 using Data.ContentLibrary.Templates.GameResources;
+using Data.ContentLibrary.Templates.Placeholder;
 using Data.Interface;
 using UnityEditor;
 using UnityEngine;
@@ -24,6 +25,17 @@ namespace Tool.Data
             var scriptableObject = CreateInstance<AssetLibrary>();
 
             AssetDatabase.CreateAsset(scriptableObject, "Assets/AssetDataBase/AssetLibrary.asset");
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+        }
+        
+        [MenuItem("AFTER/Library/Create PlaceHolder Requirement", false, 1)]
+        public static void CreatePlaceHolderRequirement()
+        {
+            
+            var scriptableObject = CreateInstance<PlaceholderMapTemplate>();
+
+            AssetDatabase.CreateAsset(scriptableObject, "Assets/AssetDataBase/PlaceholderRequirementsMap.asset");
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }

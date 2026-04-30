@@ -49,7 +49,7 @@ namespace Tool.Environment
 
             foreach (var placeholder in root.PlaceHolders)
             {
-                sceneTemplate.AddSceneBuilding(new SceneBuildingContext(placeholder.Id, placeholder.ContentId, placeholder.transform.position));
+                sceneTemplate.AddSceneBuilding(new SceneBuildingContext(placeholder.Id, placeholder.ContentId, placeholder.Type));
             }
 
             if (!Directory.Exists(AssetPath.SCENE_TEMPLATE_PATH))

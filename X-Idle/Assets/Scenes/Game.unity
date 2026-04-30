@@ -3968,6 +3968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de83badda0f4d0db38c0e1
   m_contentId: 8de86969565a9164d7656fb
+  m_placeholderType: 0
 --- !u!4 &27132297
 Transform:
   m_ObjectHideFlags: 0
@@ -14372,6 +14373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d858ef9cd2c0826ada
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 7
 --- !u!4 &116693527
 Transform:
   m_ObjectHideFlags: 0
@@ -14956,6 +14958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d75bba85a4db333df8
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 2
 --- !u!4 &121205345
 Transform:
   m_ObjectHideFlags: 0
@@ -20100,6 +20103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d779d18ddac6b829c7
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 4
 --- !u!4 &144755033
 Transform:
   m_ObjectHideFlags: 0
@@ -27664,6 +27668,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d49e044362a9b257b7
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 1
 --- !u!4 &212766697
 Transform:
   m_ObjectHideFlags: 0
@@ -33855,6 +33860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d4d756bc446662e852
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 1
 --- !u!4 &269413945
 Transform:
   m_ObjectHideFlags: 0
@@ -34966,6 +34972,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d84a3eb2364a3d64c0
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 5
 --- !u!4 &282838464
 Transform:
   m_ObjectHideFlags: 0
@@ -55081,6 +55088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d845cb99ee46ce8472
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 5
 --- !u!4 &443585225
 Transform:
   m_ObjectHideFlags: 0
@@ -63445,6 +63453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d4dccca2d89357a0c8
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 2
 --- !u!4 &521699299
 Transform:
   m_ObjectHideFlags: 0
@@ -63454,7 +63463,7 @@ Transform:
   m_GameObject: {fileID: 521699297}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.258819, z: 0, w: 0.9659259}
-  m_LocalPosition: {x: -30.6, y: 0, z: -19.8}
+  m_LocalPosition: {x: -42.6, y: 0, z: -26.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -69015,6 +69024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d842be85c27d4bcb27
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 4
 --- !u!4 &563885636
 Transform:
   m_ObjectHideFlags: 0
@@ -73230,6 +73240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d83c3f68244b244698
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 4
 --- !u!4 &604314409
 Transform:
   m_ObjectHideFlags: 0
@@ -76565,6 +76576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d83e17c4ca61cf3e0d
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 4
 --- !u!4 &628118094
 Transform:
   m_ObjectHideFlags: 0
@@ -79935,6 +79947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d73ef55aca3faaff20
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 2
 --- !u!4 &655362287
 Transform:
   m_ObjectHideFlags: 0
@@ -87236,6 +87249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d8510e2312ed5744fc
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 7
 --- !u!4 &715723656
 Transform:
   m_ObjectHideFlags: 0
@@ -89466,6 +89480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d772d6e13822a04d75
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 3
 --- !u!4 &733573107
 Transform:
   m_ObjectHideFlags: 0
@@ -91375,6 +91390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d76db487aa5b13ed0d
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 3
 --- !u!4 &748899282
 Transform:
   m_ObjectHideFlags: 0
@@ -92200,6 +92216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d777d805cc4ffc5bab
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 3
 --- !u!4 &753846897
 Transform:
   m_ObjectHideFlags: 0
@@ -132147,6 +132164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d774adff788fe11d0
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 3
 --- !u!4 &1066346979
 Transform:
   m_ObjectHideFlags: 0
@@ -136710,6 +136728,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d745824ed4a0ead178
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 2
 --- !u!4 &1101426181
 Transform:
   m_ObjectHideFlags: 0
@@ -156859,6 +156878,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d4a5510966255e1247
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 0
 --- !u!4 &1278573730
 Transform:
   m_ObjectHideFlags: 0
@@ -156983,6 +157003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d85b76cc14472a685f
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 8
 --- !u!4 &1279580604
 Transform:
   m_ObjectHideFlags: 0
@@ -157342,6 +157363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d75e6fae0a23afa12f
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 2
 --- !u!4 &1281586681
 Transform:
   m_ObjectHideFlags: 0
@@ -159352,6 +159374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d84f84a8aee0563cf4
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 6
 --- !u!4 &1299785202
 Transform:
   m_ObjectHideFlags: 0
@@ -160079,6 +160102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d84c28e1caf0fa05b2
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 6
 --- !u!4 &1304859250
 Transform:
   m_ObjectHideFlags: 0
@@ -188420,6 +188444,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d85eb7b2623150e91c
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 8
 --- !u!4 &1528500196
 Transform:
   m_ObjectHideFlags: 0
@@ -188999,6 +189024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d8404aa82a7f6fd43a
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 4
 --- !u!4 &1534156085
 Transform:
   m_ObjectHideFlags: 0
@@ -198281,6 +198307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d741f628b2432ae4fb
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 2
 --- !u!4 &1622709732
 Transform:
   m_ObjectHideFlags: 0
@@ -208077,6 +208104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d4db420c78cc85b81
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 1
 --- !u!4 &1700049394
 Transform:
   m_ObjectHideFlags: 0
@@ -221406,6 +221434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d84db2655c1c2f9630
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 6
 --- !u!4 &1832252839
 Transform:
   m_ObjectHideFlags: 0
@@ -239575,6 +239604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d852c2aa5cac72476f
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 7
 --- !u!4 &1991882274
 Transform:
   m_ObjectHideFlags: 0
@@ -242705,6 +242735,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d263e3396a9c2f7db8
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 0
 --- !u!4 &2018486612
 Transform:
   m_ObjectHideFlags: 0
@@ -243705,6 +243736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d4d9f27786a818deeb
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 0
 --- !u!4 &2030154372
 Transform:
   m_ObjectHideFlags: 0
@@ -251467,6 +251499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.environment::GameEnvironment.Controller.PlaceHolder
   m_id: 8de88d847eafa1267bba46e
   m_contentId: 8de81064985f4a0531c11d2
+  m_placeholderType: 5
 --- !u!4 &2098720704
 Transform:
   m_ObjectHideFlags: 0

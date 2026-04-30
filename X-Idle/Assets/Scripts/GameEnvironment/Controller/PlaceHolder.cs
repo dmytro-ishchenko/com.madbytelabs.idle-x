@@ -1,3 +1,5 @@
+using System;
+using Data.Enum;
 using Data.Interface;
 using UnityEditor;
 using UnityEngine;
@@ -8,9 +10,11 @@ namespace GameEnvironment.Controller
     {
         [SerializeField] private string m_id;
         [SerializeField] private string m_contentId;
-
+        [SerializeField] private PlaceHolderType m_placeholderType;
         public string Id => m_id;
         public string ContentId => m_contentId;
+        public PlaceHolderType Type => m_placeholderType;
+
         public IBuildingView View { get; private set; }
 
 #if UNITY_EDITOR
@@ -23,6 +27,12 @@ namespace GameEnvironment.Controller
         public void SetContentId(string id)
         {
             m_contentId = id;
+            EditorUtility.SetDirty(this);
+        }
+
+        public void SetType(PlaceHolderType type)
+        {
+            m_placeholderType = type;
             EditorUtility.SetDirty(this);
         }
 

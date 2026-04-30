@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Data.ContentLibrary.Templates;
 using Data.ContentLibrary.Templates.GameResources;
+using Data.ContentLibrary.Templates.Placeholder;
+using Data.Enum;
 using Data.Model;
 using Data.Model.Popup;
 using UnityEngine;
@@ -188,6 +190,29 @@ namespace Data.Utility
                 10 => 10000,
                 _ => 10000 + (level - 10) * 3000
             };
+        }
+
+        public static PlaceHolderStatus GetPlaceHolderStatus(int index, BuildingTemplate template)
+        {
+            if (template.BuildingContext.BuildingType != BuildingType.DestroyedBuilding)
+                return PlaceHolderStatus.Occupied;
+            if (index < 5)
+                return PlaceHolderStatus.Unlocked;
+            else if (index < 10)
+                return PlaceHolderStatus.Locked;
+            else
+                return PlaceHolderStatus.Blocked;
+        }
+
+        public static PlaceHolderRequirementsModel GetPlaceHolderRequirements(string placeHolderId,
+            IPlaceholderMapTemplate placeholderMapTemplate,
+            UserPlaceHolderData userPlaceHolderData,
+            UserBuildingsData userBuildingsData,
+            UserResources userResources)
+        {
+            var placeHolder = userPlaceHolderData.PlaceHolderDataMap[placeHolderId];
+//var templateModel=placeholderMapTemplate.TryGetRequirementsByStatus(placeHolder.)
+            return null; //new PlaceHolderRequirementsModel();
         }
     }
 }

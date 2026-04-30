@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Data.Model
 {
-    internal class UserPlaceHolderData
+    public class UserPlaceHolderData
     {
         private readonly Dictionary<string, PlaceholderModel> m_placeHolderMap = new();
         public IReadOnlyDictionary<string, PlaceholderModel> PlaceHolderDataMap => m_placeHolderMap;

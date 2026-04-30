@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdff56f367fb45d2aa03fa7846725754, type: 3}
+  m_Name: PlaceholderMap
+  m_EditorClassIdentifier: com.madbytelabs.data::Data.ContentLibrary.Templates.Placeholder.PlaceholderRequirementsMapTemplate
+  m_placeholdersMap:
+    _serializedList:
+    - Key: 0
+      Value:
+        m_placeholderType: 0
+        m_requiredBuildings: []
+        m_requiredResources: []
+    - Key: 1
+      Value:
+        m_placeholderType: 1
+        m_requiredBuildings: []
+        m_requiredResources: []
+    - Key: 2
+      Value:
+        m_placeholderType: 2
+        m_requiredBuildings:
+        - m_buildingType: 1
+          m_requiredLevel: 2
+        m_requiredResources:
+        - m_resourceType: 1
+          m_requiredAmount: 150
+        - m_resourceType: 7
+          m_requiredAmount: 10
+    - Key: 3
+      Value:
+        m_placeholderType: 3
+        m_requiredBuildings:
+        - m_buildingType: 1
+          m_requiredLevel: 3
+        - m_buildingType: 2
+          m_requiredLevel: 3
+        m_requiredResources:
+        - m_resourceType: 1
+          m_requiredAmount: 400
+        - m_resourceType: 7
+          m_requiredAmount: 40
+    - Key: 4
+      Value:
+        m_placeholderType: 4
+        m_requiredBuildings:
+        - m_buildingType: 1
+          m_requiredLevel: 4
+        - m_buildingType: 7
+          m_requiredLevel: 1
+        m_requiredResources:
+        - m_resourceType: 1
+          m_requiredAmount: 900
+        - m_resourceType: 7
+          m_requiredAmount: 120
+        - m_resourceType: 2
+          m_requiredAmount: 50
+    - Key: 5
+      Value:
+        m_placeholderType: 5
+        m_requiredBuildings:
+        - m_buildingType: 1
+          m_requiredLevel: 5
+        - m_buildingType: 7
+          m_requiredLevel: 2
+        - m_buildingType: 2
+          m_requiredLevel: 6
+        m_requiredResources:
+        - m_resourceType: 1
+          m_requiredAmount: 1800
+        - m_resourceType: 7
+          m_requiredAmount: 260
+        - m_resourceType: 2
+          m_requiredAmount: 120
+    - Key: 6
+      Value:
+        m_placeholderType: 6
+        m_requiredBuildings:
+        - m_buildingType: 1
+          m_requiredLevel: 5
+        - m_buildingType: 7
+          m_requiredLevel: 3
+        - m_buildingType: 2
+          m_requiredLevel: 8
+        m_requiredResources:
+        - m_resourceType: 1
+          m_requiredAmount: 3000
+        - m_resourceType: 7
+          m_requiredAmount: 500
+        - m_resourceType: 2
+          m_requiredAmount: 250
+        - m_resourceType: 5
+          m_requiredAmount: 100
+    - Key: 7
+      Value:
+        m_placeholderType: 7
+        m_requiredBuildings: []
+        m_requiredResources: []
