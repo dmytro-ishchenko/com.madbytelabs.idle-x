@@ -18,6 +18,7 @@ namespace UI.Popup
 
         public virtual void Show<T>(T context)
         {
+            
             gameObject.SetActive(true);
         }
 

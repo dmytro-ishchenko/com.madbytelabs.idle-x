@@ -5,5 +5,7 @@ namespace UI.Enum
         CreateBuilding = 0,
         UpgradeBuilding = 1,
         CreateBuildingError = 2,
+        LockedPlaceHolder = 3,
+        BlockedPlaceHolder = 4,
     }
 }

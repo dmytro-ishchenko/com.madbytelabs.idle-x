@@ -25,10 +25,17 @@ namespace UI.Popup
 
         public void SelectPlaceHolder(SelectPlaceHolderEventArgs args, IApplicationData applicationData)
         {
+         
             switch (args.PlaceHolderStatus)
             {
                 case PlaceHolderStatus.Unlocked:
                     ShowCreateBuildingPopup(new CreateBuildingContext(args.PlaceHolderId, applicationData.GetAvailableBuilding()));
+                    break;
+                case PlaceHolderStatus.Locked:
+                    ShowLockedPlaceholderPopup(new LockedPlaceHolderContext());
+                    break;
+                case PlaceHolderStatus.Blocked:
+                    ShowBlockedPlaceholderPopup(new BlockedPlaceHolderContext());
                     break;
             }
         }
@@ -36,6 +43,22 @@ namespace UI.Popup
         void ShowCreateBuildingPopup(CreateBuildingContext context)
         {
             if (m_popupMap.TryGetValue(PopupType.CreateBuilding, out BasePopup popup))
+            {
+                popup.Show(context);
+            }
+        }
+
+        void ShowLockedPlaceholderPopup(LockedPlaceHolderContext context)
+        {
+            if (m_popupMap.TryGetValue(PopupType.LockedPlaceHolder, out BasePopup popup))
+            {
+                popup.Show(context);
+            }
+        }
+
+        void ShowBlockedPlaceholderPopup(BlockedPlaceHolderContext context)
+        {
+            if (m_popupMap.TryGetValue(PopupType.BlockedPlaceHolder, out BasePopup popup))
             {
                 popup.Show(context);
             }
