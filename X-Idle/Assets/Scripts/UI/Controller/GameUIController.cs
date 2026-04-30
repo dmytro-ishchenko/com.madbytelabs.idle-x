@@ -28,6 +28,8 @@ namespace UI.Controller
         public void ShowCreateBuildingErrorPopup(ActionErrorModel model) => m_popupManager.ShowCreateBuildingErrorPopup(model);
 
         public void InitPlaceHoldersView(IReadOnlyDictionary<string, PlaceholderModel> userPlaceHolderData) => m_placeholderView.InitPlaceHoldersView(userPlaceHolderData);
+        public void UpdatePlaceHoldersView(PlaceholderModel model) => m_placeholderView.UpdatePlaceHoldersView(model);
+   
 
         public void ShowUpgradeBuildingPopup(UpgradeBuildingContext context) => m_popupManager.ShowUpgradeBuildingPopup(context);
     }

@@ -41,6 +41,7 @@ namespace UI
                 m_gameUIController.Node.SetDispatcher(this);
                 m_applicationData.OnUserResourcesChanged += OnUserResourcesChangedHandler;
                 m_applicationData.OnActionError += OnActionErrorHandler;
+                m_applicationData.OnPlaceHolderStatusChanged += OnPlaceHolderStatusChangedHandler;
 
                 m_gameUIController.UpdateUserInfo(m_applicationData.UserResources);
 
@@ -51,6 +52,11 @@ namespace UI
                 
                 m_gameUIController.InitPlaceHoldersView(m_applicationData.UserPlaceHolderData);
             }
+        }
+
+        private void OnPlaceHolderStatusChangedHandler(PlaceholderModel model)
+        {
+            m_gameUIController.UpdatePlaceHoldersView(model);
         }
 
 

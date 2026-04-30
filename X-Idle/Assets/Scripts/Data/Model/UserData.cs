@@ -8,7 +8,7 @@ namespace Data.Model
         {
             UserPlaceHolderData = placeHolderData;
 
-            if (buildings != null && buildings.Count > 0)
+            if (buildings is { Count: > 0 })
             {
                 foreach (var building in buildings)
                 {

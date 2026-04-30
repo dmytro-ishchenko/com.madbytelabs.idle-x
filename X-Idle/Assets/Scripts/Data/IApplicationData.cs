@@ -23,6 +23,7 @@ namespace Data
         event Action<ActionErrorModel> OnActionError;
         event Action<BuildingModel> OnBuildingUpdated;
         event Action<BuildingModel> OnBuildingDeleted;
+        event Action<PlaceholderModel> OnPlaceHolderStatusChanged;
         UpgradeBuildingContext GetUpgradeBuildingContext(BuildingModel buildingModel);
     }
 }

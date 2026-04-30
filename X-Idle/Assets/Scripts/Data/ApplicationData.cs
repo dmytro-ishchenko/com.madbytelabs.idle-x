@@ -39,7 +39,7 @@ namespace Data
         public event Action<ActionErrorModel> OnActionError;
         public event Action<BuildingModel> OnBuildingUpdated;
         public event Action<BuildingModel> OnBuildingDeleted;
-
+        public event Action<PlaceholderModel> OnPlaceHolderStatusChanged;
         public event Action<UserResources> OnUserResourcesChanged;
 
 
@@ -48,7 +48,6 @@ namespace Data
             if (m_assetLibrary == null)
                 m_assetLibrary = Resources.Load<AssetLibrary>("AssetLibrary");
             m_userData = m_userDataLoader.Load();
-
 
             if (m_userData == null)
             {
@@ -69,7 +68,7 @@ namespace Data
                     index++;
                 }
 
-                m_userData = new UserData(placeHolderData,buildingsModels);
+                m_userData = new UserData(placeHolderData, buildingsModels);
 
                 m_userDataLoader.Save(m_userData);
             }
@@ -78,6 +77,7 @@ namespace Data
             m_buildingFactory = new BuildingFactory(m_assetLibrary);
 
             m_userData.UserResources.OnUserResourcesChanged += OnResourcesChangedHandler;
+            m_userData.UserPlaceHolderData.OnPlaceHolderStatusChanged += OnPlaceHolderStatusChangedHandler;
             m_userDataProcessor.StartProcessing(m_assetLibrary, m_userData);
 
             complete?.Invoke();
@@ -101,6 +101,10 @@ namespace Data
             OnUserResourcesChanged?.Invoke(data);
         }
 
+        private void OnPlaceHolderStatusChangedHandler(PlaceholderModel model)
+        {
+            OnPlaceHolderStatusChanged?.Invoke(model);
+        }
 
         public IList<IBuildingTemplate> GetAvailableBuilding()
         {

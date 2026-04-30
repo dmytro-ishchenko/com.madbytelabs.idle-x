@@ -25,6 +25,9 @@ namespace Data.Factory
                     if (userData.UserBuildingsData.TryGetBuildingModel(args.BuildingId, out var building))
                     {
                         userData.UserBuildingsData.CreateBuilding(building.Id, buildingTemplate);
+
+                        userData.UserPlaceHolderData.UpdatePlaceHolderStatus(building.Id, new PlaceholderModel(building.Id, PlaceHolderStatus.Occupied));
+
                         buildingModel = building;
 
                         return true;
@@ -68,6 +71,9 @@ namespace Data.Factory
                 {
                     userData.UserBuildingsData.DeleteBuilding(building.Id, template);
                     building.SetLevel(1);
+
+                    userData.UserPlaceHolderData.UpdatePlaceHolderStatus(building.Id, new PlaceholderModel(building.Id, PlaceHolderStatus.Unlocked));
+
                     buildingModel = building;
                     return true;
                 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Data.Model
@@ -7,6 +8,8 @@ namespace Data.Model
         private readonly Dictionary<string, PlaceholderModel> m_placeHolderMap = new();
         public IReadOnlyDictionary<string, PlaceholderModel> PlaceHolderDataMap => m_placeHolderMap;
 
+        public event Action<PlaceholderModel> OnPlaceHolderStatusChanged;
+
         internal void AddPlaceHolder(string id, PlaceholderModel placeHolderModel)
         {
             m_placeHolderMap.Add(id, placeHolderModel);
@@ -15,11 +18,7 @@ namespace Data.Model
         internal void UpdatePlaceHolderStatus(string id, PlaceholderModel placeHolderModel)
         {
             m_placeHolderMap[id] = placeHolderModel;
-        }
-
-        public PlaceholderModel GetPlaceHolderStatus(string id)
-        {
-            return m_placeHolderMap[id];
+            OnPlaceHolderStatusChanged?.Invoke(placeHolderModel);
         }
     }
 }
