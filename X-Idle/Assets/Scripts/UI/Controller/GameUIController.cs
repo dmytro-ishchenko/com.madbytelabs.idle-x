@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Common.Pattern.BobbleEvent;
 using Data.Model;
 using Data.Model.Error;
@@ -11,6 +12,8 @@ namespace UI.Controller
     {
         [SerializeField] private PopupManager m_popupManager;
         [SerializeField] private UserInfoViewController m_userInfo;
+        [SerializeField]private PlaceholderViewController m_placeholderView;
+        public Node Node { get; private set; }
 
         void Awake()
         {
@@ -21,11 +24,11 @@ namespace UI.Controller
         public void UpdateUserInfo(UserResources resources) => m_userInfo.UpdateUserResources(resources);
 
         public void ShowCreateBuildingPopup(CreateBuildingContext context) => m_popupManager.ShowCreateBuildingPopup(context);
-        
-        public void ShowCreateBuildingErrorPopup(ActionErrorModel model)=> m_popupManager.ShowCreateBuildingErrorPopup(model);
-        
-        public void ShowUpgradeBuildingPopup(UpgradeBuildingContext context) => m_popupManager.ShowUpgradeBuildingPopup(context);
 
-        public Node Node { get; private set; }
+        public void ShowCreateBuildingErrorPopup(ActionErrorModel model) => m_popupManager.ShowCreateBuildingErrorPopup(model);
+
+        public void InitPlaceHoldersView(IReadOnlyDictionary<string, PlaceholderModel> userPlaceHolderData) => m_placeholderView.InitPlaceHoldersView(userPlaceHolderData);
+
+        public void ShowUpgradeBuildingPopup(UpgradeBuildingContext context) => m_popupManager.ShowUpgradeBuildingPopup(context);
     }
 }

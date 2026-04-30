@@ -1,13 +1,12 @@
-using System;
 using System.Collections.Generic;
 
 namespace Data.Model
 {
     internal class UserData
     {
-        public UserData(List<BuildingModel> buildings)
+        public UserData(UserPlaceHolderData placeHolderData, List<BuildingModel> buildings)
         {
-            UserBuildingsData = new UserBuildingsData();
+            UserPlaceHolderData = placeHolderData;
 
             if (buildings != null && buildings.Count > 0)
             {
@@ -18,7 +17,8 @@ namespace Data.Model
             }
         }
 
-        public UserResources UserResources { get; private set; } = new();
-        public UserBuildingsData UserBuildingsData { get; }
+        public UserBuildingsData UserBuildingsData { get; } = new();
+        public UserResources UserResources { get; } = new();
+        public UserPlaceHolderData UserPlaceHolderData { get; }
     }
 }

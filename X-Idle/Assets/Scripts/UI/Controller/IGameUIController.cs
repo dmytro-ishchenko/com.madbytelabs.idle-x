@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Common.Pattern.BobbleEvent;
 using Data.Model;
 using Data.Model.Error;
@@ -11,5 +12,6 @@ namespace UI.Controller
         void ShowUpgradeBuildingPopup(UpgradeBuildingContext context);
         void ShowCreateBuildingPopup(CreateBuildingContext context);
         void ShowCreateBuildingErrorPopup(ActionErrorModel model);
+        void InitPlaceHoldersView(IReadOnlyDictionary<string, PlaceholderModel> userPlaceHolderData);
     }
 }

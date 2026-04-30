@@ -67,5 +67,18 @@ namespace GameEnvironment.Controller
 
             Node.AddChild(view.Node);
         }
+
+        public Transform GetPlaceholderTransform(string id)
+        {
+            foreach (var element in m_placeholderRoot.PlaceHolders)
+            {
+                if (element.Id.Equals(id))
+                {
+                    return element.transform;
+                }
+            }
+
+            return null;
+        }
     }
 }

@@ -43,6 +43,13 @@ namespace UI
                 m_applicationData.OnActionError += OnActionErrorHandler;
 
                 m_gameUIController.UpdateUserInfo(m_applicationData.UserResources);
+
+                foreach (var data in m_applicationData.UserPlaceHolderData)
+                {
+                    data.Value.SetTransform(m_environment.GetPlaceholderTransform(data.Key));   
+                }
+                
+                m_gameUIController.InitPlaceHoldersView(m_applicationData.UserPlaceHolderData);
             }
         }
 

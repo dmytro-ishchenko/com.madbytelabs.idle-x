@@ -33,7 +33,8 @@ namespace GameEnvironment
         private readonly IEnvironmentFactory m_factory;
         private ISceneController m_sceneController;
         public event Action<BuildingRequestEventArgs> OnBuildingActionRequest;
-
+        
+        public Transform GetPlaceholderTransform(string id)=>m_sceneController.GetPlaceholderTransform(id);
 
         private void OnSceneLoadedHandler(Scene scene)
         {

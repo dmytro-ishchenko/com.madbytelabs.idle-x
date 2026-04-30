@@ -19,18 +19,21 @@ MonoBehaviour:
   m_icon: {fileID: 21300000, guid: 3408b6a2b68f54f77bc9a483fdd47384, type: 3}
   m_buildingContext:
     m_buildingType: 5
+    m_duplicateModel:
+      m_canDuplicate: 1
+      m_maxDuplicateAmount: 3
+    m_createBuildingRequirements:
+    - m_buildingType: 1
+      m_requredLevel: 1
+    m_upgradeBuildingRequirements:
+    - m_buildingType: 1
+      m_levelMultiplier: 4
     m_upgradeCost:
       m_costModels:
       - m_gameResourceTemplate: {fileID: 11400000, guid: 6368b11a4a9db4721860806690447aff, type: 2}
         m_cost: 10
         m_costGrowth: 1.15
       m_upgradeTimeCost: 0
-    m_duplicateModel:
-      m_canDuplicate: 1
-      m_maxDuplicateAmount: 3
-    m_buildingRequirements:
-    - m_buildingType: 1
-      m_requredLevel: 1
     m_buildingProduction:
       m_resourcesTemplate: {fileID: 11400000, guid: 6368b11a4a9db4721860806690447aff, type: 2}
       m_amount: 1

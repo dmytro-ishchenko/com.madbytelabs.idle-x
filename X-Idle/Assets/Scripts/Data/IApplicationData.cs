@@ -15,6 +15,7 @@ namespace Data
         IList<BuildingModel> UserBuildings { get; }
         UserResources UserResources { get; }
         UserBuildingsData UserBuildingsData { get; }
+        IReadOnlyDictionary<string, PlaceholderModel> UserPlaceHolderData { get; }
         IList<IBuildingTemplate> GetAvailableBuilding();
         void BuildingProcess(BuildingProcessEventArgs args);
         event Action<UserResources> OnUserResourcesChanged;

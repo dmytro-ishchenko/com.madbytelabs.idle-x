@@ -34,6 +34,7 @@ namespace Data
         public IList<BuildingModel> UserBuildings => m_userData.UserBuildingsData.BuildingsMap.Values.ToList();
         public UserResources UserResources => m_userData.UserResources;
         public UserBuildingsData UserBuildingsData => m_userData.UserBuildingsData;
+        public IReadOnlyDictionary<string, PlaceholderModel> UserPlaceHolderData => m_userData.UserPlaceHolderData.PlaceHolderDataMap;
         public event Action<BuildingModel> OnBuildingCreated;
         public event Action<ActionErrorModel> OnActionError;
         public event Action<BuildingModel> OnBuildingUpdated;
@@ -53,15 +54,22 @@ namespace Data
             {
                 var sceneData = Resources.Load<SceneTemplate>("SceneTemplate");
 
-                List<BuildingModel> buildingsModel = new List<BuildingModel>();
+                List<BuildingModel> buildingsModels = new List<BuildingModel>();
+
+                UserPlaceHolderData placeHolderData = new();
+
+                int index = 0;
 
                 foreach (var buildingContext in sceneData.SceneBuildings)
                 {
                     m_assetLibrary.TryGetBuildingTemplate(buildingContext.BuildingTemplateId, out BuildingTemplate buildingTemplate);
-                    buildingsModel.Add(new BuildingModel(buildingContext.Id, buildingTemplate, 1));
+                    buildingsModels.Add(new BuildingModel(buildingContext.Id, buildingTemplate, 1));
+
+                    placeHolderData.AddPlaceHolder(buildingContext.Id, new PlaceholderModel(buildingContext.Id, GetPlaceHolderStatus(index, buildingTemplate)));
+                    index++;
                 }
 
-                m_userData = new UserData(buildingsModel);
+                m_userData = new UserData(placeHolderData,buildingsModels);
 
                 m_userDataLoader.Save(m_userData);
             }
@@ -73,6 +81,18 @@ namespace Data
             m_userDataProcessor.StartProcessing(m_assetLibrary, m_userData);
 
             complete?.Invoke();
+        }
+
+        PlaceHolderStatus GetPlaceHolderStatus(int index, BuildingTemplate template)
+        {
+            if (template.BuildingContext.BuildingType != BuildingType.DestroyedBuilding)
+                return PlaceHolderStatus.Occupied;
+            if (index < 5)
+                return PlaceHolderStatus.Unlocked;
+            else if (index < 10)
+                return PlaceHolderStatus.Locked;
+            else
+                return PlaceHolderStatus.Blocked;
         }
 
 
