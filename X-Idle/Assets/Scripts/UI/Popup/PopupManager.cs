@@ -1,5 +1,8 @@
 using AYellowpaper.SerializedCollections;
 using Common.Pattern.BobbleEvent;
+using Data;
+using Data.Enum;
+using Data.Events;
 using Data.Model.Error;
 using Data.Model.Popup;
 using UI.Enum;
@@ -20,7 +23,17 @@ namespace UI.Popup
             }
         }
 
-        public void ShowCreateBuildingPopup(CreateBuildingContext context)
+        public void SelectPlaceHolder(SelectPlaceHolderEventArgs args, IApplicationData applicationData)
+        {
+            switch (args.PlaceHolderStatus)
+            {
+                case PlaceHolderStatus.Unlocked:
+                    ShowCreateBuildingPopup(new CreateBuildingContext(args.PlaceHolderId, applicationData.GetAvailableBuilding()));
+                    break;
+            }
+        }
+
+        void ShowCreateBuildingPopup(CreateBuildingContext context)
         {
             if (m_popupMap.TryGetValue(PopupType.CreateBuilding, out BasePopup popup))
             {

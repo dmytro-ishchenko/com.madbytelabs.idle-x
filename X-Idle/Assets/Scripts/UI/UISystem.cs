@@ -26,8 +26,9 @@ namespace UI
 
             m_sceneLoader.SceneNotify.OnSceneLoaded += OnSceneLoadedHandler;
             Subscribe<BuildingProcessEventArgs>(BuildingProcessHandler);
+            Subscribe<SelectPlaceHolderEventArgs>(SelectPlaceHolderHandler);
         }
-        
+
         private readonly IApplicationData m_applicationData;
         private readonly IEnvironment m_environment;
         private readonly IAppSceneLoader m_sceneLoader;
@@ -47,9 +48,9 @@ namespace UI
 
                 foreach (var data in m_applicationData.UserPlaceHolderData)
                 {
-                    data.Value.SetTransform(m_environment.GetPlaceholderTransform(data.Key));   
+                    data.Value.SetTransform(m_environment.GetPlaceholderTransform(data.Key));
                 }
-                
+
                 m_gameUIController.InitPlaceHoldersView(m_applicationData.UserPlaceHolderData);
             }
         }
@@ -69,18 +70,7 @@ namespace UI
         private void OnBuildingActionRequestHandler(BuildingRequestEventArgs args)
         {
             m_applicationData.UserBuildingsData.TryGetBuildingModel(args.BuildingId, out BuildingModel buildingModel);
-            switch (buildingModel.Template.BuildingContext.BuildingType)
-            {
-                case BuildingType.DestroyedBuilding:
-                    m_gameUIController.ShowCreateBuildingPopup(new CreateBuildingContext(args.BuildingId, m_applicationData.GetAvailableBuilding()));
-                    break;
-                default:
-
-                    m_applicationData.GetUpgradeBuildingContext(buildingModel);
-                    
-                    m_gameUIController.ShowUpgradeBuildingPopup(m_applicationData.GetUpgradeBuildingContext(buildingModel));
-                    break;
-            }
+            m_gameUIController.ShowUpgradeBuildingPopup(m_applicationData.GetUpgradeBuildingContext(buildingModel));
         }
 
         private void BuildingProcessHandler(BuildingProcessEventArgs args)
@@ -91,6 +81,11 @@ namespace UI
         private void OnActionErrorHandler(ActionErrorModel args)
         {
             m_gameUIController.ShowCreateBuildingErrorPopup(args);
+        }
+
+        private void SelectPlaceHolderHandler(SelectPlaceHolderEventArgs args)
+        {
+            m_gameUIController.SelectPlaceHolder(args, m_applicationData);
         }
     }
 }

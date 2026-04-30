@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Common.Pattern.BobbleEvent;
 using Data.Enum;
 using Data.Model;
 using UI.Model;
@@ -6,11 +7,11 @@ using UnityEngine;
 
 namespace UI.Controller
 {
-    public class PlaceholderViewController : MonoBehaviour
+    public class PlaceholderViewController : MonoNode
     {
-        [SerializeField] private GameObject m_pointUnlocked;
-        [SerializeField] private GameObject m_pointLocked;
-        [SerializeField] private GameObject m_pointBlocked;
+        [SerializeField] private PlaceHolderViewElement m_pointUnlocked;
+        [SerializeField] private PlaceHolderViewElement m_pointLocked;
+        [SerializeField] private PlaceHolderViewElement m_pointBlocked;
         [SerializeField] private Transform m_root;
         [SerializeField] private Camera m_camera;
         private bool m_locked = true;
@@ -24,7 +25,7 @@ namespace UI.Controller
             {
                 m_placeholderTransforms.Add(data.Key, data.Value.Transform);
 
-                GameObject view = null;
+                PlaceHolderViewElement view = null;
 
                 switch (data.Value.Status)
                 {
@@ -44,7 +45,10 @@ namespace UI.Controller
                     view.transform.SetParent(m_root);
                     view.transform.localScale = Vector3.one;
                     m_placeholderData.Add(data.Key, new PlaceHolderViewModel(data.Key, data.Value.Status, view, data.Value.Transform));
-                    view.SetActive(true);
+                    view.Init(data.Key, data.Value.Status);
+                    Node.AddChild(view.Node);
+
+                    view.gameObject.SetActive(true);
                 }
             }
 
@@ -72,7 +76,8 @@ namespace UI.Controller
                 switch (model.Status)
                 {
                     case PlaceHolderStatus.Occupied:
-                        Destroy(placeHolder.View);
+                        Node.RemoveChild(placeHolder.View.Node);
+                        Destroy(placeHolder.View.gameObject);
                         m_placeholderData.Remove(model.Id);
                         break;
                     case PlaceHolderStatus.Unlocked:
@@ -99,7 +104,7 @@ namespace UI.Controller
 
         void AddPlaceHolderView(PlaceHolderStatus status, string id)
         {
-            GameObject view = null;
+            PlaceHolderViewElement view = null;
 
             switch (status)
             {
@@ -119,18 +124,20 @@ namespace UI.Controller
                 view.transform.SetParent(m_root);
                 view.transform.localScale = Vector3.one;
                 m_placeholderData.Add(id, new PlaceHolderViewModel(id, status, view, m_placeholderTransforms[id]));
+                view.Init(id, status);
+                Node.AddChild(view.Node);
 
-                view.SetActive(true);
+                view.gameObject.SetActive(true);
             }
         }
 
-        void ChangePlaceHolderView(GameObject source, PlaceHolderViewModel model)
+        void ChangePlaceHolderView(PlaceHolderViewElement source, PlaceHolderViewModel model)
         {
             var view = Instantiate(source, m_pointUnlocked.transform);
             view.transform.SetParent(m_root);
             view.transform.localScale = Vector3.one;
             m_placeholderData[model.Id] = new PlaceHolderViewModel(model.Id, model.Status, view, m_placeholderData[model.Id].TargetTransform);
-            view.SetActive(true);
+            view.gameObject.SetActive(true);
         }
     }
 }

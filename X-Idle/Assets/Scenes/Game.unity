@@ -32086,6 +32086,7 @@ GameObject:
   - component: {fileID: 258245697}
   - component: {fileID: 258245699}
   - component: {fileID: 258245698}
+  - component: {fileID: 258245700}
   m_Layer: 5
   m_Name: Blocked
   m_TagString: Untagged
@@ -32132,7 +32133,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5ff95a32ca4bd4f89957ebb876759dc6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3d8852c92e0c44baaa1cda12707df6eb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -32150,6 +32151,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 258245696}
   m_CullTransparentMesh: 1
+--- !u!114 &258245700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258245696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 258245698}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &258301399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78381,6 +78426,7 @@ GameObject:
   m_Component:
   - component: {fileID: 655847894}
   - component: {fileID: 655847896}
+  - component: {fileID: 655847897}
   m_Layer: 5
   m_Name: Unlocked
   m_TagString: Untagged
@@ -78416,6 +78462,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 655847893}
   m_CullTransparentMesh: 1
+--- !u!114 &655847897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655847893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266fe4d003154d2381c1bd2db5c99c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.PlaceHolderViewElement
+  m_button: {fileID: 1525708287}
 --- !u!1001 &656100701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -99586,6 +99645,7 @@ GameObject:
   - component: {fileID: 827000753}
   - component: {fileID: 827000755}
   - component: {fileID: 827000754}
+  - component: {fileID: 827000756}
   m_Layer: 5
   m_Name: Locked
   m_TagString: Untagged
@@ -99632,7 +99692,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bb48b1167f71247ed8c86f56c8755ec0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bdb40cd7bcad94ae7ab9413f54515cdf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -99650,6 +99710,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 827000752}
   m_CullTransparentMesh: 1
+--- !u!114 &827000756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827000752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 827000754}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &827009319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -138296,6 +138400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1136264762}
   - component: {fileID: 1136264764}
+  - component: {fileID: 1136264765}
   m_Layer: 5
   m_Name: Blocked
   m_TagString: Untagged
@@ -138331,6 +138436,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1136264761}
   m_CullTransparentMesh: 1
+--- !u!114 &1136264765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136264761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266fe4d003154d2381c1bd2db5c99c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.PlaceHolderViewElement
+  m_button: {fileID: 258245700}
 --- !u!1001 &1137121997
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -146455,6 +146573,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1209111016}
   - component: {fileID: 1209111018}
+  - component: {fileID: 1209111019}
   m_Layer: 5
   m_Name: Locked
   m_TagString: Untagged
@@ -146490,6 +146609,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1209111015}
   m_CullTransparentMesh: 1
+--- !u!114 &1209111019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209111015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266fe4d003154d2381c1bd2db5c99c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.PlaceHolderViewElement
+  m_button: {fileID: 827000756}
 --- !u!1001 &1209169162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -183668,6 +183800,7 @@ GameObject:
   - component: {fileID: 1525708284}
   - component: {fileID: 1525708286}
   - component: {fileID: 1525708285}
+  - component: {fileID: 1525708287}
   m_Layer: 5
   m_Name: Unlocked
   m_TagString: Untagged
@@ -183714,7 +183847,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b261a5210ffa94e2b9fa0fe2cede1652, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0659fbf456dbe4df39399d507bcbe1f5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -183732,6 +183865,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525708283}
   m_CullTransparentMesh: 1
+--- !u!114 &1525708287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525708283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1525708285}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1525883431
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -199627,9 +199804,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60fbe078ba164d66b87d6e010ffa382b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.BuildingPointViewController
-  m_pointUnlocked: {fileID: 655847893}
-  m_pointLocked: {fileID: 1209111015}
-  m_pointBlocked: {fileID: 1136264761}
+  m_pointUnlocked: {fileID: 655847897}
+  m_pointLocked: {fileID: 1209111019}
+  m_pointBlocked: {fileID: 1136264765}
   m_root: {fileID: 1670466327}
   m_camera: {fileID: 5083089214166639478}
 --- !u!1001 &1671008305

@@ -1,11 +1,12 @@
 using Data.Enum;
+using UI.Controller;
 using UnityEngine;
 
 namespace UI.Model
 {
     internal class PlaceHolderViewModel
     {
-        public PlaceHolderViewModel(string id, PlaceHolderStatus status, GameObject view, Transform targetTransform)
+        public PlaceHolderViewModel(string id, PlaceHolderStatus status, PlaceHolderViewElement view, Transform targetTransform)
         {
             View = view;
             TargetTransform = targetTransform;
@@ -15,7 +16,7 @@ namespace UI.Model
 
         public string Id { get; }
         public PlaceHolderStatus Status { get; }
-        public GameObject View { get; }
+        public PlaceHolderViewElement View { get; }
         public Transform TargetTransform { get; }
     }
 }
