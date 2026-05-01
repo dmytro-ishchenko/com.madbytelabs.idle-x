@@ -1,11 +1,14 @@
+using System.Collections.Generic;
 using System.IO;
 using Common;
 using Data.ContentLibrary;
 using Data.ContentLibrary.Templates;
-using Data.ContentLibrary.Templates.Context.Building;
 using Data.ContentLibrary.Templates.GameResources;
 using Data.ContentLibrary.Templates.Placeholder;
+using Data.Enum;
 using Data.Interface;
+using Data.Persistent;
+using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
 
@@ -28,11 +31,10 @@ namespace Tool.Data
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }
-        
+
         [MenuItem("AFTER/Library/Create PlaceHolder Requirement", false, 1)]
         public static void CreatePlaceHolderRequirement()
         {
-            
             var scriptableObject = CreateInstance<PlaceholderMapTemplate>();
 
             AssetDatabase.CreateAsset(scriptableObject, "Assets/AssetDataBase/PlaceholderRequirementsMap.asset");
@@ -116,19 +118,44 @@ namespace Tool.Data
             return a;
         }
 
-        public static T[] GetAllInstances<T>(string folder) where T : ScriptableObject
+        [MenuItem("AFTER/Library/CreateSaveData", false, 100)]
+        public static void CreateSaveData()
         {
-            string[] guids = AssetDatabase.FindAssets($"t:{typeof(T).Name}", new[] { folder });
-            T[] a = new T[guids.Length];
-            for (int i = 0; i < guids.Length; i++)
-            {
-                string path = AssetDatabase.GUIDToAssetPath(guids[i]);
+            var library = LoadAssetLibrary();
+            var scenaData = AssetDatabase.LoadAssetAtPath(AssetPath.SCENE_TEMPLATE_PATH, typeof(SceneTemplate)) as SceneTemplate;
 
-                var instance = AssetDatabase.LoadAssetAtPath<T>(path);
-                a[i] = instance;
+            List<PlaceHolderSaveModel> placeholders = new();
+            List<BuildingSaveModel> buildings = new();
+
+            foreach (var building in scenaData.SceneBuildings)
+            {
+                placeholders.Add(new PlaceHolderSaveModel(building.Id, building.BuildingTemplateId, building.PlaceHolderType, building.PlaceHolderStatus));
+                buildings.Add(new BuildingSaveModel(building.Id, building.BuildingTemplateId, 1));
             }
 
-            return a;
+
+            List<ResourceSaveModel> resources = new();
+
+            resources.Add(new ResourceSaveModel(GameResourceType.Scrap, 0));
+            resources.Add(new ResourceSaveModel(GameResourceType.Data, 0));
+            resources.Add(new ResourceSaveModel(GameResourceType.Energy, 0));
+            resources.Add(new ResourceSaveModel(GameResourceType.Food, 0));
+            resources.Add(new ResourceSaveModel(GameResourceType.Parts, 0));
+            resources.Add(new ResourceSaveModel(GameResourceType.Water, 0));
+
+            var saveModel = new SaveModel(placeholders, buildings, resources);
+
+            string saveFilePath = "Assets/AssetDataBase/Resources/SaveTemplate.asset";
+            var scriptableObject = CreateInstance<SaveTemplate>();
+
+            scriptableObject.InitSaveModel(saveModel);
+
+            if (File.Exists(saveFilePath))
+                File.Delete(saveFilePath);
+
+            AssetDatabase.CreateAsset(scriptableObject, saveFilePath);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
         }
     }
 }
