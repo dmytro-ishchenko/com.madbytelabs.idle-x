@@ -71,7 +71,7 @@ namespace Data
                     buildingsModels.Add(new BuildingModel(buildingContext.Id, buildingTemplate, 1));
 
                     placeHolderData.AddPlaceHolder(buildingContext.Id,
-                        new PlaceholderModel(buildingContext.Id, DataUtility.GetPlaceHolderStatus(index, buildingTemplate), buildingContext.PlaceHolderType));
+                        new PlaceholderModel(buildingContext.Id, buildingContext.PlaceHolderStatus, buildingContext.PlaceHolderType));
                     index++;
                 }
 
@@ -167,11 +167,11 @@ namespace Data
 
 
         public UpgradeBuildingContext GetUpgradeBuildingContext(BuildingModel buildingModel) =>
-            DataUtility.GetUpgradeBuildingContext(buildingModel, m_userData.UserResources, m_userData.UserBuildingsData);
+            DataUtility.GetUpgradeBuildingContext(buildingModel, m_assetLibrary, m_userData.UserResources, m_userData.UserBuildingsData);
 
         public PlaceHolderRequirementsModel GetPlaceHolderRequirements(string id)
         {
-            return DataUtility.GetPlaceHolderRequirements(id, m_placeholderMapTemplate, m_userData.UserPlaceHolderData, m_userData.UserBuildingsData, m_userData.UserResources);
+            return DataUtility.GetPlaceHolderRequirements(id, m_assetLibrary, m_placeholderMapTemplate, m_userData.UserPlaceHolderData, m_userData.UserBuildingsData, m_userData.UserResources);
         }
 
 

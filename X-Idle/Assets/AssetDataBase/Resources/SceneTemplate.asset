@@ -15,100 +15,133 @@ MonoBehaviour:
   sceneBuildings:
   - m_id: 8de83badda0f4d0db38c0e1
     m_buildingTemplateId: 8de86969565a9164d7656fb
-    m_position: {x: -0.3, y: 0, z: 0}
+    m_placeHolderType: 0
+    m_placeHolderStatus: 3
   - m_id: 8de88d263e3396a9c2f7db8
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: -38.6, y: 0, z: 8.2}
+    m_placeHolderType: 1
+    m_placeHolderStatus: 2
   - m_id: 8de88d49e044362a9b257b7
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: -23.9, y: 0, z: 44}
+    m_placeHolderType: 1
+    m_placeHolderStatus: 2
   - m_id: 8de88d4a5510966255e1247
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: 18.5, y: 0, z: 34.5}
+    m_placeHolderType: 1
+    m_placeHolderStatus: 2
   - m_id: 8de88d4d756bc446662e852
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: 37, y: 0, z: 5.8}
+    m_placeHolderType: 1
+    m_placeHolderStatus: 2
   - m_id: 8de88d4d9f27786a818deeb
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: 24.7, y: 0, z: -34.4}
+    m_placeHolderType: 1
+    m_placeHolderStatus: 2
   - m_id: 8de88d4db420c78cc85b81
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: -11.6, y: 0, z: -50.2}
+    m_placeHolderType: 1
+    m_placeHolderStatus: 2
   - m_id: 8de88d4dccca2d89357a0c8
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: -30.6, y: 0, z: -19.8}
+    m_placeHolderType: 2
+    m_placeHolderStatus: 1
   - m_id: 8de88d73ef55aca3faaff20
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: 59.1, y: 0, z: 64.3}
+    m_placeHolderType: 2
+    m_placeHolderStatus: 1
   - m_id: 8de88d741f628b2432ae4fb
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: 68.2, y: 0, z: 35.8}
+    m_placeHolderType: 2
+    m_placeHolderStatus: 1
   - m_id: 8de88d745824ed4a0ead178
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: 80.3, y: 0, z: 3.1}
+    m_placeHolderType: 2
+    m_placeHolderStatus: 1
   - m_id: 8de88d75bba85a4db333df8
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: 72.7, y: 0, z: -29}
+    m_placeHolderType: 2
+    m_placeHolderStatus: 1
   - m_id: 8de88d75e6fae0a23afa12f
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: 39, y: 0, z: -73.1}
+    m_placeHolderType: 2
+    m_placeHolderStatus: 1
   - m_id: 8de88d76db487aa5b13ed0d
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: -91.5, y: 0, z: 74}
+    m_placeHolderType: 3
+    m_placeHolderStatus: 1
   - m_id: 8de88d772d6e13822a04d75
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: -82.6, y: 0, z: 36.7}
+    m_placeHolderType: 3
+    m_placeHolderStatus: 1
   - m_id: 8de88d774adff788fe11d0
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: -92, y: 0, z: 0.5}
+    m_placeHolderType: 3
+    m_placeHolderStatus: 1
   - m_id: 8de88d777d805cc4ffc5bab
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: -86.2, y: 0, z: -29.4}
+    m_placeHolderType: 3
+    m_placeHolderStatus: 1
   - m_id: 8de88d779d18ddac6b829c7
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: -57.7, y: 0, z: -58.2}
+    m_placeHolderType: 4
+    m_placeHolderStatus: 1
   - m_id: 8de88d83c3f68244b244698
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: -55.7, y: 0, z: 107.4}
+    m_placeHolderType: 4
+    m_placeHolderStatus: 1
   - m_id: 8de88d83e17c4ca61cf3e0d
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: -5.9, y: 0, z: 110.1}
+    m_placeHolderType: 4
+    m_placeHolderStatus: 1
   - m_id: 8de88d8404aa82a7f6fd43a
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: 42.5, y: 0, z: 111.4}
+    m_placeHolderType: 4
+    m_placeHolderStatus: 1
   - m_id: 8de88d842be85c27d4bcb27
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: -42.8, y: 0, z: 72.6}
+    m_placeHolderType: 4
+    m_placeHolderStatus: 1
   - m_id: 8de88d845cb99ee46ce8472
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: 14, y: 0, z: 70}
+    m_placeHolderType: 5
+    m_placeHolderStatus: 1
   - m_id: 8de88d847eafa1267bba46e
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: -103.2, y: 0, z: -65.3}
+    m_placeHolderType: 5
+    m_placeHolderStatus: 1
   - m_id: 8de88d84a3eb2364a3d64c0
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: -56.4, y: 0, z: -88.3}
+    m_placeHolderType: 5
+    m_placeHolderStatus: 1
   - m_id: 8de88d84c28e1caf0fa05b2
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: -137.3, y: 0, z: -42.3}
+    m_placeHolderType: 6
+    m_placeHolderStatus: 1
   - m_id: 8de88d84db2655c1c2f9630
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: -134.1, y: 0, z: -82.6}
+    m_placeHolderType: 6
+    m_placeHolderStatus: 1
   - m_id: 8de88d84f84a8aee0563cf4
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: -92.2, y: 0, z: -95.8}
+    m_placeHolderType: 6
+    m_placeHolderStatus: 0
   - m_id: 8de88d8510e2312ed5744fc
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: 74.4, y: 0, z: -64.7}
+    m_placeHolderType: 6
+    m_placeHolderStatus: 0
   - m_id: 8de88d852c2aa5cac72476f
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: 59.7, y: 0, z: -103.4}
+    m_placeHolderType: 6
+    m_placeHolderStatus: 0
   - m_id: 8de88d858ef9cd2c0826ada
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: 100.4, y: 0, z: -79.2}
+    m_placeHolderType: 6
+    m_placeHolderStatus: 0
   - m_id: 8de88d85b76cc14472a685f
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: 116.6, y: 0, z: -38.4}
+    m_placeHolderType: 6
+    m_placeHolderStatus: 0
   - m_id: 8de88d85eb7b2623150e91c
     m_buildingTemplateId: 8de81064985f4a0531c11d2
-    m_position: {x: 125.7, y: 0, z: -95.8}
+    m_placeHolderType: 6
+    m_placeHolderStatus: 0

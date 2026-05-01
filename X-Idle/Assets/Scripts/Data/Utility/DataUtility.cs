@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using Data.ContentLibrary;
 using Data.ContentLibrary.Templates;
 using Data.ContentLibrary.Templates.GameResources;
 using Data.ContentLibrary.Templates.Placeholder;
@@ -71,7 +71,7 @@ namespace Data.Utility
             return new CreateBuildingRequirementsContext(buildingTemplate.Name, buildingTemplate.Description, buildingTemplate.Icon, buildings, null);
         }
 
-        public static UpgradeBuildingContext GetUpgradeBuildingContext(BuildingModel buildingModel, UserResources userResources, UserBuildingsData userBuildingsData)
+        public static UpgradeBuildingContext GetUpgradeBuildingContext(BuildingModel buildingModel, IAssetLibrary assetLibrary, UserResources userResources, UserBuildingsData userBuildingsData)
         {
             List<BuildingContextModel> buildings = null;
             List<ResourceContextModel> resources = null;
@@ -99,12 +99,19 @@ namespace Data.Utility
 
                         int requireLevel = Mathf.CeilToInt((float)(buildingModel.Level + 1) / element.LevelMultiplier);
 
-                        buildings.Add(new BuildingContextModel(building.Template.BuildingContext.BuildingType, building.Template.Name, building.Level, requireLevel));
+                        buildings.Add(new BuildingContextModel(building.Template.BuildingContext.BuildingType, building.Template.Name, level, requireLevel));
 
-                        if (requireLevel > buildingModel.Level)
+                        if (requireLevel > level)
                         {
                             notMeetRequirements += 1;
                         }
+                    }
+                    else
+                    {
+                        assetLibrary.TryGetBuildingTemplateByType(element.BuildingType, out var buildingTemplate);
+
+                        int requireLevel = Mathf.CeilToInt((float)(buildingModel.Level + 1) / element.LevelMultiplier);
+                        buildings.Add(new BuildingContextModel(element.BuildingType, buildingTemplate.Name, 0, requireLevel));
                     }
                 }
             }
@@ -192,27 +199,81 @@ namespace Data.Utility
             };
         }
 
-        public static PlaceHolderStatus GetPlaceHolderStatus(int index, BuildingTemplate template)
-        {
-            if (template.BuildingContext.BuildingType != BuildingType.DestroyedBuilding)
-                return PlaceHolderStatus.Occupied;
-            if (index < 5)
-                return PlaceHolderStatus.Unlocked;
-            else if (index < 10)
-                return PlaceHolderStatus.Locked;
-            else
-                return PlaceHolderStatus.Blocked;
-        }
-
         public static PlaceHolderRequirementsModel GetPlaceHolderRequirements(string placeHolderId,
+            IAssetLibrary assetLibrary,
             IPlaceholderMapTemplate placeholderMapTemplate,
             UserPlaceHolderData userPlaceHolderData,
             UserBuildingsData userBuildingsData,
             UserResources userResources)
         {
+            
             var placeHolder = userPlaceHolderData.PlaceHolderDataMap[placeHolderId];
-//var templateModel=placeholderMapTemplate.TryGetRequirementsByStatus(placeHolder.)
-            return null; //new PlaceHolderRequirementsModel();
+
+            List<BuildingContextModel> buildingsContext = null;
+            List<ResourceContextModel> resourcesContext = null;
+
+            int notMeetRequirements = 0;
+
+            if (placeholderMapTemplate.TryGetRequirementsByType(placeHolder.PlaceHolderType, out var requirements))
+            {
+                if (requirements.RequiredBuildings is { Count: > 0 })
+                {
+                    BuildingContextModel model = null;
+                    buildingsContext = new();
+
+                    foreach (var requiredBuilding in requirements.RequiredBuildings)
+                    {
+                        if (userBuildingsData.TryGetBuildingsByType(requiredBuilding.BuildingType, out var requiredBuildings))
+                        {
+                            int level = 0;
+
+                            foreach (var requiredElement in requiredBuildings)
+                            {
+                                if (requiredElement.Level > level)
+                                {
+                                    level = requiredElement.Level;
+                                }
+                            }
+
+                            var building = requiredBuildings.ElementAt(0);
+
+
+                            model = new BuildingContextModel(building.Template.BuildingContext.BuildingType, building.Template.Name, level, requiredBuilding.RequireLevel);
+
+                            if (requiredBuilding.RequireLevel > level)
+                            {
+                                notMeetRequirements += 1;
+                            }
+                        }
+                        else
+                        {
+                            assetLibrary.TryGetBuildingTemplateByType(requiredBuilding.BuildingType, out var buildingTemplate);
+                            model = new BuildingContextModel(requiredBuilding.BuildingType, buildingTemplate.Name, 0, requiredBuilding.RequireLevel);
+                        }
+
+
+                        buildingsContext.Add(model);
+                    }
+                }
+
+                if (requirements.RequiredResources is { Count: > 0 })
+                {
+                    resourcesContext = new();
+
+                    foreach (var element in requirements.RequiredResources)
+                    {
+                        if (userResources.GetGameResourceValue(element.ResourceType) < element.RequireAmount)
+                        {
+                            notMeetRequirements += 1;
+                        }
+
+                        assetLibrary.TryGetGameResource(element.ResourceType, out var gameResource);
+                        resourcesContext.Add(new ResourceContextModel(element.ResourceType, gameResource.Name, userResources.GetGameResourceValue(element.ResourceType), element.RequireAmount));
+                    }
+                }
+            }
+
+            return new PlaceHolderRequirementsModel("", buildingsContext, resourcesContext, notMeetRequirements == 0);
         }
     }
 }

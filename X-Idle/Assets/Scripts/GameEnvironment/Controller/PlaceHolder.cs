@@ -1,4 +1,3 @@
-using System;
 using Data.Enum;
 using Data.Interface;
 using UnityEditor;
@@ -11,10 +10,11 @@ namespace GameEnvironment.Controller
         [SerializeField] private string m_id;
         [SerializeField] private string m_contentId;
         [SerializeField] private PlaceHolderType m_placeholderType;
+        [SerializeField] private PlaceHolderStatus m_placeholderStatus;
         public string Id => m_id;
         public string ContentId => m_contentId;
         public PlaceHolderType Type => m_placeholderType;
-
+        public PlaceHolderStatus Status => m_placeholderStatus;
         public IBuildingView View { get; private set; }
 
 #if UNITY_EDITOR
@@ -34,6 +34,11 @@ namespace GameEnvironment.Controller
         {
             m_placeholderType = type;
             EditorUtility.SetDirty(this);
+        }
+
+        public void SetStatus(PlaceHolderStatus status)
+        {
+            m_placeholderStatus = status;
         }
 
         private void OnDrawGizmosSelected()

@@ -8,7 +8,7 @@ namespace Data.ContentLibrary.Templates.Placeholder
     {
         [SerializeField] SerializedDictionary<PlaceHolderType, PlaceholderStatusRequirementModel>  m_placeholdersMap;
 
-        public bool TryGetRequirementsByStatus(PlaceHolderType type, out PlaceholderStatusRequirementModel requirementModel)
+        public bool TryGetRequirementsByType(PlaceHolderType type, out PlaceholderStatusRequirementModel requirementModel)
         {
             return m_placeholdersMap.TryGetValue(type, out requirementModel);
         }

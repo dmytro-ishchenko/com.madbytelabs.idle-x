@@ -49,11 +49,8 @@ namespace Tool.Environment
 
             foreach (var placeholder in root.PlaceHolders)
             {
-                sceneTemplate.AddSceneBuilding(new SceneBuildingContext(placeholder.Id, placeholder.ContentId, placeholder.Type));
+                sceneTemplate.AddSceneBuilding(new SceneBuildingContext(placeholder.Id, placeholder.ContentId, placeholder.Type, placeholder.Status));
             }
-
-            if (!Directory.Exists(AssetPath.SCENE_TEMPLATE_PATH))
-                Directory.CreateDirectory(AssetPath.SCENE_TEMPLATE_PATH);
 
             AssetDatabase.CreateAsset(sceneTemplate, AssetPath.SCENE_TEMPLATE_PATH);
 

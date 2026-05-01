@@ -18,19 +18,19 @@ MonoBehaviour:
       Value:
         m_placeholderType: 0
         m_requiredBuildings: []
-        m_requiredResources: []
+        m_rquiredResources: []
     - Key: 1
       Value:
         m_placeholderType: 1
         m_requiredBuildings: []
-        m_requiredResources: []
+        m_rquiredResources: []
     - Key: 2
       Value:
         m_placeholderType: 2
         m_requiredBuildings:
         - m_buildingType: 1
           m_requiredLevel: 2
-        m_requiredResources:
+        m_rquiredResources:
         - m_resourceType: 1
           m_requiredAmount: 150
         - m_resourceType: 7
@@ -43,7 +43,7 @@ MonoBehaviour:
           m_requiredLevel: 3
         - m_buildingType: 2
           m_requiredLevel: 3
-        m_requiredResources:
+        m_rquiredResources:
         - m_resourceType: 1
           m_requiredAmount: 400
         - m_resourceType: 7
@@ -56,7 +56,7 @@ MonoBehaviour:
           m_requiredLevel: 4
         - m_buildingType: 7
           m_requiredLevel: 1
-        m_requiredResources:
+        m_rquiredResources:
         - m_resourceType: 1
           m_requiredAmount: 900
         - m_resourceType: 7
@@ -73,7 +73,7 @@ MonoBehaviour:
           m_requiredLevel: 2
         - m_buildingType: 2
           m_requiredLevel: 6
-        m_requiredResources:
+        m_rquiredResources:
         - m_resourceType: 1
           m_requiredAmount: 1800
         - m_resourceType: 7
@@ -90,7 +90,7 @@ MonoBehaviour:
           m_requiredLevel: 3
         - m_buildingType: 2
           m_requiredLevel: 8
-        m_requiredResources:
+        m_rquiredResources:
         - m_resourceType: 1
           m_requiredAmount: 3000
         - m_resourceType: 7
@@ -99,8 +99,3 @@ MonoBehaviour:
           m_requiredAmount: 250
         - m_resourceType: 5
           m_requiredAmount: 100
-    - Key: 7
-      Value:
-        m_placeholderType: 7
-        m_requiredBuildings: []
-        m_requiredResources: []

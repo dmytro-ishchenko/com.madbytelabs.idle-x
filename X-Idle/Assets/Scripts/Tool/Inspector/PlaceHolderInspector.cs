@@ -66,12 +66,19 @@ namespace Tool.Inspector
                 }
             });
 
-            var enumField = new EnumField("Placeholder Type", placeHolder.Type);
+            var typeField = new EnumField("Placeholder Type", placeHolder.Type);
 
-            enumField.Init(placeHolder.Type);
-            enumField.RegisterValueChangedCallback(evt => { placeHolder.SetType((PlaceHolderType)evt.newValue); });
+            typeField.Init(placeHolder.Type);
+            typeField.RegisterValueChangedCallback(evt => { placeHolder.SetType((PlaceHolderType)evt.newValue); });
 
-            m_inspector.Add(enumField);
+            m_inspector.Add(typeField);
+
+            var statusField = new EnumField("Placeholder Status", placeHolder.Status);
+
+            statusField.Init(placeHolder.Status);
+            statusField.RegisterValueChangedCallback(evt => { placeHolder.SetStatus((PlaceHolderStatus)evt.newValue); });
+
+            m_inspector.Add(statusField);
 
 
             var contentRow = new VisualElement()
