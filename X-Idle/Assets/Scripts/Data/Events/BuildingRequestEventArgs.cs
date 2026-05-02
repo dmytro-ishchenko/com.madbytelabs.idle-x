@@ -1,6 +1,4 @@
 using Common.Pattern.BobbleEvent;
-using Data.Enum;
-using Data.Model;
 
 namespace Data.Events
 {

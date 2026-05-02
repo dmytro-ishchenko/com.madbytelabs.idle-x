@@ -8,7 +8,6 @@ using Data.ContentLibrary.Templates.Placeholder;
 using Data.Enum;
 using Data.Interface;
 using Data.Persistent;
-using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
 
@@ -118,7 +117,7 @@ namespace Tool.Data
             return a;
         }
 
-        [MenuItem("AFTER/Library/CreateSaveData", false, 100)]
+        [MenuItem("AFTER/Cheat/Create Save Data", false, 100)]
         public static void CreateSaveData()
         {
             var library = LoadAssetLibrary();
@@ -156,6 +155,37 @@ namespace Tool.Data
             AssetDatabase.CreateAsset(scriptableObject, saveFilePath);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
+        }
+
+        // Warehouse 
+        // Greenhouse 
+        // ScrapYard 
+        // Workshop 
+        // RadioTower 
+        // WaterExtractor 
+
+
+        [MenuItem("AFTER/Cheat/Add EnergyFarm", false, 101)]
+        public static void AddEnergyFarm()
+        {
+            var library = LoadAssetLibrary();
+
+            var saveData = AssetDatabase.LoadAssetAtPath("Assets/AssetDataBase/Resources/SaveTemplate.asset", typeof(SaveTemplate)) as SaveTemplate;
+
+            library.TryGetBuildingTemplateByType(BuildingType.EnergyFarm, out var targetTemplate);
+
+            foreach (var building in saveData.SaveModel.Buildings)
+            {
+                library.TryGetBuildingTemplate(building.BuildingTemplateId, out BuildingTemplate buildingTemplate);
+
+                if (buildingTemplate.BuildingContext.BuildingType == BuildingType.DestroyedBuilding)
+                {
+                    building.SetBuildingId(targetTemplate.Id);
+
+                    EditorUtility.SetDirty(saveData);
+                    break;
+                }
+            }
         }
     }
 }

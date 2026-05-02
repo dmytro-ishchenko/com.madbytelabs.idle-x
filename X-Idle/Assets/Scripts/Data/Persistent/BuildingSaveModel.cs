@@ -20,5 +20,16 @@ namespace Data.Persistent
         public string Id => m_id;
         public string BuildingTemplateId => m_buildingTemplateId;
         public int Level => m_level;
+#if UNITY_EDITOR
+        public void SetBuildingId(string buildingTemplateId)
+        {
+            m_buildingTemplateId = buildingTemplateId;
+        }
+
+        public void SetLevel(int level)
+        {
+            m_level = level;
+        }
+#endif
     }
 }

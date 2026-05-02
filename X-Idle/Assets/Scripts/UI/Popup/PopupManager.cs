@@ -31,10 +31,10 @@ namespace UI.Popup
                     ShowCreateBuildingPopup(new CreateBuildingContext(args.PlaceHolderId, applicationData.GetAvailableBuilding()));
                     break;
                 case PlaceHolderStatus.Locked:
-                    ShowLockedPlaceholderPopup(new BlockedPlaceHolderContext(args.PlaceHolderId, applicationData.GetPlaceHolderRequirements(args.PlaceHolderId)));
+                    ShowLockedPlaceholderPopup(new LockedPlaceHolderContext(args.PlaceHolderId, applicationData.GetPlaceHolderRequirements(args.PlaceHolderId)));
                     break;
                 case PlaceHolderStatus.Blocked:
-                    ShowBlockedPlaceholderPopup(new BlockedPlaceHolderContext(args.PlaceHolderId, applicationData.GetPlaceHolderRequirements(args.PlaceHolderId)));
+                    ShowBlockedPlaceholderPopup(new LockedPlaceHolderContext(args.PlaceHolderId, applicationData.GetPlaceHolderRequirements(args.PlaceHolderId)));
                     break;
             }
         }
@@ -47,7 +47,7 @@ namespace UI.Popup
             }
         }
 
-        void ShowLockedPlaceholderPopup(BlockedPlaceHolderContext context)
+        void ShowLockedPlaceholderPopup(LockedPlaceHolderContext context)
         {
             if (m_popupMap.TryGetValue(PopupType.LockedPlaceHolder, out BasePopup popup))
             {
@@ -55,7 +55,7 @@ namespace UI.Popup
             }
         }
 
-        void ShowBlockedPlaceholderPopup(BlockedPlaceHolderContext context)
+        void ShowBlockedPlaceholderPopup(LockedPlaceHolderContext context)
         {
             if (m_popupMap.TryGetValue(PopupType.BlockedPlaceHolder, out BasePopup popup))
             {

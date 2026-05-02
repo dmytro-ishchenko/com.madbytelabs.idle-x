@@ -13,6 +13,7 @@ using Data.Loader;
 using Data.Model;
 using Data.Model.Error;
 using Data.Model.Popup;
+using Data.Persistent;
 using Data.Processor;
 using Data.Utility;
 using UnityEngine;
@@ -28,10 +29,11 @@ namespace Data
 
         private IAssetLibrary m_assetLibrary;
         private IPlaceholderMapTemplate m_placeholderMapTemplate;
+        private SceneTemplate m_sceneTemplate;
         private UserData m_userData;
         private IBuildingFactory m_buildingFactory;
         private readonly UserDataProcessor m_userDataProcessor = new();
-        private readonly IDataLoader<UserData> m_userDataLoader = new UserDataLoader();
+        private readonly IDataLoader<SaveModel> m_userDataLoader = new UserDataLoader();
 
         public IList<BuildingModel> UserBuildings => m_userData.UserBuildingsData.BuildingsMap.Values.ToList();
         public UserResources UserResources => m_userData.UserResources;
@@ -53,31 +55,32 @@ namespace Data
             if (m_placeholderMapTemplate == null)
                 m_placeholderMapTemplate = Resources.Load<PlaceholderMapTemplate>("PlaceholderMap");
 
-            m_userData = m_userDataLoader.Load();
+
+            var save = m_userDataLoader.Load();
+
+            if (save != null)
+                m_userData = new UserData(m_assetLibrary, save);
 
             if (m_userData == null)
             {
-                var sceneData = Resources.Load<SceneTemplate>("SceneTemplate");
+                m_sceneTemplate = Resources.Load<SceneTemplate>("SceneTemplate");
 
                 List<BuildingModel> buildingsModels = new List<BuildingModel>();
 
                 UserPlaceHolderData placeHolderData = new();
 
-                int index = 0;
-
-                foreach (var buildingContext in sceneData.SceneBuildings)
+                foreach (var buildingContext in m_sceneTemplate.SceneBuildings)
                 {
                     m_assetLibrary.TryGetBuildingTemplate(buildingContext.BuildingTemplateId, out BuildingTemplate buildingTemplate);
                     buildingsModels.Add(new BuildingModel(buildingContext.Id, buildingTemplate, 1));
 
                     placeHolderData.AddPlaceHolder(buildingContext.Id,
                         new PlaceholderModel(buildingContext.Id, buildingContext.PlaceHolderStatus, buildingContext.PlaceHolderType));
-                    index++;
                 }
 
                 m_userData = new UserData(placeHolderData, buildingsModels);
 
-                m_userDataLoader.Save(m_userData);
+                SaveUserData();
             }
 
 
@@ -174,6 +177,15 @@ namespace Data
             return DataUtility.GetPlaceHolderRequirements(id, m_assetLibrary, m_placeholderMapTemplate, m_userData.UserPlaceHolderData, m_userData.UserBuildingsData, m_userData.UserResources);
         }
 
+        public void UnlockPlaceHolder(UnlockPlaceholderEventArgs args)
+        {
+            DataUtility.UnlockPlaceHolder(args.PlaceHolderId, m_placeholderMapTemplate, m_userData.UserPlaceHolderData, m_userData.UserResources);
+        }
+
+        void SaveUserData()
+        {
+            m_userDataLoader.Save(m_userData.ToSave(m_sceneTemplate));
+        }
 
         public void OnApplicationQuit()
         {

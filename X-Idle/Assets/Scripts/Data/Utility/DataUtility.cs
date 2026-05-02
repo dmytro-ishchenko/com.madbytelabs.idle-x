@@ -7,6 +7,7 @@ using Data.ContentLibrary.Templates.Placeholder;
 using Data.Enum;
 using Data.Model;
 using Data.Model.Popup;
+using Data.Persistent;
 using UnityEngine;
 
 
@@ -206,7 +207,6 @@ namespace Data.Utility
             UserBuildingsData userBuildingsData,
             UserResources userResources)
         {
-            
             var placeHolder = userPlaceHolderData.PlaceHolderDataMap[placeHolderId];
 
             List<BuildingContextModel> buildingsContext = null;
@@ -274,6 +274,24 @@ namespace Data.Utility
             }
 
             return new PlaceHolderRequirementsModel("", buildingsContext, resourcesContext, notMeetRequirements == 0);
+        }
+
+        public static void UnlockPlaceHolder(string placeHolderId, IPlaceholderMapTemplate placeholderMapTemplate, UserPlaceHolderData userPlaceHolderData, UserResources userResources)
+        {
+            var placeHolder = userPlaceHolderData.PlaceHolderDataMap[placeHolderId];
+
+            if (placeholderMapTemplate.TryGetRequirementsByType(placeHolder.PlaceHolderType, out var requirements))
+            {
+                if (requirements.RequiredResources is { Count: > 0 })
+                {
+                    foreach (var element in requirements.RequiredResources)
+                    {
+                        userResources.SetGameResource(element.ResourceType, element.RequireAmount);
+                    }
+                }
+
+                userPlaceHolderData.UpdatePlaceHolderStatus(placeHolder.Id, new PlaceholderModel(placeHolder.Id, PlaceHolderStatus.Unlocked, placeHolder.PlaceHolderType));
+            }
         }
     }
 }

@@ -27,7 +27,10 @@ namespace UI
             m_sceneLoader.SceneNotify.OnSceneLoaded += OnSceneLoadedHandler;
             Subscribe<BuildingProcessEventArgs>(BuildingProcessHandler);
             Subscribe<SelectPlaceHolderEventArgs>(SelectPlaceHolderHandler);
+            Subscribe<UnlockPlaceholderEventArgs>(UnlockPlaceholderHandler);
         }
+
+    
 
         private readonly IApplicationData m_applicationData;
         private readonly IEnvironment m_environment;
@@ -86,6 +89,11 @@ namespace UI
         private void SelectPlaceHolderHandler(SelectPlaceHolderEventArgs args)
         {
             m_gameUIController.SelectPlaceHolder(args, m_applicationData);
+        }
+        
+        private void UnlockPlaceholderHandler(UnlockPlaceholderEventArgs args)
+        {
+            m_applicationData.UnlockPlaceHolder(args);
         }
     }
 }

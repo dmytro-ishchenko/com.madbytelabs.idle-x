@@ -1,8 +1,8 @@
 namespace Data.Model.Popup
 {
-    public struct BlockedPlaceHolderContext
+    public struct LockedPlaceHolderContext
     {
-        public BlockedPlaceHolderContext(string id, PlaceHolderRequirementsModel requirementsModel)
+        public LockedPlaceHolderContext(string id, PlaceHolderRequirementsModel requirementsModel)
         {
             Id = id;
             RequirementsModel = requirementsModel;

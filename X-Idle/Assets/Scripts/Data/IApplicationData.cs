@@ -26,5 +26,6 @@ namespace Data
         event Action<PlaceholderModel> OnPlaceHolderStatusChanged;
         UpgradeBuildingContext GetUpgradeBuildingContext(BuildingModel buildingModel);
         PlaceHolderRequirementsModel GetPlaceHolderRequirements(string id);
+        void UnlockPlaceHolder(UnlockPlaceholderEventArgs args);
     }
 }

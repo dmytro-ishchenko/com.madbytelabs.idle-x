@@ -20,7 +20,7 @@ namespace UI.Popup.Blocked
 
         public override void Show<T>(T context)
         {
-            if (context is BlockedPlaceHolderContext model)
+            if (context is LockedPlaceHolderContext model)
             {
                 int elementIndex = 1;
 

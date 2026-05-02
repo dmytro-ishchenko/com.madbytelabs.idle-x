@@ -3,7 +3,7 @@ using Data.Enum;
 
 namespace Data.Events
 {
-    public class SelectPlaceHolderEventArgs: IEventArgs
+    public struct SelectPlaceHolderEventArgs: IEventArgs
     {
         public SelectPlaceHolderEventArgs(string placeHolderId, PlaceHolderStatus placeHolderStatus)
         {

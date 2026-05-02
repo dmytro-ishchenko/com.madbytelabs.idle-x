@@ -81,15 +81,15 @@ namespace UI.Controller
                         m_placeholderData.Remove(model.Id);
                         break;
                     case PlaceHolderStatus.Unlocked:
-                        Destroy(placeHolder.View);
+                        Destroy(placeHolder.View.gameObject);
                         ChangePlaceHolderView(m_pointUnlocked, placeHolder);
                         break;
                     case PlaceHolderStatus.Blocked:
-                        Destroy(placeHolder.View);
+                        Destroy(placeHolder.View.gameObject);
                         ChangePlaceHolderView(m_pointBlocked, placeHolder);
                         break;
                     case PlaceHolderStatus.Locked:
-                        Destroy(placeHolder.View);
+                        Destroy(placeHolder.View.gameObject);
                         ChangePlaceHolderView(m_pointLocked, placeHolder);
                         break;
                 }

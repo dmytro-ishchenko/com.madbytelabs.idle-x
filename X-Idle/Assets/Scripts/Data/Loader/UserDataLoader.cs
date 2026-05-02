@@ -1,15 +1,18 @@
-using Data.Model;
+using Data.ContentLibrary.Templates;
+using Data.Persistent;
+using UnityEngine;
 
 namespace Data.Loader
 {
-    internal class UserDataLoader : IDataLoader<UserData>
+    internal class UserDataLoader : IDataLoader<SaveModel>
     {
-        public UserData Load()
+        public SaveModel Load()
         {
-            return null;
+            var save = Resources.Load<SaveTemplate>("SaveTemplate");
+            return save.SaveModel;
         }
 
-        public void Save(UserData data)
+        public void Save(SaveModel data)
         {
         }
     }

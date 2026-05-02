@@ -19,9 +19,9 @@ MonoBehaviour:
       m_placeHolderType: 0
       m_placeHolderStatus: 3
     - m_id: 8de88d263e3396a9c2f7db8
-      m_buildingTemplateId: 8de81064985f4a0531c11d2
+      m_buildingTemplateId: 8de869aee64cb6a1fa1260b
       m_placeHolderType: 1
-      m_placeHolderStatus: 2
+      m_placeHolderStatus: 3
     - m_id: 8de88d49e044362a9b257b7
       m_buildingTemplateId: 8de81064985f4a0531c11d2
       m_placeHolderType: 1
@@ -151,8 +151,8 @@ MonoBehaviour:
       m_buildingTemplateId: 8de86969565a9164d7656fb
       m_level: 1
     - m_id: 8de88d263e3396a9c2f7db8
-      m_buildingTemplateId: 8de81064985f4a0531c11d2
-      m_level: 1
+      m_buildingTemplateId: 8de869aee64cb6a1fa1260b
+      m_level: 50
     - m_id: 8de88d49e044362a9b257b7
       m_buildingTemplateId: 8de81064985f4a0531c11d2
       m_level: 1
@@ -248,14 +248,14 @@ MonoBehaviour:
       m_level: 1
     m_resources:
     - m_resourceType: 1
-      m_amount: 0
+      m_amount: 5000
     - m_resourceType: 5
-      m_amount: 0
+      m_amount: 5000
     - m_resourceType: 2
-      m_amount: 0
+      m_amount: 5000
     - m_resourceType: 3
-      m_amount: 0
+      m_amount: 5000
     - m_resourceType: 7
-      m_amount: 0
+      m_amount: 5000
     - m_resourceType: 4
-      m_amount: 0
+      m_amount: 5000

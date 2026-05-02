@@ -22,7 +22,7 @@ namespace UI.Popup.Locked
 
         public override void Show<T>(T context)
         {
-            if (context is BlockedPlaceHolderContext model)
+            if (context is LockedPlaceHolderContext model)
             {
                 int elementIndex = 1;
                 if (model.RequirementsModel.Buildings != null)
@@ -65,7 +65,7 @@ namespace UI.Popup.Locked
                     m_unlock.interactable = true;
                     m_unlock.onClick.AddListener(() =>
                     {
-                        //   Node.TriggerEvent(new BuildingProcessEventArgs(model.Id, model.TemplateId, BuildingActionType.UpgradeBuildingRequest));
+                        Node.TriggerEvent(new UnlockPlaceholderEventArgs(model.Id));
                         Close();
                     });
                 }
