@@ -13,6 +13,7 @@ namespace UI.Popup
     internal class PopupManager : MonoBehaviour, IMonoNode
     {
         [SerializeField] private SerializedDictionary<PopupType, BasePopup> m_popupMap;
+        BasePopup m_openedPopup;
         public Node Node { get; } = new();
 
         void Awake()
@@ -43,7 +44,10 @@ namespace UI.Popup
         {
             if (m_popupMap.TryGetValue(PopupType.CreateBuilding, out BasePopup popup))
             {
-                popup.Show(context);
+                if (m_openedPopup != null)
+                    m_openedPopup.Close();
+                m_openedPopup = popup;
+                m_openedPopup.Show(context);
             }
         }
 
@@ -51,7 +55,10 @@ namespace UI.Popup
         {
             if (m_popupMap.TryGetValue(PopupType.LockedPlaceHolder, out BasePopup popup))
             {
-                popup.Show(context);
+                if (m_openedPopup != null)
+                    m_openedPopup.Close();
+                m_openedPopup = popup;
+                m_openedPopup.Show(context);
             }
         }
 
@@ -59,15 +66,10 @@ namespace UI.Popup
         {
             if (m_popupMap.TryGetValue(PopupType.BlockedPlaceHolder, out BasePopup popup))
             {
-                popup.Show(context);
-            }
-        }
-
-        public void ShowUpgradeBuildingPopup(UpgradeBuildingContext context)
-        {
-            if (m_popupMap.TryGetValue(PopupType.UpgradeBuilding, out BasePopup popup))
-            {
-                popup.Show(context);
+                if (m_openedPopup != null)
+                    m_openedPopup.Close();
+                m_openedPopup = popup;
+                m_openedPopup.Show(context);
             }
         }
 
@@ -75,7 +77,32 @@ namespace UI.Popup
         {
             if (m_popupMap.TryGetValue(PopupType.CreateBuildingError, out BasePopup popup))
             {
-                popup.Show(model.GetContext<CreateBuildingRequirementsContext>());
+                if (m_openedPopup != null)
+                    m_openedPopup.Close();
+                m_openedPopup = popup;
+                m_openedPopup.Show(model.GetContext<CreateBuildingRequirementsContext>());
+            }
+        }
+
+        public void ShowSelectBuildingPopup(SelectBuildingContext context)
+        {
+            if (m_popupMap.TryGetValue(PopupType.SelectBuilding, out BasePopup popup))
+            {
+                if (m_openedPopup != null)
+                    m_openedPopup.Close();
+                m_openedPopup = popup;
+                m_openedPopup.Show(context);
+            }
+        }
+
+        public void ShowUpgradeBuildingPopup(UpgradeBuildingContext context)
+        {
+            if (m_popupMap.TryGetValue(PopupType.UpgradeBuilding, out BasePopup popup))
+            {
+                if (m_openedPopup != null)
+                    m_openedPopup.Close();
+                m_openedPopup = popup;
+                m_openedPopup.Show(context);
             }
         }
     }

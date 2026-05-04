@@ -16,6 +16,7 @@ namespace UI.Popup.Upgrade
         [SerializeField] private TMP_Text m_description;
         [SerializeField] private Image m_icon;
         [SerializeField] private TMP_Text m_level;
+        [SerializeField] private TMP_Text m_nextLevel;
         [SerializeField] private SerializedDictionary<RequireElementType, RequiredElementView> m_requiredElements;
         [SerializeField] private Transform m_root;
         [SerializeField] private Button m_upgrade;

@@ -6,7 +6,7 @@ using UI.Popup.Controller;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.Popup
+namespace UI.Popup.Create
 {
     internal class CreateBuildingPopup : BasePopup
     {

@@ -7,5 +7,6 @@ namespace UI.Enum
         CreateBuildingError = 2,
         LockedPlaceHolder = 3,
         BlockedPlaceHolder = 4,
+        SelectBuilding = 5,
     }
 }

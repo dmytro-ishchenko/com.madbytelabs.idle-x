@@ -10,6 +10,8 @@ using Data.Model.Popup;
 using GameEnvironment;
 using SceneLoader;
 using UI.Controller;
+using UI.Event;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace UI
@@ -28,9 +30,10 @@ namespace UI
             Subscribe<BuildingProcessEventArgs>(BuildingProcessHandler);
             Subscribe<SelectPlaceHolderEventArgs>(SelectPlaceHolderHandler);
             Subscribe<UnlockPlaceholderEventArgs>(UnlockPlaceholderHandler);
+            Subscribe<ShowBuildingsInfoEventArgs>(ShowBuildingsInfoHandler);
+            Subscribe<ShowUpgradeBuildingEventArgs>(ShowUpgradeBuildingHandler);
+            Subscribe<ShowDemolishBuildingEventArgs>(ShowDemolishBuildingHandler);
         }
-
-    
 
         private readonly IApplicationData m_applicationData;
         private readonly IEnvironment m_environment;
@@ -73,7 +76,21 @@ namespace UI
         private void OnBuildingActionRequestHandler(BuildingRequestEventArgs args)
         {
             m_applicationData.UserBuildingsData.TryGetBuildingModel(args.BuildingId, out BuildingModel buildingModel);
-            m_gameUIController.ShowUpgradeBuildingPopup(m_applicationData.GetUpgradeBuildingContext(buildingModel));
+            m_gameUIController.ShowSelectBuildingPopup(new SelectBuildingContext(args.BuildingId, buildingModel));
+        }
+
+        private void ShowBuildingsInfoHandler(ShowBuildingsInfoEventArgs args)
+        {
+        }
+
+
+        private void ShowUpgradeBuildingHandler(ShowUpgradeBuildingEventArgs args)
+        {
+            m_gameUIController.ShowUpgradeBuildingPopup(m_applicationData.GetUpgradeBuildingContext(args.BuildingModel));
+        }
+
+        private void ShowDemolishBuildingHandler(ShowDemolishBuildingEventArgs args)
+        {
         }
 
         private void BuildingProcessHandler(BuildingProcessEventArgs args)
@@ -90,7 +107,7 @@ namespace UI
         {
             m_gameUIController.SelectPlaceHolder(args, m_applicationData);
         }
-        
+
         private void UnlockPlaceholderHandler(UnlockPlaceholderEventArgs args)
         {
             m_applicationData.UnlockPlaceHolder(args);

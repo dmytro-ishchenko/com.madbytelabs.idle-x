@@ -16,5 +16,6 @@ namespace UI.Controller
         void ShowCreateBuildingErrorPopup(ActionErrorModel model);
         void InitPlaceHoldersView(IReadOnlyDictionary<string, PlaceholderModel> userPlaceHolderData);
         void UpdatePlaceHoldersView(PlaceholderModel model);
+        void ShowSelectBuildingPopup(SelectBuildingContext context);
     }
 }
