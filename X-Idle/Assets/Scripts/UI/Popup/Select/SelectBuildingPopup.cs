@@ -49,7 +49,7 @@ namespace UI.Popup.Select
 
                 m_upgrade.onClick.AddListener(() => { Node.TriggerEvent(new ShowUpgradeBuildingEventArgs(model.BuildingModel)); });
                 m_info.onClick.AddListener(() => { Node.TriggerEvent(new ShowBuildingsInfoEventArgs(model.BuildingModel)); });
-                m_demolish.onClick.AddListener(() => { Node.TriggerEvent(new ShowDemolishBuildingEventArgs(model.BuildingModel)); });
+                m_demolish.onClick.AddListener(() => { Node.TriggerEvent(new ShowDismantleBuildingEventArgs(model.BuildingModel)); });
 
                 base.Show(context);
             }

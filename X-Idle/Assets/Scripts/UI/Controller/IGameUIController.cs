@@ -5,17 +5,15 @@ using Data.Events;
 using Data.Model;
 using Data.Model.Error;
 using Data.Model.Popup;
+using UI.Popup;
 
 namespace UI.Controller
 {
     internal interface IGameUIController : IMonoNode
     {
+        PopupManager PopupManager { get; }
         void UpdateUserInfo(UserResources resources);
-        void SelectPlaceHolder(SelectPlaceHolderEventArgs args, IApplicationData applicationData);
-        void ShowUpgradeBuildingPopup(UpgradeBuildingContext context);
-        void ShowCreateBuildingErrorPopup(ActionErrorModel model);
         void InitPlaceHoldersView(IReadOnlyDictionary<string, PlaceholderModel> userPlaceHolderData);
         void UpdatePlaceHoldersView(PlaceholderModel model);
-        void ShowSelectBuildingPopup(SelectBuildingContext context);
     }
 }

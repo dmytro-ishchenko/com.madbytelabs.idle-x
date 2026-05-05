@@ -3,9 +3,9 @@ using Data.Model;
 
 namespace UI.Event
 {
-    public class ShowDemolishBuildingEventArgs : IEventArgs
+    public class ShowDismantleBuildingEventArgs : IEventArgs
     {
-        public ShowDemolishBuildingEventArgs(BuildingModel buildingModel)
+        public ShowDismantleBuildingEventArgs(BuildingModel buildingModel)
         {
             BuildingModel = buildingModel;
         }

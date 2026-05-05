@@ -75,7 +75,7 @@ namespace UI.Popup.Upgrade
 
                 m_destroy.onClick.AddListener(() =>
                 {
-                    Node.TriggerEvent(new BuildingProcessEventArgs(model.Id, model.TemplateId, BuildingActionType.DeleteBuildingRequest));
+                    Node.TriggerEvent(new BuildingProcessEventArgs(model.Id, model.TemplateId, BuildingActionType.DismantleBuildingRequest));
                     Close();
                 });
 

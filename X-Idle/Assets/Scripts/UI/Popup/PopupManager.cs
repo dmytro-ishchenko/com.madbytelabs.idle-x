@@ -6,6 +6,7 @@ using Data.Events;
 using Data.Model.Error;
 using Data.Model.Popup;
 using UI.Enum;
+using UI.Event;
 using UnityEngine;
 
 namespace UI.Popup
@@ -29,80 +30,25 @@ namespace UI.Popup
             switch (args.PlaceHolderStatus)
             {
                 case PlaceHolderStatus.Unlocked:
-                    ShowCreateBuildingPopup(new CreateBuildingContext(args.PlaceHolderId, applicationData.GetAvailableBuilding()));
+                    ShowPopup(PopupType.CreateBuilding, new CreateBuildingContext(args.PlaceHolderId, applicationData.GetAvailableBuilding()));
                     break;
                 case PlaceHolderStatus.Locked:
-                    ShowLockedPlaceholderPopup(new LockedPlaceHolderContext(args.PlaceHolderId, applicationData.GetPlaceHolderRequirements(args.PlaceHolderId)));
+                    ShowPopup(PopupType.LockedPlaceHolder, new LockedPlaceHolderContext(args.PlaceHolderId, applicationData.GetPlaceHolderRequirements(args.PlaceHolderId)));
                     break;
                 case PlaceHolderStatus.Blocked:
-                    ShowBlockedPlaceholderPopup(new LockedPlaceHolderContext(args.PlaceHolderId, applicationData.GetPlaceHolderRequirements(args.PlaceHolderId)));
+                    ShowPopup(PopupType.BlockedPlaceHolder, new LockedPlaceHolderContext(args.PlaceHolderId, applicationData.GetPlaceHolderRequirements(args.PlaceHolderId)));
                     break;
             }
         }
 
-        void ShowCreateBuildingPopup(CreateBuildingContext context)
+        public void ShowPopup<T>(PopupType popupType, T args)
         {
-            if (m_popupMap.TryGetValue(PopupType.CreateBuilding, out BasePopup popup))
+            if (m_popupMap.TryGetValue(popupType, out BasePopup popup))
             {
                 if (m_openedPopup != null)
                     m_openedPopup.Close();
                 m_openedPopup = popup;
-                m_openedPopup.Show(context);
-            }
-        }
-
-        void ShowLockedPlaceholderPopup(LockedPlaceHolderContext context)
-        {
-            if (m_popupMap.TryGetValue(PopupType.LockedPlaceHolder, out BasePopup popup))
-            {
-                if (m_openedPopup != null)
-                    m_openedPopup.Close();
-                m_openedPopup = popup;
-                m_openedPopup.Show(context);
-            }
-        }
-
-        void ShowBlockedPlaceholderPopup(LockedPlaceHolderContext context)
-        {
-            if (m_popupMap.TryGetValue(PopupType.BlockedPlaceHolder, out BasePopup popup))
-            {
-                if (m_openedPopup != null)
-                    m_openedPopup.Close();
-                m_openedPopup = popup;
-                m_openedPopup.Show(context);
-            }
-        }
-
-        public void ShowCreateBuildingErrorPopup(ActionErrorModel model)
-        {
-            if (m_popupMap.TryGetValue(PopupType.CreateBuildingError, out BasePopup popup))
-            {
-                if (m_openedPopup != null)
-                    m_openedPopup.Close();
-                m_openedPopup = popup;
-                m_openedPopup.Show(model.GetContext<CreateBuildingRequirementsContext>());
-            }
-        }
-
-        public void ShowSelectBuildingPopup(SelectBuildingContext context)
-        {
-            if (m_popupMap.TryGetValue(PopupType.SelectBuilding, out BasePopup popup))
-            {
-                if (m_openedPopup != null)
-                    m_openedPopup.Close();
-                m_openedPopup = popup;
-                m_openedPopup.Show(context);
-            }
-        }
-
-        public void ShowUpgradeBuildingPopup(UpgradeBuildingContext context)
-        {
-            if (m_popupMap.TryGetValue(PopupType.UpgradeBuilding, out BasePopup popup))
-            {
-                if (m_openedPopup != null)
-                    m_openedPopup.Close();
-                m_openedPopup = popup;
-                m_openedPopup.Show(context);
+                m_openedPopup.Show(args);
             }
         }
     }

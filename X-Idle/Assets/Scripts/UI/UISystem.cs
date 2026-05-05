@@ -2,7 +2,6 @@ using Common;
 using Common.Enum;
 using Common.Pattern.BobbleEvent;
 using Data;
-using Data.Enum;
 using Data.Events;
 using Data.Model;
 using Data.Model.Error;
@@ -10,8 +9,8 @@ using Data.Model.Popup;
 using GameEnvironment;
 using SceneLoader;
 using UI.Controller;
+using UI.Enum;
 using UI.Event;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace UI
@@ -32,7 +31,7 @@ namespace UI
             Subscribe<UnlockPlaceholderEventArgs>(UnlockPlaceholderHandler);
             Subscribe<ShowBuildingsInfoEventArgs>(ShowBuildingsInfoHandler);
             Subscribe<ShowUpgradeBuildingEventArgs>(ShowUpgradeBuildingHandler);
-            Subscribe<ShowDemolishBuildingEventArgs>(ShowDemolishBuildingHandler);
+            Subscribe<ShowDismantleBuildingEventArgs>(ShowDismantleBuildingHandler);
         }
 
         private readonly IApplicationData m_applicationData;
@@ -76,7 +75,7 @@ namespace UI
         private void OnBuildingActionRequestHandler(BuildingRequestEventArgs args)
         {
             m_applicationData.UserBuildingsData.TryGetBuildingModel(args.BuildingId, out BuildingModel buildingModel);
-            m_gameUIController.ShowSelectBuildingPopup(new SelectBuildingContext(args.BuildingId, buildingModel));
+            m_gameUIController.PopupManager.ShowPopup(PopupType.SelectBuilding, new SelectBuildingContext(args.BuildingId, buildingModel));
         }
 
         private void ShowBuildingsInfoHandler(ShowBuildingsInfoEventArgs args)
@@ -86,11 +85,12 @@ namespace UI
 
         private void ShowUpgradeBuildingHandler(ShowUpgradeBuildingEventArgs args)
         {
-            m_gameUIController.ShowUpgradeBuildingPopup(m_applicationData.GetUpgradeBuildingContext(args.BuildingModel));
+            m_gameUIController.PopupManager.ShowPopup(PopupType.UpgradeBuilding, m_applicationData.GetUpgradeBuildingContext(args.BuildingModel));
         }
 
-        private void ShowDemolishBuildingHandler(ShowDemolishBuildingEventArgs args)
+        private void ShowDismantleBuildingHandler(ShowDismantleBuildingEventArgs args)
         {
+            m_gameUIController.PopupManager.ShowPopup(PopupType.ConfirmDismantle, args);
         }
 
         private void BuildingProcessHandler(BuildingProcessEventArgs args)
@@ -100,12 +100,12 @@ namespace UI
 
         private void OnActionErrorHandler(ActionErrorModel args)
         {
-            m_gameUIController.ShowCreateBuildingErrorPopup(args);
+            m_gameUIController.PopupManager.ShowPopup(PopupType.CreateBuildingError, args.GetContext<CreateBuildingRequirementsContext>());
         }
 
         private void SelectPlaceHolderHandler(SelectPlaceHolderEventArgs args)
         {
-            m_gameUIController.SelectPlaceHolder(args, m_applicationData);
+            m_gameUIController.PopupManager.SelectPlaceHolder(args, m_applicationData);
         }
 
         private void UnlockPlaceholderHandler(UnlockPlaceholderEventArgs args)

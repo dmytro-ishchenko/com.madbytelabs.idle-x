@@ -8,5 +8,6 @@ namespace UI.Enum
         LockedPlaceHolder = 3,
         BlockedPlaceHolder = 4,
         SelectBuilding = 5,
+        ConfirmDismantle = 6,
     }
 }

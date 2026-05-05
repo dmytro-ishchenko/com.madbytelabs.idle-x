@@ -4,6 +4,6 @@ namespace Data.Enum
     {
         CreateBuildingRequest = 0,
         UpgradeBuildingRequest = 1,
-        DeleteBuildingRequest = 2,
+        DismantleBuildingRequest = 2,
     }
 }

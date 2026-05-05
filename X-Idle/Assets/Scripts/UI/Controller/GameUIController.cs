@@ -17,6 +17,8 @@ namespace UI.Controller
         [SerializeField] private PlaceholderViewController m_placeholderView;
         public Node Node { get; private set; }
 
+        public PopupManager PopupManager => m_popupManager;
+
         void Awake()
         {
             Node = new();
@@ -25,15 +27,7 @@ namespace UI.Controller
         }
 
         public void UpdateUserInfo(UserResources resources) => m_userInfo.UpdateUserResources(resources);
-
-
-        public void ShowCreateBuildingErrorPopup(ActionErrorModel model) => m_popupManager.ShowCreateBuildingErrorPopup(model);
-
         public void InitPlaceHoldersView(IReadOnlyDictionary<string, PlaceholderModel> userPlaceHolderData) => m_placeholderView.InitPlaceHoldersView(userPlaceHolderData);
         public void UpdatePlaceHoldersView(PlaceholderModel model) => m_placeholderView.UpdatePlaceHoldersView(model);
-        public void SelectPlaceHolder(SelectPlaceHolderEventArgs args, IApplicationData applicationData) => m_popupManager.SelectPlaceHolder(args, applicationData);
-        public void ShowSelectBuildingPopup(SelectBuildingContext context) => m_popupManager.ShowSelectBuildingPopup(context);
-
-        public void ShowUpgradeBuildingPopup(UpgradeBuildingContext context) => m_popupManager.ShowUpgradeBuildingPopup(context);
     }
 }

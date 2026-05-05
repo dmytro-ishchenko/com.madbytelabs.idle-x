@@ -158,8 +158,8 @@ namespace Data
                     }
 
                     break;
-                case BuildingActionType.DeleteBuildingRequest:
-                    if (m_buildingFactory.TryDeleteBuilding(m_userData, args, out BuildingModel defaultBuildingModel))
+                case BuildingActionType.DismantleBuildingRequest:
+                    if (m_buildingFactory.TryDismantleBuilding(m_userData, args, out BuildingModel defaultBuildingModel))
                     {
                         OnBuildingDeleted?.Invoke(defaultBuildingModel);
                     }

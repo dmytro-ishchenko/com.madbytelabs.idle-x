@@ -65,12 +65,26 @@ namespace Data.Factory
             return false;
         }
 
-        public bool TryDeleteBuilding(UserData userData, BuildingProcessEventArgs args, out BuildingModel buildingModel)
+        public bool TryDismantleBuilding(UserData userData, BuildingProcessEventArgs args, out BuildingModel buildingModel)
         {
             if (m_assetLibrary.TryGetBuildingTemplateByType(BuildingType.DestroyedBuilding, out var template))
             {
                 if (userData.UserBuildingsData.TryGetBuildingModel(args.BuildingId, out var building))
                 {
+                    var level = building.Level;
+
+
+                    for (int i = 1; i < level; i++)
+                    {
+                        foreach (var element in building.Template.BuildingContext.UpgradeCostModel.CostModels)
+                        {
+                            userData.UserResources.SetGameResource(element.GameResource.GameResourceType, 
+                                userData.UserResources.GetGameResourceValue(element.GameResource.GameResourceType) +
+                                element.Cost * element.CostGrowth * i * 0.5f);
+                        }
+                    }
+
+
                     userData.UserBuildingsData.DeleteBuilding(building.Id, template);
                     building.SetLevel(1);
                     if (userData.UserPlaceHolderData.PlaceHolderDataMap.TryGetValue(building.Id, out var placeHolder))
