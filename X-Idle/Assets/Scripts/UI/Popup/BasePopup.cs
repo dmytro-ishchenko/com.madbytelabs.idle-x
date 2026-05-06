@@ -21,9 +21,11 @@ namespace UI.Popup
 
         public virtual void Show<T>(T context)
         {
-            InitContentSize(false);
+           // InitContentSize(false);
+            InitVerticalLayoutGroup(false);
             gameObject.SetActive(true);
-            InitContentSize(true);
+           // InitContentSize(true);
+            InitVerticalLayoutGroup(true);
         }
 
         public virtual void Close()
@@ -37,6 +39,16 @@ namespace UI.Popup
                 foreach (var fitter in m_contentSizeFitters)
                 {
                     fitter.enabled = enable;
+                }
+        }
+
+        protected void InitVerticalLayoutGroup(bool enable)
+        {
+            if (m_contentSizeFitters.Count > 0)
+                foreach (var fitter in m_contentSizeFitters)
+                {
+                    if (fitter.TryGetComponent(out VerticalLayoutGroup group))
+                        group.enabled = enable;
                 }
         }
     }

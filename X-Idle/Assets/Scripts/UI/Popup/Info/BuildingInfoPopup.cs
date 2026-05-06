@@ -18,13 +18,18 @@ namespace UI.Popup.Info
         [SerializeField] private Transform m_storageRoot;
         [SerializeField] private GameObject m_conditionBlock;
         [SerializeField] private InfoElement m_efficiencyElement;
-
+        [SerializeField] private Button[] m_buttons;
         private readonly List<InfoElement> m_elements = new();
 
         public override void Show<T>(T context)
         {
             if (context is SelectBuildingInfo model)
             {
+                TryGetComponent(out CanvasGroup group);
+                group.interactable = false;
+                group.blocksRaycasts = false;
+                group.alpha = 0;
+
                 m_name.text = model.Name.ToUpper();
                 m_level.text = $"Lv.{model.Level}";
                 m_description.text = model.Description;
@@ -67,14 +72,21 @@ namespace UI.Popup.Info
                     m_conditionBlock.gameObject.SetActive(false);
                 }
 
+                group.interactable = true;
+                group.blocksRaycasts = true;
+                group.alpha = 1;
+
                 base.Show(context);
             }
-
-            base.Show(context);
         }
 
         public override void Close()
         {
+            TryGetComponent(out CanvasGroup group);
+            group.interactable = false;
+            group.blocksRaycasts = false;
+            group.alpha = 0;
+
             foreach (var element in m_elements)
             {
                 Destroy(element.gameObject);
