@@ -80,6 +80,7 @@ namespace UI
 
         private void ShowBuildingsInfoHandler(ShowBuildingsInfoEventArgs args)
         {
+            m_gameUIController.PopupManager.ShowPopup(PopupType.BuildingInfo, m_applicationData.GetBuildingInfo(args.BuildingModel.Id));
         }
 
 

@@ -180,7 +180,6 @@ namespace Data.Model
             buildings = null;
             return false;
         }
-
-      
+  
     }
 }

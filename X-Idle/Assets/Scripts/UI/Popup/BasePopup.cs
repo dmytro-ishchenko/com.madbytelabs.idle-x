@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Common.Pattern.BobbleEvent;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,8 @@ namespace UI.Popup
     {
         [SerializeField] private Button[] m_closeButtons;
 
+
+        [SerializeField] List<ContentSizeFitter> m_contentSizeFitters = new();
         public Node Node { get; } = new();
 
         protected void Awake()
@@ -18,13 +21,23 @@ namespace UI.Popup
 
         public virtual void Show<T>(T context)
         {
-            
+            InitContentSize(false);
             gameObject.SetActive(true);
+            InitContentSize(true);
         }
 
         public virtual void Close()
         {
             gameObject.SetActive(false);
+        }
+
+        protected void InitContentSize(bool enable)
+        {
+            if (m_contentSizeFitters.Count > 0)
+                foreach (var fitter in m_contentSizeFitters)
+                {
+                    fitter.enabled = enable;
+                }
         }
     }
 }

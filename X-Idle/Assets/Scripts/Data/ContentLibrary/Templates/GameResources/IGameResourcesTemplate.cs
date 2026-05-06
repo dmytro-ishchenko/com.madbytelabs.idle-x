@@ -8,5 +8,7 @@ namespace Data.ContentLibrary.Templates.GameResources
     {
         GameResourceType GameResourceType { get; }
         Sprite Icon { get; }
+        float BaseCapacity { get; }
+        float StorageFactor { get; }
     }
 }

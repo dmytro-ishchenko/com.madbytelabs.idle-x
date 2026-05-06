@@ -8,7 +8,9 @@ namespace Data.Enum
         Food = 3,
         Water = 4,
         Data = 5,
-        Storage = 6,
+        StorageBonus = 6,
         Parts = 7,
+        ProductionBonus = 8,
+        Storage = 9,
     }
 }

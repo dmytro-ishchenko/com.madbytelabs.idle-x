@@ -146,7 +146,7 @@ namespace Data
                         m_assetLibrary.TryGetBuildingTemplate(args.TemplateId, out BuildingTemplate buildingTemplate);
 
                         OnActionError?.Invoke(new ActionErrorModel(ActionErrorType.CreateBuilding,
-                            DataUtility.GetCreateBuildingRequirementContext(m_userData.UserResources, m_userData.UserBuildingsData, buildingTemplate)));
+                            DataUtility.GetCreateBuildingRequirementContext(m_userData.UserBuildingsData, buildingTemplate)));
                     }
 
                     break;
@@ -180,6 +180,11 @@ namespace Data
         public void UnlockPlaceHolder(UnlockPlaceholderEventArgs args)
         {
             DataUtility.UnlockPlaceHolder(args.PlaceHolderId, m_placeholderMapTemplate, m_userData.UserPlaceHolderData, m_userData.UserResources);
+        }
+
+        public SelectBuildingInfo GetBuildingInfo(string id)
+        {
+            return BuildingInfoBuilder.GetBuildingInfo(id, m_assetLibrary, m_userData.UserBuildingsData);
         }
 
         void SaveUserData()

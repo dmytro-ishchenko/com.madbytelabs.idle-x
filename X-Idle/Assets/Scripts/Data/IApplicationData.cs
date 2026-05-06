@@ -27,5 +27,6 @@ namespace Data
         UpgradeBuildingContext GetUpgradeBuildingContext(BuildingModel buildingModel);
         PlaceHolderRequirementsModel GetPlaceHolderRequirements(string id);
         void UnlockPlaceHolder(UnlockPlaceholderEventArgs args);
+        SelectBuildingInfo GetBuildingInfo(string id);
     }
 }

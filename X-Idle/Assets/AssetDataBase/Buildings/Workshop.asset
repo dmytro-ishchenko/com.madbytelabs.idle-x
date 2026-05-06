@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.data::Data.ContentLibrary.Templates.BuildingTemplate
   m_id: 8de869b24dd6d00d7326a31
   m_name: Workshop
-  m_description: 
+  m_description: Produces parts from scrap. Upgrade it to craft more components for
+    repairs, machines, and advanced building upgrades.
   m_view: {fileID: 4104064214169789485, guid: cb41a5e10c9994682ad15f5a86f6007c, type: 3}
-  m_icon: {fileID: 21300000, guid: 6ab9d64b9e9e74f819c53bf2eb350e56, type: 3}
+  m_icon: {fileID: 21300000, guid: f3fbb345765f24d8a913d8136e996804, type: 3}
   m_buildingContext:
     m_buildingType: 6
     m_duplicateModel:

@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Data.ContentLibrary;
 using Data.ContentLibrary.Templates;
@@ -7,7 +9,6 @@ using Data.ContentLibrary.Templates.Placeholder;
 using Data.Enum;
 using Data.Model;
 using Data.Model.Popup;
-using Data.Persistent;
 using UnityEngine;
 
 
@@ -15,7 +16,7 @@ namespace Data.Utility
 {
     public static class DataUtility
     {
-        public static bool CanCreateBuilding(UserBuildingsData buildingsData, BuildingTemplate template)
+        internal static bool CanCreateBuilding(UserBuildingsData buildingsData, BuildingTemplate template)
         {
             var buildRequirements = template.BuildingContext.CreateBuildingRequirements;
 
@@ -43,7 +44,7 @@ namespace Data.Utility
             return true;
         }
 
-        public static CreateBuildingRequirementsContext GetCreateBuildingRequirementContext(UserResources userResources, UserBuildingsData userBuildingsData, BuildingTemplate buildingTemplate)
+        internal static CreateBuildingRequirementsContext GetCreateBuildingRequirementContext(UserBuildingsData userBuildingsData, BuildingTemplate buildingTemplate)
         {
             List<BuildingContextModel> buildings = null;
 
@@ -72,7 +73,7 @@ namespace Data.Utility
             return new CreateBuildingRequirementsContext(buildingTemplate.Name, buildingTemplate.Description, buildingTemplate.Icon, buildings, null);
         }
 
-        public static UpgradeBuildingContext GetUpgradeBuildingContext(BuildingModel buildingModel, IAssetLibrary assetLibrary, UserResources userResources, UserBuildingsData userBuildingsData)
+        internal static UpgradeBuildingContext GetUpgradeBuildingContext(BuildingModel buildingModel, IAssetLibrary assetLibrary, UserResources userResources, UserBuildingsData userBuildingsData)
         {
             List<BuildingContextModel> buildings = null;
             List<ResourceContextModel> resources = null;
@@ -138,29 +139,29 @@ namespace Data.Utility
                 buildingModel.Id, buildingModel.Template.Id, buildings, resources, notMeetRequirements == 0);
         }
 
-        public static float UpgradeResourceCost(float cost, int buildingLevel, float costGrowth)
+        internal static float UpgradeResourceCost(float cost, int buildingLevel, float costGrowth)
         {
             return cost * costGrowth * buildingLevel;
         }
 
-        public static float GetMainBuildingBonus(int level, float levelMultiplier)
+        static float GetMainBuildingBonus(int level, float levelMultiplier)
         {
             return 1 + levelMultiplier * (level - 1);
         }
 
-        public static float GetResourceUse(float baseUse, int buildingLevel, float levelMultiplier)
+        internal static float GetResourceUse(float baseUse, int buildingLevel, float levelMultiplier)
         {
             return baseUse * levelMultiplier * buildingLevel;
         }
 
-        public static float GetProductionAmount(BuildingModel mainBuildingModel, BuildingModel buildingModel, float useResourcesMultiplier)
+        internal static float GetProductionAmount(BuildingModel mainBuildingModel, BuildingModel buildingModel, float useResourcesMultiplier)
         {
             return (buildingModel.Template.BuildingContext.BuildingProduction.Amount + (buildingModel.Level - 1) * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier) *
                    GetMainBuildingBonus(mainBuildingModel.Level, mainBuildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier) * useResourcesMultiplier;
         }
 
 
-        public static float GetResourceMaxCapacity(GameResourcesTemplate resource, ICollection<BuildingModel> warehouseModels)
+        internal static float GetResourceMaxCapacity(GameResourcesTemplate resource, ICollection<BuildingModel> warehouseModels)
         {
             if (warehouseModels is { Count: > 0 })
             {
@@ -176,12 +177,12 @@ namespace Data.Utility
                 return resource.BaseCapacity;
         }
 
-        public static int GetCapacity(GameResourcesTemplate resource, int warehouseLevel)
+        internal static int GetCapacity(IGameResourcesTemplate resource, int warehouseLevel)
         {
             return Mathf.RoundToInt(resource.BaseCapacity + GetWarehouseBonus(warehouseLevel) * resource.StorageFactor);
         }
 
-        private static int GetWarehouseBonus(int level)
+        internal static int GetWarehouseBonus(int level)
         {
             return level switch
             {
@@ -200,7 +201,7 @@ namespace Data.Utility
             };
         }
 
-        public static PlaceHolderRequirementsModel GetPlaceHolderRequirements(string placeHolderId,
+        internal static PlaceHolderRequirementsModel GetPlaceHolderRequirements(string placeHolderId,
             IAssetLibrary assetLibrary,
             IPlaceholderMapTemplate placeholderMapTemplate,
             UserPlaceHolderData userPlaceHolderData,
@@ -276,7 +277,7 @@ namespace Data.Utility
             return new PlaceHolderRequirementsModel("", buildingsContext, resourcesContext, notMeetRequirements == 0);
         }
 
-        public static void UnlockPlaceHolder(string placeHolderId, IPlaceholderMapTemplate placeholderMapTemplate, UserPlaceHolderData userPlaceHolderData, UserResources userResources)
+        internal static void UnlockPlaceHolder(string placeHolderId, IPlaceholderMapTemplate placeholderMapTemplate, UserPlaceHolderData userPlaceHolderData, UserResources userResources)
         {
             var placeHolder = userPlaceHolderData.PlaceHolderDataMap[placeHolderId];
 
@@ -291,6 +292,106 @@ namespace Data.Utility
                 }
 
                 userPlaceHolderData.UpdatePlaceHolderStatus(placeHolder.Id, new PlaceholderModel(placeHolder.Id, PlaceHolderStatus.Unlocked, placeHolder.PlaceHolderType));
+            }
+        }
+
+        public static string ValueToString(float value)
+        {
+            value = (float)Math.Round(value);
+
+            if (value < 1000)
+                return value.ToString(CultureInfo.InvariantCulture);
+
+
+            double shortened = value;
+            int suffixIndex = -1;
+
+            while (shortened >= 1000)
+            {
+                shortened /= 1000;
+                suffixIndex++;
+            }
+
+            double rounded = shortened < 10 ? Math.Round(shortened, 1) : Math.Round(shortened, 0);
+
+            if (rounded >= 1000)
+            {
+                rounded /= 1000;
+                suffixIndex++;
+            }
+
+            string number = rounded < 10 ? rounded.ToString("0.#") : rounded.ToString("0");
+
+            string suffix = string.Empty;
+            switch (suffixIndex)
+            {
+                case 0:
+                    suffix = "K";
+                    break;
+                case 1:
+                    suffix = "M";
+                    break;
+                case 2:
+                    suffix = "B";
+                    break;
+                case 3:
+                    suffix = "T";
+                    break;
+                case 4:
+                    suffix = "Q";
+                    break;
+                case 5:
+                    suffix = "G";
+                    break;
+            }
+
+            return $"{number}{suffix}";
+        }
+
+        public static float GetBuildingEfficiency(BuildingModel buildingModel, UserBuildingsData userBuildingsData)
+        {
+            float efficiency = 1;
+            if (buildingModel.Template.BuildingContext.ResourcesUse is { Count: > 0 })
+            {
+                userBuildingsData.TryGetBuildingsByType(BuildingType.MainBuilding, out var mainBuildings);
+
+                foreach (var useResource in buildingModel.Template.BuildingContext.ResourcesUse)
+                {
+                    float useAmount = 0;
+                    float productAmount = 0;
+
+                    userBuildingsData.TryGetBuildingsByUseResourceType(useResource.GameResource.GameResourceType, out var buildingsUse);
+
+                    foreach (var buildingUse in buildingsUse)
+                    {
+                        foreach (var resourcesUseModel in buildingUse.Template.BuildingContext.ResourcesUse)
+                        {
+                            if (resourcesUseModel.GameResource.GameResourceType == useResource.GameResource.GameResourceType)
+                            {
+                                useAmount += GetResourceUse(resourcesUseModel.Amount, buildingUse.Level, buildingUse.Template.BuildingContext.BuildingProduction.LevelMultiplier);
+                            }
+                        }
+                    }
+
+                    if (userBuildingsData.TryGetBuildingsByResourceType(useResource.GameResource.GameResourceType, out var buildingsProduct))
+                    {
+                        foreach (var buildingProduct in buildingsProduct)
+                        {
+                            productAmount += GetProductionAmount(mainBuildings.ElementAt(0), buildingProduct, 1);
+                        }
+                    }
+
+                    efficiency *= (productAmount / useAmount);
+                    if (efficiency > 1)
+                        efficiency = 1;
+                }
+
+
+                return efficiency;
+            }
+            else
+            {
+                return efficiency;
             }
         }
     }

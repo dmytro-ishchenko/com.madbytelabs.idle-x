@@ -1,8 +1,8 @@
 using Data.Enum;
 using Data.Model;
+using Data.Utility;
 using UnityEngine;
 using TMPro;
-using UI.Utility;
 
 namespace UI.Controller
 {
@@ -17,12 +17,12 @@ namespace UI.Controller
 
         public void UpdateUserResources(UserResources userResources)
         {
-            m_skrapLabel.text = UiUtility.ValueToString(userResources.GetGameResourceValue(GameResourceType.Scrap));
-            m_energyLabel.text = UiUtility.ValueToString(userResources.GetGameResourceValue(GameResourceType.Energy));
-            m_foodLabel.text = UiUtility.ValueToString(userResources.GetGameResourceValue(GameResourceType.Food));
-            m_waterLabel.text = UiUtility.ValueToString(userResources.GetGameResourceValue(GameResourceType.Water));
-            m_partsLabel.text = UiUtility.ValueToString(userResources.GetGameResourceValue(GameResourceType.Parts));
-            m_dataLabel.text = UiUtility.ValueToString(userResources.GetGameResourceValue(GameResourceType.Data));
+            m_skrapLabel.text = DataUtility.ValueToString(userResources.GetGameResourceValue(GameResourceType.Scrap));
+            m_energyLabel.text = DataUtility.ValueToString(userResources.GetGameResourceValue(GameResourceType.Energy));
+            m_foodLabel.text = DataUtility.ValueToString(userResources.GetGameResourceValue(GameResourceType.Food));
+            m_waterLabel.text = DataUtility.ValueToString(userResources.GetGameResourceValue(GameResourceType.Water));
+            m_partsLabel.text = DataUtility.ValueToString(userResources.GetGameResourceValue(GameResourceType.Parts));
+            m_dataLabel.text = DataUtility.ValueToString(userResources.GetGameResourceValue(GameResourceType.Data));
         }
     }
 }

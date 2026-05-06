@@ -3,8 +3,8 @@ using AYellowpaper.SerializedCollections;
 using Data.Enum;
 using Data.Events;
 using Data.Model.Popup;
+using Data.Utility;
 using TMPro;
-using UI.Utility;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -51,7 +51,7 @@ namespace UI.Popup.Upgrade
                 {
                     var requirementElement = Instantiate(m_requiredElements[RequireElementType.Resource], m_root);
 
-                    requirementElement.Init(element.Count >= element.RequireAmount, $"{element.Name} : {UiUtility.ValueToString(element.RequireAmount)}");
+                    requirementElement.Init(element.Count >= element.RequireAmount, $"{element.Name} : {DataUtility.ValueToString(element.RequireAmount)}");
 
                     requirementElement.TryGetComponent<RectTransform>(out var rectTransform);
                     rectTransform.SetSiblingIndex(elementIndex);
