@@ -45,16 +45,14 @@ namespace UI.Popup.Info
                     view.gameObject.SetActive(true);
                 }
 
-                if (model.StorageList is { Count: > 0 })
+                if (model.Storage != null)
                 {
                     m_storageBlock.gameObject.SetActive(true);
-                    foreach (var effect in model.StorageList)
-                    {
-                        view = Instantiate(m_infoElement, m_storageRoot);
-                        view.Init(effect.Icon, $"{effect.Text} :", $"{effect.Value}");
-                        m_elements.Add(view);
-                        view.gameObject.SetActive(true);
-                    }
+
+                    view = Instantiate(m_infoElement, m_storageRoot);
+                    view.Init(model.Storage.Icon, $"{model.Storage.Text} :", $"{model.Storage.Value}");
+                    m_elements.Add(view);
+                    view.gameObject.SetActive(true);
                 }
                 else
                 {

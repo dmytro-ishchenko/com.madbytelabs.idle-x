@@ -1,4 +1,3 @@
-using Data.Enum;
 using Data.Model.Popup;
 using TMPro;
 using UI.Event;
@@ -12,8 +11,6 @@ namespace UI.Popup.Select
         [SerializeField] private TMP_Text m_name;
         [SerializeField] private Image m_icon;
         [SerializeField] private TMP_Text m_level;
-        [SerializeField] private TMP_Text m_productionLabel;
-        [SerializeField] private TMP_Text m_output;
         [SerializeField] private Button m_info;
         [SerializeField] private Button m_upgrade;
         [SerializeField] private Button m_demolish;
@@ -22,30 +19,9 @@ namespace UI.Popup.Select
         {
             if (context is SelectBuildingContext model)
             {
-                m_name.text = model.BuildingModel.Template.Name;
+                m_name.text = model.BuildingModel.Template.Name.ToUpper();
                 m_icon.sprite = model.BuildingModel.Template.Icon;
-                m_level.text = model.BuildingModel.Level.ToString();
-
-                switch (model.BuildingModel.Template.BuildingContext.BuildingType)
-                {
-                    case BuildingType.MainBuilding:
-                        m_productionLabel.gameObject.SetActive(false);
-                        m_output.gameObject.SetActive(false);
-                        break;
-                    case BuildingType.Warehouse:
-                        m_productionLabel.text = "Bonus:";
-                        m_output.text = "Storage";
-                        m_productionLabel.gameObject.SetActive(true);
-                        m_output.gameObject.SetActive(true);
-                        break;
-                    default:
-                        m_productionLabel.text = "Output:";
-                        m_output.text = model.BuildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.Name;
-                        m_productionLabel.gameObject.SetActive(true);
-                        m_output.gameObject.SetActive(true);
-                        break;
-                }
-
+                m_level.text = $"Lv.{model.BuildingModel.Level}";
 
                 m_upgrade.onClick.AddListener(() => { Node.TriggerEvent(new ShowUpgradeBuildingEventArgs(model.BuildingModel)); });
                 m_info.onClick.AddListener(() => { Node.TriggerEvent(new ShowBuildingsInfoEventArgs(model.BuildingModel)); });

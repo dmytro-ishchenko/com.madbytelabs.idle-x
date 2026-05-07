@@ -77,8 +77,13 @@ namespace Data.Utility
         {
             List<BuildingContextModel> buildings = null;
             List<ResourceContextModel> resources = null;
+            IList<InfoElementModel> currentLevelInfoElements = null;
+            IList<InfoElementModel> nextLevelInfoElements = null;
 
             int notMeetRequirements = 0;
+
+            currentLevelInfoElements = BuildingInfoBuilder.GetBuildingInfo(buildingModel, assetLibrary, userBuildingsData, buildingModel.Level).effects;
+            nextLevelInfoElements = BuildingInfoBuilder.GetBuildingInfo(buildingModel, assetLibrary, userBuildingsData, buildingModel.Level + 1).effects;
 
             if (buildingModel.Template.BuildingContext.UpgradeBuildingRequirements != null)
             {
@@ -136,7 +141,7 @@ namespace Data.Utility
             }
 
             return new UpgradeBuildingContext(buildingModel.Template.Name, buildingModel.Template.Description, buildingModel.Level, buildingModel.Template.Icon,
-                buildingModel.Id, buildingModel.Template.Id, buildings, resources, notMeetRequirements == 0);
+                buildingModel.Id, buildingModel.Template.Id, currentLevelInfoElements, nextLevelInfoElements, buildings, resources, notMeetRequirements == 0);
         }
 
         internal static float UpgradeResourceCost(float cost, int buildingLevel, float costGrowth)
