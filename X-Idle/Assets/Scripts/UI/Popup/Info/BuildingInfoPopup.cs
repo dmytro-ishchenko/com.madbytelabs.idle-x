@@ -40,7 +40,7 @@ namespace UI.Popup.Info
                 foreach (var effect in model.Effects)
                 {
                     view = Instantiate(m_infoElement, m_effectRoot);
-                    view.Init(effect.Icon, $"{effect.Text} :", $"{effect.Value}");
+                    view.Init(effect.Icon, $"{effect.Text}", $"{effect.Value}");
                     m_elements.Add(view);
                     view.gameObject.SetActive(true);
                 }
@@ -50,7 +50,7 @@ namespace UI.Popup.Info
                     m_storageBlock.gameObject.SetActive(true);
 
                     view = Instantiate(m_infoElement, m_storageRoot);
-                    view.Init(model.Storage.Icon, $"{model.Storage.Text} :", $"{model.Storage.Value}");
+                    view.Init(model.Storage.Icon, $"{model.Storage.Text}", $"{model.Storage.Value}");
                     m_elements.Add(view);
                     view.gameObject.SetActive(true);
                 }

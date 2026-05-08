@@ -140,8 +140,11 @@ namespace Data.Utility
                 }
             }
 
-            return new UpgradeBuildingContext(buildingModel.Template.Name, buildingModel.Template.Description, buildingModel.Level, buildingModel.Template.Icon,
-                buildingModel.Id, buildingModel.Template.Id, currentLevelInfoElements, nextLevelInfoElements, buildings, resources, notMeetRequirements == 0);
+            OutputInfoModel outputModel = BuildingInfoBuilder.GetProductionInfoModel(buildingModel, assetLibrary, userBuildingsData);
+
+            return
+                new UpgradeBuildingContext(buildingModel.Template.Name, buildingModel.Template.Description, buildingModel.Level, buildingModel.Template.Icon,
+                    buildingModel.Id, buildingModel.Template.Id, outputModel, null, new RequirementsModel(buildings, resources), notMeetRequirements == 0);
         }
 
         internal static float UpgradeResourceCost(float cost, int buildingLevel, float costGrowth)
@@ -161,7 +164,8 @@ namespace Data.Utility
 
         internal static float GetProductionAmount(BuildingModel mainBuildingModel, BuildingModel buildingModel, float useResourcesMultiplier)
         {
-            return (buildingModel.Template.BuildingContext.BuildingProduction.Amount + (buildingModel.Level - 1) * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier) *
+            return (buildingModel.Template.BuildingContext.BuildingProduction.Amount * Mathf.Pow(buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier, buildingModel.Level - 1) +
+                    (buildingModel.Level - 1)) *
                    GetMainBuildingBonus(mainBuildingModel.Level, mainBuildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier) * useResourcesMultiplier;
         }
 

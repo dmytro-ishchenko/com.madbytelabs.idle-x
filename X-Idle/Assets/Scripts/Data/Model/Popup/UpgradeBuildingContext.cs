@@ -5,8 +5,7 @@ namespace Data.Model.Popup
 {
     public struct UpgradeBuildingContext : IShowPopupContext
     {
-        public UpgradeBuildingContext(string name, string description, int level, Sprite icon, string id, string templateId, IList<InfoElementModel> currentInfoModels,
-            IList<InfoElementModel> nextInfoModels, IList<BuildingContextModel> buildings, IList<ResourceContextModel> resources, bool canUpgrade)
+        public UpgradeBuildingContext(string name, string description, int level, Sprite icon, string id, string templateId, OutputInfoModel outputModel, IList<InfoElementModel> useInfoModels, RequirementsModel requirementsModel, bool canUpgrade)
         {
             Name = name;
             Description = description;
@@ -14,11 +13,11 @@ namespace Data.Model.Popup
             Icon = icon;
             Id = id;
             TemplateId = templateId;
-            Buildings = buildings;
-            Resources = resources;
+
             CanUpgrade = canUpgrade;
-            CurrentInfoModels = currentInfoModels;
-            NextInfoModels = nextInfoModels;
+            RequirementsModel = requirementsModel;
+            OutputModel = outputModel;
+            UseInfoModels = useInfoModels;
         }
 
         public string Name { get; }
@@ -27,11 +26,10 @@ namespace Data.Model.Popup
         public Sprite Icon { get; }
         public string Id { get; }
         public string TemplateId { get; }
+        public OutputInfoModel OutputModel { get; }
+        public IList<InfoElementModel> UseInfoModels { get; }
 
-        public IList<InfoElementModel> CurrentInfoModels { get; }
-        public IList<InfoElementModel> NextInfoModels { get; }
-        public IList<BuildingContextModel> Buildings { get; }
-        public IList<ResourceContextModel> Resources { get; }
+        public RequirementsModel RequirementsModel { get; }
         public bool CanUpgrade { get; }
     }
 }

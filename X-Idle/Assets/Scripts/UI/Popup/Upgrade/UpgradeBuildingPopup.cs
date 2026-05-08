@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using Data.Enum;
@@ -13,12 +14,9 @@ namespace UI.Popup.Upgrade
 {
     internal class UpgradeBuildingPopup : BasePopup
     {
-        [SerializeField] private TMP_Text m_name;
-        [SerializeField] private Image m_icon;
-        [SerializeField] private TMP_Text m_level;
-        [SerializeField] private TMP_Text m_nextLevel;
-        [SerializeField] private Transform m_levelRoot;
-        [SerializeField] private Transform m_nextLevelRoot;
+        [SerializeField] private BuildingBlock m_buildingBlock;
+        [SerializeField] private OutputBlock m_outputBlock;
+
         [SerializeField] private InfoElement m_infoElement;
         [SerializeField] private SerializedDictionary<RequireElementType, RequiredElementView> m_requiredElements;
         [SerializeField] private Transform m_requirmentRoot;
@@ -33,46 +31,75 @@ namespace UI.Popup.Upgrade
         {
             if (context is UpgradeBuildingContext model)
             {
-                m_name.text = model.Name;
-                m_level.text = $"Lv.{model.Level}";
-                m_nextLevel.text = $"Lv.{model.Level + 1}";
-                m_icon.sprite = model.Icon;
+                m_buildingBlock.Name.text = model.Name;
+                m_buildingBlock.Level.text = $"Lv.{model.Level}";
+                m_buildingBlock.NextLevel.text = $"Lv.{model.Level + 1}";
+                m_buildingBlock.Icon.sprite = model.Icon;
 
 
-                foreach (var currentModel in model.CurrentInfoModels)
+                m_outputBlock.Icon.sprite = model.OutputModel.Icon;
+                m_outputBlock.ResourceName.text = model.OutputModel.ResourceName;
+
+                if (model.OutputModel.Resource != null)
                 {
-                    var infoView = Instantiate(m_infoElement, m_levelRoot);
-                    infoView.Init(currentModel.Icon, currentModel.Text, currentModel.Value);
-                    m_infoElements.Add(infoView);
-                    infoView.gameObject.SetActive(true);
+                    m_outputBlock.ProductionRoot.SetActive(true);
+                    m_outputBlock.CurrentProductionField.text = model.OutputModel.Resource.CurrentOutput;
+                    m_outputBlock.NextProductionField.text = model.OutputModel.Resource.NextOutput;
+                }
+                else
+                {
+                    m_outputBlock.ProductionRoot.SetActive(false);
                 }
 
-                foreach (var nextModel in model.NextInfoModels)
+                if (model.OutputModel.Storage != null)
                 {
-                    var infoView = Instantiate(m_infoElement, m_nextLevelRoot);
-                    infoView.Init(nextModel.Icon, nextModel.Text, nextModel.Value);
-                    m_infoElements.Add(infoView);
-                    infoView.gameObject.SetActive(true);
+                    m_outputBlock.StorageRoot.SetActive(true);
+                    m_outputBlock.CurrentStorageField.text = model.OutputModel.Storage.CurrentOutput;
+                    m_outputBlock.NextStorageField.text = model.OutputModel.Storage.NextOutput;
+                }
+                else
+                {
+                    m_outputBlock.StorageRoot.SetActive(false);
                 }
 
-             //   m_leverBlock.sizeDelta = new Vector2(m_leverBlock.sizeDelta.x, m_levelElement.sizeDelta.y + 40);
-
-                foreach (var element in model.Buildings)
-                {
-                    var requirementElement = Instantiate(m_requiredElements[RequireElementType.Building], m_requirmentRoot);
-                    requirementElement.Init(element.Level >= element.RequireLevel, $"{element.Name} Level: {element.RequireLevel}");
-                    m_requirementViews.Add(requirementElement);
-                    requirementElement.gameObject.SetActive(true);
-                }
+                // m_outputBlock.ResourceName=model.
+                // m_outputBlock.CurrentProductionField.text = model.OutputModel.CurrentOutput;
+                // m_outputBlock.NextProductionField.text = model.OutputModel.NextOutput;
 
 
-                foreach (var element in model.Resources)
-                {
-                    var requirementElement = Instantiate(m_requiredElements[RequireElementType.Resource], m_requirmentRoot);
-                    requirementElement.Init(element.Count >= element.RequireAmount, $"{element.Name} : {DataUtility.ValueToString(element.RequireAmount)}");
-                    m_requirementViews.Add(requirementElement);
-                    requirementElement.gameObject.SetActive(true);
-                }
+                // foreach (var currentModel in model.CurrentInfoModels)
+                // {
+                //     var infoView = Instantiate(m_infoElement, m_levelRoot);
+                //     infoView.Init(currentModel.Icon, currentModel.Text, currentModel.Value);
+                //     m_infoElements.Add(infoView);
+                //     infoView.gameObject.SetActive(true);
+                // }
+                //
+                // foreach (var nextModel in model.NextInfoModels)
+                // {
+                //     var infoView = Instantiate(m_infoElement, m_nextLevelRoot);
+                //     infoView.Init(nextModel.Icon, nextModel.Text, nextModel.Value);
+                //     m_infoElements.Add(infoView);
+                //     infoView.gameObject.SetActive(true);
+                // }
+
+                if (model.RequirementsModel.Buildings != null)
+                    foreach (var element in model.RequirementsModel.Buildings)
+                    {
+                        var requirementElement = Instantiate(m_requiredElements[RequireElementType.Building], m_requirmentRoot);
+                        requirementElement.Init(element.Level >= element.RequireLevel, $"{element.Name} Level: {element.RequireLevel}");
+                        m_requirementViews.Add(requirementElement);
+                        requirementElement.gameObject.SetActive(true);
+                    }
+
+                if (model.RequirementsModel.Resources != null)
+                    foreach (var element in model.RequirementsModel.Resources)
+                    {
+                        var requirementElement = Instantiate(m_requiredElements[RequireElementType.Resource], m_requirmentRoot);
+                        requirementElement.Init(element.Count >= element.RequireAmount, $"{element.Name} : {DataUtility.ValueToString(element.RequireAmount)}");
+                        m_requirementViews.Add(requirementElement);
+                        requirementElement.gameObject.SetActive(true);
+                    }
 
                 if (!model.CanUpgrade)
                 {
@@ -81,7 +108,7 @@ namespace UI.Popup.Upgrade
                 }
                 else
                 {
-                    m_upgrade.interactable = true;
+                    m_upgrade.gameObject.SetActive(true);
                     m_close.gameObject.SetActive(false);
                     m_upgrade.onClick.AddListener(() =>
                     {
@@ -116,6 +143,28 @@ namespace UI.Popup.Upgrade
             m_close.onClick.RemoveAllListeners();
 
             base.Close();
+        }
+
+        [Serializable]
+        class BuildingBlock
+        {
+            public TMP_Text Name;
+            public Image Icon;
+            public TMP_Text Level;
+            public TMP_Text NextLevel;
+        }
+
+        [Serializable]
+        class OutputBlock
+        {
+            public Image Icon;
+            public TMP_Text ResourceName;
+            public GameObject ProductionRoot;
+            public TMP_Text CurrentProductionField;
+            public TMP_Text NextProductionField;
+            public GameObject StorageRoot;
+            public TMP_Text CurrentStorageField;
+            public TMP_Text NextStorageField;
         }
     }
 }

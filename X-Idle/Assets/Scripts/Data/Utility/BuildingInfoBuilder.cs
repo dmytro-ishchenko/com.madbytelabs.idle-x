@@ -3,6 +3,7 @@ using Data.ContentLibrary;
 using Data.Enum;
 using Data.Model;
 using Data.Model.Popup;
+using UnityEngine;
 
 namespace Data.Utility
 {
@@ -85,6 +86,57 @@ namespace Data.Utility
 
 
             return (effects, storage);
+        }
+
+        public static OutputInfoModel GetProductionInfoModel(BuildingModel buildingModel, IAssetLibrary assetLibrary, UserBuildingsData userBuildingsData)
+        {
+            OutputElement resource = null, storage = null;
+            string current = string.Empty, next = string.Empty;
+            string resourceName = buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.Name;
+            Sprite icon = buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.Icon;
+            switch (buildingModel.Template.BuildingContext.BuildingType)
+            {
+                case BuildingType.MainBuilding:
+                    current = $"{buildingModel.Level * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * 100}%";
+                    next = $"{(buildingModel.Level + 1) * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * 100}%";
+                    resource = new OutputElement(current, next);
+                    break;
+                case BuildingType.Warehouse:
+                    current = $"{DataUtility.ValueToString(DataUtility.GetWarehouseBonus(buildingModel.Level))}";
+                    next = $"{DataUtility.ValueToString(DataUtility.GetWarehouseBonus(buildingModel.Level + 1))}";
+                    storage = new OutputElement(current, next);
+                    break;
+                default:
+
+                    current =
+                        $"+{DataUtility.ValueToString(buildingModel.Template.BuildingContext.BuildingProduction.Amount * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * buildingModel.Level * 60)} /m";
+                    next =
+                        $"+{DataUtility.ValueToString(buildingModel.Template.BuildingContext.BuildingProduction.Amount * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * (buildingModel.Level + 1) * 60)} /m";
+
+                    resource = new OutputElement(current, next);
+
+                    var warehouseLevel = 0;
+
+                    if (userBuildingsData.TryGetBuildingsByType(BuildingType.Warehouse, out var warehouses))
+                    {
+                        foreach (var warehouse in warehouses)
+                        {
+                            if (warehouse.Level >= warehouseLevel)
+                                warehouseLevel = warehouse.Level;
+                        }
+                    }
+
+                    var value = buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.BaseCapacity +
+                                DataUtility.GetCapacity(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate, warehouseLevel);
+
+
+                    storage = new OutputElement(DataUtility.ValueToString(value), string.Empty);
+
+
+                    break;
+            }
+
+            return new OutputInfoModel(resourceName, icon, resource, storage); //ProductionInfoModel model = null;
         }
     }
 }
