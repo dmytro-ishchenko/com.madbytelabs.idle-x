@@ -142,9 +142,11 @@ namespace Data.Utility
 
             OutputInfoModel outputModel = BuildingInfoBuilder.GetProductionInfoModel(buildingModel, assetLibrary, userBuildingsData);
 
+            IList<UseResourcesModel> useResourcesModels = BuildingInfoBuilder.GetUseResourcesModels(buildingModel, assetLibrary, userBuildingsData);
+            
             return
                 new UpgradeBuildingContext(buildingModel.Template.Name, buildingModel.Template.Description, buildingModel.Level, buildingModel.Template.Icon,
-                    buildingModel.Id, buildingModel.Template.Id, outputModel, null, new RequirementsModel(buildings, resources), notMeetRequirements == 0);
+                    buildingModel.Id, buildingModel.Template.Id, outputModel, useResourcesModels, new RequirementsModel(buildings, resources), notMeetRequirements == 0);
         }
 
         internal static float UpgradeResourceCost(float cost, int buildingLevel, float costGrowth)

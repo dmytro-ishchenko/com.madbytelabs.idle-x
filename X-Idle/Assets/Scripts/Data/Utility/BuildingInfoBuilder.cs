@@ -9,7 +9,8 @@ namespace Data.Utility
 {
     internal static class BuildingInfoBuilder
     {
-        public static SelectBuildingInfo GetBuildingInfo(string buildingId, IAssetLibrary assetLibrary, UserBuildingsData userBuildingsData)
+        public static SelectBuildingInfo GetBuildingInfo(string buildingId, IAssetLibrary assetLibrary,
+            UserBuildingsData userBuildingsData)
         {
             userBuildingsData.TryGetBuildingModel(buildingId, out BuildingModel buildingModel);
 
@@ -25,10 +26,12 @@ namespace Data.Utility
             condition = new InfoElementModel($"{conditionValue}%");
 
 
-            return new SelectBuildingInfo(buildingModel.Template.Name, buildingModel.Template.Icon, buildingModel.Level, buildingModel.Template.Description, effects, storage, condition);
+            return new SelectBuildingInfo(buildingModel.Template.Name, buildingModel.Template.Icon, buildingModel.Level,
+                buildingModel.Template.Description, effects, storage, condition);
         }
 
-        public static (List<InfoElementModel>effects, InfoElementModel storage) GetBuildingInfo(BuildingModel buildingModel, IAssetLibrary assetLibrary, UserBuildingsData userBuildingsData, int level)
+        public static (List<InfoElementModel>effects, InfoElementModel storage) GetBuildingInfo(
+            BuildingModel buildingModel, IAssetLibrary assetLibrary, UserBuildingsData userBuildingsData, int level)
         {
             List<InfoElementModel> effects = null;
             InfoElementModel storage = null;
@@ -37,19 +40,22 @@ namespace Data.Utility
             {
                 case BuildingType.MainBuilding:
                     effects = new();
-                    effects.Add(new InfoElementModel(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.Icon,
+                    effects.Add(new InfoElementModel(
+                        buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.Icon,
                         $"{buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.Name}"
                         , $"{level * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * 100}%"));
                     break;
                 case BuildingType.Warehouse:
                     effects = new();
-                    effects.Add(new InfoElementModel(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.Icon,
+                    effects.Add(new InfoElementModel(
+                        buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.Icon,
                         $"{buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.Name}"
                         , $"{DataUtility.ValueToString(DataUtility.GetWarehouseBonus(level))}"));
                     break;
                 default:
                     effects = new();
-                    effects.Add(new InfoElementModel(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.Icon,
+                    effects.Add(new InfoElementModel(
+                        buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.Icon,
                         $"{buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.Name}"
                         , $"+{DataUtility.ValueToString(buildingModel.Template.BuildingContext.BuildingProduction.Amount * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * level * 60)} /m"));
 
@@ -77,10 +83,14 @@ namespace Data.Utility
                         }
                     }
 
-                    var value = buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.BaseCapacity +
-                                DataUtility.GetCapacity(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate, warehouseLevel);
+                    var value =
+                        buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.BaseCapacity +
+                        DataUtility.GetCapacity(
+                            buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate,
+                            warehouseLevel);
 
-                    storage = new InfoElementModel(storageResource.Icon, storageResource.Name, DataUtility.ValueToString(value));
+                    storage = new InfoElementModel(storageResource.Icon, storageResource.Name,
+                        DataUtility.ValueToString(value));
                     break;
             }
 
@@ -88,7 +98,8 @@ namespace Data.Utility
             return (effects, storage);
         }
 
-        public static OutputInfoModel GetProductionInfoModel(BuildingModel buildingModel, IAssetLibrary assetLibrary, UserBuildingsData userBuildingsData)
+        public static OutputInfoModel GetProductionInfoModel(BuildingModel buildingModel, IAssetLibrary assetLibrary,
+            UserBuildingsData userBuildingsData)
         {
             OutputElement resource = null, storage = null;
 
@@ -102,8 +113,10 @@ namespace Data.Utility
                 case BuildingType.MainBuilding:
                     showAsBonus = true;
                     blockName = "Bonus";
-                    current = $"{buildingModel.Level * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * 100}%";
-                    next = $"{(buildingModel.Level + 1) * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * 100}%";
+                    current =
+                        $"{buildingModel.Level * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * 100}%";
+                    next =
+                        $"{(buildingModel.Level + 1) * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * 100}%";
                     resource = new OutputElement(current, next);
                     break;
                 case BuildingType.Warehouse:
@@ -117,9 +130,9 @@ namespace Data.Utility
                     blockName = "Output";
                     resourceName = buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.Name;
                     current =
-                        $"+{DataUtility.ValueToString(buildingModel.Template.BuildingContext.BuildingProduction.Amount * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * buildingModel.Level * 60)} /m";
+                        $"+{DataUtility.ValueToString(buildingModel.Template.BuildingContext.BuildingProduction.Amount * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * buildingModel.Level * 60)}/m";
                     next =
-                        $"+{DataUtility.ValueToString(buildingModel.Template.BuildingContext.BuildingProduction.Amount * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * (buildingModel.Level + 1) * 60)} /m";
+                        $"+{DataUtility.ValueToString(buildingModel.Template.BuildingContext.BuildingProduction.Amount * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * (buildingModel.Level + 1) * 60)}/m";
 
                     resource = new OutputElement(current, next);
 
@@ -134,8 +147,11 @@ namespace Data.Utility
                         }
                     }
 
-                    var value = buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.BaseCapacity +
-                                DataUtility.GetCapacity(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate, warehouseLevel);
+                    var value =
+                        buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.BaseCapacity +
+                        DataUtility.GetCapacity(
+                            buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate,
+                            warehouseLevel);
 
 
                     storage = new OutputElement(DataUtility.ValueToString(value), string.Empty);
@@ -145,6 +161,25 @@ namespace Data.Utility
             }
 
             return new OutputInfoModel(blockName, resourceName, icon, resource, storage, showAsBonus);
+        }
+
+        public static IList<UseResourcesModel> GetUseResourcesModels(BuildingModel buildingModel, IAssetLibrary assetLibrary, UserBuildingsData userBuildingsData)
+        {
+            if (buildingModel.Template.BuildingContext.ResourcesUse is { Count: > 0 })
+            {
+                IList<UseResourcesModel> models = new List<UseResourcesModel>();
+                foreach (var resource in buildingModel.Template.BuildingContext.ResourcesUse)
+                {
+                    float currentUse = resource.Amount * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * buildingModel.Level * 60;
+                    float nextUse = resource.Amount * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * (buildingModel.Level + 1) * 60;
+
+                    models.Add(new UseResourcesModel(resource.GameResource.Name, resource.GameResource.Icon, $"-{DataUtility.ValueToString(currentUse)}/m", $"-{DataUtility.ValueToString(nextUse)}/m"));
+                }
+
+                return models;
+            }
+
+            return null;
         }
     }
 }

@@ -6,7 +6,6 @@ using Data.Events;
 using Data.Model.Popup;
 using Data.Utility;
 using TMPro;
-using UI.Popup.Info;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,15 +15,13 @@ namespace UI.Popup.Upgrade
     {
         [SerializeField] private BuildingBlock m_buildingBlock;
         [SerializeField] private OutputBlock m_outputBlock;
-        [SerializeField] private InfoElement m_infoElement;
+        [SerializeField] private UseInfoModel m_useInfoModel;
         [SerializeField] private SerializedDictionary<RequireElementType, RequiredElementView> m_requiredElements;
         [SerializeField] private Transform m_requirmentRoot;
         [SerializeField] private Button m_upgrade;
         [SerializeField] private Button m_close;
-        [SerializeField] private RectTransform m_leverBlock;
-        [SerializeField] private RectTransform m_levelElement;
         private readonly List<RequiredElementView> m_requirementViews = new();
-        private readonly List<InfoElement> m_infoElements = new();
+        private readonly List<UseInfoElement> m_infoElements = new();
 
         public override void Show<T>(T context)
         {
@@ -79,7 +76,6 @@ namespace UI.Popup.Upgrade
                         m_outputBlock.StorageView.gameObject.SetActive(true);
 
                         m_outputBlock.StorageView.text = model.OutputModel.Storage.CurrentOutput;
-                        //  m_outputBlock.NextStorageField.text = model.OutputModel.Storage.NextOutput;
                     }
                     else
                     {
@@ -87,32 +83,30 @@ namespace UI.Popup.Upgrade
                     }
                 }
 
-                // m_outputBlock.ResourceName=model.
-                // m_outputBlock.CurrentProductionField.text = model.OutputModel.CurrentOutput;
-                // m_outputBlock.NextProductionField.text = model.OutputModel.NextOutput;
 
-
-                // foreach (var currentModel in model.CurrentInfoModels)
-                // {
-                //     var infoView = Instantiate(m_infoElement, m_levelRoot);
-                //     infoView.Init(currentModel.Icon, currentModel.Text, currentModel.Value);
-                //     m_infoElements.Add(infoView);
-                //     infoView.gameObject.SetActive(true);
-                // }
-                //
-                // foreach (var nextModel in model.NextInfoModels)
-                // {
-                //     var infoView = Instantiate(m_infoElement, m_nextLevelRoot);
-                //     infoView.Init(nextModel.Icon, nextModel.Text, nextModel.Value);
-                //     m_infoElements.Add(infoView);
-                //     infoView.gameObject.SetActive(true);
-                // }
+                if (model.UseResourcesModels is { Count: > 0 })
+                {
+                    m_useInfoModel.UseRoot.SetActive(true);
+                    foreach (var useModel in model.UseResourcesModels)
+                    {
+                        var infoView = Instantiate(m_useInfoModel.UseInfoElement, m_useInfoModel.Root);
+                        infoView.Init(useModel.Icon, useModel.ResourceName, useModel.CurrentUse, useModel.NextUse);
+                        m_infoElements.Add(infoView);
+                        infoView.gameObject.SetActive(true);
+                    }
+                }
+                else
+                {
+                    m_useInfoModel.UseRoot.SetActive(false);
+                }
 
                 if (model.RequirementsModel.Buildings != null)
                     foreach (var element in model.RequirementsModel.Buildings)
                     {
-                        var requirementElement = Instantiate(m_requiredElements[RequireElementType.Building], m_requirmentRoot);
-                        requirementElement.Init(element.Level >= element.RequireLevel, $"{element.Name} Level: {element.RequireLevel}");
+                        var requirementElement = Instantiate(m_requiredElements[RequireElementType.Building],
+                            m_requirmentRoot);
+                        requirementElement.Init(element.Level >= element.RequireLevel,
+                            $"{element.Name} Level: {element.RequireLevel}");
                         m_requirementViews.Add(requirementElement);
                         requirementElement.gameObject.SetActive(true);
                     }
@@ -120,8 +114,10 @@ namespace UI.Popup.Upgrade
                 if (model.RequirementsModel.Resources != null)
                     foreach (var element in model.RequirementsModel.Resources)
                     {
-                        var requirementElement = Instantiate(m_requiredElements[RequireElementType.Resource], m_requirmentRoot);
-                        requirementElement.Init(element.Count >= element.RequireAmount, $"{element.Name} : {DataUtility.ValueToString(element.RequireAmount)}");
+                        var requirementElement = Instantiate(m_requiredElements[RequireElementType.Resource],
+                            m_requirmentRoot);
+                        requirementElement.Init(element.Count >= element.RequireAmount,
+                            $"{element.Name} : {DataUtility.ValueToString(element.RequireAmount)}");
                         m_requirementViews.Add(requirementElement);
                         requirementElement.gameObject.SetActive(true);
                     }
@@ -137,7 +133,8 @@ namespace UI.Popup.Upgrade
                     m_close.gameObject.SetActive(false);
                     m_upgrade.onClick.AddListener(() =>
                     {
-                        Node.TriggerEvent(new BuildingProcessEventArgs(model.Id, model.TemplateId, BuildingActionType.UpgradeBuildingRequest));
+                        Node.TriggerEvent(new BuildingProcessEventArgs(model.Id, model.TemplateId,
+                            BuildingActionType.UpgradeBuildingRequest));
                         Close();
                     });
                 }
@@ -193,6 +190,14 @@ namespace UI.Popup.Upgrade
             public TMP_Text NextStorageField;
             public GameObject StorageProgressRoot;
             public TMP_Text StorageView;
+        }
+
+        [Serializable]
+        class UseInfoModel
+        {
+            public GameObject UseRoot;
+            public UseInfoElement UseInfoElement;
+            public Transform Root;
         }
     }
 }
