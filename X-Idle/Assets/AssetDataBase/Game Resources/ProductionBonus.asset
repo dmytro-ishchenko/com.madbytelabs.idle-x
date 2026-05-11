@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ProductionBonus
   m_EditorClassIdentifier: com.madbytelabs.data::Data.ContentLibrary.Templates.GameResources.GameResourcesTemplate
   m_id: 8deab58866c0aaec8cbb262
-  m_name: Production Bonus
+  m_name: Production
   m_gameResourceType: 8
   m_description: 
   m_icon: {fileID: 21300000, guid: c031084a771e94ade9e0e6c42820c62d, type: 3}

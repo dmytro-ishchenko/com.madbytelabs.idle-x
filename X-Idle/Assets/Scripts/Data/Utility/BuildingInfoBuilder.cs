@@ -91,23 +91,31 @@ namespace Data.Utility
         public static OutputInfoModel GetProductionInfoModel(BuildingModel buildingModel, IAssetLibrary assetLibrary, UserBuildingsData userBuildingsData)
         {
             OutputElement resource = null, storage = null;
-            string current = string.Empty, next = string.Empty;
-            string resourceName = buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.Name;
+
+            string blockName = string.Empty, current = string.Empty, next = string.Empty;
+            bool showAsBonus = false;
+
+            string resourceName = string.Empty;
             Sprite icon = buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.Icon;
             switch (buildingModel.Template.BuildingContext.BuildingType)
             {
                 case BuildingType.MainBuilding:
+                    showAsBonus = true;
+                    blockName = "Bonus";
                     current = $"{buildingModel.Level * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * 100}%";
                     next = $"{(buildingModel.Level + 1) * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * 100}%";
                     resource = new OutputElement(current, next);
                     break;
                 case BuildingType.Warehouse:
+                    showAsBonus = true;
+                    blockName = "Bonus";
                     current = $"{DataUtility.ValueToString(DataUtility.GetWarehouseBonus(buildingModel.Level))}";
                     next = $"{DataUtility.ValueToString(DataUtility.GetWarehouseBonus(buildingModel.Level + 1))}";
                     storage = new OutputElement(current, next);
                     break;
                 default:
-
+                    blockName = "Output";
+                    resourceName = buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.Name;
                     current =
                         $"+{DataUtility.ValueToString(buildingModel.Template.BuildingContext.BuildingProduction.Amount * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * buildingModel.Level * 60)} /m";
                     next =
@@ -136,7 +144,7 @@ namespace Data.Utility
                     break;
             }
 
-            return new OutputInfoModel(resourceName, icon, resource, storage); //ProductionInfoModel model = null;
+            return new OutputInfoModel(blockName, resourceName, icon, resource, storage, showAsBonus);
         }
     }
 }

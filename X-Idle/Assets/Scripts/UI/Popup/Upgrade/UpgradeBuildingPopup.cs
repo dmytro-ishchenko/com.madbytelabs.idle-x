@@ -16,7 +16,6 @@ namespace UI.Popup.Upgrade
     {
         [SerializeField] private BuildingBlock m_buildingBlock;
         [SerializeField] private OutputBlock m_outputBlock;
-
         [SerializeField] private InfoElement m_infoElement;
         [SerializeField] private SerializedDictionary<RequireElementType, RequiredElementView> m_requiredElements;
         [SerializeField] private Transform m_requirmentRoot;
@@ -36,30 +35,56 @@ namespace UI.Popup.Upgrade
                 m_buildingBlock.NextLevel.text = $"Lv.{model.Level + 1}";
                 m_buildingBlock.Icon.sprite = model.Icon;
 
-
+                m_outputBlock.BlockName.text = model.OutputModel.BlockName;
                 m_outputBlock.Icon.sprite = model.OutputModel.Icon;
                 m_outputBlock.ResourceName.text = model.OutputModel.ResourceName;
 
-                if (model.OutputModel.Resource != null)
+                if (model.OutputModel.ShowAsBonus)
                 {
-                    m_outputBlock.ProductionRoot.SetActive(true);
-                    m_outputBlock.CurrentProductionField.text = model.OutputModel.Resource.CurrentOutput;
-                    m_outputBlock.NextProductionField.text = model.OutputModel.Resource.NextOutput;
+                    if (model.OutputModel.Resource != null)
+                    {
+                        m_outputBlock.ProductionRoot.SetActive(true);
+                        m_outputBlock.StorageRoot.SetActive(false);
+                        m_outputBlock.CurrentProductionField.text = model.OutputModel.Resource.CurrentOutput;
+                        m_outputBlock.NextProductionField.text = model.OutputModel.Resource.NextOutput;
+                    }
+                    else
+                    {
+                        m_outputBlock.ProductionRoot.SetActive(false);
+                        m_outputBlock.StorageRoot.SetActive(true);
+                        m_outputBlock.StorageProgressRoot.SetActive(true);
+                        m_outputBlock.StorageView.gameObject.SetActive(false);
+                        m_outputBlock.CurrentStorageField.text = model.OutputModel.Storage.CurrentOutput;
+                        m_outputBlock.NextStorageField.text = model.OutputModel.Storage.NextOutput;
+                    }
                 }
                 else
                 {
-                    m_outputBlock.ProductionRoot.SetActive(false);
-                }
+                    if (model.OutputModel.Resource != null)
+                    {
+                        m_outputBlock.ProductionRoot.SetActive(true);
+                        m_outputBlock.CurrentProductionField.text = model.OutputModel.Resource.CurrentOutput;
+                        m_outputBlock.NextProductionField.text = model.OutputModel.Resource.NextOutput;
+                    }
+                    else
+                    {
+                        m_outputBlock.ProductionRoot.SetActive(false);
+                    }
 
-                if (model.OutputModel.Storage != null)
-                {
-                    m_outputBlock.StorageRoot.SetActive(true);
-                    m_outputBlock.CurrentStorageField.text = model.OutputModel.Storage.CurrentOutput;
-                    m_outputBlock.NextStorageField.text = model.OutputModel.Storage.NextOutput;
-                }
-                else
-                {
-                    m_outputBlock.StorageRoot.SetActive(false);
+                    if (model.OutputModel.Storage != null)
+                    {
+                        m_outputBlock.StorageRoot.SetActive(true);
+
+                        m_outputBlock.StorageProgressRoot.SetActive(false);
+                        m_outputBlock.StorageView.gameObject.SetActive(true);
+
+                        m_outputBlock.StorageView.text = model.OutputModel.Storage.CurrentOutput;
+                        //  m_outputBlock.NextStorageField.text = model.OutputModel.Storage.NextOutput;
+                    }
+                    else
+                    {
+                        m_outputBlock.StorageRoot.SetActive(false);
+                    }
                 }
 
                 // m_outputBlock.ResourceName=model.
@@ -157,6 +182,7 @@ namespace UI.Popup.Upgrade
         [Serializable]
         class OutputBlock
         {
+            public TMP_Text BlockName;
             public Image Icon;
             public TMP_Text ResourceName;
             public GameObject ProductionRoot;
@@ -165,6 +191,8 @@ namespace UI.Popup.Upgrade
             public GameObject StorageRoot;
             public TMP_Text CurrentStorageField;
             public TMP_Text NextStorageField;
+            public GameObject StorageProgressRoot;
+            public TMP_Text StorageView;
         }
     }
 }
