@@ -25,6 +25,7 @@ namespace UI.Popup.Create
         [SerializeField] private RequiredModel m_requiredResources;
         [SerializeField] Button m_createButton;
         [SerializeField] private GameObject m_canNotBuilding;
+        [SerializeField] private RectTransform m_scrollHolderRect;
         private List<BuildingElement> m_elements = new();
         private string m_selectedTemplateId;
         private string m_selectedPlaceHolderId;
@@ -38,6 +39,7 @@ namespace UI.Popup.Create
 
             if (context is CreateBuildingContext model)
             {
+                RecalculateScrollSize();
                 foreach (var buildingTemplate in model.Buildings)
                 {
                     var element = Instantiate(m_source);
@@ -105,6 +107,7 @@ namespace UI.Popup.Create
             m_selectedTemplateId = element.Template.Id;
             InitBuildingInfo(element.Template);
             m_resizer.Recalculate();
+            RecalculateScrollSize();
         }
 
         void InitBuildingInfo(IBuildingTemplate template)
@@ -179,6 +182,24 @@ namespace UI.Popup.Create
                 m_createButton.gameObject.SetActive(false);
                 m_canNotBuilding.SetActive(true);
             }
+        }
+
+        void RecalculateScrollSize()
+        {
+            float height = 0;
+
+            RectTransform scrollRect = m_scrollRect.GetComponent<RectTransform>();
+
+            foreach (RectTransform rect in m_scrollHolderRect)
+            {
+                if (rect.gameObject.activeSelf)
+                {
+                    height += rect.sizeDelta.y;
+                }
+            }
+
+            height -= scrollRect.rect.height;
+            scrollRect.sizeDelta = new Vector2(scrollRect.rect.width, m_scrollHolderRect.rect.height - height);
         }
 
         [Serializable]

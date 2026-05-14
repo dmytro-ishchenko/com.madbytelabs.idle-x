@@ -8,6 +8,7 @@ namespace UI.Controller
         [SerializeField] private RectTransform m_root;
         [SerializeField] private bool rebuildAfterResize = true;
 
+
         public void Recalculate()
         {
             RecalculateRecursive(m_root);
@@ -22,6 +23,10 @@ namespace UI.Controller
             float totalWidth = 0;
             CustomLayoutElement layoutElementElement = null;
 
+            layoutElementElement = root.GetComponent<CustomLayoutElement>();
+            if (layoutElementElement == null)
+                return Vector2.zero;
+
             if (root.childCount > 0)
             {
                 for (int i = 0; i < root.childCount; i++)
@@ -31,56 +36,57 @@ namespace UI.Controller
                     if (child == null || !child.gameObject.activeSelf)
                         continue;
                     layoutElementElement = root.GetComponent<CustomLayoutElement>();
-                    if (layoutElementElement != null)
+                    if (layoutElementElement == null)
                         continue;
                     Vector2 childSize = RecalculateRecursive(child);
 
                     totalHeight += childSize.y;
+                    totalWidth += childSize.x;
                 }
             }
 
-            if (layoutElementElement != null)
+
+            switch (layoutElementElement.Axis)
             {
-                switch (layoutElementElement.Axis)
-                {
-                    case RectTransform.Axis.Horizontal:
+                case RectTransform.Axis.Horizontal:
+                    if (totalWidth == 0)
                         totalWidth = root.rect.width;
-                        if (layoutElementElement.PreferredHeight > 0)
-                        {
-                            totalHeight = layoutElementElement.PreferredHeight;
-                        }
-                        else
-                        {
-                            if (layoutElementElement.MaxHeight > 0 && totalHeight > layoutElementElement.MaxHeight)
-                                totalHeight = layoutElementElement.MaxHeight;
-                            else if (layoutElementElement.MinHeight > 0 && totalHeight < layoutElementElement.MinHeight)
-                                totalHeight = layoutElementElement.MinHeight;
-                        }
+                    if (layoutElementElement.PreferredWidth > 0)
+                    {
+                        totalWidth = layoutElementElement.PreferredWidth;
+                    }
+                    else
+                    {
+                        if (layoutElementElement.MaxWidth > 0 && totalWidth > layoutElementElement.MaxWidth)
+                            totalWidth = layoutElementElement.MaxWidth;
+                        else if (layoutElementElement.MinWidth > 0 && totalWidth < layoutElementElement.MinWidth)
+                            totalWidth = layoutElementElement.MinWidth;
+                    }
 
-                        m_root.SetSizeWithCurrentAnchors(layoutElementElement.Axis, totalHeight);
-                        break;
-                    case RectTransform.Axis.Vertical:
+                    root.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, totalWidth);
+
+                    break;
+                case RectTransform.Axis.Vertical:
+                    if (totalHeight == 0)
                         totalHeight = root.rect.height;
-                        if (layoutElementElement.PreferredWidth > 0)
-                        {
-                            totalWidth = layoutElementElement.PreferredWidth;
-                        }
-                        else
-                        {
-                            if (layoutElementElement.MaxWidth > 0 && totalWidth > layoutElementElement.MaxWidth)
-                                totalWidth = layoutElementElement.MaxWidth;
-                            else if (layoutElementElement.MinWidth > 0 && totalWidth < layoutElementElement.MinWidth)
-                                totalWidth = layoutElementElement.MinWidth;
-                        }
+                    if (layoutElementElement.PreferredHeight > 0)
+                    {
+                        totalHeight = layoutElementElement.PreferredHeight;
+                    }
+                    else
+                    {
+                        if (layoutElementElement.MaxHeight > 0 && totalHeight > layoutElementElement.MaxHeight)
+                            totalHeight = layoutElementElement.MaxHeight;
+                        else if (layoutElementElement.MinHeight > 0 && totalHeight < layoutElementElement.MinHeight)
+                            totalHeight = layoutElementElement.MinHeight;
+                    }
 
-                        m_root.SetSizeWithCurrentAnchors(layoutElementElement.Axis, totalHeight);
-                        break;
-                }
+                    root.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, totalHeight);
 
-                return new Vector2(totalWidth, totalHeight);
+                    break;
             }
 
-            return Vector2.zero;
+            return new Vector2(totalWidth, totalHeight);
         }
     }
 }
