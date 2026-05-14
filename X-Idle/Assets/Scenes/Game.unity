@@ -92976,6 +92976,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -826.39197
       objectReference: {fileID: 0}
+    - target: {fileID: 7559643350222799025, guid: 2c399ff48b9ec46d685ab98ff241b577, type: 3}
+      propertyPath: m_popupHolder
+      value: 
+      objectReference: {fileID: 793946458}
     - target: {fileID: 7610222222297903111, guid: 2c399ff48b9ec46d685ab98ff241b577, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -93135,6 +93139,11 @@ MonoBehaviour:
 --- !u!224 &793946457 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7653689351265761590, guid: 2c399ff48b9ec46d685ab98ff241b577, type: 3}
+  m_PrefabInstance: {fileID: 793946455}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &793946458 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3587728473142179868, guid: 2c399ff48b9ec46d685ab98ff241b577, type: 3}
   m_PrefabInstance: {fileID: 793946455}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &794144200
@@ -124375,6 +124384,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1352779264}
     m_Modifications:
+    - target: {fileID: 5248719662761627632, guid: 29f9fae67f03a4cd7930c38418e931f3, type: 3}
+      propertyPath: m_popupHolder
+      value: 
+      objectReference: {fileID: 1051808883}
     - target: {fileID: 5776090871571857611, guid: 29f9fae67f03a4cd7930c38418e931f3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -124480,6 +124493,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b42dd760cd4d97afbdd61195ff08a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: com.madbytelabs.ui::UI.Popup.Locked.LockedPlaceholderPopup
+--- !u!224 &1051808883 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 837658243315087044, guid: 29f9fae67f03a4cd7930c38418e931f3, type: 3}
+  m_PrefabInstance: {fileID: 1051808880}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1053305224
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -132999,15 +133017,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1065555531653930383, guid: 9211be63ca617493789bfac98aaf837e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1065555531653930383, guid: 9211be63ca617493789bfac98aaf837e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1065555531653930383, guid: 9211be63ca617493789bfac98aaf837e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1232173876983804596, guid: 9211be63ca617493789bfac98aaf837e, type: 3}
       propertyPath: m_AnchorMax.y
@@ -133024,6 +133042,10 @@ PrefabInstance:
     - target: {fileID: 1232173876983804596, guid: 9211be63ca617493789bfac98aaf837e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -70
+      objectReference: {fileID: 0}
+    - target: {fileID: 1352975749556771601, guid: 9211be63ca617493789bfac98aaf837e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1557860186802833901, guid: 9211be63ca617493789bfac98aaf837e, type: 3}
       propertyPath: m_AnchorMax.y
@@ -133043,7 +133065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2555110898095443248, guid: 9211be63ca617493789bfac98aaf837e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5593015524823443567, guid: 9211be63ca617493789bfac98aaf837e, type: 3}
       propertyPath: m_AnchorMax.y
@@ -133193,19 +133215,39 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 314.96002
       objectReference: {fileID: 0}
+    - target: {fileID: 7040132440369603766, guid: 9211be63ca617493789bfac98aaf837e, type: 3}
+      propertyPath: m_popupHolder
+      value: 
+      objectReference: {fileID: 1122075657}
+    - target: {fileID: 7040132440369603766, guid: 9211be63ca617493789bfac98aaf837e, type: 3}
+      propertyPath: m_resizeToContent
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7297082444772369221, guid: 9211be63ca617493789bfac98aaf837e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1696.8008
+      objectReference: {fileID: 0}
+    - target: {fileID: 7297082444772369221, guid: 9211be63ca617493789bfac98aaf837e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -983.20044
+      objectReference: {fileID: 0}
     - target: {fileID: 8137730500490813275, guid: 9211be63ca617493789bfac98aaf837e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8137730500490813275, guid: 9211be63ca617493789bfac98aaf837e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8178419066684836190, guid: 9211be63ca617493789bfac98aaf837e, type: 3}
       propertyPath: m_Name
       value: CreateBuildingPopup
       objectReference: {fileID: 0}
     - target: {fileID: 8178419066684836190, guid: 9211be63ca617493789bfac98aaf837e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878340281923494072, guid: 9211be63ca617493789bfac98aaf837e, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -133230,6 +133272,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64538d0395d14a3b9d52e3cc910a668d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: com.madbytelabs.ui::UI.Popup.CreateBuildingPopup
+--- !u!224 &1122075657 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 506656152131527390, guid: 9211be63ca617493789bfac98aaf837e, type: 3}
+  m_PrefabInstance: {fileID: 1122075654}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1122916960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -191846,6 +191893,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1352779264}
     m_Modifications:
+    - target: {fileID: 1868787261829590881, guid: b05816e36b96e4b2e872310a2662ed0c, type: 3}
+      propertyPath: m_popupHolder
+      value: 
+      objectReference: {fileID: 1642734692}
     - target: {fileID: 3796536511836978594, guid: b05816e36b96e4b2e872310a2662ed0c, type: 3}
       propertyPath: m_Name
       value: BlockedPlaceholderPopup
@@ -191951,6 +192002,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ffd7492838b4fd89434444a397cbf40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: com.madbytelabs.ui::UI.Popup.Blocked.BlockedPlaceHolderPopup
+--- !u!224 &1642734692 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1975943567358844381, guid: b05816e36b96e4b2e872310a2662ed0c, type: 3}
+  m_PrefabInstance: {fileID: 1642734689}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1643520414
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -227695,6 +227751,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8630123086009734518, guid: 46dd48e6ae29f43a99a1f44b30861d5d, type: 3}
+      propertyPath: m_popupHolder
+      value: 
+      objectReference: {fileID: 1984384109}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -227716,6 +227776,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865d56a4feb043319b01a9419e50004a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: com.madbytelabs.ui::UI.Popup.Confirmation.ConfirmDismantlePopup
+--- !u!224 &1984384109 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3411179687175664305, guid: 46dd48e6ae29f43a99a1f44b30861d5d, type: 3}
+  m_PrefabInstance: {fileID: 1984384106}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1984740649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -245867,6 +245932,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -118
       objectReference: {fileID: 0}
+    - target: {fileID: 8443979377626007570, guid: c316002e5413a4fbb963a0bef21bda2e, type: 3}
+      propertyPath: m_popupHolder
+      value: 
+      objectReference: {fileID: 3875885139095053494}
     - target: {fileID: 8460989241311199041, guid: c316002e5413a4fbb963a0bef21bda2e, type: 3}
       propertyPath: m_Name
       value: UpgradeBuildingPopup
@@ -245964,6 +246033,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 257983cb2d94420a87fa394867f9e995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: com.madbytelabs.ui::UI.Popup.SelectBuildingPopup
+--- !u!224 &3875885139095053494 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1884979216563835583, guid: c316002e5413a4fbb963a0bef21bda2e, type: 3}
+  m_PrefabInstance: {fileID: 3875885139095053491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4671433286032197284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246237,6 +246311,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SelectBuilding
       objectReference: {fileID: 0}
+    - target: {fileID: 5610909215325955858, guid: 3eb37eb1b167e4205abae514ad113161, type: 3}
+      propertyPath: m_popupHolder
+      value: 
+      objectReference: {fileID: 7980095518610788886}
     - target: {fileID: 6676645836314373305, guid: 3eb37eb1b167e4205abae514ad113161, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -246322,6 +246400,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3eb37eb1b167e4205abae514ad113161, type: 3}
+--- !u!224 &7980095518610788886 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5809692780905779711, guid: 3eb37eb1b167e4205abae514ad113161, type: 3}
+  m_PrefabInstance: {fileID: 7980095518610788885}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8643598061372213890
 MonoBehaviour:
   m_ObjectHideFlags: 0

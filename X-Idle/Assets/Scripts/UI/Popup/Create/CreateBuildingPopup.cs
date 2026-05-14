@@ -28,10 +28,12 @@ namespace UI.Popup.Create
         private string m_selectedPlaceHolderId;
         private IApplicationData m_applicationData;
         private List<RequiredElementView> m_requiredElements = new();
+        private float m_scrollHeight;
 
         public override void Show<T>(T context)
         {
             m_scrollRect.verticalNormalizedPosition = 1.0f;
+            m_scrollHeight = m_scrollRect.content.sizeDelta.y;
             if (context is CreateBuildingContext model)
             {
                 foreach (var buildingTemplate in model.Buildings)

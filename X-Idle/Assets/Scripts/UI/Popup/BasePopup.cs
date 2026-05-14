@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Common.Pattern.BobbleEvent;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,10 +6,10 @@ namespace UI.Popup
 {
     internal class BasePopup : MonoBehaviour, IPopup, IMonoNode
     {
+        [SerializeField] protected RectTransform[] m_updateList;
+        [SerializeField] protected bool m_resizeToContent = true;
         [SerializeField] private Button[] m_closeButtons;
 
-
-        [SerializeField] List<ContentSizeFitter> m_contentSizeFitters = new();
         public Node Node { get; } = new();
 
         protected void Awake()
@@ -21,11 +20,7 @@ namespace UI.Popup
 
         public virtual void Show<T>(T context)
         {
-           // InitContentSize(false);
-            InitVerticalLayoutGroup(false);
             gameObject.SetActive(true);
-           // InitContentSize(true);
-            InitVerticalLayoutGroup(true);
         }
 
         public virtual void Close()
@@ -33,23 +28,15 @@ namespace UI.Popup
             gameObject.SetActive(false);
         }
 
-        protected void InitContentSize(bool enable)
+        protected void UpdateContentHolder(RectTransform holder)
         {
-            if (m_contentSizeFitters.Count > 0)
-                foreach (var fitter in m_contentSizeFitters)
-                {
-                    fitter.enabled = enable;
-                }
-        }
+            float height = 0;
+            foreach (RectTransform rectTransform in holder)
+            {
+                height += rectTransform.rect.height;
+            }
 
-        protected void InitVerticalLayoutGroup(bool enable)
-        {
-            if (m_contentSizeFitters.Count > 0)
-                foreach (var fitter in m_contentSizeFitters)
-                {
-                    if (fitter.TryGetComponent(out VerticalLayoutGroup group))
-                        group.enabled = enable;
-                }
+            holder.sizeDelta = new Vector2(holder.sizeDelta.x, height);
         }
     }
 }
