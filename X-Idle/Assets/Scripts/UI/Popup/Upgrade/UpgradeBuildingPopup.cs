@@ -105,7 +105,7 @@ namespace UI.Popup.Upgrade
                     {
                         var requirementElement = Instantiate(m_requiredElements[RequireElementType.Building],
                             m_requirmentRoot);
-                        requirementElement.Init(element.Level >= element.RequireLevel,
+                        requirementElement.Init(element.Level >= element.RequireLevel, null,
                             $"{element.Name} Level: {element.RequireLevel}");
                         m_requirementViews.Add(requirementElement);
                         requirementElement.gameObject.SetActive(true);
@@ -116,7 +116,7 @@ namespace UI.Popup.Upgrade
                     {
                         var requirementElement = Instantiate(m_requiredElements[RequireElementType.Resource],
                             m_requirmentRoot);
-                        requirementElement.Init(element.Count >= element.RequireAmount,
+                        requirementElement.Init(element.Count >= element.RequireAmount, null,
                             $"{element.Name} : {DataUtility.ValueToString(element.RequireAmount)}");
                         m_requirementViews.Add(requirementElement);
                         requirementElement.gameObject.SetActive(true);

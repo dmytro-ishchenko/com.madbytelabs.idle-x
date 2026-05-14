@@ -16,6 +16,7 @@ MonoBehaviour:
   m_name: Water Extractor
   m_description: Produces clean water for your settlement. Upgrade it to support
     more survivors, grow food, and keep production chains running.
+  m_shortDescription: Produces water for your settlement.
   m_view: {fileID: 6450690476258816806, guid: 005a6645073aa4ec68300b7a0825e6e3, type: 3}
   m_icon: {fileID: 21300000, guid: 47e38e2cdd37943079fbdab6a55c06ba, type: 3}
   m_buildingContext:

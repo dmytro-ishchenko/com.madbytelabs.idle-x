@@ -11,8 +11,9 @@ namespace Data.ContentLibrary.Templates.Context.Building
         [SerializeField] private BuildingType m_buildingType;
         [SerializeField] private DuplicateModel m_duplicateModel;
         [SerializeField] private List<CreateBuildingRequirementModel> m_createBuildingRequirements;
+        [SerializeField] private BuildingCostModel m_createCost;
         [SerializeField] private List<UpgradeBuildingRequirementModel> m_upgradeBuildingRequirements;
-        [SerializeField] private UpgradeCostModel m_upgradeCost;
+        [SerializeField] private BuildingCostModel m_upgradeCost;
         [SerializeField] private BuildingProductionModel m_buildingProduction;
         [SerializeField] private List<ResourcesUseModel> m_resourcesUse;
         [SerializeField] private List<BuildingLevelModelView> m_buildingLevelsView;
@@ -22,8 +23,9 @@ namespace Data.ContentLibrary.Templates.Context.Building
         public BuildingProductionModel BuildingProduction => m_buildingProduction;
         public ICollection<ResourcesUseModel> ResourcesUse => m_resourcesUse;
         public ICollection<CreateBuildingRequirementModel> CreateBuildingRequirements => m_createBuildingRequirements;
+        public BuildingCostModel CreateCost => m_createCost;
         public ICollection<UpgradeBuildingRequirementModel> UpgradeBuildingRequirements => m_upgradeBuildingRequirements;
-        public UpgradeCostModel UpgradeCostModel => m_upgradeCost;
+        public BuildingCostModel UpgradeCost => m_upgradeCost;
         public ICollection<BuildingLevelModelView> BuildingLevelsView => m_buildingLevelsView;
     }
 }

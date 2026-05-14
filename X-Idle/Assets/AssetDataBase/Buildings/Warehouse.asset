@@ -16,6 +16,7 @@ MonoBehaviour:
   m_name: Warehouse
   m_description: A reinforced storage depot for vital supplies. Upgrade it to increase
     resource storage limits and keep your settlement growing.
+  m_shortDescription: Increases resource storage capacity.
   m_view: {fileID: 4573677491782839015, guid: d8ea6e9efc37745f5a813147655b8c37, type: 3}
   m_icon: {fileID: 21300000, guid: bd80b24223af7490dbc6115f0cdedafd, type: 3}
   m_buildingContext:

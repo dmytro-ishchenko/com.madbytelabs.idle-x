@@ -16,6 +16,7 @@ MonoBehaviour:
   m_name: Energy Farm
   m_description: Generates energy for your settlement. Upgrade it to power more buildings
     and keep production running.
+  m_shortDescription: Produces energy for buildings.
   m_view: {fileID: 3050995289237018250, guid: bf6772e29d7a8450ab83c25bea20172c, type: 3}
   m_icon: {fileID: 21300000, guid: 6fec69bc425764d529151916446b16fb, type: 3}
   m_buildingContext:

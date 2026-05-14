@@ -28,5 +28,6 @@ namespace Data
         PlaceHolderRequirementsModel GetPlaceHolderRequirements(string id);
         void UnlockPlaceHolder(UnlockPlaceholderEventArgs args);
         SelectBuildingInfo GetBuildingInfo(string id);
+        CreateBuildingRequirementsContext GetCreateBuildingContext(IBuildingTemplate template);
     }
 }

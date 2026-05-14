@@ -7,6 +7,7 @@ using Data.ContentLibrary.Templates;
 using Data.ContentLibrary.Templates.GameResources;
 using Data.ContentLibrary.Templates.Placeholder;
 using Data.Enum;
+using Data.Interface;
 using Data.Model;
 using Data.Model.Popup;
 using UnityEngine;
@@ -16,7 +17,7 @@ namespace Data.Utility
 {
     public static class DataUtility
     {
-        internal static bool CanCreateBuilding(UserBuildingsData buildingsData, BuildingTemplate template)
+        internal static bool CanCreateBuilding(UserBuildingsData buildingsData, IBuildingTemplate template)
         {
             var buildRequirements = template.BuildingContext.CreateBuildingRequirements;
 
@@ -44,9 +45,11 @@ namespace Data.Utility
             return true;
         }
 
-        internal static CreateBuildingRequirementsContext GetCreateBuildingRequirementContext(UserBuildingsData userBuildingsData, BuildingTemplate buildingTemplate)
+        internal static CreateBuildingRequirementsContext GetCreateBuildingRequirementContext(UserResources userResources, UserBuildingsData userBuildingsData, IBuildingTemplate buildingTemplate)
         {
             List<BuildingContextModel> buildings = null;
+            List<ResourceContextModel> resources = null;
+
 
             if (buildingTemplate.BuildingContext.CreateBuildingRequirements is { Count: > 0 })
             {
@@ -70,7 +73,17 @@ namespace Data.Utility
                 }
             }
 
-            return new CreateBuildingRequirementsContext(buildingTemplate.Name, buildingTemplate.Description, buildingTemplate.Icon, buildings, null);
+            if (buildingTemplate.BuildingContext.CreateCost.CostModels is { Count: > 0 })
+            {
+                resources = new List<ResourceContextModel>();
+                foreach (var element in buildingTemplate.BuildingContext.CreateCost.CostModels)
+                {
+                    resources.Add(new ResourceContextModel(element.GameResource.GameResourceType, element.GameResource.Name, userResources.GetGameResourceValue(element.GameResource.GameResourceType),
+                        element.Cost));
+                }
+            }
+
+            return new CreateBuildingRequirementsContext(buildingTemplate.Name, buildingTemplate.Description, buildingTemplate.Icon, buildings, resources);
         }
 
         internal static UpgradeBuildingContext GetUpgradeBuildingContext(BuildingModel buildingModel, IAssetLibrary assetLibrary, UserResources userResources, UserBuildingsData userBuildingsData)
@@ -123,10 +136,10 @@ namespace Data.Utility
                 }
             }
 
-            if (buildingModel.Template.BuildingContext.UpgradeCostModel.CostModels != null)
+            if (buildingModel.Template.BuildingContext.UpgradeCost.CostModels != null)
             {
                 resources = new List<ResourceContextModel>();
-                foreach (var element in buildingModel.Template.BuildingContext.UpgradeCostModel.CostModels)
+                foreach (var element in buildingModel.Template.BuildingContext.UpgradeCost.CostModels)
                 {
                     float requiredResource = UpgradeResourceCost(element.Cost, buildingModel.Level, element.CostGrowth);
 
@@ -143,7 +156,7 @@ namespace Data.Utility
             OutputInfoModel outputModel = BuildingInfoBuilder.GetProductionInfoModel(buildingModel, assetLibrary, userBuildingsData);
 
             IList<UseResourcesModel> useResourcesModels = BuildingInfoBuilder.GetUseResourcesModels(buildingModel, assetLibrary, userBuildingsData);
-            
+
             return
                 new UpgradeBuildingContext(buildingModel.Template.Name, buildingModel.Template.Description, buildingModel.Level, buildingModel.Template.Icon,
                     buildingModel.Id, buildingModel.Template.Id, outputModel, useResourcesModels, new RequirementsModel(buildings, resources), notMeetRequirements == 0);

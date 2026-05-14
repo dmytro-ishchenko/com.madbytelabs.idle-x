@@ -16,6 +16,7 @@ MonoBehaviour:
   m_name: Greenhouse
   m_description: Produces food for your settlement. Upgrade it to feed more survivors
     and support base growth.
+  m_shortDescription: Produces food for survivors.
   m_view: {fileID: 8574130953060704172, guid: 348239305469243aaad395c30ef967e8, type: 3}
   m_icon: {fileID: 21300000, guid: 763e9d33367754401bc275685cda42eb, type: 3}
   m_buildingContext:

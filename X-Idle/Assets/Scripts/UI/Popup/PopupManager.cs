@@ -3,10 +3,8 @@ using Common.Pattern.BobbleEvent;
 using Data;
 using Data.Enum;
 using Data.Events;
-using Data.Model.Error;
 using Data.Model.Popup;
 using UI.Enum;
-using UI.Event;
 using UnityEngine;
 
 namespace UI.Popup
@@ -30,7 +28,7 @@ namespace UI.Popup
             switch (args.PlaceHolderStatus)
             {
                 case PlaceHolderStatus.Unlocked:
-                    ShowPopup(PopupType.CreateBuilding, new CreateBuildingContext(args.PlaceHolderId, applicationData.GetAvailableBuilding()));
+                    ShowPopup(PopupType.CreateBuilding, new CreateBuildingContext(args.PlaceHolderId, applicationData.GetAvailableBuilding(), applicationData));
                     break;
                 case PlaceHolderStatus.Locked:
                     ShowPopup(PopupType.LockedPlaceHolder, new LockedPlaceHolderContext(args.PlaceHolderId, applicationData.GetPlaceHolderRequirements(args.PlaceHolderId)));

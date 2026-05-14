@@ -141,13 +141,6 @@ namespace Data
                     {
                         OnBuildingCreated?.Invoke(newBuildingModel);
                     }
-                    else
-                    {
-                        m_assetLibrary.TryGetBuildingTemplate(args.TemplateId, out BuildingTemplate buildingTemplate);
-
-                        OnActionError?.Invoke(new ActionErrorModel(ActionErrorType.CreateBuilding,
-                            DataUtility.GetCreateBuildingRequirementContext(m_userData.UserBuildingsData, buildingTemplate)));
-                    }
 
                     break;
                 case BuildingActionType.UpgradeBuildingRequest:
@@ -185,6 +178,11 @@ namespace Data
         public SelectBuildingInfo GetBuildingInfo(string id)
         {
             return BuildingInfoBuilder.GetBuildingInfo(id, m_assetLibrary, m_userData.UserBuildingsData);
+        }
+
+        public CreateBuildingRequirementsContext GetCreateBuildingContext(IBuildingTemplate template)
+        {
+            return DataUtility.GetCreateBuildingRequirementContext(m_userData.UserResources, m_userData.UserBuildingsData, template);
         }
 
         void SaveUserData()

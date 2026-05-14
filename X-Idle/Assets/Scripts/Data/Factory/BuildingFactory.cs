@@ -47,7 +47,7 @@ namespace Data.Factory
             {
                 if (userData.UserBuildingsData.TryGetBuildingModel(args.BuildingId, out var building))
                 {
-                    foreach (var model in buildingTemplate.BuildingContext.UpgradeCostModel.CostModels)
+                    foreach (var model in buildingTemplate.BuildingContext.UpgradeCost.CostModels)
                     {
                         userData.UserResources.SetGameResource(model.GameResource.GameResourceType,
                             userData.UserResources.GetGameResourceValue(model.GameResource.GameResourceType) - DataUtility.UpgradeResourceCost(model.Cost, building.Level, model.CostGrowth));
@@ -76,7 +76,7 @@ namespace Data.Factory
 
                     for (int i = 1; i < level; i++)
                     {
-                        foreach (var element in building.Template.BuildingContext.UpgradeCostModel.CostModels)
+                        foreach (var element in building.Template.BuildingContext.UpgradeCost.CostModels)
                         {
                             userData.UserResources.SetGameResource(element.GameResource.GameResourceType, 
                                 userData.UserResources.GetGameResourceValue(element.GameResource.GameResourceType) +

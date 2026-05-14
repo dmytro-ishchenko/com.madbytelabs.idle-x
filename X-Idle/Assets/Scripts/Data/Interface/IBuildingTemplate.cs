@@ -8,5 +8,6 @@ namespace Data.Interface
         GameObject View { get; }
         Sprite Icon { get; }
         BuildingContext BuildingContext { get; }
+        string ShortDescription { get; }
     }
 }

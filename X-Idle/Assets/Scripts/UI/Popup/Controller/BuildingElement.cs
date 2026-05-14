@@ -12,21 +12,21 @@ namespace UI.Popup.Controller
         [SerializeField] private Image m_icon;
         [SerializeField] private Image m_border;
         [SerializeField] private TMP_Text m_name;
-        private string m_id;
+
+        IBuildingTemplate m_template;
+        public IBuildingTemplate Template => m_template;
         public event Action<BuildingElement> OnSelect;
-        public string Id => m_id;
 
         void Awake()
         {
             m_elementButton.onClick.AddListener(() => OnSelect?.Invoke(this));
         }
 
-
         public void Init(IBuildingTemplate template)
         {
+            m_template = template;
             m_icon.sprite = template.Icon;
             m_name.text = template.Name;
-            m_id = template.Id;
         }
 
         public void Select(bool select)

@@ -10,6 +10,7 @@ namespace Data.ContentLibrary.Templates
         [SerializeField] private string m_id;
         [SerializeField] private string m_name;
         [SerializeField] private string m_description;
+        [SerializeField] private string m_shortDescription;
         [SerializeField] private GameObject m_view;
         [SerializeField] private Sprite m_icon;
         [SerializeField] BuildingContext m_buildingContext;
@@ -17,6 +18,7 @@ namespace Data.ContentLibrary.Templates
 
         public string Name => m_name;
         public string Description => m_description;
+        public string ShortDescription => m_shortDescription;
         public GameObject View => m_view;
         public Sprite Icon => m_icon;
         public BuildingContext BuildingContext => m_buildingContext;

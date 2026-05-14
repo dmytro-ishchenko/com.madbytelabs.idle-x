@@ -16,6 +16,7 @@ MonoBehaviour:
   m_name: Radio Tower
   m_description: Connects your settlement to the wasteland. Upgrade it to discover
     signals, unlock new opportunities, and expand your reach.
+  m_shortDescription: Improves communication and unlocks new opportunities.
   m_view: {fileID: 5740374362491373486, guid: 2da82fd4f184f4fd2bf06ce23dd413ed, type: 3}
   m_icon: {fileID: 21300000, guid: 10b0737f5d79d4b8390ad44587f12839, type: 3}
   m_buildingContext:
