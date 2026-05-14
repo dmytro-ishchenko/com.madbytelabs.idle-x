@@ -10,13 +10,15 @@ using UI.Popup.Upgrade;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UI.Controller;
 
 namespace UI.Popup.Create
 {
     internal class CreateBuildingPopup : BasePopup
     {
+        [SerializeField] private ContentSizer m_resizer;
         [SerializeField] private BuildingElement m_source;
-        [SerializeField] private Transform m_root;
+        [SerializeField] private Transform m_buildingListRoot;
         [SerializeField] private ScrollRect m_scrollRect;
         [SerializeField] private BuildingInfo m_info;
         [SerializeField] private RequiredModel m_requiredBuildings;
@@ -28,18 +30,18 @@ namespace UI.Popup.Create
         private string m_selectedPlaceHolderId;
         private IApplicationData m_applicationData;
         private List<RequiredElementView> m_requiredElements = new();
-        private float m_scrollHeight;
+
 
         public override void Show<T>(T context)
         {
             m_scrollRect.verticalNormalizedPosition = 1.0f;
-            m_scrollHeight = m_scrollRect.content.sizeDelta.y;
+
             if (context is CreateBuildingContext model)
             {
                 foreach (var buildingTemplate in model.Buildings)
                 {
                     var element = Instantiate(m_source);
-                    element.transform.SetParent(m_root);
+                    element.transform.SetParent(m_buildingListRoot);
                     element.Init(buildingTemplate);
                     element.gameObject.SetActive(true);
                     m_elements.Add(element);
@@ -48,6 +50,10 @@ namespace UI.Popup.Create
 
                 m_selectedPlaceHolderId = model.PlaceholderId;
                 m_applicationData = model.ApplicationData;
+
+                RectTransform rootRect = m_buildingListRoot as RectTransform;
+                rootRect.sizeDelta = new Vector2(rootRect.rect.width, m_scrollRect.GetComponent<RectTransform>().rect.height + m_source.GetComponent<RectTransform>().rect.height);
+
                 base.Show(context);
             }
 
@@ -66,6 +72,8 @@ namespace UI.Popup.Create
             m_info.Block.SetActive(false);
             m_requiredBuildings.Block.SetActive(false);
             m_requiredResources.Block.SetActive(false);
+
+            m_resizer.Recalculate();
         }
 
         public override void Close()
@@ -96,6 +104,7 @@ namespace UI.Popup.Create
                 m_createButton.interactable = true;
             m_selectedTemplateId = element.Template.Id;
             InitBuildingInfo(element.Template);
+            m_resizer.Recalculate();
         }
 
         void InitBuildingInfo(IBuildingTemplate template)

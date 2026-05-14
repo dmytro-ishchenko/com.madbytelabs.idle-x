@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7297082444772369221}
   - component: {fileID: 108208882179685975}
   - component: {fileID: 7624735590263404971}
+  - component: {fileID: 516572009611124966}
   m_Layer: 5
   m_Name: BuildingsScroll
   m_TagString: Untagged
@@ -34,11 +35,11 @@ RectTransform:
   - {fileID: 8382299748999546166}
   m_Father: {fileID: 506656152131527390}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 540, y: -474.11908}
-  m_SizeDelta: {x: 960, y: 678.6382}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -148.20544}
+  m_SizeDelta: {x: 960, y: 1680}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &108208882179685975
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -77,6 +78,25 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &516572009611124966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66740365858646963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 1
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 1680
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
 --- !u!1 &438101482626096570
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,6 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1557860186802833901}
+  - component: {fileID: 670749539229801953}
   m_Layer: 5
   m_Name: Distance
   m_TagString: Untagged
@@ -107,11 +128,30 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6723413147435323334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 480, y: -294.96002}
   m_SizeDelta: {x: 890, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &670749539229801953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438101482626096570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 0
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 0
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
 --- !u!1 &631996120308053292
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,6 +290,7 @@ GameObject:
   - component: {fileID: 8273005244403990645}
   - component: {fileID: 3167889821468658932}
   - component: {fileID: 2775672696523321425}
+  - component: {fileID: 3100225229752163768}
   m_Layer: 5
   m_Name: Building
   m_TagString: Untagged
@@ -271,6 +312,7 @@ RectTransform:
   m_Children:
   - {fileID: 81832182331164386}
   - {fileID: 8492411909921046732}
+  - {fileID: 4632523598306004999}
   - {fileID: 3830224299202612964}
   m_Father: {fileID: 2555110898095443248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -377,6 +419,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3100225229752163768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762711073269814866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 1
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 0
+  m_preferredWidth: 250
+  m_maxHeight: 0
+  m_maxWidth: 0
 --- !u!1 &813981566951411450
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,7 +667,7 @@ RectTransform:
   m_Father: {fileID: 7602528385777621642}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -660,6 +721,7 @@ GameObject:
   - component: {fileID: 3220447109415141633}
   - component: {fileID: 6989710857861049814}
   - component: {fileID: 6590002206597538289}
+  - component: {fileID: 2410496839844087813}
   m_Layer: 5
   m_Name: Button_Create
   m_TagString: Untagged
@@ -769,6 +831,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2410496839844087813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352975749556771601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 0
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 0
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
 --- !u!1 &1417631940097179139
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,9 +997,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5593015524823443567}
   - component: {fileID: 5859978403985190184}
-  - component: {fileID: 2796856634844029231}
-  - component: {fileID: 4043613686687363391}
   - component: {fileID: 9146782488161336093}
+  - component: {fileID: 9218830804422436509}
   m_Layer: 5
   m_Name: RequiredPanel
   m_TagString: Untagged
@@ -945,7 +1025,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 480, y: -274.96002}
-  m_SizeDelta: {x: 890, y: 0}
+  m_SizeDelta: {x: 890, y: 70}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &5859978403985190184
 CanvasRenderer:
@@ -955,50 +1035,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1529833559788103693}
   m_CullTransparentMesh: 0
---- !u!114 &2796856634844029231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1529833559788103693}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 10243ecb762c947248852271f7b8fea5, type: 3}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!114 &4043613686687363391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1529833559788103693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
-  m_HorizontalFit: 0
-  m_VerticalFit: 2
 --- !u!114 &9146782488161336093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1025,6 +1061,25 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &9218830804422436509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529833559788103693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 1
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 0
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
 --- !u!1 &2212470250789976694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1250,6 +1305,81 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2617906047606669918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4632523598306004999}
+  - component: {fileID: 2534407451643691951}
+  - component: {fileID: 3437491925934192040}
+  m_Layer: 5
+  m_Name: Hover
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4632523598306004999
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2617906047606669918}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2521721208452216964}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 172, y: 0}
+  m_SizeDelta: {x: 270, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2534407451643691951
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2617906047606669918}
+  m_CullTransparentMesh: 0
+--- !u!114 &3437491925934192040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2617906047606669918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.40784314, g: 0.77254903, b: 0.96862745, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 65a7833ecb569447f953746b5875b5e1, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &2722394615629720032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1404,8 +1534,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 140, y: 5.3}
-  m_SizeDelta: {x: 200, y: 200}
+  m_AnchoredPosition: {x: 172, y: 0}
+  m_SizeDelta: {x: 270, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3685141470178790929
 CanvasRenderer:
@@ -1429,13 +1559,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: cb82c98443bc44f82a6df770fbb0b1c6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1457,6 +1587,7 @@ GameObject:
   - component: {fileID: 4734804228676777706}
   - component: {fileID: 7001037907831669869}
   - component: {fileID: 4124390014572071862}
+  - component: {fileID: 129945257126721747}
   m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
@@ -1480,9 +1611,9 @@ RectTransform:
   m_Father: {fileID: 7297082444772369221}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -17, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &4734804228676777706
 CanvasRenderer:
@@ -1535,6 +1666,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Mask
   m_ShowMaskGraphic: 0
+--- !u!114 &129945257126721747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2996038235960913285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 1
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 0
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
 --- !u!1 &3011641471226668319
 GameObject:
   m_ObjectHideFlags: 0
@@ -1882,8 +2032,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4385079689000475779}
-  - component: {fileID: 608971951310610725}
   - component: {fileID: 2333629962876322697}
+  - component: {fileID: 5329963356686664999}
   m_Layer: 5
   m_Name: Root
   m_TagString: Untagged
@@ -1911,20 +2061,6 @@ RectTransform:
   m_AnchoredPosition: {x: 445, y: -98.8}
   m_SizeDelta: {x: 890, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &608971951310610725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3235581094738983025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
-  m_HorizontalFit: 0
-  m_VerticalFit: 2
 --- !u!114 &2333629962876322697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1951,6 +2087,25 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &5329963356686664999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3235581094738983025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 1
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 0
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
 --- !u!1 &3350314072252647545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1961,6 +2116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6754120419960845563}
   - component: {fileID: 7707954456761054683}
+  - component: {fileID: 8062925636710116025}
   m_Layer: 5
   m_Name: MainBuildig
   m_TagString: Untagged
@@ -2008,6 +2164,25 @@ MonoBehaviour:
   m_icon: {fileID: 4206821936821104258}
   m_lable: {fileID: 8855067695630052433}
   m_enough: {fileID: 3225540831950114700}
+--- !u!114 &8062925636710116025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3350314072252647545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 1
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 50
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
 --- !u!1 &3791140385774954542
 GameObject:
   m_ObjectHideFlags: 0
@@ -2018,9 +2193,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7368943881320501791}
   - component: {fileID: 4403313090359110648}
-  - component: {fileID: 8245524981448698992}
-  - component: {fileID: 5877078195987153881}
   - component: {fileID: 3501615283855879811}
+  - component: {fileID: 7637413410820315781}
   m_Layer: 5
   m_Name: CostPanel
   m_TagString: Untagged
@@ -2058,50 +2232,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3791140385774954542}
   m_CullTransparentMesh: 0
---- !u!114 &8245524981448698992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3791140385774954542}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 10243ecb762c947248852271f7b8fea5, type: 3}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!114 &5877078195987153881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3791140385774954542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
-  m_HorizontalFit: 0
-  m_VerticalFit: 2
 --- !u!114 &3501615283855879811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2128,6 +2258,25 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &7637413410820315781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3791140385774954542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 1
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 0
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
 --- !u!1 &4456436214760394856
 GameObject:
   m_ObjectHideFlags: 0
@@ -2198,8 +2347,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 112.64206, y: 0.000045776}
-  m_SizeDelta: {x: 578.0448, y: 100}
+  m_AnchoredPosition: {x: 180.51163, y: 0.000045776}
+  m_SizeDelta: {x: 513.4702, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2763872670723362890
 CanvasRenderer:
@@ -2229,9 +2378,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Building Name
-
-'
+  m_text: Main Building
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d9b454495b7d24a7a933eb61bdfa0607, type: 2}
   m_sharedMaterial: {fileID: 7409485994217783921, guid: d9b454495b7d24a7a933eb61bdfa0607, type: 2}
@@ -2265,7 +2412,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2314,6 +2461,7 @@ GameObject:
   - component: {fileID: 6564747886028764486}
   - component: {fileID: 2224923331819484996}
   - component: {fileID: 7159466041684985542}
+  - component: {fileID: 6510954047786011724}
   m_Layer: 5
   m_Name: Text_Required condition
   m_TagString: Untagged
@@ -2335,9 +2483,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5593015524823443567}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 159.18726, y: 0}
   m_SizeDelta: {x: 318.3745, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &2224923331819484996
@@ -2440,6 +2588,25 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6510954047786011724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4772910375597586499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 1
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 0
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
 --- !u!1 &5108986362167700406
 GameObject:
   m_ObjectHideFlags: 0
@@ -2450,6 +2617,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4350175327657202105}
   - component: {fileID: 8906776700065063273}
+  - component: {fileID: 1206324767644984671}
   m_Layer: 5
   m_Name: TopBar
   m_TagString: Untagged
@@ -2488,6 +2656,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5108986362167700406}
   m_CullTransparentMesh: 0
+--- !u!114 &1206324767644984671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5108986362167700406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 1
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 98
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
 --- !u!1 &5368413113683817129
 GameObject:
   m_ObjectHideFlags: 0
@@ -2499,6 +2686,7 @@ GameObject:
   - component: {fileID: 5937090220697913166}
   - component: {fileID: 5590870035786012876}
   - component: {fileID: 8121886069991262838}
+  - component: {fileID: 1213392066305248202}
   m_Layer: 5
   m_Name: Description
   m_TagString: Untagged
@@ -2520,9 +2708,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6723413147435323334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 489.8785, y: -115.869995}
   m_SizeDelta: {x: 909.757, y: 65.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5590870035786012876
@@ -2625,6 +2813,26 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1213392066305248202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5368413113683817129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: 65.9
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &5529424482503173356
 GameObject:
   m_ObjectHideFlags: 0
@@ -3171,6 +3379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5528655059700114762}
   - component: {fileID: 1486056816283543198}
+  - component: {fileID: 87287732484790065}
   m_Layer: 5
   m_Name: Resource
   m_TagString: Untagged
@@ -3218,6 +3427,25 @@ MonoBehaviour:
   m_icon: {fileID: 8569645562294231320}
   m_lable: {fileID: 5580397941993094974}
   m_enough: {fileID: 3580110900895361352}
+--- !u!114 &87287732484790065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6407333648412779917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 1
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 70
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
 --- !u!1 &6606409638125343427
 GameObject:
   m_ObjectHideFlags: 0
@@ -3229,6 +3457,8 @@ GameObject:
   - component: {fileID: 506656152131527390}
   - component: {fileID: 3306792224384754423}
   - component: {fileID: 5709880842713534324}
+  - component: {fileID: 1565202075266855172}
+  - component: {fileID: 9122690293115650061}
   m_Layer: 5
   m_Name: Popup
   m_TagString: Untagged
@@ -3299,6 +3529,45 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1565202075266855172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6606409638125343427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: 1920
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
+--- !u!114 &9122690293115650061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6606409638125343427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayout
+  m_axis: 1
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 1920
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
 --- !u!1 &6875149088905780118
 GameObject:
   m_ObjectHideFlags: 0
@@ -3384,7 +3653,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2555110898095443248}
   - component: {fileID: 6357537454700291226}
-  - component: {fileID: 3369273572478813267}
+  - component: {fileID: 387633959449868178}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -3410,7 +3679,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.00012568239}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 5}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6357537454700291226
 MonoBehaviour:
@@ -3438,7 +3707,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &3369273572478813267
+--- !u!114 &387633959449868178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3447,11 +3716,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7045725887884474532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
-  m_HorizontalFit: 0
-  m_VerticalFit: 2
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 1
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 0
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
 --- !u!1 &7129805710302161539
 GameObject:
   m_ObjectHideFlags: 0
@@ -3462,7 +3736,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1232173876983804596}
   - component: {fileID: 4585022307426563019}
-  - component: {fileID: 1664578909370071991}
+  - component: {fileID: 4516459076901229855}
   m_Layer: 5
   m_Name: Root
   m_TagString: Untagged
@@ -3516,7 +3790,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &1664578909370071991
+--- !u!114 &4516459076901229855
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3525,11 +3799,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7129805710302161539}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
-  m_HorizontalFit: 0
-  m_VerticalFit: 2
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 1
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 0
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
 --- !u!1 &7467810402566475395
 GameObject:
   m_ObjectHideFlags: 0
@@ -3539,6 +3818,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 298912221977560282}
+  - component: {fileID: 508720963941945765}
   m_Layer: 5
   m_Name: Distance
   m_TagString: Untagged
@@ -3561,11 +3841,31 @@ RectTransform:
   - {fileID: 1364661412146767473}
   m_Father: {fileID: 6723413147435323334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 480, y: -176.89001}
   m_SizeDelta: {x: 890, y: 56.14}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &508720963941945765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7467810402566475395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: 56.14
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &7605716318833247173
 GameObject:
   m_ObjectHideFlags: 0
@@ -3576,6 +3876,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4509120763949157472}
   - component: {fileID: 5075709232670463239}
+  - component: {fileID: 3997333806114934624}
   m_Layer: 5
   m_Name: BottomPanel
   m_TagString: Untagged
@@ -3600,7 +3901,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 540, y: -134.8}
-  m_SizeDelta: {x: 960, y: 36.8}
+  m_SizeDelta: {x: 960, y: 38}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &5075709232670463239
 CanvasRenderer:
@@ -3610,6 +3911,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7605716318833247173}
   m_CullTransparentMesh: 1
+--- !u!114 &3997333806114934624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7605716318833247173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 1
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 38
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
 --- !u!1 &7654204528510029415
 GameObject:
   m_ObjectHideFlags: 0
@@ -3696,6 +4016,7 @@ GameObject:
   - component: {fileID: 6224704563925615683}
   - component: {fileID: 8225959543599869639}
   - component: {fileID: 8619876157829630238}
+  - component: {fileID: 7373956944667194027}
   m_Layer: 5
   m_Name: Text_Name
   m_TagString: Untagged
@@ -3717,9 +4038,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6723413147435323334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 324.0224, y: -41.46}
   m_SizeDelta: {x: 578.0448, y: 82.92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8225959543599869639
@@ -3824,6 +4145,26 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7373956944667194027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7838048179450506425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: 82.92
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &8132362106256782406
 GameObject:
   m_ObjectHideFlags: 0
@@ -3834,6 +4175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8161400902843139906}
   - component: {fileID: 8994245915230886553}
+  - component: {fileID: 552448495182990421}
   m_Layer: 5
   m_Name: BottomPanel
   m_TagString: Untagged
@@ -3868,6 +4210,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8132362106256782406}
   m_CullTransparentMesh: 1
+--- !u!114 &552448495182990421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8132362106256782406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 0
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 0
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
 --- !u!1 &8178419066684836190
 GameObject:
   m_ObjectHideFlags: 0
@@ -3879,13 +4240,14 @@ GameObject:
   - component: {fileID: 5595555975699868552}
   - component: {fileID: 7040132440369603766}
   - component: {fileID: 683061395391015412}
+  - component: {fileID: 2021479788252568152}
   m_Layer: 5
   m_Name: CreateBuildingPopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5595555975699868552
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3919,13 +4281,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64538d0395d14a3b9d52e3cc910a668d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: com.madbytelabs.ui::UI.Popup.CreateBuildingPopup
+  m_updateList: []
+  m_resizeToContent: 0
   m_closeButtons:
   - {fileID: 4515448264246489817}
   - {fileID: 752317276899453084}
   - {fileID: 352299462759437550}
-  m_contentSizeFitters: []
+  m_resizer: {fileID: 2021479788252568152}
   m_source: {fileID: 3167889821468658932}
-  m_root: {fileID: 2555110898095443248}
+  m_buildingListRoot: {fileID: 2555110898095443248}
   m_scrollRect: {fileID: 7624735590263404971}
   m_info:
     Block: {fileID: 8878340281923494072}
@@ -3953,6 +4317,20 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &2021479788252568152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8178419066684836190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d80e2a849c29429f8ee9db24c26fa49a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.RecursiveVerticalContentSizer
+  m_root: {fileID: 506656152131527390}
+  rebuildAfterResize: 0
 --- !u!1 &8320323871053341446
 GameObject:
   m_ObjectHideFlags: 0
@@ -3964,6 +4342,7 @@ GameObject:
   - component: {fileID: 4601352930938360210}
   - component: {fileID: 6386752277571525402}
   - component: {fileID: 4683583144206087042}
+  - component: {fileID: 1098451266055942695}
   m_Layer: 5
   m_Name: Text_Required condition
   m_TagString: Untagged
@@ -4090,6 +4469,25 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1098451266055942695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8320323871053341446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 0
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 0
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
 --- !u!1 &8542999451862288436
 GameObject:
   m_ObjectHideFlags: 0
@@ -4252,14 +4650,15 @@ GameObject:
   - component: {fileID: 922974685086019109}
   - component: {fileID: 5446701924609090678}
   - component: {fileID: 5561494343858662217}
-  - component: {fileID: 5615064826983048906}
+  - component: {fileID: 537209408428528022}
+  - component: {fileID: 4269963533552196200}
   m_Layer: 5
   m_Name: BuildingInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6723413147435323334
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4283,7 +4682,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 235.16174}
-  m_SizeDelta: {x: 960, y: 0}
+  m_SizeDelta: {x: 960, y: 314.96002}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &922974685086019109
 CanvasRenderer:
@@ -4349,7 +4748,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &5615064826983048906
+--- !u!114 &537209408428528022
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4358,11 +4757,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 8878340281923494072}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
-  m_HorizontalFit: 0
-  m_VerticalFit: 2
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
+--- !u!114 &4269963533552196200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8878340281923494072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 1
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 0
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
 --- !u!1 &9025776750207621104
 GameObject:
   m_ObjectHideFlags: 0
@@ -4375,6 +4799,7 @@ GameObject:
   - component: {fileID: 8602912677954208715}
   - component: {fileID: 4673404218334042423}
   - component: {fileID: 352299462759437550}
+  - component: {fileID: 4752004641548856641}
   m_Layer: 5
   m_Name: CanNotCrate
   m_TagString: Untagged
@@ -4485,6 +4910,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4752004641548856641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9025776750207621104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 1
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 0
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
 --- !u!1 &9173553903189288386
 GameObject:
   m_ObjectHideFlags: 0
