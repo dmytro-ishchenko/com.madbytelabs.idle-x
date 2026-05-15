@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,12 +10,12 @@ namespace UI.Controller
         [SerializeField] private bool rebuildAfterResize = true;
 
 
-        public void Recalculate()
+        public async Awaitable Recalculate()
         {
             RecalculateRecursive(m_root);
-
             if (rebuildAfterResize)
                 LayoutRebuilder.ForceRebuildLayoutImmediate(m_root);
+            await Awaitable.NextFrameAsync();
         }
 
         private Vector2 RecalculateRecursive(RectTransform root)
@@ -44,7 +45,6 @@ namespace UI.Controller
                     totalWidth += childSize.x;
                 }
             }
-
 
             switch (layoutElementElement.Axis)
             {

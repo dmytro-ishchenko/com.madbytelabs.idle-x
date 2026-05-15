@@ -35,10 +35,12 @@ namespace UI.Popup.Create
 
         public override void Show<T>(T context)
         {
-            m_scrollRect.verticalNormalizedPosition = 1.0f;
+            m_createButton.gameObject.SetActive(false);
+            m_canNotBuilding.SetActive(false);
 
             if (context is CreateBuildingContext model)
             {
+
                 RecalculateScrollSize();
                 foreach (var buildingTemplate in model.Buildings)
                 {
@@ -56,7 +58,7 @@ namespace UI.Popup.Create
                 RectTransform rootRect = m_buildingListRoot as RectTransform;
                 rootRect.sizeDelta = new Vector2(rootRect.rect.width, m_scrollRect.GetComponent<RectTransform>().rect.height +
                                                                       2 * m_source.GetComponent<RectTransform>().rect.height);
-
+              
                 base.Show(context);
             }
 
@@ -103,15 +105,18 @@ namespace UI.Popup.Create
 
             element.Select(true);
 
-            if (!m_createButton.interactable)
-                m_createButton.interactable = true;
             m_selectedTemplateId = element.Template.Id;
-            InitBuildingInfo(element.Template);
-            m_resizer.Recalculate();
-            RecalculateScrollSize();
+            InitSelectedBuildingInfo(element);
         }
 
-        void InitBuildingInfo(IBuildingTemplate template)
+        async Awaitable InitSelectedBuildingInfo(BuildingElement element)
+        {
+            await InitBuildingInfo(element.Template);
+            await m_resizer.Recalculate();
+            await RecalculateScrollSize();
+        }
+
+        async Awaitable InitBuildingInfo(IBuildingTemplate template)
         {
             m_info.BuildingName.text = template.Name;
             m_info.BuildingDescription.text = template.ShortDescription;
@@ -183,11 +188,15 @@ namespace UI.Popup.Create
                 m_createButton.gameObject.SetActive(false);
                 m_canNotBuilding.SetActive(true);
             }
+
+            await Awaitable.EndOfFrameAsync();
         }
 
-        void RecalculateScrollSize()
+        async Awaitable RecalculateScrollSize()
         {
             float contentHeight = 0;
+            m_scrollRect.inertia = false;
+
 
             RectTransform scrollRect = m_scrollRect.GetComponent<RectTransform>();
 
@@ -203,6 +212,12 @@ namespace UI.Popup.Create
 
             var scrollHeight = m_scrollHolderRect.rect.height - contentHeight;
             scrollRect.sizeDelta = new Vector2(scrollRect.rect.width, scrollHeight);
+
+
+            await Awaitable.EndOfFrameAsync();
+            m_scrollRect.inertia = true;
+            await Awaitable.EndOfFrameAsync();
+            m_scrollRect.StopMovement();
         }
 
         [Serializable]
