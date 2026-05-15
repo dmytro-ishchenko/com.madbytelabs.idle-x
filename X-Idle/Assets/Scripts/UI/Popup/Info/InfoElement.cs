@@ -10,7 +10,7 @@ namespace UI.Popup.Info
         [SerializeField] private TMP_Text m_name;
         [SerializeField] private TMP_Text m_value;
 
-        public void Init(Sprite icon, string text, string value)
+        public void Init(Sprite icon, string text, string value, Color color)
         {
             if (icon != null)
                 m_icon.sprite = icon;
@@ -21,11 +21,13 @@ namespace UI.Popup.Info
 
             m_name.text = text;
             m_value.text = value;
+            m_value.color = color;
         }
 
-        public void InitValue(string value)
+        public void InitValue(string value, Color color)
         {
             m_value.text = value;
+            m_value.color = color;
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Data.Model.Popup;
 using TMPro;
+using UI.Config;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,7 +41,7 @@ namespace UI.Popup.Info
                 foreach (var effect in model.Effects)
                 {
                     view = Instantiate(m_infoElement, m_effectRoot);
-                    view.Init(effect.Icon, $"{effect.Text}", $"{effect.Value}");
+                    view.Init(effect.Icon, $"{effect.Text}", $"{effect.Value}", effect.IsPositive ? UIConfig.Instance.PositiveEffectColor : UIConfig.Instance.NegativeEffectColor);
                     m_elements.Add(view);
                     view.gameObject.SetActive(true);
                 }
@@ -50,7 +51,7 @@ namespace UI.Popup.Info
                     m_storageBlock.gameObject.SetActive(true);
 
                     view = Instantiate(m_infoElement, m_storageRoot);
-                    view.Init(model.Storage.Icon, $"{model.Storage.Text}", $"{model.Storage.Value}");
+                    view.Init(model.Storage.Icon, $"{model.Storage.Text}", $"{model.Storage.Value}", UIConfig.Instance.PositiveBonusColor);
                     m_elements.Add(view);
                     view.gameObject.SetActive(true);
                 }
@@ -62,7 +63,19 @@ namespace UI.Popup.Info
                 if (model.Condition != null)
                 {
                     m_conditionBlock.gameObject.SetActive(true);
-                    m_efficiencyElement.InitValue($"{model.Condition.Value}");
+
+                    Color color = UIConfig.Instance.Condition100;
+
+                    if (model.Condition.Value == 0)
+                        color = UIConfig.Instance.Condition0;
+                    else if (model.Condition.Value < 30)
+                        color = UIConfig.Instance.Condition30;
+                    else if (model.Condition.Value < 60)
+                        color = UIConfig.Instance.Condition60;
+                    else if (model.Condition.Value < 90)
+                        color = UIConfig.Instance.Condition90;
+
+                    m_efficiencyElement.InitValue($"{model.Condition.Value}%", color);
                     m_efficiencyElement.gameObject.SetActive(true);
                 }
                 else
@@ -75,6 +88,7 @@ namespace UI.Popup.Info
                 group.alpha = 1;
 
                 base.Show(context);
+                resizer.Recalculate();
             }
         }
 

@@ -5,7 +5,7 @@ namespace Data.Model.Popup
 {
     public class SelectBuildingInfo : IShowPopupContext
     {
-        public SelectBuildingInfo(string name, Sprite icon, int level, string description, List<InfoElementModel> effects, InfoElementModel storage, InfoElementModel condition)
+        public SelectBuildingInfo(string name, Sprite icon, int level, string description, List<InfoElementModel> effects, InfoElementModel storage, ConditionModel condition)
         {
             Name = name;
             Level = level;
@@ -23,6 +23,6 @@ namespace Data.Model.Popup
         public string Description { get; }
         public List<InfoElementModel> Effects { get; }
         public InfoElementModel Storage { get; }
-        public InfoElementModel Condition { get; }
+        public ConditionModel Condition { get; }
     }
 }

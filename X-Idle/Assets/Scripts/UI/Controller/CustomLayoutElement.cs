@@ -12,7 +12,6 @@ namespace UI.Controller
         [SerializeField] private float m_maxHeight;
         [SerializeField] private float m_maxWidth;
         [SerializeField] private bool m_useOriginalSize;
-        [SerializeField] private bool m_fillFreeSpace;
         public RectTransform.Axis Axis => m_axis;
         public float MinHeight => m_minHeight;
         public float MinWidth => m_minWidth;
@@ -21,6 +20,5 @@ namespace UI.Controller
         public float MaxHeight => m_maxHeight;
         public float MaxWidth => m_maxWidth;
         public bool UseOriginalSize => m_useOriginalSize;
-        public bool FillFreeSpace => m_fillFreeSpace;
     }
 }

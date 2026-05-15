@@ -1,4 +1,5 @@
 using Common.Pattern.BobbleEvent;
+using UI.Controller;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,8 +7,7 @@ namespace UI.Popup
 {
     internal class BasePopup : MonoBehaviour, IPopup, IMonoNode
     {
-        [SerializeField] protected RectTransform[] m_updateList;
-        [SerializeField] protected bool m_resizeToContent = true;
+        [SerializeField] protected ContentSizer resizer;
         [SerializeField] private Button[] m_closeButtons;
 
         public Node Node { get; } = new();
@@ -26,17 +26,6 @@ namespace UI.Popup
         public virtual void Close()
         {
             gameObject.SetActive(false);
-        }
-
-        protected void UpdateContentHolder(RectTransform holder)
-        {
-            float height = 0;
-            foreach (RectTransform rectTransform in holder)
-            {
-                height += rectTransform.rect.height;
-            }
-
-            holder.sizeDelta = new Vector2(holder.sizeDelta.x, height);
         }
     }
 }

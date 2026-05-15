@@ -10,13 +10,11 @@ using UI.Popup.Upgrade;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UI.Controller;
 
 namespace UI.Popup.Create
 {
     internal class CreateBuildingPopup : BasePopup
     {
-        [SerializeField] private ContentSizer m_resizer;
         [SerializeField] private BuildingElement m_source;
         [SerializeField] private Transform m_buildingListRoot;
         [SerializeField] private ScrollRect m_scrollRect;
@@ -40,7 +38,6 @@ namespace UI.Popup.Create
 
             if (context is CreateBuildingContext model)
             {
-
                 RecalculateScrollSize();
                 foreach (var buildingTemplate in model.Buildings)
                 {
@@ -58,7 +55,7 @@ namespace UI.Popup.Create
                 RectTransform rootRect = m_buildingListRoot as RectTransform;
                 rootRect.sizeDelta = new Vector2(rootRect.rect.width, m_scrollRect.GetComponent<RectTransform>().rect.height +
                                                                       2 * m_source.GetComponent<RectTransform>().rect.height);
-              
+
                 base.Show(context);
             }
 
@@ -78,7 +75,7 @@ namespace UI.Popup.Create
             m_requiredBuildings.Block.SetActive(false);
             m_requiredResources.Block.SetActive(false);
 
-            m_resizer.Recalculate();
+            resizer.Recalculate();
         }
 
         public override void Close()
@@ -112,7 +109,7 @@ namespace UI.Popup.Create
         async Awaitable InitSelectedBuildingInfo(BuildingElement element)
         {
             await InitBuildingInfo(element.Template);
-            await m_resizer.Recalculate();
+            await resizer.Recalculate();
             await RecalculateScrollSize();
         }
 
@@ -211,13 +208,17 @@ namespace UI.Popup.Create
             contentHeight -= scrollRect.sizeDelta.y;
 
             var scrollHeight = m_scrollHolderRect.rect.height - contentHeight;
-            scrollRect.sizeDelta = new Vector2(scrollRect.rect.width, scrollHeight);
 
 
-            await Awaitable.EndOfFrameAsync();
-            m_scrollRect.inertia = true;
-            await Awaitable.EndOfFrameAsync();
-            m_scrollRect.StopMovement();
+            if (Mathf.Abs(scrollHeight - scrollRect.sizeDelta.y) > 5f)
+            {
+                scrollRect.sizeDelta = new Vector2(scrollRect.rect.width, scrollHeight);
+
+                await Awaitable.EndOfFrameAsync();
+                m_scrollRect.inertia = true;
+                await Awaitable.EndOfFrameAsync();
+                m_scrollRect.StopMovement();
+            }
         }
 
         [Serializable]

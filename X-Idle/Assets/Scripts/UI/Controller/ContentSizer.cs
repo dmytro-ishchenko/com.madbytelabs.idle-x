@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,6 +40,7 @@ namespace UI.Controller
                     layoutElementElement = root.GetComponent<CustomLayoutElement>();
                     if (layoutElementElement == null)
                         continue;
+
                     Vector2 childSize = RecalculateRecursive(child);
 
                     totalHeight += childSize.y;
@@ -54,19 +56,31 @@ namespace UI.Controller
 
                     if (!layoutElementElement.UseOriginalSize)
                     {
-                        if (layoutElementElement.PreferredWidth > 0)
+                        if (layoutElementElement.TryGetComponent(out TMP_Text text))
                         {
-                            totalWidth = layoutElementElement.PreferredWidth;
+                            text.ForceMeshUpdate();
+
+                            float width = text.preferredWidth;
+                            float height = text.preferredHeight;
+
+                            text.rectTransform.sizeDelta = new Vector2(width, height);
                         }
                         else
                         {
-                            if (layoutElementElement.MaxWidth > 0 && totalWidth > layoutElementElement.MaxWidth)
-                                totalWidth = layoutElementElement.MaxWidth;
-                            else if (layoutElementElement.MinWidth > 0 && totalWidth < layoutElementElement.MinWidth)
-                                totalWidth = layoutElementElement.MinWidth;
-                        }
+                            if (layoutElementElement.PreferredWidth > 0)
+                            {
+                                totalWidth = layoutElementElement.PreferredWidth;
+                            }
+                            else
+                            {
+                                if (layoutElementElement.MaxWidth > 0 && totalWidth > layoutElementElement.MaxWidth)
+                                    totalWidth = layoutElementElement.MaxWidth;
+                                else if (layoutElementElement.MinWidth > 0 && totalWidth < layoutElementElement.MinWidth)
+                                    totalWidth = layoutElementElement.MinWidth;
+                            }
 
-                        root.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, totalWidth);
+                            root.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, totalWidth);
+                        }
                     }
 
                     break;

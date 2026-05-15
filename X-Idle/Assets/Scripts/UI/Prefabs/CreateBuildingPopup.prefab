@@ -4384,13 +4384,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64538d0395d14a3b9d52e3cc910a668d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: com.madbytelabs.ui::UI.Popup.CreateBuildingPopup
-  m_updateList: []
-  m_resizeToContent: 0
+  resizer: {fileID: 2021479788252568152}
   m_closeButtons:
   - {fileID: 4515448264246489817}
   - {fileID: 752317276899453084}
   - {fileID: 352299462759437550}
-  m_resizer: {fileID: 2021479788252568152}
   m_source: {fileID: 3167889821468658932}
   m_buildingListRoot: {fileID: 2555110898095443248}
   m_scrollRect: {fileID: 7624735590263404971}
