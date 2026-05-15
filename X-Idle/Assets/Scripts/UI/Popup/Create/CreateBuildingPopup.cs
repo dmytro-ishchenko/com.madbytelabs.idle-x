@@ -54,7 +54,8 @@ namespace UI.Popup.Create
                 m_applicationData = model.ApplicationData;
 
                 RectTransform rootRect = m_buildingListRoot as RectTransform;
-                rootRect.sizeDelta = new Vector2(rootRect.rect.width, m_scrollRect.GetComponent<RectTransform>().rect.height + m_source.GetComponent<RectTransform>().rect.height);
+                rootRect.sizeDelta = new Vector2(rootRect.rect.width, m_scrollRect.GetComponent<RectTransform>().rect.height +
+                                                                      2 * m_source.GetComponent<RectTransform>().rect.height);
 
                 base.Show(context);
             }
@@ -186,7 +187,7 @@ namespace UI.Popup.Create
 
         void RecalculateScrollSize()
         {
-            float height = 0;
+            float contentHeight = 0;
 
             RectTransform scrollRect = m_scrollRect.GetComponent<RectTransform>();
 
@@ -194,12 +195,14 @@ namespace UI.Popup.Create
             {
                 if (rect.gameObject.activeSelf)
                 {
-                    height += rect.sizeDelta.y;
+                    contentHeight += rect.sizeDelta.y;
                 }
             }
 
-            height -= scrollRect.rect.height;
-            scrollRect.sizeDelta = new Vector2(scrollRect.rect.width, m_scrollHolderRect.rect.height - height);
+            contentHeight -= scrollRect.sizeDelta.y;
+
+            var scrollHeight = m_scrollHolderRect.rect.height - contentHeight;
+            scrollRect.sizeDelta = new Vector2(scrollRect.rect.width, scrollHeight);
         }
 
         [Serializable]

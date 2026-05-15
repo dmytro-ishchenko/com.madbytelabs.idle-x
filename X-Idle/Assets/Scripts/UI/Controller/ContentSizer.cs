@@ -51,37 +51,44 @@ namespace UI.Controller
                 case RectTransform.Axis.Horizontal:
                     if (totalWidth == 0)
                         totalWidth = root.rect.width;
-                    if (layoutElementElement.PreferredWidth > 0)
-                    {
-                        totalWidth = layoutElementElement.PreferredWidth;
-                    }
-                    else
-                    {
-                        if (layoutElementElement.MaxWidth > 0 && totalWidth > layoutElementElement.MaxWidth)
-                            totalWidth = layoutElementElement.MaxWidth;
-                        else if (layoutElementElement.MinWidth > 0 && totalWidth < layoutElementElement.MinWidth)
-                            totalWidth = layoutElementElement.MinWidth;
-                    }
 
-                    root.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, totalWidth);
+                    if (!layoutElementElement.UseOriginalSize)
+                    {
+                        if (layoutElementElement.PreferredWidth > 0)
+                        {
+                            totalWidth = layoutElementElement.PreferredWidth;
+                        }
+                        else
+                        {
+                            if (layoutElementElement.MaxWidth > 0 && totalWidth > layoutElementElement.MaxWidth)
+                                totalWidth = layoutElementElement.MaxWidth;
+                            else if (layoutElementElement.MinWidth > 0 && totalWidth < layoutElementElement.MinWidth)
+                                totalWidth = layoutElementElement.MinWidth;
+                        }
+
+                        root.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, totalWidth);
+                    }
 
                     break;
                 case RectTransform.Axis.Vertical:
                     if (totalHeight == 0)
                         totalHeight = root.rect.height;
-                    if (layoutElementElement.PreferredHeight > 0)
+                    if (!layoutElementElement.UseOriginalSize)
                     {
-                        totalHeight = layoutElementElement.PreferredHeight;
-                    }
-                    else
-                    {
-                        if (layoutElementElement.MaxHeight > 0 && totalHeight > layoutElementElement.MaxHeight)
-                            totalHeight = layoutElementElement.MaxHeight;
-                        else if (layoutElementElement.MinHeight > 0 && totalHeight < layoutElementElement.MinHeight)
-                            totalHeight = layoutElementElement.MinHeight;
-                    }
+                        if (layoutElementElement.PreferredHeight > 0)
+                        {
+                            totalHeight = layoutElementElement.PreferredHeight;
+                        }
+                        else
+                        {
+                            if (layoutElementElement.MaxHeight > 0 && totalHeight > layoutElementElement.MaxHeight)
+                                totalHeight = layoutElementElement.MaxHeight;
+                            else if (layoutElementElement.MinHeight > 0 && totalHeight < layoutElementElement.MinHeight)
+                                totalHeight = layoutElementElement.MinHeight;
+                        }
 
-                    root.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, totalHeight);
+                        root.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, totalHeight);
+                    }
 
                     break;
             }
