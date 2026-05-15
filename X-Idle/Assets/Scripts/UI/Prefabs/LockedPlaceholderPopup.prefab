@@ -606,8 +606,8 @@ GameObject:
   - component: {fileID: 3877255565183095287}
   - component: {fileID: 3817685883023540539}
   - component: {fileID: 3031589458190948496}
-  - component: {fileID: 3887764272722362141}
   - component: {fileID: 5065696831347402476}
+  - component: {fileID: 4358748664218724851}
   m_Layer: 5
   m_Name: Required condition
   m_TagString: Untagged
@@ -676,20 +676,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3887764272722362141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2596702566142244929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
-  m_HorizontalFit: 0
-  m_VerticalFit: 2
 --- !u!114 &5065696831347402476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,14 +694,34 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 1
-  m_Spacing: 15
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &4358748664218724851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2596702566142244929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 1
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 0
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
+  m_useOriginalSize: 0
 --- !u!1 &3390044561329619295
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,6 +928,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6523014954528738738}
   - component: {fileID: 4472926679380545271}
+  - component: {fileID: 1488875536632199887}
   m_Layer: 5
   m_Name: BottomPanel
   m_TagString: Untagged
@@ -956,6 +963,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3800185346429932885}
   m_CullTransparentMesh: 1
+--- !u!114 &1488875536632199887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3800185346429932885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 1
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 0
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
+  m_useOriginalSize: 0
 --- !u!1 &4405337977509836750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1223,6 +1250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3072241033576294680}
   - component: {fileID: 8211927757515385682}
+  - component: {fileID: 2818255625056488499}
   m_Layer: 5
   m_Name: Resource
   m_TagString: Untagged
@@ -1267,8 +1295,29 @@ MonoBehaviour:
   m_successColor: {r: 0.28627452, g: 0.43137255, b: 0.5686275, a: 1}
   m_failureColor: {r: 0.8396226, g: 0.122774996, b: 0.14361745, a: 1}
   m_root: {fileID: 5187866393474891331}
+  m_icon: {fileID: 5040622835829822327}
   m_lable: {fileID: 1236182174921140992}
   m_enough: {fileID: 918501082161296581}
+--- !u!114 &2818255625056488499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187866393474891331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 1
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 0
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
+  m_useOriginalSize: 0
 --- !u!1 &5406929541377690759
 GameObject:
   m_ObjectHideFlags: 0
@@ -1785,6 +1834,7 @@ GameObject:
   - component: {fileID: 1687330017880322673}
   - component: {fileID: 5384895500307180577}
   - component: {fileID: 1948978589214740249}
+  - component: {fileID: 2592757193496830748}
   m_Layer: 5
   m_Name: Text_Required condition
   m_TagString: Untagged
@@ -1911,6 +1961,26 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2592757193496830748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6431622342375674003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 1
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 0
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
+  m_useOriginalSize: 0
 --- !u!1 &6923661463559101906
 GameObject:
   m_ObjectHideFlags: 0
@@ -2348,6 +2418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2169360472449469766}
   - component: {fileID: 5003453868309671329}
+  - component: {fileID: 7244924288733098386}
   m_Layer: 5
   m_Name: MainBuildig
   m_TagString: Untagged
@@ -2392,8 +2463,29 @@ MonoBehaviour:
   m_successColor: {r: 0.28627452, g: 0.43137255, b: 0.5686275, a: 1}
   m_failureColor: {r: 0.8396226, g: 0.122774996, b: 0.14361745, a: 1}
   m_root: {fileID: 8769709134286217549}
+  m_icon: {fileID: 5555689546912837945}
   m_lable: {fileID: 2349142514415939473}
   m_enough: {fileID: 2984101485789808310}
+--- !u!114 &7244924288733098386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8769709134286217549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36197ef27e3849b28109140768f7ff5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.CustomLayoutElement
+  m_axis: 1
+  m_minHeight: 0
+  m_minWidth: 0
+  m_preferredHeight: 0
+  m_preferredWidth: 0
+  m_maxHeight: 0
+  m_maxWidth: 0
+  m_useOriginalSize: 0
 --- !u!1 &9094076806231362310
 GameObject:
   m_ObjectHideFlags: 0
@@ -2405,6 +2497,7 @@ GameObject:
   - component: {fileID: 5776090871571857611}
   - component: {fileID: 3832574743451133431}
   - component: {fileID: 5248719662761627632}
+  - component: {fileID: 1123075487368808868}
   m_Layer: 5
   m_Name: LockedPlaceholderPopup
   m_TagString: Untagged
@@ -2457,10 +2550,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b42dd760cd4d97afbdd61195ff08a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: com.madbytelabs.ui::UI.Popup.Locked.LockedPlaceholderPopup
+  resizer: {fileID: 1123075487368808868}
   m_closeButtons:
   - {fileID: 2358440668633923488}
   - {fileID: 41045539594333490}
-  m_contentSizeFitters: []
   m_description: {fileID: 5225650246079062537}
   m_requiredElements:
     _serializedList:
@@ -2470,3 +2563,17 @@ MonoBehaviour:
       Value: {fileID: 8211927757515385682}
   m_root: {fileID: 3877255565183095287}
   m_unlock: {fileID: 7262601946635305372}
+--- !u!114 &1123075487368808868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9094076806231362310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d80e2a849c29429f8ee9db24c26fa49a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.RecursiveVerticalContentSizer
+  m_root: {fileID: 3877255565183095287}
+  rebuildAfterResize: 0

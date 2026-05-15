@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -45,9 +44,10 @@ namespace UI.Controller
 
                     totalHeight += childSize.y;
                     totalWidth += childSize.x;
+              
                 }
             }
-
+      
             switch (layoutElementElement.Axis)
             {
                 case RectTransform.Axis.Horizontal:

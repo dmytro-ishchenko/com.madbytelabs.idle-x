@@ -142,6 +142,8 @@ namespace UI.Popup.Upgrade
                 m_close.onClick.AddListener(Close);
 
                 base.Show(context);
+
+                resizer.Recalculate();
             }
         }
 

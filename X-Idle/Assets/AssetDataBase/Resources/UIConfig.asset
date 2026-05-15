@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce46c562842c4cf287e5a95f005adeed, type: 3}
   m_Name: UIConfig
   m_EditorClassIdentifier: com.madbytelabs.ui::UI.Config.UIConfig
-  m_positiveEffectColor: {r: 0.49803922, g: 0.7058824, b: 0.40784314, a: 1}
+  m_positiveEffectColor: {r: 0.28246018, g: 0.6981132, b: 0.10208259, a: 1}
   m_negativeEffectColor: {r: 1, g: 0.2705882, b: 0, a: 1}
   m_positiveBonusColor: {r: 0.40784314, g: 0.69803923, b: 0.79607844, a: 1}
+  m_condition0: {r: 1, g: 0, b: 0, a: 1}
+  m_condition30: {r: 1, g: 0.3882353, b: 0.2784314, a: 1}
+  m_condition60: {r: 1, g: 0.6470588, b: 0, a: 1}
+  m_condition90: {r: 0.7058824, g: 0.6851466, b: 0.40784314, a: 1}
+  m_condition100: {r: 0.28246018, g: 0.6981132, b: 0.10208259, a: 1}

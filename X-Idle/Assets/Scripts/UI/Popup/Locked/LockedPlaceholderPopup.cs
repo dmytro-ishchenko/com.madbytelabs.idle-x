@@ -71,6 +71,7 @@ namespace UI.Popup.Locked
 
 
                 base.Show(context);
+                resizer.Recalculate();
             }
         }
 
