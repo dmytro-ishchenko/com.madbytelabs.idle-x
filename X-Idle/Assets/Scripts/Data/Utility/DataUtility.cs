@@ -315,7 +315,7 @@ namespace Data.Utility
                     }
                 }
 
-                userPlaceHolderData.UpdatePlaceHolderStatus(placeHolder.Id, new PlaceholderModel(placeHolder.Id, PlaceHolderStatus.Unlocked, placeHolder.PlaceHolderType));
+                userPlaceHolderData.UpdatePlaceHolderStatus(placeHolder.Id, new PlaceholderModel(placeHolder.Id, placeHolder.TemplateId, PlaceHolderStatus.Unlocked, placeHolder.PlaceHolderType));
             }
         }
 

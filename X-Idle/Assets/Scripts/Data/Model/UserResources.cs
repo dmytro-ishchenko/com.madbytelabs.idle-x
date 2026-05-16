@@ -6,9 +6,10 @@ namespace Data.Model
 {
     public class UserResources
     {
-        internal event Action<UserResources> OnUserResourcesChanged;
+        private readonly Dictionary<GameResourceType, float> m_resources = new();
 
-        private readonly Dictionary<GameResourceType, float> m_resources = new Dictionary<GameResourceType, float>();
+        internal IReadOnlyDictionary<GameResourceType, float> Resources => m_resources;
+        internal event Action<UserResources> OnUserResourcesChanged;
 
         public float GetGameResourceValue(GameResourceType type)
         {

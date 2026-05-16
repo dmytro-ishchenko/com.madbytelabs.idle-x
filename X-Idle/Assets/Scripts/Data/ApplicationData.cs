@@ -75,7 +75,7 @@ namespace Data
                     buildingsModels.Add(new BuildingModel(buildingContext.Id, buildingTemplate, 1));
 
                     placeHolderData.AddPlaceHolder(buildingContext.Id,
-                        new PlaceholderModel(buildingContext.Id, buildingContext.PlaceHolderStatus, buildingContext.PlaceHolderType));
+                        new PlaceholderModel(buildingContext.Id, buildingContext.BuildingTemplateId, buildingContext.PlaceHolderStatus, buildingContext.PlaceHolderType));
                 }
 
                 m_userData = new UserData(placeHolderData, buildingsModels);
@@ -152,7 +152,7 @@ namespace Data
 
                     break;
                 case BuildingActionType.DismantleBuildingRequest:
-                    if (m_buildingFactory.TryDismantleBuilding(m_userData, args, out BuildingModel defaultBuildingModel))
+                    if (m_buildingFactory.TryDismantleBuilding(m_assetLibrary,m_userData, args, out BuildingModel defaultBuildingModel))
                     {
                         OnBuildingDeleted?.Invoke(defaultBuildingModel);
                     }
@@ -187,12 +187,13 @@ namespace Data
 
         void SaveUserData()
         {
-            m_userDataLoader.Save(m_userData.ToSave(m_sceneTemplate));
+            m_userDataLoader.Save(m_userData.ToSave());
         }
 
         public void OnApplicationQuit()
         {
             m_userDataProcessor.StopProcessing();
+            SaveUserData();
         }
 
         public void OnApplicationFocus(bool hasFocus)

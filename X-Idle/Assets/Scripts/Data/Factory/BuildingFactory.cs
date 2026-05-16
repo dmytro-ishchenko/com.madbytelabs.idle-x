@@ -27,7 +27,8 @@ namespace Data.Factory
 
                         if (userData.UserPlaceHolderData.PlaceHolderDataMap.TryGetValue(building.Id, out var placeHolder))
                         {
-                            userData.UserPlaceHolderData.UpdatePlaceHolderStatus(building.Id, new PlaceholderModel(placeHolder.Id, PlaceHolderStatus.Occupied, placeHolder.PlaceHolderType));
+                            userData.UserPlaceHolderData.UpdatePlaceHolderStatus(building.Id,
+                                new PlaceholderModel(placeHolder.Id, building.Template.Id, PlaceHolderStatus.Occupied, placeHolder.PlaceHolderType));
 
                             buildingModel = building;
 
@@ -65,7 +66,7 @@ namespace Data.Factory
             return false;
         }
 
-        public bool TryDismantleBuilding(UserData userData, BuildingProcessEventArgs args, out BuildingModel buildingModel)
+        public bool TryDismantleBuilding(IAssetLibrary assetLibrary, UserData userData, BuildingProcessEventArgs args, out BuildingModel buildingModel)
         {
             if (m_assetLibrary.TryGetBuildingTemplateByType(BuildingType.DestroyedBuilding, out var template))
             {
@@ -78,7 +79,7 @@ namespace Data.Factory
                     {
                         foreach (var element in building.Template.BuildingContext.UpgradeCost.CostModels)
                         {
-                            userData.UserResources.SetGameResource(element.GameResource.GameResourceType, 
+                            userData.UserResources.SetGameResource(element.GameResource.GameResourceType,
                                 userData.UserResources.GetGameResourceValue(element.GameResource.GameResourceType) +
                                 element.Cost * element.CostGrowth * i * 0.5f);
                         }
@@ -89,7 +90,10 @@ namespace Data.Factory
                     building.SetLevel(1);
                     if (userData.UserPlaceHolderData.PlaceHolderDataMap.TryGetValue(building.Id, out var placeHolder))
                     {
-                        userData.UserPlaceHolderData.UpdatePlaceHolderStatus(placeHolder.Id, new PlaceholderModel(building.Id, PlaceHolderStatus.Unlocked, placeHolder.PlaceHolderType));
+                        assetLibrary.TryGetBuildingTemplateByType(BuildingType.DestroyedBuilding, out var destroyedTemplate);
+
+                        userData.UserPlaceHolderData.UpdatePlaceHolderStatus(placeHolder.Id,
+                            new PlaceholderModel(building.Id, destroyedTemplate.Id, PlaceHolderStatus.Unlocked, placeHolder.PlaceHolderType));
 
                         buildingModel = building;
                         return true;

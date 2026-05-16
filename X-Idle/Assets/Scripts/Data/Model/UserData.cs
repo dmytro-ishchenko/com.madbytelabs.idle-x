@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Data.ContentLibrary;
-using Data.ContentLibrary.Templates;
 using Data.Persistent;
 
 namespace Data.Model
@@ -35,7 +34,7 @@ namespace Data.Model
 
             foreach (var placeholder in saveModel.PlaceHolders)
             {
-                UserPlaceHolderData.AddPlaceHolder(placeholder.Id, new PlaceholderModel(placeholder.Id, placeholder.PlaceHolderStatus, placeholder.PlaceHolderType));
+                UserPlaceHolderData.AddPlaceHolder(placeholder.Id, new PlaceholderModel(placeholder.Id, placeholder.BuildingTemplateId, placeholder.PlaceHolderStatus, placeholder.PlaceHolderType));
             }
         }
 
@@ -43,25 +42,29 @@ namespace Data.Model
         public UserResources UserResources { get; } = new();
         public UserPlaceHolderData UserPlaceHolderData { get; } = new();
 
-        public SaveModel ToSave(SceneTemplate sceneTemplate)
+        public SaveModel ToSave()
         {
             List<PlaceHolderSaveModel> placeholders = new();
 
-            // foreach (var buildingContext in sceneTemplate.SceneBuildings)
-            // {
-            //
-            //
-            //     placeHolderData.AddPlaceHolder(buildingContext.Id, new PlaceholderModel(buildingContext.Id, buildingContext.PlaceHolderStatus, buildingContext.PlaceHolderType));
-            // }
-            //
-            // foreach (var element in UserPlaceHolderData.PlaceHolderDataMap)
-            // {
-            //     placeholders.Add(new PlaceHolderSaveModel(element.Value.Id,element.Value.,element.Value.Status, element.Value.PlaceHolderType));
-            // }
-            
+            foreach (var buildingContext in UserPlaceHolderData.PlaceHolderDataMap.Values)
+            {
+                placeholders.Add(new PlaceHolderSaveModel(buildingContext.Id, "", buildingContext.PlaceHolderType, buildingContext.Status));
+            }
+
+
             List<BuildingSaveModel> buildings = new();
-            
+
+            foreach (var building in UserBuildingsData.BuildingsMap.Values)
+            {
+                buildings.Add(new BuildingSaveModel(building.Id, building.Template.Id, building.Level));
+            }
+
             List<ResourceSaveModel> resources = new();
+
+            foreach (var resource in UserResources.Resources)
+            {
+                resources.Add(new ResourceSaveModel(resource.Key, resource.Value));
+            }
 
             return new SaveModel(placeholders, buildings, resources);
         }
