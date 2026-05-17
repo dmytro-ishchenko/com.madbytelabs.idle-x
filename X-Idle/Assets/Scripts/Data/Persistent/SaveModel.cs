@@ -13,11 +13,14 @@ namespace Data.Persistent
 
         public SaveModel(List<PlaceHolderSaveModel> placeholders, List<BuildingSaveModel> buildings, List<ResourceSaveModel> resources)
         {
+            DateTime now = DateTime.UtcNow;
+            Time = ((DateTimeOffset)now).ToUnixTimeSeconds();
             m_placeholders = placeholders;
             m_buildings = buildings;
             m_resources = resources;
         }
 
+        public long Time { get; }
         public List<PlaceHolderSaveModel> PlaceHolders => m_placeholders;
         public List<BuildingSaveModel> Buildings => m_buildings;
         public List<ResourceSaveModel> Resources => m_resources;

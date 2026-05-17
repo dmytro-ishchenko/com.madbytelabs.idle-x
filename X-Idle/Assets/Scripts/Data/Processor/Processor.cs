@@ -12,15 +12,12 @@ namespace Data.Processor
         public bool IsStarted { get; private set; }
 
 
-        public void StartProcess()
+        public void StartProcess(float tickTime)
         {
             IsStarted = true;
-            m_process = ProcessData();
+            m_process = ProcessData(tickTime);
         }
 
-        public void UpdateContext(float value)
-        {
-        }
 
         public void StopProcess()
         {
@@ -32,11 +29,11 @@ namespace Data.Processor
             IsStarted = false;
         }
 
-        private async Awaitable ProcessData()
+        private async Awaitable ProcessData(float tickTime)
         {
             while (true)
             {
-                await Awaitable.WaitForSecondsAsync(1.0f);
+                await Awaitable.WaitForSecondsAsync(tickTime);
                 OnProcess?.Invoke();
             }
         }

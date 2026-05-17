@@ -59,7 +59,12 @@ namespace Data
             var save = m_userDataLoader.Load();
 
             if (save != null)
+            {
                 m_userData = new UserData(m_assetLibrary, save);
+
+                m_userDataProcessor.Init(m_assetLibrary, m_userData);
+                m_userDataProcessor.UpdateAccordingCurrentTime(m_assetLibrary, m_userData, save.Time);
+            }
 
             if (m_userData == null)
             {
@@ -79,6 +84,7 @@ namespace Data
                 }
 
                 m_userData = new UserData(placeHolderData, buildingsModels);
+                m_userDataProcessor.Init(m_assetLibrary, m_userData);
 
                 SaveUserData();
             }
@@ -88,11 +94,11 @@ namespace Data
 
             m_userData.UserResources.OnUserResourcesChanged += OnResourcesChangedHandler;
             m_userData.UserPlaceHolderData.OnPlaceHolderStatusChanged += OnPlaceHolderStatusChangedHandler;
-            m_userDataProcessor.StartProcessing(m_assetLibrary, m_userData);
+
+            m_userDataProcessor.StartProcessing();
 
             complete?.Invoke();
         }
-
 
         private void OnResourcesChangedHandler(UserResources data)
         {
@@ -152,7 +158,7 @@ namespace Data
 
                     break;
                 case BuildingActionType.DismantleBuildingRequest:
-                    if (m_buildingFactory.TryDismantleBuilding(m_assetLibrary,m_userData, args, out BuildingModel defaultBuildingModel))
+                    if (m_buildingFactory.TryDismantleBuilding(m_assetLibrary, m_userData, args, out BuildingModel defaultBuildingModel))
                     {
                         OnBuildingDeleted?.Invoke(defaultBuildingModel);
                     }
