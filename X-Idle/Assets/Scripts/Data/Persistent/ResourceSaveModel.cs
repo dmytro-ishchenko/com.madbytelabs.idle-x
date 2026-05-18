@@ -10,10 +10,10 @@ namespace Data.Persistent
         [SerializeField] private GameResourceType m_resourceType;
         [SerializeField] private float m_amount;
 
-        public ResourceSaveModel(GameResourceType resourceType, float mAmount)
+        public ResourceSaveModel(GameResourceType resourceType, float amount)
         {
             m_resourceType = resourceType;
-            m_amount = mAmount;
+            m_amount = amount;
         }
 
         public GameResourceType ResourceType => m_resourceType;

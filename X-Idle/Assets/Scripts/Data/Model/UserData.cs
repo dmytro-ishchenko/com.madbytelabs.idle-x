@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Data.ContentLibrary;
 using Data.Persistent;
@@ -66,7 +67,9 @@ namespace Data.Model
                 resources.Add(new ResourceSaveModel(resource.Key, resource.Value));
             }
 
-            return new SaveModel(placeholders, buildings, resources);
+            DateTime now = DateTime.UtcNow;
+
+            return new SaveModel(((DateTimeOffset)now).ToUnixTimeSeconds(), placeholders, buildings, resources);
         }
     }
 }

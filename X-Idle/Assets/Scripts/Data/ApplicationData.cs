@@ -34,7 +34,7 @@ namespace Data
         private IBuildingFactory m_buildingFactory;
         private readonly UserDataProcessor m_userDataProcessor = new();
         private readonly IDataLoader<SaveModel> m_userDataLoader = new UserDataLoader();
-
+        private OfflineReward m_offlineReward;
         public IList<BuildingModel> UserBuildings => m_userData.UserBuildingsData.BuildingsMap.Values.ToList();
         public UserResources UserResources => m_userData.UserResources;
         public UserBuildingsData UserBuildingsData => m_userData.UserBuildingsData;
@@ -45,7 +45,6 @@ namespace Data
         public event Action<BuildingModel> OnBuildingDeleted;
         public event Action<PlaceholderModel> OnPlaceHolderStatusChanged;
         public event Action<UserResources> OnUserResourcesChanged;
-
 
         public void InitApplicationData(Action complete)
         {
@@ -63,7 +62,7 @@ namespace Data
                 m_userData = new UserData(m_assetLibrary, save);
 
                 m_userDataProcessor.Init(m_assetLibrary, m_userData);
-                m_userDataProcessor.UpdateAccordingCurrentTime(m_assetLibrary, m_userData, save.Time);
+                m_offlineReward = m_userDataProcessor.UpdateAccordingCurrentTime(save.Time);
             }
 
             if (m_userData == null)
@@ -189,6 +188,11 @@ namespace Data
         public CreateBuildingRequirementsContext GetCreateBuildingContext(IBuildingTemplate template)
         {
             return DataUtility.GetCreateBuildingRequirementContext(m_userData.UserResources, m_userData.UserBuildingsData, template);
+        }
+
+        public OfflineReward GetOfflineReward()
+        {
+            return m_offlineReward;
         }
 
         void SaveUserData()

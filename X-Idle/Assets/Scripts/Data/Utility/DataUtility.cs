@@ -418,5 +418,31 @@ namespace Data.Utility
                 return efficiency;
             }
         }
+
+        public static string SecondsToTime(long totalSeconds)
+        {
+            if (totalSeconds <= 0)
+                return "0s";
+
+            long days = totalSeconds / 86400;
+            totalSeconds %= 86400;
+
+            long hours = totalSeconds / 3600;
+            totalSeconds %= 3600;
+
+            long minutes = totalSeconds / 60;
+            long seconds = totalSeconds % 60;
+
+            if (days > 0)
+                return $"{days}d {hours}h";
+
+            if (hours > 0)
+                return $"{hours}h {minutes}m";
+
+            if (minutes > 0)
+                return $"{minutes}m {seconds}s";
+
+            return $"{seconds}s";
+        }
     }
 }

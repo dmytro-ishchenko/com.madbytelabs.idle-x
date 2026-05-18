@@ -26,12 +26,7 @@ namespace UI.Popup.Info
         {
             if (context is SelectBuildingInfo model)
             {
-                TryGetComponent(out CanvasGroup group);
-                group.interactable = false;
-                group.blocksRaycasts = false;
-                group.alpha = 0;
-
-                m_name.text = model.Name.ToUpper();
+            m_name.text = model.Name.ToUpper();
                 m_level.text = $"Lv.{model.Level}";
                 m_description.text = model.Description;
                 m_icon.sprite = model.Icon;
@@ -82,10 +77,6 @@ namespace UI.Popup.Info
                 {
                     m_conditionBlock.gameObject.SetActive(false);
                 }
-
-                group.interactable = true;
-                group.blocksRaycasts = true;
-                group.alpha = 1;
 
                 base.Show(context);
                 resizer.Recalculate();

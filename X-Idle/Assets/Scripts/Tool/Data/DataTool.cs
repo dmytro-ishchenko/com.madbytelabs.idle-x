@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Common;
@@ -142,7 +143,9 @@ namespace Tool.Data
             resources.Add(new ResourceSaveModel(GameResourceType.Parts, 0));
             resources.Add(new ResourceSaveModel(GameResourceType.Water, 0));
 
-            var saveModel = new SaveModel(placeholders, buildings, resources);
+            DateTime now = DateTime.UtcNow;
+
+            var saveModel = new SaveModel(((DateTimeOffset)now).ToUnixTimeSeconds(), placeholders, buildings, resources);
 
             string saveFilePath = "Assets/AssetDataBase/Resources/SaveTemplate.asset";
             var scriptableObject = CreateInstance<SaveTemplate>();

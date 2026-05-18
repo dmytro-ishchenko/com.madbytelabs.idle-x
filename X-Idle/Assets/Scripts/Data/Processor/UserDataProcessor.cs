@@ -4,6 +4,7 @@ using System.Linq;
 using Data.ContentLibrary;
 using Data.Enum;
 using Data.Model;
+using Data.Model.Popup;
 using Data.Utility;
 using UnityEngine;
 
@@ -27,14 +28,13 @@ namespace Data.Processor
             m_assetLibrary = assetLibrary;
             m_userResources = userData.UserResources;
             m_userBuildingsData = userData.UserBuildingsData;
+            m_userBuildingsData.TryGetBuildingsByType(BuildingType.MainBuilding, out var mainBuildingModels);
+            m_mainBuildingModel = mainBuildingModels.ElementAt(0);
         }
 
         public void StartProcessing()
         {
-            m_userBuildingsData.TryGetBuildingsByType(BuildingType.MainBuilding, out var mainBuildingModels);
-            m_mainBuildingModel = mainBuildingModels.ElementAt(0);
             m_resourcesProcessor.OnProcess += OnProcessHandler;
-
             m_resourcesProcessor.StartProcess(m_tickTime);
         }
 
@@ -104,7 +104,12 @@ namespace Data.Processor
                 {
                     if (TryProcessResource(resource, out var value))
                     {
-                        m_productionResourcesMap.Add(resource, value * seconds);
+                        if (m_productionResourcesMap.ContainsKey(resource))
+                        {
+                            m_productionResourcesMap[resource] = m_productionResourcesMap[resource] + value * seconds;
+                        }
+                        else
+                            m_productionResourcesMap.Add(resource, value * seconds);
                     }
                 }
             }
@@ -121,7 +126,7 @@ namespace Data.Processor
                     m_useResourcesMap.Remove(element.Key);
                 }
 
-                SetGameResource(element.Key, production);
+                TryAddGameResource(element.Key, production, out var addedAmount);
             }
 
             m_productionResourcesMap.Clear();
@@ -137,6 +142,41 @@ namespace Data.Processor
             }
 
             m_multiplierMap.Clear();
+        }
+
+        List<ResourceRewardModel> CalculateOfflineProduction()
+        {
+            List<ResourceRewardModel> rewards = new();
+
+            foreach (var element in m_productionResourcesMap)
+            {
+                var production = element.Value;
+                if (m_useResourcesMap.TryGetValue(element.Key, out var value))
+                {
+                    production -= value;
+                    m_useResourcesMap.Remove(element.Key);
+                }
+
+                m_assetLibrary.TryGetGameResource(element.Key, out var resource);
+                bool addAllResources = TryAddGameResource(element.Key, production, out var addedAmount);
+                if (addedAmount > 0)
+                    rewards.Add(new ResourceRewardModel(resource.Icon, resource.Name, addedAmount, addAllResources));
+            }
+
+            m_productionResourcesMap.Clear();
+
+            if (m_useResourcesMap.Count > 0)
+            {
+                foreach (var element in m_useResourcesMap)
+                {
+                    m_userResources.SetGameResource(element.Key, m_userResources.GetGameResourceValue(element.Key) - element.Value);
+                }
+
+                m_useResourcesMap.Clear();
+            }
+
+            m_multiplierMap.Clear();
+            return rewards;
         }
 
         bool TryProcessResource(GameResourceType type, out float amount)
@@ -160,13 +200,34 @@ namespace Data.Processor
         }
 
 
-        void SetGameResource(GameResourceType gameResourceType, float value)
+        // void SetGameResource(GameResourceType gameResourceType, float value)
+        // {
+        //     m_assetLibrary.TryGetGameResource(gameResourceType, out var resource);
+        //
+        //     var amount = Math.Clamp(m_userResources.GetGameResourceValue(gameResourceType) + value, 0, DataUtility.GetResourceMaxCapacity(resource, m_warehouseModels));
+        //
+        //     m_userResources.SetGameResource(gameResourceType, amount);
+        // }
+
+        bool TryAddGameResource(GameResourceType gameResourceType, float value, out float added)
         {
             m_assetLibrary.TryGetGameResource(gameResourceType, out var resource);
 
-            var amount = Math.Clamp(m_userResources.GetGameResourceValue(gameResourceType) + value, 0, DataUtility.GetResourceMaxCapacity(resource, m_warehouseModels));
+            float setAmount = m_userResources.GetGameResourceValue(gameResourceType) + value;
+            float maxCapacity = DataUtility.GetResourceMaxCapacity(resource, m_warehouseModels);
 
-            m_userResources.SetGameResource(gameResourceType, amount);
+            if (maxCapacity < setAmount)
+            {
+                var amount = Math.Clamp(m_userResources.GetGameResourceValue(gameResourceType) + value, 0, DataUtility.GetResourceMaxCapacity(resource, m_warehouseModels));
+                m_userResources.SetGameResource(gameResourceType, amount);
+
+                added = value - (setAmount - maxCapacity);
+                return false;
+            }
+
+            m_userResources.SetGameResource(gameResourceType, m_userResources.GetGameResourceValue(gameResourceType) + value);
+            added = value;
+            return true;
         }
 
         float GetProductionAmount(ICollection<BuildingModel> list)
@@ -181,7 +242,7 @@ namespace Data.Processor
             return amount;
         }
 
-        public void UpdateAccordingCurrentTime(IAssetLibrary assetLibrary, UserData userData, long prevTime)
+        public OfflineReward UpdateAccordingCurrentTime(long prevTime)
         {
             DateTime now = DateTime.UtcNow;
             var currentTime = ((DateTimeOffset)now).ToUnixTimeSeconds();
@@ -191,7 +252,9 @@ namespace Data.Processor
 
             UseResourcesPerTime(time);
             ProductionResourcesPerTime(time);
-            CompleteProduction();
+            ProductionResourcesPerTime(time);
+
+            return new OfflineReward(deltaTime, CalculateOfflineProduction());
         }
     }
 }

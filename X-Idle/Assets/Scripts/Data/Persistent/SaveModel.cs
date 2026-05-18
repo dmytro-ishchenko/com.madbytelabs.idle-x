@@ -11,10 +11,9 @@ namespace Data.Persistent
         [SerializeField] private List<BuildingSaveModel> m_buildings;
         [SerializeField] private List<ResourceSaveModel> m_resources;
 
-        public SaveModel(List<PlaceHolderSaveModel> placeholders, List<BuildingSaveModel> buildings, List<ResourceSaveModel> resources)
+        public SaveModel(long time, List<PlaceHolderSaveModel> placeholders, List<BuildingSaveModel> buildings, List<ResourceSaveModel> resources)
         {
-            DateTime now = DateTime.UtcNow;
-            Time = ((DateTimeOffset)now).ToUnixTimeSeconds();
+            Time = time;
             m_placeholders = placeholders;
             m_buildings = buildings;
             m_resources = resources;

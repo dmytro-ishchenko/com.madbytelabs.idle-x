@@ -29,5 +29,6 @@ namespace Data
         void UnlockPlaceHolder(UnlockPlaceholderEventArgs args);
         SelectBuildingInfo GetBuildingInfo(string id);
         CreateBuildingRequirementsContext GetCreateBuildingContext(IBuildingTemplate template);
+        OfflineReward GetOfflineReward();
     }
 }

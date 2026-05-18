@@ -57,6 +57,10 @@ namespace UI
                 }
 
                 m_gameUIController.InitPlaceHoldersView(m_applicationData.UserPlaceHolderData);
+
+                var offlineReward = m_applicationData.GetOfflineReward();
+                if (offlineReward != null)
+                    m_gameUIController.PopupManager.ShowPopup(PopupType.OfflineReward, offlineReward);
             }
         }
 
