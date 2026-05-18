@@ -11,5 +11,6 @@ namespace UI.Enum
         ConfirmDismantle = 6,
         BuildingInfo = 7,
         OfflineReward = 8,
+        Settings = 9,
     }
 }

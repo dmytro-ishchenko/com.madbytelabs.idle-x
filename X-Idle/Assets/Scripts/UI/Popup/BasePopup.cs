@@ -18,6 +18,11 @@ namespace UI.Popup
                 closeButton.onClick.AddListener(Close);
         }
 
+        public virtual void Show()
+        {
+            gameObject.SetActive(true);
+        }
+
         public virtual void Show<T>(T context)
         {
             gameObject.SetActive(true);

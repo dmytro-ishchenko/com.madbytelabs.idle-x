@@ -39,6 +39,17 @@ namespace UI.Popup
             }
         }
 
+        public void ShowPopup(PopupType popupType)
+        {
+            if (m_popupMap.TryGetValue(popupType, out BasePopup popup))
+            {
+                if (m_openedPopup != null)
+                    m_openedPopup.Close();
+                m_openedPopup = popup;
+                m_openedPopup.Show();
+            }
+        }
+
         public void ShowPopup<T>(PopupType popupType, T args)
         {
             if (m_popupMap.TryGetValue(popupType, out BasePopup popup))

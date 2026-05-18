@@ -1,12 +1,10 @@
 using System.Collections.Generic;
 using Common.Pattern.BobbleEvent;
-using Data;
-using Data.Events;
 using Data.Model;
-using Data.Model.Error;
-using Data.Model.Popup;
+using UI.Enum;
 using UI.Popup;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI.Controller
 {
@@ -15,6 +13,7 @@ namespace UI.Controller
         [SerializeField] private PopupManager m_popupManager;
         [SerializeField] private UserInfoViewController m_userInfo;
         [SerializeField] private PlaceholderViewController m_placeholderView;
+        [SerializeField] private Button m_settingsButton;
         public Node Node { get; private set; }
 
         public PopupManager PopupManager => m_popupManager;
@@ -24,6 +23,7 @@ namespace UI.Controller
             Node = new();
             Node.AddChild(m_popupManager.Node);
             Node.AddChild(m_placeholderView.Node);
+            m_settingsButton.onClick.AddListener(() => { m_popupManager.ShowPopup(PopupType.Settings); });
         }
 
         public void UpdateUserInfo(UserResources resources) => m_userInfo.UpdateUserResources(resources);
