@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Commom.Pattern;
+using Common.Pattern;
 
 namespace Common.Lifecycle
 {

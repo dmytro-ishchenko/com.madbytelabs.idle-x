@@ -5,7 +5,8 @@
         "com.madbytelabs.common",
         "com.madbytelabs.data",
         "com.madbytelabs.sceneLoader",
-        "Unity.InputSystem"
+        "Unity.InputSystem",
+        "com.madbytelabs.sound"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -1,7 +1,10 @@
 {
-    "name": "com.madbytelabs.entity",
+    "name": "com.madbytelabs.sound",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "com.madbytelabs.common",
+        "AYellowpaper.SerializedCollections"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

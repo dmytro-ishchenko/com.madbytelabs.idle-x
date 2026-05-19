@@ -4,7 +4,8 @@
     "references": [
         "com.madbytelabs.data",
         "com.madbytelabs.environment",
-        "com.madbytelabs.common"
+        "com.madbytelabs.common",
+        "com.madbytelabs.sound"
     ],
     "includePlatforms": [
         "Editor"

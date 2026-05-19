@@ -8,7 +8,8 @@
         "com.madbytelabs.common",
         "AYellowpaper.SerializedCollections",
         "Unity.InputSystem",
-        "Unity.TextMeshPro"
+        "Unity.TextMeshPro",
+        "com.madbytelabs.sound"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

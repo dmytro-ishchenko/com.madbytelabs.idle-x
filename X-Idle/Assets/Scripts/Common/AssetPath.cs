@@ -7,5 +7,6 @@ namespace Common
         public static readonly string BUILDINGS_PATH = "Assets/AssetDataBase/Buildings/";
         public static readonly string CONTEXT_PATH = "Assets/AssetDataBase/Context/";
         public static readonly string GAME_RESOURCES_PATH = "Assets/AssetDataBase/Game Resources/";
+        public static readonly string GAME_SOUND_PATH = "Assets/AssetDataBase/Sounds/";
     }
 }
