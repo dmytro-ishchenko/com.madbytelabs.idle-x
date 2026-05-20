@@ -53,9 +53,12 @@ namespace UI
 
                 InitController();
 
-                var offlineReward = m_applicationData.GetOfflineReward();
-                if (offlineReward != null)
-                    m_gameUIController.PopupManager.ShowPopup(PopupType.OfflineReward, offlineReward);
+                m_gameUIController.PopupManager.ShowCurtainsOnTime(3, () =>
+                {
+                    var offlineReward = m_applicationData.GetOfflineReward();
+                    if (offlineReward != null)
+                        m_gameUIController.PopupManager.ShowPopup(PopupType.OfflineReward, offlineReward);
+                });
             }
         }
 
@@ -127,6 +130,7 @@ namespace UI
 
         private void ResetProgressEventHandler(ResetProgressEventArgs args)
         {
+            m_gameUIController.PopupManager.ShowCurtainsOnTime(2, null);
             m_applicationData.ResetProgress();
         }
     }

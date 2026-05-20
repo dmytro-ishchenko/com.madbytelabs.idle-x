@@ -1,3 +1,4 @@
+using System;
 using AYellowpaper.SerializedCollections;
 using Common.Pattern.BobbleEvent;
 using Data;
@@ -5,6 +6,7 @@ using Data.Enum;
 using Data.Events;
 using Data.Model.Popup;
 using UI.Enum;
+using UI.Event;
 using UnityEngine;
 
 namespace UI.Popup
@@ -20,6 +22,14 @@ namespace UI.Popup
             foreach (var popup in m_popupMap.Values)
             {
                 Node.AddChild(popup.Node);
+            }
+        }
+
+        public void Init()
+        {
+            foreach (var element in m_popupMap.Values)
+            {
+                element.Close();
             }
         }
 
@@ -59,6 +69,26 @@ namespace UI.Popup
                 m_openedPopup = popup;
                 m_openedPopup.Show(args);
             }
+        }
+
+        void HidePopup(PopupType popupType)
+        {
+            if (m_openedPopup != null)
+            {
+                if (m_popupMap.TryGetValue(popupType, out BasePopup popup))
+                {
+                    if (m_openedPopup == popup)
+                    {
+                        m_openedPopup.Close();
+                        m_openedPopup = null;
+                    }
+                }
+            }
+        }
+
+        public void ShowCurtainsOnTime(float time, Action complete)
+        {
+            ShowPopup(PopupType.Curtains, new ShowCurtainsEventArgs(time, complete));
         }
     }
 }
