@@ -4,13 +4,13 @@ using Common.Pattern.BobbleEvent;
 using Data;
 using Data.Events;
 using Data.Model;
-using Data.Model.Error;
 using Data.Model.Popup;
 using GameEnvironment;
 using SceneLoader;
 using UI.Controller;
 using UI.Enum;
 using UI.Event;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace UI
@@ -24,7 +24,6 @@ namespace UI
             m_sceneLoader = sceneLoader;
 
             m_environment.OnBuildingActionRequest += OnBuildingActionRequestHandler;
-
             m_sceneLoader.SceneNotify.OnSceneLoaded += OnSceneLoadedHandler;
             Subscribe<BuildingProcessEventArgs>(BuildingProcessHandler);
             Subscribe<SelectPlaceHolderEventArgs>(SelectPlaceHolderHandler);
@@ -32,6 +31,8 @@ namespace UI
             Subscribe<ShowBuildingsInfoEventArgs>(ShowBuildingsInfoHandler);
             Subscribe<ShowUpgradeBuildingEventArgs>(ShowUpgradeBuildingHandler);
             Subscribe<ShowDismantleBuildingEventArgs>(ShowDismantleBuildingHandler);
+            Subscribe<ShowResetProgressEventArgs>(ShowResetProgressHandler);
+            Subscribe<ResetProgressEventArgs>(ResetProgressEventHandler);
         }
 
         private readonly IApplicationData m_applicationData;
@@ -46,22 +47,28 @@ namespace UI
                 m_gameUIController = scene.GetComponent<IGameUIController>();
                 m_gameUIController.Node.SetDispatcher(this);
                 m_applicationData.OnUserResourcesChanged += OnUserResourcesChangedHandler;
-                m_applicationData.OnActionError += OnActionErrorHandler;
                 m_applicationData.OnPlaceHolderStatusChanged += OnPlaceHolderStatusChangedHandler;
 
-                m_gameUIController.UpdateUserInfo(m_applicationData.UserResources);
+                m_applicationData.OnProgressReset += InitController;
 
-                foreach (var data in m_applicationData.UserPlaceHolderData)
-                {
-                    data.Value.SetTransform(m_environment.GetPlaceholderTransform(data.Key));
-                }
-
-                m_gameUIController.InitPlaceHoldersView(m_applicationData.UserPlaceHolderData);
+                InitController();
 
                 var offlineReward = m_applicationData.GetOfflineReward();
                 if (offlineReward != null)
                     m_gameUIController.PopupManager.ShowPopup(PopupType.OfflineReward, offlineReward);
             }
+        }
+
+        void InitController()
+        {
+            m_gameUIController.UpdateUserInfo(m_applicationData.UserResources);
+
+            foreach (var data in m_applicationData.UserPlaceHolderData)
+            {
+                data.Value.SetTransform(m_environment.GetPlaceholderTransform(data.Key));
+            }
+
+            m_gameUIController.InitPlaceHoldersView(m_applicationData.UserPlaceHolderData);
         }
 
         private void OnPlaceHolderStatusChangedHandler(PlaceholderModel model)
@@ -103,11 +110,6 @@ namespace UI
             m_applicationData.BuildingProcess(args);
         }
 
-        private void OnActionErrorHandler(ActionErrorModel args)
-        {
-            m_gameUIController.PopupManager.ShowPopup(PopupType.CreateBuildingError, args.GetContext<CreateBuildingRequirementsContext>());
-        }
-
         private void SelectPlaceHolderHandler(SelectPlaceHolderEventArgs args)
         {
             m_gameUIController.PopupManager.SelectPlaceHolder(args, m_applicationData);
@@ -116,6 +118,16 @@ namespace UI
         private void UnlockPlaceholderHandler(UnlockPlaceholderEventArgs args)
         {
             m_applicationData.UnlockPlaceHolder(args);
+        }
+
+        private void ShowResetProgressHandler(ShowResetProgressEventArgs args)
+        {
+            m_gameUIController.PopupManager.ShowPopup(PopupType.ConfirmResetProgress);
+        }
+
+        private void ResetProgressEventHandler(ResetProgressEventArgs args)
+        {
+            m_applicationData.ResetProgress();
         }
     }
 }

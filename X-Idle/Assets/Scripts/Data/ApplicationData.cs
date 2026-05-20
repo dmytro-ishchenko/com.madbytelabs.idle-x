@@ -11,7 +11,6 @@ using Data.Factory;
 using Data.Interface;
 using Data.Loader;
 using Data.Model;
-using Data.Model.Error;
 using Data.Model.Popup;
 using Data.Persistent;
 using Data.Processor;
@@ -40,9 +39,8 @@ namespace Data
         public UserBuildingsData UserBuildingsData => m_userData.UserBuildingsData;
         public IReadOnlyDictionary<string, PlaceholderModel> UserPlaceHolderData => m_userData.UserPlaceHolderData.PlaceHolderDataMap;
         public event Action<BuildingModel> OnBuildingCreated;
-        public event Action<ActionErrorModel> OnActionError;
-        public event Action<BuildingModel> OnBuildingUpdated;
         public event Action<BuildingModel> OnBuildingDeleted;
+        public event Action OnProgressReset;
         public event Action<PlaceholderModel> OnPlaceHolderStatusChanged;
         public event Action<UserResources> OnUserResourcesChanged;
 
@@ -53,7 +51,6 @@ namespace Data
 
             if (m_placeholderMapTemplate == null)
                 m_placeholderMapTemplate = Resources.Load<PlaceholderMapTemplate>("PlaceholderMap");
-
 
             var save = m_userDataLoader.Load();
 
@@ -67,27 +64,8 @@ namespace Data
 
             if (m_userData == null)
             {
-                m_sceneTemplate = Resources.Load<SceneTemplate>("SceneTemplate");
-
-                List<BuildingModel> buildingsModels = new List<BuildingModel>();
-
-                UserPlaceHolderData placeHolderData = new();
-
-                foreach (var buildingContext in m_sceneTemplate.SceneBuildings)
-                {
-                    m_assetLibrary.TryGetBuildingTemplate(buildingContext.BuildingTemplateId, out BuildingTemplate buildingTemplate);
-                    buildingsModels.Add(new BuildingModel(buildingContext.Id, buildingTemplate, 1));
-
-                    placeHolderData.AddPlaceHolder(buildingContext.Id,
-                        new PlaceholderModel(buildingContext.Id, buildingContext.BuildingTemplateId, buildingContext.PlaceHolderStatus, buildingContext.PlaceHolderType));
-                }
-
-                m_userData = new UserData(placeHolderData, buildingsModels);
-                m_userDataProcessor.Init(m_assetLibrary, m_userData);
-
-                SaveUserData();
+                CreateDefaultSave();
             }
-
 
             m_buildingFactory = new BuildingFactory(m_assetLibrary);
 
@@ -97,6 +75,29 @@ namespace Data
             m_userDataProcessor.StartProcessing();
 
             complete?.Invoke();
+        }
+
+        void CreateDefaultSave()
+        {
+            m_sceneTemplate = Resources.Load<SceneTemplate>("SceneTemplate");
+
+            List<BuildingModel> buildingsModels = new List<BuildingModel>();
+
+            UserPlaceHolderData placeHolderData = new();
+
+            foreach (var buildingContext in m_sceneTemplate.SceneBuildings)
+            {
+                m_assetLibrary.TryGetBuildingTemplate(buildingContext.BuildingTemplateId, out BuildingTemplate buildingTemplate);
+                buildingsModels.Add(new BuildingModel(buildingContext.Id, buildingTemplate, 1));
+
+                placeHolderData.AddPlaceHolder(buildingContext.Id,
+                    new PlaceholderModel(buildingContext.Id, buildingContext.BuildingTemplateId, buildingContext.PlaceHolderStatus, buildingContext.PlaceHolderType));
+            }
+
+            m_userData = new UserData(placeHolderData, buildingsModels);
+            m_userDataProcessor.Init(m_assetLibrary, m_userData);
+
+            SaveUserData();
         }
 
         private void OnResourcesChangedHandler(UserResources data)
@@ -152,7 +153,6 @@ namespace Data
 
                     if (m_buildingFactory.TryUpgradeBuilding(m_userData, args, out BuildingModel updatedBuildingModel))
                     {
-                        OnBuildingUpdated?.Invoke(updatedBuildingModel);
                     }
 
                     break;
@@ -193,6 +193,22 @@ namespace Data
         public OfflineReward GetOfflineReward()
         {
             return m_offlineReward;
+        }
+
+        public void ResetProgress()
+        {
+            m_userDataProcessor.StopProcessing();
+
+            m_userData.UserResources.OnUserResourcesChanged -= OnResourcesChangedHandler;
+            m_userData.UserPlaceHolderData.OnPlaceHolderStatusChanged -= OnPlaceHolderStatusChangedHandler;
+
+            CreateDefaultSave();
+            
+            m_userData.UserResources.OnUserResourcesChanged += OnResourcesChangedHandler;
+            m_userData.UserPlaceHolderData.OnPlaceHolderStatusChanged += OnPlaceHolderStatusChangedHandler;
+
+            m_userDataProcessor.StartProcessing();
+            OnProgressReset?.Invoke();
         }
 
         void SaveUserData()

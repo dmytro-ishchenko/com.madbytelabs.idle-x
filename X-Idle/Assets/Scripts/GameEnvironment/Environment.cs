@@ -22,10 +22,8 @@ namespace GameEnvironment
             m_factory = new EnvironmentFactory();
             sceneLoader.SceneNotify.OnSceneLoaded += OnSceneLoadedHandler;
 
-            data.OnBuildingCreated += OnBuildingCreatedHandler;
-
-
-            data.OnBuildingDeleted += OnBuildingDeletedHandler;
+            m_applicationData.OnBuildingCreated += OnBuildingCreatedHandler;
+            m_applicationData.OnBuildingDeleted += OnBuildingDeletedHandler;
             Subscribe<BuildingRequestEventArgs>(BuildingActionHandler);
         }
 
@@ -33,18 +31,25 @@ namespace GameEnvironment
         private readonly IEnvironmentFactory m_factory;
         private ISceneController m_sceneController;
         public event Action<BuildingRequestEventArgs> OnBuildingActionRequest;
-        
-        public Transform GetPlaceholderTransform(string id)=>m_sceneController.GetPlaceholderTransform(id);
+
+        public Transform GetPlaceholderTransform(string id) => m_sceneController.GetPlaceholderTransform(id);
 
         private void OnSceneLoadedHandler(Scene scene)
         {
             if (scene.name.Equals(nameof(SceneName.Game)))
             {
                 m_sceneController = scene.GetComponent<ISceneController>();
+                m_applicationData.OnProgressReset += InitController;
 
-                m_sceneController.InitContent(m_applicationData.UserBuildings, m_factory);
+                InitController();
                 m_sceneController.Node.SetDispatcher(this);
             }
+        }
+
+
+        private void InitController()
+        {
+            m_sceneController.InitContent(m_applicationData.UserBuildings, m_factory);
         }
 
         private void BuildingActionHandler(BuildingRequestEventArgs args)
@@ -56,7 +61,7 @@ namespace GameEnvironment
         {
             m_sceneController.CreateBuilding(model, m_factory);
         }
-        
+
         private void OnBuildingDeletedHandler(BuildingModel model)
         {
             m_sceneController.DeleteBuilding(model, m_factory);

@@ -55,6 +55,11 @@ namespace GameEnvironment.Controller
 #endif
         public void AddContent(IBuildingView view)
         {
+            if (View != null)
+            {
+                Destroy(View.GameObject);
+            }
+
             view.GameObject.transform.SetParent(transform);
             view.GameObject.transform.localPosition = Vector3.zero;
             view.GameObject.transform.localEulerAngles = Vector3.zero;

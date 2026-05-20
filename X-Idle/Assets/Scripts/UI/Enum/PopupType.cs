@@ -12,5 +12,6 @@ namespace UI.Enum
         BuildingInfo = 7,
         OfflineReward = 8,
         Settings = 9,
+        ConfirmResetProgress = 10,
     }
 }

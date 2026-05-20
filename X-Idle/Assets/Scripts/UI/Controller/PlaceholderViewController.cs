@@ -21,6 +21,19 @@ namespace UI.Controller
 
         public void InitPlaceHoldersView(IReadOnlyDictionary<string, PlaceholderModel> userPlaceHolderData)
         {
+            if (m_placeholderData.Count > 0)
+            {
+                m_locked = true;
+                foreach (var element in m_placeholderData)
+                {
+                    Destroy(element.Value.View.gameObject);
+                }
+
+                m_placeholderData.Clear();
+                m_placeholderTransforms.Clear();
+            }
+
+
             foreach (var data in userPlaceHolderData)
             {
                 m_placeholderTransforms.Add(data.Key, data.Value.Transform);

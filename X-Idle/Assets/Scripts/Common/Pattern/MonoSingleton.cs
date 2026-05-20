@@ -17,7 +17,7 @@ namespace Common.Pattern
         {
             get
             {
-                if (s_applicationIsQuitting || s_instance)
+                if (s_applicationIsQuitting)
                 {
                     return null;
                 }

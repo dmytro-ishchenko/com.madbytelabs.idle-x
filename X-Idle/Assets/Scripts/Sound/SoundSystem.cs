@@ -12,6 +12,10 @@ namespace Sound
         private List<AudioSource> m_effectSources = new();
         private float m_ambientVolume = 1;
         private float m_effectVolume = 1;
+        private readonly string m_effectVolumeKey = "EffectVolume";
+        private readonly string m_ambientVolumeKey = "AmbientVolume";
+        public float EffectVolume => m_effectVolume;
+        public float AmbientVolume => m_ambientVolume;
 
         protected override void Awake()
         {
@@ -19,11 +23,11 @@ namespace Sound
 
             m_soundTemplate = Resources.Load<SoundTemplate>("SoundTemplate");
             m_ambientSource = gameObject.AddComponent<AudioSource>();
-            if (PlayerPrefs.HasKey("AmbientVolume"))
-                m_ambientVolume = PlayerPrefs.GetFloat("AmbientVolume");
+            if (PlayerPrefs.HasKey(m_ambientVolumeKey))
+                m_ambientVolume = PlayerPrefs.GetFloat(m_ambientVolumeKey);
 
-            if (PlayerPrefs.HasKey("EffectsVolume"))
-                m_effectVolume = PlayerPrefs.GetFloat("EffectsVolume");
+            if (PlayerPrefs.HasKey(m_effectVolumeKey))
+                m_effectVolume = PlayerPrefs.GetFloat(m_effectVolumeKey);
         }
 
         public void PlaySoundEffect(SoundType type)
@@ -51,8 +55,7 @@ namespace Sound
         public void SetEffectVolume(float volume)
         {
             m_effectVolume = volume;
-            PlayerPrefs.SetFloat("EffectVolume", volume);
-
+            PlayerPrefs.SetFloat(m_effectVolumeKey, volume);
             if (m_effectSources.Count > 0)
             {
                 foreach (var source in m_effectSources)
@@ -65,7 +68,7 @@ namespace Sound
         public void SetAmbientVolume(float volume)
         {
             m_ambientVolume = volume;
-            PlayerPrefs.SetFloat("AmbientVolume", volume);
+            PlayerPrefs.SetFloat(m_ambientVolumeKey, volume);
             m_ambientSource.volume = m_ambientVolume;
         }
 

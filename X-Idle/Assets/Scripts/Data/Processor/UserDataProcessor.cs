@@ -199,16 +199,6 @@ namespace Data.Processor
             m_resourcesProcessor.OnProcess -= OnProcessHandler;
         }
 
-
-        // void SetGameResource(GameResourceType gameResourceType, float value)
-        // {
-        //     m_assetLibrary.TryGetGameResource(gameResourceType, out var resource);
-        //
-        //     var amount = Math.Clamp(m_userResources.GetGameResourceValue(gameResourceType) + value, 0, DataUtility.GetResourceMaxCapacity(resource, m_warehouseModels));
-        //
-        //     m_userResources.SetGameResource(gameResourceType, amount);
-        // }
-
         bool TryAddGameResource(GameResourceType gameResourceType, float value, out float added)
         {
             m_assetLibrary.TryGetGameResource(gameResourceType, out var resource);
