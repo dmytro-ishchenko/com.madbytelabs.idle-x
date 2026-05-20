@@ -53,11 +53,14 @@ namespace UI
 
                 InitController();
 
-                m_gameUIController.PopupManager.ShowCurtainsOnTime(3, () =>
+                m_gameUIController.PopupManager.ShowCurtainImmediately(3, (state) =>
                 {
-                    var offlineReward = m_applicationData.GetOfflineReward();
-                    if (offlineReward != null)
-                        m_gameUIController.PopupManager.ShowPopup(PopupType.OfflineReward, offlineReward);
+                    if (state == CurtainsState.Close)
+                    {
+                        var offlineReward = m_applicationData.GetOfflineReward();
+                        if (offlineReward != null)
+                            m_gameUIController.PopupManager.ShowPopup(PopupType.OfflineReward, offlineReward);
+                    }
                 });
             }
         }

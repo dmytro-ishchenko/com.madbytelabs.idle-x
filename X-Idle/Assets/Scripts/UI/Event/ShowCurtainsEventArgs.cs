@@ -1,15 +1,19 @@
 using System;
+using UI.Enum;
 
 namespace UI.Event
 {
-    public class ShowCurtainsEventArgs
+    internal class ShowCurtainsEventArgs
     {
-        public ShowCurtainsEventArgs(float time, Action complete)
+        public ShowCurtainsEventArgs(float time, bool immediately, Action<CurtainsState> onStateChanged)
         {
             Time = time;
-            Complete = complete;
+            OnStateChanged = onStateChanged;
+            Immediately = immediately;
         }
+
         public float Time { get; }
-        public Action Complete { get; }
+        public bool Immediately { get; }
+        public Action<CurtainsState> OnStateChanged { get; }
     }
 }

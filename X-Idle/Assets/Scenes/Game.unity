@@ -245496,6 +245496,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Curtains
       objectReference: {fileID: 0}
+    - target: {fileID: 6876992897934757675, guid: 0d9756beaa777440fa4163441b9d59ae, type: 3}
+      propertyPath: m_openCloseTime
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

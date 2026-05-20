@@ -86,9 +86,14 @@ namespace UI.Popup
             }
         }
 
-        public void ShowCurtainsOnTime(float time, Action complete)
+        public void ShowCurtainImmediately(float time, Action<CurtainsState> onStateChanged)
         {
-            ShowPopup(PopupType.Curtains, new ShowCurtainsEventArgs(time, complete));
+            ShowPopup(PopupType.Curtains, new ShowCurtainsEventArgs(time, true, onStateChanged));
+        }
+
+        public void ShowCurtainsOnTime(float time, Action<CurtainsState> onStateChanged)
+        {
+            ShowPopup(PopupType.Curtains, new ShowCurtainsEventArgs(time, false, onStateChanged));
         }
     }
 }
