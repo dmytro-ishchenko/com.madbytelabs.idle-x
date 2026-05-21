@@ -1,5 +1,5 @@
 {
-    "name": "com.madbytelabs.tool",
+    "name": "com.madbytelabs.projectTool",
     "rootNamespace": "",
     "references": [
         "com.madbytelabs.data",
