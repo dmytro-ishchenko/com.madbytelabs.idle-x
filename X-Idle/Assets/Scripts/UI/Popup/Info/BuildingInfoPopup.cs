@@ -26,7 +26,7 @@ namespace UI.Popup.Info
         {
             if (context is SelectBuildingInfo model)
             {
-            m_name.text = model.Name.ToUpper();
+                m_name.text = model.Name.ToUpper();
                 m_level.text = $"Lv.{model.Level}";
                 m_description.text = model.Description;
                 m_icon.sprite = model.Icon;
@@ -85,11 +85,6 @@ namespace UI.Popup.Info
 
         public override void Close()
         {
-            TryGetComponent(out CanvasGroup group);
-            group.interactable = false;
-            group.blocksRaycasts = false;
-            group.alpha = 0;
-
             foreach (var element in m_elements)
             {
                 Destroy(element.gameObject);
