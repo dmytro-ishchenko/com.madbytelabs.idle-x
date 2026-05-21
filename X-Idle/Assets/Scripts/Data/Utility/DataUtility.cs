@@ -311,7 +311,7 @@ namespace Data.Utility
                 {
                     foreach (var element in requirements.RequiredResources)
                     {
-                        userResources.SetGameResource(element.ResourceType, element.RequireAmount);
+                        userResources.SetGameResource(element.ResourceType, userResources.GetGameResourceValue(element.ResourceType) - element.RequireAmount);
                     }
                 }
 

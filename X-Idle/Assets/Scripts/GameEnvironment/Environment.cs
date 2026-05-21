@@ -42,7 +42,6 @@ namespace GameEnvironment
                 m_applicationData.OnProgressReset += InitController;
 
                 InitController();
-                m_sceneController.Node.SetDispatcher(this);
             }
         }
 
@@ -50,6 +49,7 @@ namespace GameEnvironment
         private void InitController()
         {
             m_sceneController.InitContent(m_applicationData.UserBuildings, m_factory);
+            m_sceneController.Node.SetDispatcher(this);
         }
 
         private void BuildingActionHandler(BuildingRequestEventArgs args)
