@@ -142,6 +142,9 @@ MonoBehaviour:
   highQualityFiltering:
     m_OverrideState: 0
     m_Value: 0
+  filter:
+    m_OverrideState: 0
+    m_Value: 0
   downscale:
     m_OverrideState: 0
     m_Value: 0
@@ -170,7 +173,7 @@ MonoBehaviour:
   active: 1
   lift:
     m_OverrideState: 1
-    m_Value: {x: 0.95083505, y: 0.8927717, z: 1, w: 0}
+    m_Value: {x: 0.950835, y: 0.8927717, z: 1, w: 0}
   gamma:
     m_OverrideState: 1
     m_Value: {x: 0.9366489, y: 1, z: 0.96196043, w: 0}
