@@ -19,7 +19,7 @@ namespace UI.Popup.Upgrade
         [SerializeField] private SerializedDictionary<RequireElementType, RequiredElementView> m_requiredElements;
         [SerializeField] private Transform m_requirmentRoot;
         [SerializeField] private Button m_upgrade;
-        [SerializeField] private Button m_close;
+        [SerializeField] private GameObject m_notMeat;
         private readonly List<RequiredElementView> m_requirementViews = new();
         private readonly List<UseInfoElement> m_infoElements = new();
 
@@ -125,12 +125,12 @@ namespace UI.Popup.Upgrade
                 if (!model.CanUpgrade)
                 {
                     m_upgrade.gameObject.SetActive(false);
-                    m_close.gameObject.SetActive(true);
+                    m_notMeat.SetActive(true);
                 }
                 else
                 {
                     m_upgrade.gameObject.SetActive(true);
-                    m_close.gameObject.SetActive(false);
+                    m_notMeat.SetActive(false);
                     m_upgrade.onClick.AddListener(() =>
                     {
                         Node.TriggerEvent(new BuildingProcessEventArgs(model.Id, model.TemplateId,
@@ -139,7 +139,6 @@ namespace UI.Popup.Upgrade
                     });
                 }
 
-                m_close.onClick.AddListener(Close);
 
                 base.Show(context);
 
@@ -164,7 +163,6 @@ namespace UI.Popup.Upgrade
             m_infoElements.Clear();
 
             m_upgrade.onClick.RemoveAllListeners();
-            m_close.onClick.RemoveAllListeners();
 
             base.Close();
         }
