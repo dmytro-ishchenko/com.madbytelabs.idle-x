@@ -16,6 +16,7 @@ namespace UI.Popup.Locked
         [SerializeField] private SerializedDictionary<RequireElementType, RequiredElementView> m_requiredElements;
         [SerializeField] private Transform m_root;
         [SerializeField] private Button m_unlock;
+        [SerializeField] private GameObject m_notMet;
 
         private readonly List<RequiredElementView> m_requirementViews = new();
 
@@ -58,10 +59,14 @@ namespace UI.Popup.Locked
                 }
 
                 if (!model.RequirementsModel.CanUpgrade)
-                    m_unlock.interactable = false;
+                {
+                    m_notMet.SetActive(true);
+                    m_unlock.gameObject.SetActive(false);
+                }
                 else
                 {
-                    m_unlock.interactable = true;
+                    m_notMet.SetActive(false);
+                    m_unlock.gameObject.SetActive(true);
                     m_unlock.onClick.AddListener(() =>
                     {
                         Node.TriggerEvent(new UnlockPlaceholderEventArgs(model.Id));
