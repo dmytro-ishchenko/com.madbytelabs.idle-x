@@ -14,6 +14,7 @@ namespace UI.Popup.Select
         [SerializeField] private TMP_Text m_level;
         [SerializeField] private Button m_info;
         [SerializeField] private Button m_upgrade;
+        [SerializeField] private GameObject[] m_upgradeObjects;
         [SerializeField] private Button m_dismantle;
         [SerializeField] private GameObject[] m_dismantleObjects;
 
@@ -27,6 +28,17 @@ namespace UI.Popup.Select
                 m_upgrade.onClick.AddListener(() => { Node.TriggerEvent(new ShowUpgradeBuildingEventArgs(model.BuildingModel)); });
                 m_info.onClick.AddListener(() => { Node.TriggerEvent(new ShowBuildingsInfoEventArgs(model.BuildingModel)); });
                 m_dismantle.onClick.AddListener(() => { Node.TriggerEvent(new ShowDismantleBuildingEventArgs(model.BuildingModel)); });
+
+                if (model.BuildingModel.Level >= model.BuildingModel.Template.BuildingContext.MaxLevel)
+                {
+                    foreach (GameObject obj in m_upgradeObjects)
+                        obj.SetActive(false);
+                }
+                else
+                {
+                    foreach (GameObject obj in m_upgradeObjects)
+                        obj.SetActive(true);
+                }
 
                 if (model.BuildingModel.Template.BuildingContext.BuildingType == BuildingType.MainBuilding)
                 {

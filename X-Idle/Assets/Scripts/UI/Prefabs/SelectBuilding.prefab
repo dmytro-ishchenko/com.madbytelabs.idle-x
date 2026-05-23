@@ -979,6 +979,9 @@ MonoBehaviour:
   m_level: {fileID: 8585189356096443690}
   m_info: {fileID: 5655299370300730333}
   m_upgrade: {fileID: 72109568034333939}
+  m_upgradeObjects:
+  - {fileID: 3521275614391084281}
+  - {fileID: 5614454029149759562}
   m_dismantle: {fileID: 5244785566907706416}
   m_dismantleObjects:
   - {fileID: 5892006044506172550}
