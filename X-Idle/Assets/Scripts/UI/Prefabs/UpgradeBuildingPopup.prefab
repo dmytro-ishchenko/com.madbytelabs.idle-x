@@ -6087,8 +6087,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2784283276396580215}
   - component: {fileID: 5049425687713186344}
-  - component: {fileID: 8443979377626007570}
   - component: {fileID: 707890390734063444}
+  - component: {fileID: 8443979377626007570}
   m_Layer: 5
   m_Name: UpgradeBuildingPopup
   m_TagString: Untagged
@@ -6129,6 +6129,20 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &707890390734063444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8460989241311199041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d80e2a849c29429f8ee9db24c26fa49a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.RecursiveVerticalContentSizer
+  m_root: {fileID: 1884979216563835583}
+  rebuildAfterResize: 0
 --- !u!114 &8443979377626007570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6180,20 +6194,6 @@ MonoBehaviour:
   m_requirmentRoot: {fileID: 2045600954542697003}
   m_upgrade: {fileID: 7517777985300091884}
   m_notMeat: {fileID: 671092586260174703}
---- !u!114 &707890390734063444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8460989241311199041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d80e2a849c29429f8ee9db24c26fa49a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.RecursiveVerticalContentSizer
-  m_root: {fileID: 1884979216563835583}
-  rebuildAfterResize: 0
 --- !u!1 &8535196675050213708
 GameObject:
   m_ObjectHideFlags: 0

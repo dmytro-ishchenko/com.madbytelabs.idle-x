@@ -12,8 +12,9 @@ namespace UI.Popup.Offline
     internal class OfflineRewardPopup : BasePopup
     {
         [SerializeField] private TMP_Text m_timeLabel;
-        [SerializeField] private Transform m_root;
-        [SerializeField] private InfoElement m_resourceSource;
+        [SerializeField] private BlockModel m_resourcesBlock;
+        [SerializeField] private BlockModel m_storageBlock;
+       
         private List<InfoElement> m_views = new();
 
         public override void Show<T>(T context, Action complete = null)
@@ -22,16 +23,41 @@ namespace UI.Popup.Offline
             {
                 m_timeLabel.text = DataUtility.SecondsToTime(model.Time);
 
-                foreach (var element in model.ResourceRewardModels)
+                if (model.ResourceRewardModels.Count == 0)
                 {
-                    var view = Instantiate(m_resourceSource);
-                    view.transform.SetParent(m_root);
-                    m_views.Add(view);
-                    string value = element.Amount > 0 ? $"+{DataUtility.ValueToString(element.Amount)}" : $"-{DataUtility.ValueToString(element.Amount)}";
+                    m_resourcesBlock.Panel.SetActive(false);
+                }
+                else
+                {
+                    m_resourcesBlock.Panel.SetActive(true);
+                    foreach (var element in model.ResourceRewardModels)
+                    {
+                        var view = Instantiate(m_resourcesBlock.ResourceSource);
+                        view.transform.SetParent(m_resourcesBlock.Root.transform);
+                        m_views.Add(view);
+                        string value = element.Amount > 0 ? $"+{DataUtility.ValueToString(element.Amount)}" : $"-{DataUtility.ValueToString(element.Amount)}";
 
-                    view.Init(element.Icon, element.ResourceName, value,
-                        element.Amount > 0 ? UIConfig.Instance.PositiveEffectColor : UIConfig.Instance.NegativeEffectColor);
-                    view.gameObject.SetActive(true);
+                        view.Init(element.Icon, element.ResourceName, value,
+                            element.Amount > 0 ? UIConfig.Instance.PositiveEffectColor : UIConfig.Instance.NegativeEffectColor);
+                        view.gameObject.SetActive(true);
+                    }
+                }
+
+                if (model.ResourcesReachLimit.Count == 0)
+                {
+                    m_storageBlock.Panel.SetActive(false);
+                }
+                else
+                {
+                    m_storageBlock.Panel.SetActive(true);
+                    foreach (var element in model.ResourcesReachLimit)
+                    {
+                        var view = Instantiate(m_storageBlock.ResourceSource);
+                        view.transform.SetParent(m_storageBlock.Root.transform);
+                        m_views.Add(view);
+                        view.Init(element.Icon, $"Storage for {element.ResourceName} reach limit", string.Empty, UIConfig.Instance.NegativeEffectColor);
+                        view.gameObject.SetActive(true);
+                    }
                 }
 
                 base.Show(context, complete);
@@ -48,6 +74,13 @@ namespace UI.Popup.Offline
 
             m_views.Clear();
             base.Close(complete);
+        }
+[Serializable]
+        class BlockModel
+        {
+            public Transform Root;
+            public InfoElement ResourceSource;
+            public GameObject Panel;
         }
     }
 }

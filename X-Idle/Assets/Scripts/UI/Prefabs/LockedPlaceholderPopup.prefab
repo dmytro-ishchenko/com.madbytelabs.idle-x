@@ -2823,8 +2823,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5776090871571857611}
   - component: {fileID: 3832574743451133431}
-  - component: {fileID: 5248719662761627632}
   - component: {fileID: 1123075487368808868}
+  - component: {fileID: 5248719662761627632}
   m_Layer: 5
   m_Name: LockedPlaceholderPopup
   m_TagString: Untagged
@@ -2865,6 +2865,20 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &1123075487368808868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9094076806231362310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d80e2a849c29429f8ee9db24c26fa49a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.RecursiveVerticalContentSizer
+  m_root: {fileID: 837658243315087044}
+  rebuildAfterResize: 0
 --- !u!114 &5248719662761627632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2896,17 +2910,3 @@ MonoBehaviour:
   m_root: {fileID: 3877255565183095287}
   m_unlock: {fileID: 7262601946635305372}
   m_notMet: {fileID: 6437917926311007659}
---- !u!114 &1123075487368808868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9094076806231362310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d80e2a849c29429f8ee9db24c26fa49a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.RecursiveVerticalContentSizer
-  m_root: {fileID: 837658243315087044}
-  rebuildAfterResize: 0

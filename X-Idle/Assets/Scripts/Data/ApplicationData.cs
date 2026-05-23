@@ -59,7 +59,7 @@ namespace Data
                 m_userData = new UserData(m_assetLibrary, save);
 
                 m_userDataProcessor.Init(m_assetLibrary, m_userData);
-                m_offlineReward = m_userDataProcessor.UpdateAccordingCurrentTime(save.Time);
+                m_offlineReward = m_userDataProcessor.UpdateAccordingCurrentTime(m_assetLibrary,save.Time);
             }
 
             if (m_userData == null)

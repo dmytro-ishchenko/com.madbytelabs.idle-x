@@ -898,8 +898,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6676645836314373305}
   - component: {fileID: 5723055807450892290}
-  - component: {fileID: 5610909215325955858}
   - component: {fileID: 7127144863693152690}
+  - component: {fileID: 5610909215325955858}
   m_Layer: 5
   m_Name: SelectBuilding
   m_TagString: Untagged
@@ -940,6 +940,20 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &7127144863693152690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3999064964814559754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d80e2a849c29429f8ee9db24c26fa49a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.RecursiveVerticalContentSizer
+  m_root: {fileID: 5809692780905779711}
+  rebuildAfterResize: 0
 --- !u!114 &5610909215325955858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -969,20 +983,6 @@ MonoBehaviour:
   m_dismantleObjects:
   - {fileID: 5892006044506172550}
   - {fileID: 465771554191033492}
---- !u!114 &7127144863693152690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3999064964814559754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d80e2a849c29429f8ee9db24c26fa49a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.RecursiveVerticalContentSizer
-  m_root: {fileID: 5809692780905779711}
-  rebuildAfterResize: 0
 --- !u!1 &4197168119010103735
 GameObject:
   m_ObjectHideFlags: 0

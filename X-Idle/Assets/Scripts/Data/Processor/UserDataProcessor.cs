@@ -144,12 +144,18 @@ namespace Data.Processor
             m_multiplierMap.Clear();
         }
 
-        List<ResourceRewardModel> CalculateOfflineProduction()
+        (List<ResourceRewardModel>, List<StorageReachLimitModel>) CalculateOfflineProduction(IAssetLibrary assetLibrary)
         {
             List<ResourceRewardModel> rewards = new();
+            List<StorageReachLimitModel> resourcesStorages = new();
+
+            assetLibrary.TryGetGameResource(GameResourceType.Storage, out var storage);
 
             foreach (var element in m_productionResourcesMap)
             {
+                if (element.Key == GameResourceType.Storage || element.Key == GameResourceType.ProductionBonus || element.Key == GameResourceType.StorageBonus)
+                    continue;
+
                 var production = element.Value;
                 if (m_useResourcesMap.TryGetValue(element.Key, out var value))
                 {
@@ -159,8 +165,14 @@ namespace Data.Processor
 
                 m_assetLibrary.TryGetGameResource(element.Key, out var resource);
                 bool addAllResources = TryAddGameResource(element.Key, production, out var addedAmount);
-                if (addedAmount > 0)
-                    rewards.Add(new ResourceRewardModel(resource.Icon, resource.Name, addedAmount, addAllResources));
+
+                if (addedAmount > 1)
+                    rewards.Add(new ResourceRewardModel(resource.Icon, resource.Name, addedAmount));
+
+                if (!addAllResources)
+                {
+                    resourcesStorages.Add(new StorageReachLimitModel(storage.Icon, resource.Name));
+                }
             }
 
             m_productionResourcesMap.Clear();
@@ -176,7 +188,7 @@ namespace Data.Processor
             }
 
             m_multiplierMap.Clear();
-            return rewards;
+            return (rewards, resourcesStorages);
         }
 
         bool TryProcessResource(GameResourceType type, out float amount)
@@ -232,7 +244,7 @@ namespace Data.Processor
             return amount;
         }
 
-        public OfflineReward UpdateAccordingCurrentTime(long prevTime)
+        public OfflineReward UpdateAccordingCurrentTime(IAssetLibrary assetLibrary, long prevTime)
         {
             DateTime now = DateTime.UtcNow;
             var currentTime = ((DateTimeOffset)now).ToUnixTimeSeconds();
@@ -244,7 +256,9 @@ namespace Data.Processor
             ProductionResourcesPerTime(time);
             ProductionResourcesPerTime(time);
 
-            return new OfflineReward(deltaTime, CalculateOfflineProduction());
+            var result = CalculateOfflineProduction(assetLibrary);
+
+            return new OfflineReward(deltaTime, result.Item1, result.Item2);
         }
     }
 }

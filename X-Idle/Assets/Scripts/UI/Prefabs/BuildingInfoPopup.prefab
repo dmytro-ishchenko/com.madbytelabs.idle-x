@@ -2690,8 +2690,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7653689351265761590}
   - component: {fileID: 7727628985963767139}
-  - component: {fileID: 7559643350222799025}
   - component: {fileID: 970922969204465972}
+  - component: {fileID: 7559643350222799025}
   m_Layer: 5
   m_Name: BuildingInfoPopup
   m_TagString: Untagged
@@ -2732,6 +2732,20 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &970922969204465972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4590855922775482723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d80e2a849c29429f8ee9db24c26fa49a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.RecursiveVerticalContentSizer
+  m_root: {fileID: 3587728473142179868}
+  rebuildAfterResize: 0
 --- !u!114 &7559643350222799025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2765,20 +2779,6 @@ MonoBehaviour:
   m_conditionBlock: {fileID: 6267095210522464182}
   m_efficiencyElement: {fileID: 7522096027324865326}
   m_buttons: []
---- !u!114 &970922969204465972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4590855922775482723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d80e2a849c29429f8ee9db24c26fa49a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: com.madbytelabs.ui::UI.Controller.RecursiveVerticalContentSizer
-  m_root: {fileID: 3587728473142179868}
-  rebuildAfterResize: 0
 --- !u!1 &4637360074165837325
 GameObject:
   m_ObjectHideFlags: 0
