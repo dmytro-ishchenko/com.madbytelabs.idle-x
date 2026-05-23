@@ -75,11 +75,19 @@ namespace UI.Popup
             {
                 if (m_openedPopup != null)
                 {
-                    m_openedPopup.Close(() =>
+                    if (m_openedPopup != popup && m_openedPopup.IsActive)
+                    {
+                        m_openedPopup.Close(() =>
+                        {
+                            m_openedPopup = popup;
+                            m_openedPopup.Show(args);
+                        });
+                    }
+                    else
                     {
                         m_openedPopup = popup;
                         m_openedPopup.Show(args);
-                    });
+                    }
                 }
                 else
                 {

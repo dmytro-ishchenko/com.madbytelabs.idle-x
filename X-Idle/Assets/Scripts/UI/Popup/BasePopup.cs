@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Common.Pattern.BobbleEvent;
 using UI.Controller;
 using UnityEngine;
@@ -14,13 +15,13 @@ namespace UI.Popup
         [SerializeField] private OpenContext m_openContext;
         [SerializeField] protected ContentSizer resizer;
         [SerializeField] private Button[] m_closeButtons;
+        private CanvasGroup m_canvasGroup;
         private Vector2 m_targetPosition = Vector2.zero;
-        protected bool m_isShowAction;
-        private TweenerCore<Vector2, Vector2, VectorOptions> m_tweener;
         public Node Node { get; } = new();
 
         protected void Awake()
         {
+            m_canvasGroup = gameObject.GetComponent<CanvasGroup>();
             foreach (var closeButton in m_closeButtons)
                 closeButton.onClick.AddListener(() => { Close(); });
         }
@@ -31,6 +32,8 @@ namespace UI.Popup
                 m_targetPosition = m_openContext.RectTransform.anchoredPosition;
             ShowPopup(complete);
         }
+
+        public bool IsActive => m_canvasGroup.interactable;
 
         public virtual void Show<T>(T context, Action complete = null)
         {
@@ -47,7 +50,7 @@ namespace UI.Popup
         public void CloseImmediately()
         {
             m_openContext.RectTransform.anchoredPosition = m_targetPosition;
-            gameObject.SetActive(false);
+            EnablePopup(false);
         }
 
         void ShowPopup(Action complete)
@@ -70,17 +73,13 @@ namespace UI.Popup
                         break;
                 }
 
-                if (m_tweener != null)
-                {
-                    m_tweener.Kill();
-                }
 
-                gameObject.SetActive(true);
-                m_tweener = m_openContext.RectTransform.DOAnchorPos(m_targetPosition, m_openContext.OpenTime).OnComplete(() => { complete?.Invoke(); });
+                EnablePopup(true);
+                m_openContext.RectTransform.DOAnchorPos(m_targetPosition, m_openContext.OpenTime).OnComplete(() => { complete?.Invoke(); });
             }
             else
             {
-                gameObject.SetActive(true);
+                EnablePopup(true);
                 complete?.Invoke();
             }
         }
@@ -107,23 +106,25 @@ namespace UI.Popup
                         break;
                 }
 
-                if (m_tweener != null)
+                m_openContext.RectTransform.DOAnchorPos(closePosition, m_openContext.OpenTime).OnComplete(() =>
                 {
-                    m_tweener.Kill();
-                }
-
-                m_tweener = m_openContext.RectTransform.DOAnchorPos(closePosition, m_openContext.OpenTime).OnComplete(() =>
-                {
-                    gameObject.SetActive(false);
                     complete?.Invoke();
+                    EnablePopup(false);
                     m_openContext.RectTransform.anchoredPosition = m_targetPosition;
                 });
             }
             else
             {
-                gameObject.SetActive(false);
+                EnablePopup(false);
                 complete?.Invoke();
             }
+        }
+
+        void EnablePopup(bool enable)
+        {
+            m_canvasGroup.alpha = enable ? 1 : 0;
+            m_canvasGroup.blocksRaycasts = enable;
+            m_canvasGroup.interactable = enable;
         }
 
         [Serializable]
