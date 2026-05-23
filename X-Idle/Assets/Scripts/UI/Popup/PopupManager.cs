@@ -54,9 +54,18 @@ namespace UI.Popup
             if (m_popupMap.TryGetValue(popupType, out BasePopup popup))
             {
                 if (m_openedPopup != null)
-                    m_openedPopup.Close();
-                m_openedPopup = popup;
-                m_openedPopup.Show();
+                {
+                    m_openedPopup.Close(() =>
+                    {
+                        m_openedPopup = popup;
+                        m_openedPopup.Show();
+                    });
+                }
+                else
+                {
+                    m_openedPopup = popup;
+                    m_openedPopup.Show();
+                }
             }
         }
 
@@ -65,23 +74,17 @@ namespace UI.Popup
             if (m_popupMap.TryGetValue(popupType, out BasePopup popup))
             {
                 if (m_openedPopup != null)
-                    m_openedPopup.Close();
-                m_openedPopup = popup;
-                m_openedPopup.Show(args);
-            }
-        }
-
-        void HidePopup(PopupType popupType)
-        {
-            if (m_openedPopup != null)
-            {
-                if (m_popupMap.TryGetValue(popupType, out BasePopup popup))
                 {
-                    if (m_openedPopup == popup)
+                    m_openedPopup.Close(() =>
                     {
-                        m_openedPopup.Close();
-                        m_openedPopup = null;
-                    }
+                        m_openedPopup = popup;
+                        m_openedPopup.Show(args);
+                    });
+                }
+                else
+                {
+                    m_openedPopup = popup;
+                    m_openedPopup.Show(args);
                 }
             }
         }

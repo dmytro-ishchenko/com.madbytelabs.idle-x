@@ -1,3 +1,4 @@
+using System;
 using Data.Model.Popup;
 using TMPro;
 using UI.Event;
@@ -15,7 +16,7 @@ namespace UI.Popup.Select
         [SerializeField] private Button m_upgrade;
         [SerializeField] private Button m_demolish;
 
-        public override void Show<T>(T context)
+        public override void Show<T>(T context, Action complete = null)
         {
             if (context is SelectBuildingContext model)
             {
@@ -27,17 +28,17 @@ namespace UI.Popup.Select
                 m_info.onClick.AddListener(() => { Node.TriggerEvent(new ShowBuildingsInfoEventArgs(model.BuildingModel)); });
                 m_demolish.onClick.AddListener(() => { Node.TriggerEvent(new ShowDismantleBuildingEventArgs(model.BuildingModel)); });
 
-                base.Show(context);
+                base.Show(context, complete);
             }
         }
 
-        public override void Close()
+        public override void Close(Action complete = null)
         {
             m_info.onClick.RemoveAllListeners();
             m_upgrade.onClick.RemoveAllListeners();
             m_demolish.onClick.RemoveAllListeners();
 
-            base.Close();
+            base.Close(complete);
         }
     }
 }

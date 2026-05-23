@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UI.Enum;
 using UI.Event;
@@ -12,7 +13,7 @@ namespace UI.Popup.Curtains
         [SerializeField] private float m_openCloseTime;
         private CanvasGroup m_canvasGroup;
 
-        public override void Show<T>(T context)
+        public override void Show<T>(T context, Action complete = null)
         {
             if (m_canvasGroup == null)
                 m_canvasGroup = gameObject.GetComponent<CanvasGroup>();
@@ -22,7 +23,7 @@ namespace UI.Popup.Curtains
                 gameObject.SetActive(true);
                 m_slider.value = 0;
 
-                base.Show(context);
+                base.Show(context, complete);
 
                 StartCoroutine(WaitAndClose(args));
             }

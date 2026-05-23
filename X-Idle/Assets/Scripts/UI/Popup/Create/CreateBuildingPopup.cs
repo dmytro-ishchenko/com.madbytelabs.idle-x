@@ -31,7 +31,7 @@ namespace UI.Popup.Create
         private List<RequiredElementView> m_requiredElements = new();
 
 
-        public override void Show<T>(T context)
+        public override void Show<T>(T context, Action complete = null)
         {
             m_createButton.gameObject.SetActive(false);
             m_canNotBuilding.SetActive(false);
@@ -56,7 +56,7 @@ namespace UI.Popup.Create
                 rootRect.sizeDelta = new Vector2(rootRect.rect.width, m_scrollRect.GetComponent<RectTransform>().rect.height +
                                                                       2 * m_source.GetComponent<RectTransform>().rect.height);
 
-                base.Show(context);
+                base.Show(context, complete);
             }
 
             m_selectedTemplateId = string.Empty;
@@ -78,7 +78,7 @@ namespace UI.Popup.Create
             resizer.Recalculate();
         }
 
-        public override void Close()
+        public override void Close(Action complete = null)
         {
             foreach (var element in m_elements)
             {
@@ -90,7 +90,7 @@ namespace UI.Popup.Create
 
             m_createButton.onClick.RemoveAllListeners();
 
-            base.Close();
+            base.Close(complete);
         }
 
         private void OnSelectHandler(BuildingElement element)

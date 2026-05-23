@@ -338,7 +338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4208504231870062825
 RectTransform:
   m_ObjectHideFlags: 0
@@ -384,6 +384,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ffd7492838b4fd89434444a397cbf40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: com.madbytelabs.ui::UI.Popup.Blocked.BlockedPlaceHolderPopup
+  m_openContext:
+    RectTransform: {fileID: 1975943567358844381}
+    OpenTime: 0.3
+    OpenDirection: 3
+    UseZoom: 0
   resizer: {fileID: 0}
   m_closeButtons:
   - {fileID: 5573098515932745597}
@@ -547,7 +552,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 2.7155, y: 0}
+  m_AnchoredPosition: {x: 2.7155151, y: 0}
   m_SizeDelta: {x: -152.0685, y: 1043.4917}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &7558527140579848366

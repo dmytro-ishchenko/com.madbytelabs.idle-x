@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using Data.Events;
@@ -20,7 +21,7 @@ namespace UI.Popup.Locked
 
         private readonly List<RequiredElementView> m_requirementViews = new();
 
-        public override void Show<T>(T context)
+        public override void Show<T>(T context, Action complete = null)
         {
             if (context is LockedPlaceHolderContext model)
             {
@@ -75,12 +76,12 @@ namespace UI.Popup.Locked
                 }
 
 
-                base.Show(context);
+                base.Show(context, complete);
                 resizer.Recalculate();
             }
         }
 
-        public override void Close()
+        public override void Close(Action complete = null)
         {
             foreach (var requirementView in m_requirementViews)
             {
@@ -90,7 +91,7 @@ namespace UI.Popup.Locked
             m_requirementViews.Clear();
             m_unlock.onClick.RemoveAllListeners();
 
-            base.Close();
+            base.Close(complete);
         }
     }
 }

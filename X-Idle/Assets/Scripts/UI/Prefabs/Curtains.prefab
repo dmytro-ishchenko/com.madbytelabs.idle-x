@@ -784,9 +784,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1063874bf5794ef8b4a619592061f4fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: com.madbytelabs.ui::UI.Popup.Curtains.CurtainsPopup
+  m_openContext:
+    RectTransform: {fileID: 8731740332289108674}
+    OpenTime: 0.3
+    OpenDirection: 0
+    UseZoom: 0
   resizer: {fileID: 0}
   m_closeButtons: []
   m_slider: {fileID: 7331247661438597459}
+  m_openCloseTime: 0.3
 --- !u!1 &6276103770786476142
 GameObject:
   m_ObjectHideFlags: 0

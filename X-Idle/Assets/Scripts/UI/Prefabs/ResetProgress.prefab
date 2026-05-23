@@ -1400,7 +1400,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6457727708759368342
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1446,6 +1446,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c702fdaabdf4af79f6c638dab94ddd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: com.madbytelabs.ui::UI.Popup.Confirmation.ConfirmResetProgress
+  m_openContext:
+    RectTransform: {fileID: 958928717906921809}
+    OpenTime: 0.3
+    OpenDirection: 3
+    UseZoom: 0
   resizer: {fileID: 0}
   m_closeButtons:
   - {fileID: 5069184918875637200}

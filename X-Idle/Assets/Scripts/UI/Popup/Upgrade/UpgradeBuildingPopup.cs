@@ -23,7 +23,7 @@ namespace UI.Popup.Upgrade
         private readonly List<RequiredElementView> m_requirementViews = new();
         private readonly List<UseInfoElement> m_infoElements = new();
 
-        public override void Show<T>(T context)
+        public override void Show<T>(T context, Action complete = null)
         {
             if (context is UpgradeBuildingContext model)
             {
@@ -140,13 +140,13 @@ namespace UI.Popup.Upgrade
                 }
 
 
-                base.Show(context);
+                base.Show(context, complete);
 
                 resizer.Recalculate();
             }
         }
 
-        public override void Close()
+        public override void Close(Action complete = null)
         {
             foreach (var requirementView in m_requirementViews)
             {
@@ -164,7 +164,7 @@ namespace UI.Popup.Upgrade
 
             m_upgrade.onClick.RemoveAllListeners();
 
-            base.Close();
+            base.Close(complete);
         }
 
         [Serializable]

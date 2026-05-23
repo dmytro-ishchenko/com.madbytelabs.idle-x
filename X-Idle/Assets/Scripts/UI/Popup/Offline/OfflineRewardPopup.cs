@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Data.Model.Popup;
 using Data.Utility;
@@ -15,7 +16,7 @@ namespace UI.Popup.Offline
         [SerializeField] private InfoElement m_resourceSource;
         private List<InfoElement> m_views = new();
 
-        public override void Show<T>(T context)
+        public override void Show<T>(T context, Action complete = null)
         {
             if (context is OfflineReward model)
             {
@@ -33,12 +34,12 @@ namespace UI.Popup.Offline
                     view.gameObject.SetActive(true);
                 }
 
-                base.Show(context);
+                base.Show(context, complete);
                 resizer.Recalculate();
             }
         }
 
-        public override void Close()
+        public override void Close(Action complete = null)
         {
             foreach (var element in m_views)
             {
@@ -46,7 +47,7 @@ namespace UI.Popup.Offline
             }
 
             m_views.Clear();
-            base.Close();
+            base.Close(complete);
         }
     }
 }
