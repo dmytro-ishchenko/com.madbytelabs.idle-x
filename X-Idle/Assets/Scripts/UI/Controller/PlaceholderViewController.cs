@@ -68,7 +68,7 @@ namespace UI.Controller
             m_locked = false;
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             if (m_locked)
                 return;
@@ -76,6 +76,35 @@ namespace UI.Controller
             {
                 if (m_locked)
                     break;
+
+                Vector3 viewportPosition = m_camera.WorldToViewportPoint(data.Value.TargetTransform.position);
+
+                bool isVisible =
+                    viewportPosition.z > 0f &&
+                    viewportPosition.x >= 0f &&
+                    viewportPosition.x <= 1f &&
+                    viewportPosition.y >= 0f &&
+                    viewportPosition.y <= 1f;
+
+                if (!isVisible)
+                {
+                    if (data.Value.View.gameObject.activeSelf)
+                        data.Value.View.gameObject.SetActive(false);
+
+                    continue;
+                }
+
+                if (!data.Value.View.gameObject.activeSelf)
+                    data.Value.View.gameObject.SetActive(true);
+
+                // Vector3 screenPosition = m_camera.WorldToScreenPoint(data.Value.TargetTransform.position);
+                //
+                // RectTransformUtility.ScreenPointToLocalPointInRectangle(iconsRoot, screenPosition, canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : m_camera,
+                //     out Vector2 localPosition
+                // );
+                //
+                // icon.RectTransform.anchoredPosition = localPosition;
+
                 data.Value.View.transform.position = m_camera.WorldToScreenPoint(data.Value.TargetTransform.position);
             }
         }
