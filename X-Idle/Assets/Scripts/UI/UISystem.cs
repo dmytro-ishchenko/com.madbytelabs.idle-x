@@ -10,7 +10,6 @@ using SceneLoader;
 using UI.Controller;
 using UI.Enum;
 using UI.Event;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace UI
@@ -33,7 +32,10 @@ namespace UI
             Subscribe<ShowDismantleBuildingEventArgs>(ShowDismantleBuildingHandler);
             Subscribe<ShowResetProgressEventArgs>(ShowResetProgressHandler);
             Subscribe<ResetProgressEventArgs>(ResetProgressEventHandler);
+            Subscribe<OpenResourcesInfoEventArgs>(OpenResourcesInfoEventHandler);
         }
+
+
 
         private readonly IApplicationData m_applicationData;
         private readonly IEnvironment m_environment;
@@ -135,6 +137,12 @@ namespace UI
         {
             m_gameUIController.PopupManager.ShowCurtainsOnTime(2, null);
             m_applicationData.ResetProgress();
+        }
+        
+        private void OpenResourcesInfoEventHandler(OpenResourcesInfoEventArgs args)
+        {
+            var context = m_applicationData.GetResourceInfoContext(args.ResourceType);
+            m_gameUIController.PopupManager.ShowPopup(PopupType.ResourceInfo,context);
         }
     }
 }

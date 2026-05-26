@@ -153,7 +153,7 @@ namespace Data.Utility
                 }
             }
 
-            OutputInfoModel outputModel = BuildingInfoBuilder.GetProductionInfoModel(buildingModel, assetLibrary, userBuildingsData);
+            OutputInfoModel outputModel = BuildingInfoBuilder.GetProductionInfoModel(buildingModel, userBuildingsData);
 
             IList<UseResourcesModel> useResourcesModels = BuildingInfoBuilder.GetUseResourcesModels(buildingModel, assetLibrary, userBuildingsData);
 
@@ -185,7 +185,7 @@ namespace Data.Utility
         }
 
 
-        internal static float GetResourceMaxCapacity(GameResourcesTemplate resource, ICollection<BuildingModel> warehouseModels)
+        internal static float GetResourceMaxCapacity(IGameResourcesTemplate resource, ICollection<BuildingModel> warehouseModels)
         {
             if (warehouseModels is { Count: > 0 })
             {

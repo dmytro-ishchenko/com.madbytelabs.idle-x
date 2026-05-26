@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Data.Enum;
 using Data.Events;
 using Data.Interface;
 using Data.Model;
@@ -28,5 +29,6 @@ namespace Data
         CreateBuildingRequirementsContext GetCreateBuildingContext(IBuildingTemplate template);
         OfflineReward GetOfflineReward();
         void ResetProgress();
+        ResourceInfoContext GetResourceInfoContext(GameResourceType resourceType);
     }
 }

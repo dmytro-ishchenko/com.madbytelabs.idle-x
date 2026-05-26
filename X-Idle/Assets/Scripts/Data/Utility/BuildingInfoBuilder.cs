@@ -99,8 +99,7 @@ namespace Data.Utility
             return (effects, storage);
         }
 
-        public static OutputInfoModel GetProductionInfoModel(BuildingModel buildingModel, IAssetLibrary assetLibrary,
-            UserBuildingsData userBuildingsData)
+        public static OutputInfoModel GetProductionInfoModel(BuildingModel buildingModel, UserBuildingsData userBuildingsData)
         {
             OutputElement resource = null, storage = null;
 

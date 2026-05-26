@@ -23,6 +23,7 @@ namespace UI.Controller
             Node = new();
             Node.AddChild(m_popupManager.Node);
             Node.AddChild(m_placeholderView.Node);
+            Node.AddChild(m_userInfo.Node);
             m_settingsButton.onClick.AddListener(() => { m_popupManager.ShowPopup(PopupType.Settings); });
         }
 

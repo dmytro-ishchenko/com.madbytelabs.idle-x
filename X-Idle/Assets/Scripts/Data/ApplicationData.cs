@@ -59,7 +59,7 @@ namespace Data
                 m_userData = new UserData(m_assetLibrary, save);
 
                 m_userDataProcessor.Init(m_assetLibrary, m_userData);
-                m_offlineReward = m_userDataProcessor.UpdateAccordingCurrentTime(m_assetLibrary,save.Time);
+                m_offlineReward = m_userDataProcessor.UpdateAccordingCurrentTime(m_assetLibrary, save.Time);
             }
 
             if (m_userData == null)
@@ -203,12 +203,28 @@ namespace Data
             m_userData.UserPlaceHolderData.OnPlaceHolderStatusChanged -= OnPlaceHolderStatusChangedHandler;
 
             CreateDefaultSave();
-            
+
             m_userData.UserResources.OnUserResourcesChanged += OnResourcesChangedHandler;
             m_userData.UserPlaceHolderData.OnPlaceHolderStatusChanged += OnPlaceHolderStatusChangedHandler;
 
             m_userDataProcessor.StartProcessing();
             OnProgressReset?.Invoke();
+        }
+
+        public ResourceInfoContext GetResourceInfoContext(GameResourceType resourceType)
+        {
+            m_assetLibrary.TryGetGameResource(resourceType, out var gameResource);
+            m_assetLibrary.TryGetBuildingTemplateByResourceType(resourceType, out var buildingTemplate);
+            UserBuildingsData.TryGetBuildingsByType(BuildingType.Warehouse, out var warehouses);
+
+            float currentProduction = 0;
+            float currentUse = 0;
+            float capacity = DataUtility.GetResourceMaxCapacity(gameResource, warehouses);
+
+            ResourceInfoContext context = new ResourceInfoContext(gameResource.Name, gameResource.Icon, gameResource.Description, buildingTemplate.Name, buildingTemplate.Icon,
+                currentProduction, UserResources.GetGameResourceValue(resourceType), capacity, currentUse);
+
+            return context;
         }
 
         void SaveUserData()

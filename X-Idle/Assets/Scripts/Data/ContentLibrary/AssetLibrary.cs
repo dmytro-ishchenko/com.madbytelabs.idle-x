@@ -38,6 +38,21 @@ namespace Data.ContentLibrary
             return false;
         }
 
+        public bool TryGetBuildingTemplateByResourceType(GameResourceType type, out BuildingTemplate buildingTemplate)
+        {
+            foreach (var building in m_buildingsMap.Values)
+            {
+                if (building.BuildingContext.BuildingProduction is { ResourcesTemplate: not null } &&
+                    building.BuildingContext.BuildingProduction.ResourcesTemplate.GameResourceType == type)
+                {
+                    buildingTemplate = building;
+                    return true;
+                }
+            }
+
+            buildingTemplate = null;
+            return false;
+        }
 
         public bool TryGetGameResource(GameResourceType type, out GameResourcesTemplate gameResource)
         {
