@@ -15,7 +15,8 @@ MonoBehaviour:
   m_id: 8dea21af3cd1ddc709a7553
   m_name: Water
   m_gameResourceType: 4
-  m_description: 
+  m_description: Clean water extracted and filtered by the base. Required to sustain
+    survivors, grow food, and keep key systems operational.
   m_icon: {fileID: 21300000, guid: 531310f799a3444a9ba0eb8a4ae37254, type: 3}
   m_baseCapacity: 50
   m_storageFactor: 0.5

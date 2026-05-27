@@ -15,7 +15,8 @@ MonoBehaviour:
   m_id: 8de83abfe81b3e261880109
   m_name: Scrap
   m_gameResourceType: 1
-  m_description: 
+  m_description: Old metal, broken parts, and useful junk collected from the wasteland.
+    Used to build and upgrade base structures.
   m_icon: {fileID: 21300000, guid: 6db0d89e8a7e84f208ee54e20927564e, type: 3}
   m_baseCapacity: 100
   m_storageFactor: 1
