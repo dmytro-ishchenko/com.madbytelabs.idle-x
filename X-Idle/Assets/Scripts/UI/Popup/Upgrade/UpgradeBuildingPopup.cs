@@ -32,7 +32,7 @@ namespace UI.Popup.Upgrade
                 m_buildingBlock.NextLevel.text = $"Lv.{model.Level + 1}";
                 m_buildingBlock.Icon.sprite = model.Icon;
 
-                m_outputBlock.BlockName.text = model.OutputModel.BlockName;
+                m_outputBlock.BlockName.text = model.OutputModel.BlockName.ToUpper();
                 m_outputBlock.Icon.sprite = model.OutputModel.Icon;
                 m_outputBlock.ResourceName.text = model.OutputModel.ResourceName;
 
