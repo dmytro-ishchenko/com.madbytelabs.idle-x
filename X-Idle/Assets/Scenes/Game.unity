@@ -387815,14 +387815,6 @@ PrefabInstance:
       propertyPath: m_Alpha
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2076207337351733462, guid: 0d9756beaa777440fa4163441b9d59ae, type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2076207337351733462, guid: 0d9756beaa777440fa4163441b9d59ae, type: 3}
-      propertyPath: m_BlocksRaycasts
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2813004797647854857, guid: 0d9756beaa777440fa4163441b9d59ae, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -387914,10 +387906,6 @@ PrefabInstance:
     - target: {fileID: 5885590067070007940, guid: 0d9756beaa777440fa4163441b9d59ae, type: 3}
       propertyPath: m_Name
       value: Curtains
-      objectReference: {fileID: 0}
-    - target: {fileID: 5885590067070007940, guid: 0d9756beaa777440fa4163441b9d59ae, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7728251666894298625, guid: 0d9756beaa777440fa4163441b9d59ae, type: 3}
       propertyPath: m_AnchorMax.x
