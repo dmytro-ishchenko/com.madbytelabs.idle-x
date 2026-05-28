@@ -1,12 +1,9 @@
 using System;
-using System.Collections;
 using Common.Pattern.BobbleEvent;
 using UI.Controller;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using DG.Tweening.Core;
-using DG.Tweening.Plugins.Options;
 
 namespace UI.Popup
 {

@@ -30,7 +30,6 @@ namespace UI.Popup.Create
         private IApplicationData m_applicationData;
         private List<RequiredElementView> m_requiredElements = new();
 
-
         public override void Show<T>(T context, Action complete = null)
         {
             m_createButton.gameObject.SetActive(false);
@@ -38,7 +37,8 @@ namespace UI.Popup.Create
 
             if (context is CreateBuildingContext model)
             {
-                RecalculateScrollSize();
+                m_scrollRect.verticalNormalizedPosition = 1f;
+
                 foreach (var buildingTemplate in model.Buildings)
                 {
                     var element = Instantiate(m_source);
@@ -49,12 +49,14 @@ namespace UI.Popup.Create
                     element.OnSelect += OnSelectHandler;
                 }
 
+                RecalculateScrollSize();
+
                 m_selectedPlaceHolderId = model.PlaceholderId;
                 m_applicationData = model.ApplicationData;
 
                 RectTransform rootRect = m_buildingListRoot as RectTransform;
-                rootRect.sizeDelta = new Vector2(rootRect.rect.width, m_scrollRect.GetComponent<RectTransform>().rect.height +
-                                                                      2 * m_source.GetComponent<RectTransform>().rect.height);
+
+                rootRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, m_scrollRect.GetComponent<RectTransform>().rect.height + 2 * m_source.GetComponent<RectTransform>().rect.height);
 
                 base.Show(context, complete);
             }
@@ -89,6 +91,7 @@ namespace UI.Popup.Create
             m_elements.Clear();
 
             m_createButton.onClick.RemoveAllListeners();
+            m_info.Block.SetActive(false);
 
             base.Close(complete);
         }
