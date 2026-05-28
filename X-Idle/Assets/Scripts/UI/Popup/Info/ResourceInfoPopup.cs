@@ -24,7 +24,7 @@ namespace UI.Popup.Info
         {
             if (context is ResourceInfoContext model)
             {
-                m_resourceName.text = model.ResourceName;
+                m_resourceName.text = model.ResourceName.ToUpper();
                 m_resourceIcon.sprite = model.ResourceIcon;
                 m_resourceDescription.text = model.ResourceDescription;
 
