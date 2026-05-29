@@ -18,7 +18,8 @@ MonoBehaviour:
     resource storage limits and keep your settlement growing.
   m_shortDescription: Increases resource storage capacity.
   m_view: {fileID: 4573677491782839015, guid: d8ea6e9efc37745f5a813147655b8c37, type: 3}
-  m_icon: {fileID: 21300000, guid: bd80b24223af7490dbc6115f0cdedafd, type: 3}
+  m_icon: {fileID: 21300000, guid: f168f7ab15dd44b898bc4bad11a0659f, type: 3}
+  m_iconWide: {fileID: 21300000, guid: 5637449fa017747e6bc5bf522b36eab6, type: 3}
   m_buildingContext:
     m_buildingType: 2
     m_maxLevel: 50

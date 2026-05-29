@@ -7,6 +7,7 @@ namespace Data.Interface
     {
         GameObject View { get; }
         Sprite Icon { get; }
+        Sprite IconWide { get; }
         BuildingContext BuildingContext { get; }
         string ShortDescription { get; }
     }

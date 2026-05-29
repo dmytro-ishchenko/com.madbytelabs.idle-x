@@ -1295,7 +1295,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 242.3, y: 67.3}
+  m_AnchoredPosition: {x: 203.5, y: 67.3}
   m_SizeDelta: {x: 352.2778, y: 67.2716}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4542560510675696439
@@ -1432,7 +1432,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -193.3, y: -135}
+  m_AnchoredPosition: {x: -236.5, y: -146.4}
   m_SizeDelta: {x: 349.2, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8509900124606733078
@@ -1724,7 +1724,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 245.58, y: -48.714966}
+  m_AnchoredPosition: {x: 201.7, y: -72.1}
   m_SizeDelta: {x: 352.28, y: 97.4359}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9101857776893805995
@@ -1769,8 +1769,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 227.94, y: -140.57}
-  m_SizeDelta: {x: 469.31, y: 281.14}
+  m_AnchoredPosition: {x: 210.23, y: -140.57}
+  m_SizeDelta: {x: 368.54, y: 281.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8242695852450185633
 CanvasRenderer:
@@ -5518,8 +5518,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 231.3, y: -140.57}
-  m_SizeDelta: {x: 462.5904, y: 281.1381}
+  m_AnchoredPosition: {x: 211.5, y: -140.57}
+  m_SizeDelta: {x: 366, y: 275}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5403666630020901989
 CanvasRenderer:
@@ -5549,7 +5549,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 484a3ae3671dc4465b6edb61e7e87c29, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 546b6dc37b1d84d3c95a8f99055090c7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5972,7 +5972,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8460989241311199041}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0

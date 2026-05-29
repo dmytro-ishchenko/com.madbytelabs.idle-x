@@ -18,7 +18,8 @@ MonoBehaviour:
     repairs, machines, and advanced building upgrades.
   m_shortDescription: Produces parts for upgrades.
   m_view: {fileID: 4104064214169789485, guid: cb41a5e10c9994682ad15f5a86f6007c, type: 3}
-  m_icon: {fileID: 21300000, guid: f3fbb345765f24d8a913d8136e996804, type: 3}
+  m_icon: {fileID: 21300000, guid: 4954fba067fe2428c9dac585cc60666c, type: 3}
+  m_iconWide: {fileID: 21300000, guid: ffa7db70e2be34b758903b0459dfadbd, type: 3}
   m_buildingContext:
     m_buildingType: 6
     m_maxLevel: 50

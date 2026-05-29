@@ -26,7 +26,7 @@ namespace Data.Utility
             condition = new ConditionModel(conditionValue);
 
 
-            return new SelectBuildingInfo(buildingModel.Template.Name, buildingModel.Template.Icon, buildingModel.Level,
+            return new SelectBuildingInfo(buildingModel.Template.Name, buildingModel.Template.IconWide, buildingModel.Level,
                 buildingModel.Template.Description, effects, storage, condition);
         }
 
