@@ -117,7 +117,7 @@ namespace UI.Popup
             }
         }
 
-        void EnablePopup(bool enable)
+        protected void EnablePopup(bool enable)
         {
             m_canvasGroup.alpha = enable ? 1 : 0;
             m_canvasGroup.blocksRaycasts = enable;
