@@ -102,7 +102,7 @@ namespace UI.Popup
                         closePosition = new Vector2(m_openContext.RectTransform.anchoredPosition.x - Screen.width, m_openContext.RectTransform.anchoredPosition.y);
                         break;
                 }
-
+     
                 m_openContext.RectTransform.DOAnchorPos(closePosition, m_openContext.OpenTime).OnComplete(() =>
                 {
                     complete?.Invoke();

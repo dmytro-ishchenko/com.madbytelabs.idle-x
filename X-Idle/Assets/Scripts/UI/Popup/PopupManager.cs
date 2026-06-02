@@ -71,6 +71,8 @@ namespace UI.Popup
 
         public void ShowPopup<T>(PopupType popupType, T args)
         {
+            
+            
             if (m_popupMap.TryGetValue(popupType, out BasePopup popup))
             {
                 if (m_openedPopup != null)
