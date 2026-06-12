@@ -14,7 +14,7 @@ namespace UI.Popup
     internal class PopupManager : MonoBehaviour, IMonoNode
     {
         [SerializeField] private SerializedDictionary<PopupType, BasePopup> m_popupMap;
-        BasePopup m_openedPopup;
+        private BasePopup m_openedPopup;
         public Node Node { get; } = new();
 
         void Awake()
@@ -71,8 +71,6 @@ namespace UI.Popup
 
         public void ShowPopup<T>(PopupType popupType, T args)
         {
-            
-            
             if (m_popupMap.TryGetValue(popupType, out BasePopup popup))
             {
                 if (m_openedPopup != null)

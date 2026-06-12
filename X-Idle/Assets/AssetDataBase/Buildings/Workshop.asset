@@ -40,9 +40,6 @@ MonoBehaviour:
       - m_gameResourceTemplate: {fileID: 11400000, guid: 6368b11a4a9db4721860806690447aff, type: 2}
         m_cost: 50
         m_costGrowth: 1.15
-      - m_gameResourceTemplate: {fileID: 0}
-        m_cost: 5
-        m_costGrowth: 1.12
       m_timeCost: 0
     m_buildingProduction:
       m_resourcesTemplate: {fileID: 11400000, guid: de8cabd4836d34c529dba6c8ce814f3e, type: 2}
