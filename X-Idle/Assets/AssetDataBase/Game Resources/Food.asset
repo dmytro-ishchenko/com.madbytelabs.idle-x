@@ -17,6 +17,6 @@ MonoBehaviour:
   m_gameResourceType: 3
   m_description: Preserved supplies and fresh crops grown inside the base. Required
     to sustain survivors and keep production stable.
-  m_icon: {fileID: 21300000, guid: 061856a1ffd754c8abffa27135758a36, type: 3}
+  m_icon: {fileID: 21300000, guid: dee31e8ebcc0d454fa2f5cfc7211d6c2, type: 3}
   m_baseCapacity: 50
   m_storageFactor: 0.5

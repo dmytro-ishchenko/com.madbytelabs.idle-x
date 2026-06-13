@@ -17,6 +17,6 @@ MonoBehaviour:
   m_gameResourceType: 1
   m_description: Old metal, broken parts, and useful junk collected from the wasteland.
     Used to build and upgrade base structures.
-  m_icon: {fileID: 21300000, guid: 6db0d89e8a7e84f208ee54e20927564e, type: 3}
+  m_icon: {fileID: 21300000, guid: fdf3be18a07d34f418f9ed183f8d79c1, type: 3}
   m_baseCapacity: 100
   m_storageFactor: 1
