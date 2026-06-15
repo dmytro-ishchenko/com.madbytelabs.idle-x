@@ -22,6 +22,7 @@ namespace Data
         event Action<BuildingModel> OnBuildingDeleted;
         event Action OnProgressReset;
         event Action<PlaceholderModel> OnPlaceHolderStatusChanged;
+        event Action<AppStatus> OnAppStatusChanged;
         UpgradeBuildingContext GetUpgradeBuildingContext(BuildingModel buildingModel);
         PlaceHolderRequirementsModel GetPlaceHolderRequirements(string id);
         void UnlockPlaceHolder(UnlockPlaceholderEventArgs args);
@@ -29,6 +30,7 @@ namespace Data
         CreateBuildingRequirementsContext GetCreateBuildingContext(IBuildingTemplate template);
         OfflineReward GetOfflineReward();
         void ResetProgress();
+        AppStatus AppStatus { get; }
         ResourceInfoContext GetResourceInfoContext(GameResourceType resourceType);
     }
 }

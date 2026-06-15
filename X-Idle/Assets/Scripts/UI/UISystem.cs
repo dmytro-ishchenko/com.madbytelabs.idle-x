@@ -1,7 +1,9 @@
 using Common;
 using Common.Enum;
+using Common.Lifecycle;
 using Common.Pattern.BobbleEvent;
 using Data;
+using Data.Enum;
 using Data.Events;
 using Data.Model;
 using Data.Model.Popup;
@@ -24,6 +26,10 @@ namespace UI
 
             m_environment.OnBuildingActionRequest += OnBuildingActionRequestHandler;
             m_sceneLoader.SceneNotify.OnSceneLoaded += OnSceneLoadedHandler;
+            
+            m_applicationData.OnAppStatusChanged += OnAppStatusChangedHandler;
+            
+            
             Subscribe<BuildingProcessEventArgs>(BuildingProcessHandler);
             Subscribe<SelectPlaceHolderEventArgs>(SelectPlaceHolderHandler);
             Subscribe<UnlockPlaceholderEventArgs>(UnlockPlaceholderHandler);
@@ -34,8 +40,6 @@ namespace UI
             Subscribe<ResetProgressEventArgs>(ResetProgressEventHandler);
             Subscribe<OpenResourcesInfoEventArgs>(OpenResourcesInfoEventHandler);
         }
-
-
 
         private readonly IApplicationData m_applicationData;
         private readonly IEnvironment m_environment;
@@ -143,6 +147,11 @@ namespace UI
         {
             var context = m_applicationData.GetResourceInfoContext(args.ResourceType);
             m_gameUIController.PopupManager.ShowPopup(PopupType.ResourceInfo,context);
+        }
+        
+        private void OnAppStatusChangedHandler(AppStatus status)
+        {
+            
         }
     }
 }

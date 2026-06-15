@@ -34,6 +34,7 @@ namespace Data
         private readonly UserDataProcessor m_userDataProcessor = new();
         private readonly IDataLoader<SaveModel> m_userDataLoader = new UserDataLoader();
         private OfflineReward m_offlineReward;
+        private AppStatus m_currentStatus;
         public IList<BuildingModel> UserBuildings => m_userData.UserBuildingsData.BuildingsMap.Values.ToList();
         public UserResources UserResources => m_userData.UserResources;
         public UserBuildingsData UserBuildingsData => m_userData.UserBuildingsData;
@@ -42,25 +43,22 @@ namespace Data
         public event Action<BuildingModel> OnBuildingDeleted;
         public event Action OnProgressReset;
         public event Action<PlaceholderModel> OnPlaceHolderStatusChanged;
+        public event Action<AppStatus> OnAppStatusChanged;
         public event Action<UserResources> OnUserResourcesChanged;
 
         public void InitApplicationData(Action complete)
         {
+            m_currentStatus = AppStatus.Initializing;
+            OnAppStatusChanged?.Invoke(m_currentStatus);
+
+
             if (m_assetLibrary == null)
                 m_assetLibrary = Resources.Load<AssetLibrary>("AssetLibrary");
 
             if (m_placeholderMapTemplate == null)
                 m_placeholderMapTemplate = Resources.Load<PlaceholderMapTemplate>("PlaceholderMap");
 
-            var save = m_userDataLoader.Load();
-
-            if (save != null)
-            {
-                m_userData = new UserData(m_assetLibrary, save);
-
-                m_userDataProcessor.Init(m_assetLibrary, m_userData);
-                m_offlineReward = m_userDataProcessor.UpdateAccordingCurrentTime(m_assetLibrary, save.Time);
-            }
+            LoadSaveData();
 
             if (m_userData == null)
             {
@@ -72,9 +70,27 @@ namespace Data
             m_userData.UserResources.OnUserResourcesChanged += OnResourcesChangedHandler;
             m_userData.UserPlaceHolderData.OnPlaceHolderStatusChanged += OnPlaceHolderStatusChangedHandler;
 
+            m_currentStatus = AppStatus.Init;
+            OnAppStatusChanged?.Invoke(m_currentStatus);
+
             m_userDataProcessor.StartProcessing();
 
+            m_currentStatus = AppStatus.Running;
+            OnAppStatusChanged?.Invoke(m_currentStatus);
             complete?.Invoke();
+        }
+
+        void LoadSaveData()
+        {
+            var save = m_userDataLoader.Load();
+
+            if (save != null)
+            {
+                m_userData = new UserData(m_assetLibrary, save);
+
+                m_userDataProcessor.Init(m_assetLibrary, m_userData);
+                m_offlineReward = m_userDataProcessor.UpdateAccordingCurrentTime(m_assetLibrary, save.Time);
+            }
         }
 
         void CreateDefaultSave()
@@ -211,6 +227,8 @@ namespace Data
             OnProgressReset?.Invoke();
         }
 
+        public AppStatus AppStatus { get; }
+
         public ResourceInfoContext GetResourceInfoContext(GameResourceType resourceType)
         {
             m_assetLibrary.TryGetGameResource(resourceType, out var gameResource);
@@ -240,10 +258,43 @@ namespace Data
 
         public void OnApplicationFocus(bool hasFocus)
         {
+            if (!hasFocus)
+                PauseGame();
+            else
+                ResumeGame();
         }
 
         public void OnApplicationPause(bool pauseStatus)
         {
+            if (pauseStatus)
+                PauseGame();
+            else
+                ResumeGame();
+        }
+
+        void PauseGame()
+        {
+            if (m_currentStatus != AppStatus.Pause)
+            {
+                m_userDataProcessor.StopProcessing();
+                SaveUserData();
+                m_currentStatus = AppStatus.Pause;
+                OnAppStatusChanged?.Invoke(m_currentStatus);
+            }
+        }
+
+        void ResumeGame()
+        {
+            if (m_currentStatus == AppStatus.Pause)
+            {
+                m_currentStatus = AppStatus.Resuming;
+                OnAppStatusChanged?.Invoke(m_currentStatus);
+                LoadSaveData();
+                m_userDataProcessor.StartProcessing();
+
+                m_currentStatus = AppStatus.Running;
+                OnAppStatusChanged?.Invoke(m_currentStatus);
+            }
         }
     }
 }
