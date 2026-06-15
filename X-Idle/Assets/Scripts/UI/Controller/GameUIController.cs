@@ -30,5 +30,10 @@ namespace UI.Controller
         public void UpdateUserInfo(UserResources resources) => m_userInfo.UpdateUserResources(resources);
         public void InitPlaceHoldersView(IReadOnlyDictionary<string, PlaceholderModel> userPlaceHolderData) => m_placeholderView.InitPlaceHoldersView(userPlaceHolderData);
         public void UpdatePlaceHoldersView(PlaceholderModel model) => m_placeholderView.UpdatePlaceHoldersView(model);
+
+        public void Pause()
+        {
+            m_placeholderView.Pause();
+        }
     }
 }

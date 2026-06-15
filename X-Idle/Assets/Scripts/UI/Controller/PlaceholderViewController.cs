@@ -13,14 +13,22 @@ namespace UI.Controller
         [SerializeField] private PlaceHolderViewElement m_pointLocked;
         [SerializeField] private PlaceHolderViewElement m_pointBlocked;
         [SerializeField] private Transform m_root;
-        [SerializeField] private Camera m_camera;
+        private Camera m_camera;
         private bool m_locked = true;
 
         private Dictionary<string, PlaceHolderViewModel> m_placeholderData = new();
         private Dictionary<string, Transform> m_placeholderTransforms = new();
 
+        public void Pause()
+        {
+            m_locked = true;
+        }
+
         public void InitPlaceHoldersView(IReadOnlyDictionary<string, PlaceholderModel> userPlaceHolderData)
         {
+            if (m_camera == null)
+                m_camera = Camera.main;
+
             if (m_placeholderData.Count > 0)
             {
                 m_locked = true;

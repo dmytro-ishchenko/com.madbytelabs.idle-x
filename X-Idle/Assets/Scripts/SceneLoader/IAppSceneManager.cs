@@ -1,4 +1,3 @@
-using System;
 using Common.Enum;
 using UnityEngine.SceneManagement;
 

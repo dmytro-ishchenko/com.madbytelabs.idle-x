@@ -8,6 +8,6 @@ namespace SceneLoader
         IAppSceneNotify SceneNotify { get; }
         void SwitchToScene(SceneName sceneName);
         void AddScene(SceneName sceneName);
-        void CleanGameScene();
+        void UnloadScene(SceneName sceneName);
     }
 }

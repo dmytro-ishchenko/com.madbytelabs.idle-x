@@ -276,6 +276,8 @@ namespace Data
         {
             if (m_currentStatus != AppStatus.Pause)
             {
+                m_userData.UserResources.OnUserResourcesChanged -= OnResourcesChangedHandler;
+                m_userData.UserPlaceHolderData.OnPlaceHolderStatusChanged -= OnPlaceHolderStatusChangedHandler;
                 m_userDataProcessor.StopProcessing();
                 SaveUserData();
                 m_currentStatus = AppStatus.Pause;
@@ -287,11 +289,16 @@ namespace Data
         {
             if (m_currentStatus == AppStatus.Pause)
             {
-                m_currentStatus = AppStatus.Resuming;
-                OnAppStatusChanged?.Invoke(m_currentStatus);
                 LoadSaveData();
+                
+                m_userData.UserResources.OnUserResourcesChanged += OnResourcesChangedHandler;
+                m_userData.UserPlaceHolderData.OnPlaceHolderStatusChanged += OnPlaceHolderStatusChangedHandler;
+                
                 m_userDataProcessor.StartProcessing();
 
+                m_currentStatus = AppStatus.Resuming;
+                OnAppStatusChanged?.Invoke(m_currentStatus);
+                
                 m_currentStatus = AppStatus.Running;
                 OnAppStatusChanged?.Invoke(m_currentStatus);
             }

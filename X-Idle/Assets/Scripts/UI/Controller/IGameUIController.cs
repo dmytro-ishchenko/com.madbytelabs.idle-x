@@ -11,5 +11,7 @@ namespace UI.Controller
         void UpdateUserInfo(UserResources resources);
         void InitPlaceHoldersView(IReadOnlyDictionary<string, PlaceholderModel> userPlaceHolderData);
         void UpdatePlaceHoldersView(PlaceholderModel model);
+
+        void Pause();
     }
 }
