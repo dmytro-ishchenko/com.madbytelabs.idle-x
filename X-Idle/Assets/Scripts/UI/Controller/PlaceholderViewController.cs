@@ -80,11 +80,7 @@ namespace UI.Controller
                 Vector3 viewportPosition = m_camera.WorldToViewportPoint(data.Value.TargetTransform.position);
 
                 bool isVisible =
-                    viewportPosition.z > 0f &&
-                    viewportPosition.x >= 0f &&
-                    viewportPosition.x <= 1f &&
-                    viewportPosition.y >= 0f &&
-                    viewportPosition.y <= 1f;
+                    viewportPosition is { z: > 0f, x: >= 0f and <= 1f, y: >= 0f and <= 1f };
 
                 if (!isVisible)
                 {
@@ -115,14 +111,17 @@ namespace UI.Controller
                         m_placeholderData.Remove(model.Id);
                         break;
                     case PlaceHolderStatus.Unlocked:
+                        Node.RemoveChild(placeHolder.View.Node);
                         Destroy(placeHolder.View.gameObject);
                         ChangePlaceHolderView(m_pointUnlocked, placeHolder);
                         break;
                     case PlaceHolderStatus.Blocked:
+                        Node.RemoveChild(placeHolder.View.Node);
                         Destroy(placeHolder.View.gameObject);
                         ChangePlaceHolderView(m_pointBlocked, placeHolder);
                         break;
                     case PlaceHolderStatus.Locked:
+                        Node.RemoveChild(placeHolder.View.Node);
                         Destroy(placeHolder.View.gameObject);
                         ChangePlaceHolderView(m_pointLocked, placeHolder);
                         break;
@@ -171,6 +170,9 @@ namespace UI.Controller
             view.transform.SetParent(m_root);
             view.transform.localScale = Vector3.one;
             m_placeholderData[model.Id] = new PlaceHolderViewModel(model.Id, model.Status, view, m_placeholderData[model.Id].TargetTransform);
+            view.Init(model.Id, model.Status);
+            Node.AddChild(view.Node);
+            
             view.gameObject.SetActive(true);
         }
     }
