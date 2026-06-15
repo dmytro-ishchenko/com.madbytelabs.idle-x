@@ -113,17 +113,17 @@ namespace UI.Controller
                     case PlaceHolderStatus.Unlocked:
                         Node.RemoveChild(placeHolder.View.Node);
                         Destroy(placeHolder.View.gameObject);
-                        ChangePlaceHolderView(m_pointUnlocked, placeHolder);
+                        ChangePlaceHolderView(m_pointUnlocked, placeHolder, model.Status);
                         break;
                     case PlaceHolderStatus.Blocked:
                         Node.RemoveChild(placeHolder.View.Node);
                         Destroy(placeHolder.View.gameObject);
-                        ChangePlaceHolderView(m_pointBlocked, placeHolder);
+                        ChangePlaceHolderView(m_pointBlocked, placeHolder, model.Status);
                         break;
                     case PlaceHolderStatus.Locked:
                         Node.RemoveChild(placeHolder.View.Node);
                         Destroy(placeHolder.View.gameObject);
-                        ChangePlaceHolderView(m_pointLocked, placeHolder);
+                        ChangePlaceHolderView(m_pointLocked, placeHolder, model.Status);
                         break;
                 }
             }
@@ -164,15 +164,15 @@ namespace UI.Controller
             }
         }
 
-        void ChangePlaceHolderView(PlaceHolderViewElement source, PlaceHolderViewModel model)
+        void ChangePlaceHolderView(PlaceHolderViewElement source, PlaceHolderViewModel model, PlaceHolderStatus newStatus)
         {
             var view = Instantiate(source, m_pointUnlocked.transform);
             view.transform.SetParent(m_root);
             view.transform.localScale = Vector3.one;
-            m_placeholderData[model.Id] = new PlaceHolderViewModel(model.Id, model.Status, view, m_placeholderData[model.Id].TargetTransform);
-            view.Init(model.Id, model.Status);
+            m_placeholderData[model.Id] = new PlaceHolderViewModel(model.Id, newStatus, view, m_placeholderData[model.Id].TargetTransform);
+            view.Init(model.Id, newStatus);
             Node.AddChild(view.Node);
-            
+
             view.gameObject.SetActive(true);
         }
     }
