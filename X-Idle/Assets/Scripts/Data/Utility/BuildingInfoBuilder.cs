@@ -54,10 +54,13 @@ namespace Data.Utility
                     break;
                 default:
                     effects = new();
+                    userBuildingsData.TryGetBuildingsByType(BuildingType.MainBuilding, out var mainBuildings);
+                   
+                    
                     effects.Add(new InfoElementModel(
                         buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.Icon,
                         $"{buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.Name}"
-                        , $"+{DataUtility.ValueToString(buildingModel.Template.BuildingContext.BuildingProduction.Amount * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * level * 60)} /m",
+                        , $"+{DataUtility.ValueToString( DataUtility.GetProductionAmount(mainBuildings.ElementAt(0), buildingModel) * 60)} /m",
                         true));
 
                     if (buildingModel.Template.BuildingContext.ResourcesUse is { Count: > 0 })
@@ -66,7 +69,7 @@ namespace Data.Utility
                         {
                             effects.Add(new InfoElementModel(resourcesUseModel.GameResource.Icon,
                                 $"{resourcesUseModel.GameResource.Name}"
-                                , $"-{DataUtility.ValueToString(resourcesUseModel.Amount * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * level * 60)} /m", false));
+                                , $"-{DataUtility.ValueToString(DataUtility.GetResourceUse(resourcesUseModel.Amount, level, buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier) * 60)} /m", false));
                         }
                     }
 
@@ -74,7 +77,9 @@ namespace Data.Utility
                     assetLibrary.TryGetGameResource(GameResourceType.Storage, out var storageResource);
                     userBuildingsData.TryGetBuildingsByType(BuildingType.Warehouse, out var warehouses);
 
-                    var value = DataUtility.GetResourceMaxCapacity(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate, warehouses);
+                    userBuildingsData.TryGetBuildingsByResourceType(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.GameResourceType, out var productionBuildings);
+                    
+                    var value = DataUtility.GetResourceMaxCapacity(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate,productionBuildings.Count, warehouses);
 
                     storage = new InfoElementModel(storageResource.Icon, storageResource.Name,
                         DataUtility.ValueToString(value), true);
@@ -120,7 +125,8 @@ namespace Data.Utility
                     var mainBuilding = mainBuildings.ElementAt(0);
 
                     current = $"{DataUtility.ValueToString(DataUtility.GetProductionAmount(mainBuilding, buildingModel) * 60)}/m";
-                    next = $"{DataUtility.ValueToString(DataUtility.GetNextLevelProductionAmount(mainBuilding, buildingModel) * 60)}/m"; resource = new OutputElement(current, next);
+                    next = $"{DataUtility.ValueToString(DataUtility.GetNextLevelProductionAmount(mainBuilding, buildingModel) * 60)}/m";
+                    resource = new OutputElement(current, next);
 
                     var warehouseLevel = 0;
 
@@ -133,13 +139,7 @@ namespace Data.Utility
                         }
                     }
 
-                    var value =
-                        buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.BaseCapacity +
-                        DataUtility.GetCapacity(
-                            buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate,
-                            warehouseLevel);
-
-
+                    var value = DataUtility.GetCapacity(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate, warehouseLevel);
                     storage = new OutputElement(DataUtility.ValueToString(value), string.Empty);
 
 
@@ -156,8 +156,9 @@ namespace Data.Utility
                 IList<UseResourcesModel> models = new List<UseResourcesModel>();
                 foreach (var resource in buildingModel.Template.BuildingContext.ResourcesUse)
                 {
-                    float currentUse = resource.Amount * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * buildingModel.Level * 60;
-                    float nextUse = resource.Amount * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * (buildingModel.Level + 1) * 60;
+                    ;
+                    float currentUse = DataUtility.GetResourceUse(resource.Amount, buildingModel.Level, buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier) * 60;
+                    float nextUse = DataUtility.GetResourceUse(resource.Amount, buildingModel.Level + 1, buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier) * 60;
 
                     models.Add(new UseResourcesModel(resource.GameResource.Name, resource.GameResource.Icon, $"-{DataUtility.ValueToString(currentUse)}/m",
                         $"-{DataUtility.ValueToString(nextUse)}/m"));

@@ -106,7 +106,7 @@ namespace Data.Processor
                     {
                         if (m_productionResourcesMap.ContainsKey(resource))
                         {
-                            m_productionResourcesMap[resource] = m_productionResourcesMap[resource] + value * seconds;
+                            m_productionResourcesMap[resource] += value * seconds;
                         }
                         else
                             m_productionResourcesMap.Add(resource, value * seconds);
@@ -216,11 +216,14 @@ namespace Data.Processor
             m_assetLibrary.TryGetGameResource(gameResourceType, out var resource);
 
             float setAmount = m_userResources.GetGameResourceValue(gameResourceType) + value;
-            float maxCapacity = DataUtility.GetResourceMaxCapacity(resource, m_warehouseModels);
+            
+            m_userBuildingsData.TryGetBuildingsByResourceType(gameResourceType, out var productionBuildings);
+            
+            float maxCapacity = DataUtility.GetResourceMaxCapacity(resource,productionBuildings.Count, m_warehouseModels);
 
             if (maxCapacity < setAmount)
             {
-                var amount = Math.Clamp(m_userResources.GetGameResourceValue(gameResourceType) + value, 0, DataUtility.GetResourceMaxCapacity(resource, m_warehouseModels));
+                var amount = Math.Clamp(m_userResources.GetGameResourceValue(gameResourceType) + value, 0, maxCapacity);
                 m_userResources.SetGameResource(gameResourceType, amount);
 
                 added = value - (setAmount - maxCapacity);
@@ -253,7 +256,6 @@ namespace Data.Processor
             var time = deltaTime / m_tickTime;
 
             UseResourcesPerTime(time);
-            ProductionResourcesPerTime(time);
             ProductionResourcesPerTime(time);
 
             var result = CalculateOfflineProduction(assetLibrary);

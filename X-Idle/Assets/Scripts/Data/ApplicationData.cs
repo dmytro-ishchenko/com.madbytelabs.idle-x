@@ -237,7 +237,10 @@ namespace Data
 
             float currentProduction = 0;
             float currentUse = 0;
-            float capacity = DataUtility.GetResourceMaxCapacity(gameResource, warehouses);
+
+            UserBuildingsData.TryGetBuildingsByResourceType(gameResource.GameResourceType, out var productionBuildings);
+
+            float capacity = DataUtility.GetResourceMaxCapacity(gameResource, productionBuildings.Count, warehouses);
 
             ResourceInfoContext context = new ResourceInfoContext(gameResource.Name, gameResource.Icon, gameResource.Description, buildingTemplate.Name, buildingTemplate.Icon,
                 currentProduction, UserResources.GetGameResourceValue(resourceType), capacity, currentUse);

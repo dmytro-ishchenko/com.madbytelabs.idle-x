@@ -169,27 +169,29 @@ namespace Data.Utility
 
         static float GetMainBuildingBonus(int level, float levelMultiplier)
         {
-            return levelMultiplier * level;
+            return 1 + levelMultiplier * level;
         }
 
         internal static float GetResourceUse(float baseUse, int buildingLevel, float levelMultiplier)
         {
-            return baseUse * levelMultiplier * buildingLevel;
+            return baseUse * Mathf.Pow(levelMultiplier, buildingLevel - 1);
         }
 
         internal static float GetProductionAmount(BuildingModel mainBuildingModel, BuildingModel buildingModel)
         {
-            return buildingModel.Template.BuildingContext.BuildingProduction.Amount * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * buildingModel.Level *
+            return (buildingModel.Template.BuildingContext.BuildingProduction.Amount * Mathf.Pow(buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier, buildingModel.Level - 1) +
+                    (buildingModel.Level - 1)) *
                    GetMainBuildingBonus(mainBuildingModel.Level, mainBuildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier);
         }
 
         internal static float GetNextLevelProductionAmount(BuildingModel mainBuildingModel, BuildingModel buildingModel)
         {
-            return buildingModel.Template.BuildingContext.BuildingProduction.Amount * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * (buildingModel.Level + 1) *
+            return (buildingModel.Template.BuildingContext.BuildingProduction.Amount * Mathf.Pow(buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier, buildingModel.Level) +
+                    (buildingModel.Level)) *
                    GetMainBuildingBonus(mainBuildingModel.Level, mainBuildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier);
         }
 
-        internal static float GetResourceMaxCapacity(IGameResourcesTemplate resource, ICollection<BuildingModel> warehouseModels)
+        internal static float GetResourceMaxCapacity(IGameResourcesTemplate resource, int productionBuildingsCount, ICollection<BuildingModel> warehouseModels)
         {
             if (warehouseModels is { Count: > 0 })
             {
@@ -198,11 +200,10 @@ namespace Data.Utility
                 {
                     maxCapacity += GetCapacity(resource, warehouseModel.Level);
                 }
-
-                return maxCapacity;
+                return maxCapacity * productionBuildingsCount;
             }
             else
-                return resource.BaseCapacity;
+                return resource.BaseCapacity * productionBuildingsCount;
         }
 
         internal static int GetCapacity(IGameResourcesTemplate resource, int warehouseLevel)
