@@ -58,11 +58,15 @@ namespace UI.Popup.Select
 
         public override void Close(Action complete = null)
         {
+            ClearPopup();
+            base.Close(complete);
+        }
+
+        protected override void ClearPopup()
+        {
             m_info.onClick.RemoveAllListeners();
             m_upgrade.onClick.RemoveAllListeners();
             m_dismantle.onClick.RemoveAllListeners();
-
-            base.Close(complete);
         }
     }
 }

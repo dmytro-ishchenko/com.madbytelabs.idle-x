@@ -21,8 +21,14 @@ namespace UI.Popup.Confirmation
 
         public override void Close(Action complete = null)
         {
-            m_buttonReset.onClick.RemoveAllListeners();
+            ClearPopup();
             base.Close(complete);
+        }
+
+        protected override void ClearPopup()
+        {
+            m_buttonReset.onClick.RemoveAllListeners();
+            base.ClearPopup();
         }
     }
 }

@@ -83,6 +83,13 @@ namespace UI.Popup.Locked
 
         public override void Close(Action complete = null)
         {
+            ClearPopup();
+
+            base.Close(complete);
+        }
+
+        protected override void ClearPopup()
+        {
             foreach (var requirementView in m_requirementViews)
             {
                 Destroy(requirementView.gameObject);
@@ -90,8 +97,6 @@ namespace UI.Popup.Locked
 
             m_requirementViews.Clear();
             m_unlock.onClick.RemoveAllListeners();
-
-            base.Close(complete);
         }
     }
 }

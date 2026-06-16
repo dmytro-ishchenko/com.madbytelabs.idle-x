@@ -25,14 +25,6 @@ namespace UI.Popup
             }
         }
 
-        public void Init()
-        {
-            foreach (var element in m_popupMap.Values)
-            {
-                element.Close();
-            }
-        }
-
         public void SelectPlaceHolder(SelectPlaceHolderEventArgs args, IApplicationData applicationData)
         {
             switch (args.PlaceHolderStatus)
@@ -97,6 +89,11 @@ namespace UI.Popup
             }
         }
 
+        public void ShowCurtains()
+        {
+            ShowPopup(PopupType.Curtains, new ShowCurtainsEventArgs());
+        }
+
         public void ShowCurtainImmediately(float time, Action<CurtainsState> onStateChanged)
         {
             ShowPopup(PopupType.Curtains, new ShowCurtainsEventArgs(time, true, onStateChanged));
@@ -105,6 +102,12 @@ namespace UI.Popup
         public void ShowCurtainsOnTime(float time, Action<CurtainsState> onStateChanged)
         {
             ShowPopup(PopupType.Curtains, new ShowCurtainsEventArgs(time, false, onStateChanged));
+        }
+
+        public void CloseAllPopups()
+        {
+            if (m_openedPopup != null && m_openedPopup.IsActive)
+                m_openedPopup.CloseImmediately();
         }
     }
 }

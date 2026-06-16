@@ -5,7 +5,6 @@ using Data.Enum;
 using Data.Events;
 using Data.Interface;
 using Data.Model.Popup;
-using UI.Popup.Controller;
 using UI.Popup.Upgrade;
 using UnityEngine;
 using UnityEngine.UI;
@@ -82,6 +81,13 @@ namespace UI.Popup.Create
 
         public override void Close(Action complete = null)
         {
+            ClearPopup();
+
+            base.Close(complete);
+        }
+
+        protected override void ClearPopup()
+        {
             foreach (var element in m_elements)
             {
                 element.OnSelect -= OnSelectHandler;
@@ -92,8 +98,6 @@ namespace UI.Popup.Create
 
             m_createButton.onClick.RemoveAllListeners();
             m_info.Block.SetActive(false);
-
-            base.Close(complete);
         }
 
         private void OnSelectHandler(BuildingElement element)

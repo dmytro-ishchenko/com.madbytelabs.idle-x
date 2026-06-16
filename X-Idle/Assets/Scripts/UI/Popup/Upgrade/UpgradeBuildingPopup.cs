@@ -148,6 +148,12 @@ namespace UI.Popup.Upgrade
 
         public override void Close(Action complete = null)
         {
+            ClearPopup();
+            base.Close(complete);
+        }
+
+        protected override void ClearPopup()
+        {
             foreach (var requirementView in m_requirementViews)
             {
                 Destroy(requirementView.gameObject);
@@ -163,8 +169,7 @@ namespace UI.Popup.Upgrade
             m_infoElements.Clear();
 
             m_upgrade.onClick.RemoveAllListeners();
-
-            base.Close(complete);
+            base.ClearPopup();
         }
 
         [Serializable]

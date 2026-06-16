@@ -1,10 +1,10 @@
 using System;
 using Data.Interface;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
-namespace UI.Popup.Controller
+namespace UI.Popup.Create
 {
     internal class BuildingElement : MonoBehaviour
     {

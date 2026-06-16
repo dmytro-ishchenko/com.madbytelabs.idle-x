@@ -44,11 +44,18 @@ namespace UI.Popup
             ClosePopup(complete);
         }
 
-        public void CloseImmediately()
+        public  void CloseImmediately()
         {
+            ClearPopup();
             m_openContext.RectTransform.anchoredPosition = m_targetPosition;
             EnablePopup(false);
         }
+
+        protected virtual void ClearPopup()
+        {
+            
+        }
+
 
         void ShowPopup(Action complete)
         {

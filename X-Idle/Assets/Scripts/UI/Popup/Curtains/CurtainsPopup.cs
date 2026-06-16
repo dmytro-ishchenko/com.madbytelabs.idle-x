@@ -14,7 +14,7 @@ namespace UI.Popup.Curtains
         [SerializeField] private float m_openCloseTime;
         [SerializeField] private RectTransform m_topPart;
         [SerializeField] private RectTransform m_bottomPart;
-
+        private Coroutine m_sliderRoutine;
 
         public override void Show<T>(T context, Action complete = null)
         {
@@ -35,16 +35,24 @@ namespace UI.Popup.Curtains
                 m_topPart.anchoredPosition = topTargetPosition;
                 m_bottomPart.anchoredPosition = bottomTargetPosition;
                 EnablePopup(true);
-                StartCoroutine(ShowSlider(args, complete));
+                args.OnStateChanged?.Invoke(CurtainsState.Showing);
+
+                if (args.Time > 0)
+                    m_sliderRoutine = StartCoroutine(ShowSlider(args, complete));
             }
             else
             {
-                m_topPart.anchoredPosition = new Vector2(m_topPart.anchoredPosition.x, (Screen.height / 2f)*1.2f);
-                m_bottomPart.anchoredPosition = new Vector2(m_bottomPart.anchoredPosition.x, (-Screen.height / 2f)*1.2f);
+                args.OnStateChanged?.Invoke(CurtainsState.StartShow);
+                m_topPart.anchoredPosition = new Vector2(m_topPart.anchoredPosition.x, (Screen.height / 2f) * 1.2f);
+                m_bottomPart.anchoredPosition = new Vector2(m_bottomPart.anchoredPosition.x, (-Screen.height / 2f) * 1.2f);
                 EnablePopup(true);
 
                 m_topPart.DOAnchorPos(topTargetPosition, m_openCloseTime);
-                m_bottomPart.DOAnchorPos(bottomTargetPosition, m_openCloseTime).OnComplete(() => { StartCoroutine(ShowSlider(args, complete)); });
+                m_bottomPart.DOAnchorPos(bottomTargetPosition, m_openCloseTime).OnComplete(() =>
+                {
+                    args.OnStateChanged?.Invoke(CurtainsState.Showing);
+                    m_sliderRoutine = StartCoroutine(ShowSlider(args, complete));
+                });
             }
         }
 
@@ -63,8 +71,9 @@ namespace UI.Popup.Curtains
 
         void CloseCurtains(ShowCurtainsEventArgs args, Action complete)
         {
-            var topTargetPosition = new Vector2(m_topPart.anchoredPosition.x, (Screen.height / 2f)*1.2f);
-            var bottomTargetPosition = new Vector2(m_bottomPart.anchoredPosition.x, (-Screen.height / 2f)*1.2f);
+            args.OnStateChanged?.Invoke(CurtainsState.StartClose);
+            var topTargetPosition = new Vector2(m_topPart.anchoredPosition.x, (Screen.height / 2f) * 1.2f);
+            var bottomTargetPosition = new Vector2(m_bottomPart.anchoredPosition.x, (-Screen.height / 2f) * 1.2f);
 
             m_topPart.DOAnchorPos(topTargetPosition, m_openCloseTime);
             m_bottomPart.DOAnchorPos(bottomTargetPosition, m_openCloseTime).OnComplete(() =>
@@ -73,6 +82,17 @@ namespace UI.Popup.Curtains
                 args.OnStateChanged?.Invoke(CurtainsState.Close);
                 complete?.Invoke();
             });
+        }
+
+        protected override void ClearPopup()
+        {
+            if (m_sliderRoutine != null)
+            {
+                StopCoroutine(m_sliderRoutine);
+                m_sliderRoutine = null;
+            }
+
+            base.ClearPopup();
         }
     }
 }

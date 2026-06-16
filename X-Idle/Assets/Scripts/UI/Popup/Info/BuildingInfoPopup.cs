@@ -86,14 +86,19 @@ namespace UI.Popup.Info
 
         public override void Close(Action complete = null)
         {
+            ClearPopup();
+
+            base.Close(complete);
+        }
+
+        protected override void ClearPopup()
+        {
             foreach (var element in m_elements)
             {
                 Destroy(element.gameObject);
             }
 
             m_elements.Clear();
-
-            base.Close(complete);
         }
     }
 }

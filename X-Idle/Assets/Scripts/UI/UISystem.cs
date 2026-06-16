@@ -68,18 +68,16 @@ namespace UI
                             m_gameUIController.PopupManager.ShowPopup(PopupType.OfflineReward, offlineReward);
                     }
                 });
-                
+
                 m_sceneLoader.AddScene(SceneName.Game);
             }
             else if (scene.name.Equals(nameof(SceneName.Game)))
             {
-          
-                
                 foreach (var data in m_applicationData.UserPlaceHolderData)
                 {
                     data.Value.SetTransform(m_environment.GetPlaceholderTransform(data.Key));
                 }
-                
+
                 m_gameUIController.InitPlaceHoldersView(m_applicationData.UserPlaceHolderData);
             }
         }
@@ -152,8 +150,13 @@ namespace UI
 
         private void ResetProgressEventHandler(ResetProgressEventArgs args)
         {
-            m_gameUIController.PopupManager.ShowCurtainsOnTime(2, null);
-            m_applicationData.ResetProgress();
+            m_gameUIController.PopupManager.ShowCurtainsOnTime(2, (args) =>
+            {
+                if (args == CurtainsState.Showing)
+                {
+                    m_applicationData.ResetProgress();
+                }
+            });
         }
 
         private void OpenResourcesInfoEventHandler(OpenResourcesInfoEventArgs args)
@@ -164,8 +167,11 @@ namespace UI
 
         private void OnAppStatusChangedHandler(AppStatus status)
         {
-            if(status == AppStatus.Pause)
+            if (status == AppStatus.Pause)
+            {
                 m_gameUIController.Pause();
+                m_gameUIController.PopupManager.ShowCurtains();
+            }
             else if (status == AppStatus.Resuming)
             {
                 m_gameUIController.UpdateUserInfo(m_applicationData.UserResources);

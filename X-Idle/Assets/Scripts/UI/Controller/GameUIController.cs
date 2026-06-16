@@ -34,6 +34,7 @@ namespace UI.Controller
         public void Pause()
         {
             m_placeholderView.Pause();
+            m_popupManager.CloseAllPopups();
         }
     }
 }

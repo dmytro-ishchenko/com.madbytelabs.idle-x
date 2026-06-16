@@ -14,7 +14,7 @@ namespace UI.Popup.Offline
         [SerializeField] private TMP_Text m_timeLabel;
         [SerializeField] private BlockModel m_resourcesBlock;
         [SerializeField] private BlockModel m_storageBlock;
-       
+
         private List<InfoElement> m_views = new();
 
         public override void Show<T>(T context, Action complete = null)
@@ -67,15 +67,22 @@ namespace UI.Popup.Offline
 
         public override void Close(Action complete = null)
         {
+            ClearPopup();
+            base.Close(complete);
+        }
+
+        protected override void ClearPopup()
+        {
             foreach (var element in m_views)
             {
                 Destroy(element.gameObject);
             }
 
             m_views.Clear();
-            base.Close(complete);
         }
-[Serializable]
+
+
+        [Serializable]
         class BlockModel
         {
             public Transform Root;
