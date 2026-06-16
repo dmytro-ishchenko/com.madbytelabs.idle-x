@@ -16,21 +16,27 @@ MonoBehaviour:
   m_name: Main Building
   m_description: The heart of your settlement. Upgrade it to unlock new buildings,
     expand your base, and improve your chances of survival.
+  m_shortDescription: 
   m_view: {fileID: 2441952808027099099, guid: 26cf07683616744e0826bbec1ee88399, type: 3}
-  m_icon: {fileID: 21300000, guid: 484a3ae3671dc4465b6edb61e7e87c29, type: 3}
+  m_icon: {fileID: 21300000, guid: 546b6dc37b1d84d3c95a8f99055090c7, type: 3}
+  m_iconWide: {fileID: 21300000, guid: 1e340e35c49c240b2bbd10032e14aa74, type: 3}
   m_buildingContext:
     m_buildingType: 1
+    m_maxLevel: 50
     m_duplicateModel:
       m_canDuplicate: 0
       m_maxDuplicateAmount: 0
     m_createBuildingRequirements: []
+    m_createCost:
+      m_costModels: []
+      m_timeCost: 0
     m_upgradeBuildingRequirements: []
     m_upgradeCost:
       m_costModels:
       - m_gameResourceTemplate: {fileID: 11400000, guid: 6368b11a4a9db4721860806690447aff, type: 2}
         m_cost: 200
         m_costGrowth: 1.15
-      m_upgradeTimeCost: 0
+      m_timeCost: 0
     m_buildingProduction:
       m_resourcesTemplate: {fileID: 11400000, guid: 675652dd2ba59432eb97d984d1f15e63, type: 2}
       m_amount: 0

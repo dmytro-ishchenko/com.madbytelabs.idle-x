@@ -15,7 +15,8 @@ MonoBehaviour:
   m_id: 8dea37f1e360880e8bf5fde
   m_name: Parts
   m_gameResourceType: 7
-  m_description: 
-  m_icon: {fileID: 21300000, guid: 9ec288d5c6ce34da78238953c1077875, type: 3}
+  m_description: Functional components recovered from broken machines and old technology.
+    Used for complex upgrades, repairs, and advanced structures.
+  m_icon: {fileID: 21300000, guid: 1971099b2a987f449a207dc7e9096352, type: 3}
   m_baseCapacity: 30
   m_storageFactor: 0.6

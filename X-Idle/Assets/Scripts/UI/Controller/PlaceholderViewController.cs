@@ -13,14 +13,22 @@ namespace UI.Controller
         [SerializeField] private PlaceHolderViewElement m_pointLocked;
         [SerializeField] private PlaceHolderViewElement m_pointBlocked;
         [SerializeField] private Transform m_root;
-        [SerializeField] private Camera m_camera;
+        private Camera m_camera;
         private bool m_locked = true;
 
         private Dictionary<string, PlaceHolderViewModel> m_placeholderData = new();
         private Dictionary<string, Transform> m_placeholderTransforms = new();
 
+        public void Pause()
+        {
+            m_locked = true;
+        }
+
         public void InitPlaceHoldersView(IReadOnlyDictionary<string, PlaceholderModel> userPlaceHolderData)
         {
+            if (m_camera == null)
+                m_camera = Camera.main;
+
             if (m_placeholderData.Count > 0)
             {
                 m_locked = true;
@@ -68,7 +76,7 @@ namespace UI.Controller
             m_locked = false;
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             if (m_locked)
                 return;
@@ -76,6 +84,23 @@ namespace UI.Controller
             {
                 if (m_locked)
                     break;
+
+                Vector3 viewportPosition = m_camera.WorldToViewportPoint(data.Value.TargetTransform.position);
+
+                bool isVisible =
+                    viewportPosition is { z: > 0f, x: >= 0f and <= 1f, y: >= 0f and <= 1f };
+
+                if (!isVisible)
+                {
+                    if (data.Value.View.gameObject.activeSelf)
+                        data.Value.View.gameObject.SetActive(false);
+
+                    continue;
+                }
+
+                if (!data.Value.View.gameObject.activeSelf)
+                    data.Value.View.gameObject.SetActive(true);
+
                 data.Value.View.transform.position = m_camera.WorldToScreenPoint(data.Value.TargetTransform.position);
             }
         }
@@ -94,16 +119,19 @@ namespace UI.Controller
                         m_placeholderData.Remove(model.Id);
                         break;
                     case PlaceHolderStatus.Unlocked:
+                        Node.RemoveChild(placeHolder.View.Node);
                         Destroy(placeHolder.View.gameObject);
-                        ChangePlaceHolderView(m_pointUnlocked, placeHolder);
+                        ChangePlaceHolderView(m_pointUnlocked, placeHolder, model.Status);
                         break;
                     case PlaceHolderStatus.Blocked:
+                        Node.RemoveChild(placeHolder.View.Node);
                         Destroy(placeHolder.View.gameObject);
-                        ChangePlaceHolderView(m_pointBlocked, placeHolder);
+                        ChangePlaceHolderView(m_pointBlocked, placeHolder, model.Status);
                         break;
                     case PlaceHolderStatus.Locked:
+                        Node.RemoveChild(placeHolder.View.Node);
                         Destroy(placeHolder.View.gameObject);
-                        ChangePlaceHolderView(m_pointLocked, placeHolder);
+                        ChangePlaceHolderView(m_pointLocked, placeHolder, model.Status);
                         break;
                 }
             }
@@ -144,12 +172,15 @@ namespace UI.Controller
             }
         }
 
-        void ChangePlaceHolderView(PlaceHolderViewElement source, PlaceHolderViewModel model)
+        void ChangePlaceHolderView(PlaceHolderViewElement source, PlaceHolderViewModel model, PlaceHolderStatus newStatus)
         {
             var view = Instantiate(source, m_pointUnlocked.transform);
             view.transform.SetParent(m_root);
             view.transform.localScale = Vector3.one;
-            m_placeholderData[model.Id] = new PlaceHolderViewModel(model.Id, model.Status, view, m_placeholderData[model.Id].TargetTransform);
+            m_placeholderData[model.Id] = new PlaceHolderViewModel(model.Id, newStatus, view, m_placeholderData[model.Id].TargetTransform);
+            view.Init(model.Id, newStatus);
+            Node.AddChild(view.Node);
+
             view.gameObject.SetActive(true);
         }
     }

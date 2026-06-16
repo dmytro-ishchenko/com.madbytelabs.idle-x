@@ -9,7 +9,9 @@
         "AYellowpaper.SerializedCollections",
         "Unity.InputSystem",
         "Unity.TextMeshPro",
-        "com.madbytelabs.sound"
+        "com.madbytelabs.sound",
+        "DOTween.Modules",
+        "DOTweenPro.Scripts"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -19,11 +19,11 @@ namespace UI.Popup.Upgrade
         [SerializeField] private SerializedDictionary<RequireElementType, RequiredElementView> m_requiredElements;
         [SerializeField] private Transform m_requirmentRoot;
         [SerializeField] private Button m_upgrade;
-        [SerializeField] private Button m_close;
+        [SerializeField] private GameObject m_notMeat;
         private readonly List<RequiredElementView> m_requirementViews = new();
         private readonly List<UseInfoElement> m_infoElements = new();
 
-        public override void Show<T>(T context)
+        public override void Show<T>(T context, Action complete = null)
         {
             if (context is UpgradeBuildingContext model)
             {
@@ -32,7 +32,7 @@ namespace UI.Popup.Upgrade
                 m_buildingBlock.NextLevel.text = $"Lv.{model.Level + 1}";
                 m_buildingBlock.Icon.sprite = model.Icon;
 
-                m_outputBlock.BlockName.text = model.OutputModel.BlockName;
+                m_outputBlock.BlockName.text = model.OutputModel.BlockName.ToUpper();
                 m_outputBlock.Icon.sprite = model.OutputModel.Icon;
                 m_outputBlock.ResourceName.text = model.OutputModel.ResourceName;
 
@@ -125,12 +125,12 @@ namespace UI.Popup.Upgrade
                 if (!model.CanUpgrade)
                 {
                     m_upgrade.gameObject.SetActive(false);
-                    m_close.gameObject.SetActive(true);
+                    m_notMeat.SetActive(true);
                 }
                 else
                 {
                     m_upgrade.gameObject.SetActive(true);
-                    m_close.gameObject.SetActive(false);
+                    m_notMeat.SetActive(false);
                     m_upgrade.onClick.AddListener(() =>
                     {
                         Node.TriggerEvent(new BuildingProcessEventArgs(model.Id, model.TemplateId,
@@ -139,15 +139,20 @@ namespace UI.Popup.Upgrade
                     });
                 }
 
-                m_close.onClick.AddListener(Close);
 
-                base.Show(context);
+                base.Show(context, complete);
 
                 resizer.Recalculate();
             }
         }
 
-        public override void Close()
+        public override void Close(Action complete = null)
+        {
+            ClearPopup();
+            base.Close(complete);
+        }
+
+        protected override void ClearPopup()
         {
             foreach (var requirementView in m_requirementViews)
             {
@@ -164,9 +169,7 @@ namespace UI.Popup.Upgrade
             m_infoElements.Clear();
 
             m_upgrade.onClick.RemoveAllListeners();
-            m_close.onClick.RemoveAllListeners();
-
-            base.Close();
+            base.ClearPopup();
         }
 
         [Serializable]

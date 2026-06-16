@@ -19,8 +19,9 @@ namespace SceneLoader
             m_sceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
         }
 
-        public void CleanGameScene()
+        public void UnloadScene(SceneName sceneName)
         {
+            m_sceneManager.UnloadScene(sceneName);
         }
     }
 }

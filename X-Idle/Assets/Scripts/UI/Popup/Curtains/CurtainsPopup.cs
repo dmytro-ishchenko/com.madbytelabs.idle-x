@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using DG.Tweening;
 using UI.Enum;
 using UI.Event;
 using UnityEngine;
@@ -10,40 +12,53 @@ namespace UI.Popup.Curtains
     {
         [SerializeField] private Slider m_slider;
         [SerializeField] private float m_openCloseTime;
-        private CanvasGroup m_canvasGroup;
+        [SerializeField] private RectTransform m_topPart;
+        [SerializeField] private RectTransform m_bottomPart;
+        private Coroutine m_sliderRoutine;
 
-        public override void Show<T>(T context)
+        public override void Show<T>(T context, Action complete = null)
         {
-            if (m_canvasGroup == null)
-                m_canvasGroup = gameObject.GetComponent<CanvasGroup>();
             if (context is ShowCurtainsEventArgs args)
             {
-                m_canvasGroup.alpha = 0;
-                gameObject.SetActive(true);
                 m_slider.value = 0;
-
-                base.Show(context);
-
-                StartCoroutine(WaitAndClose(args));
+                ShowCurtains(args, complete);
             }
         }
 
-        IEnumerator WaitAndClose(ShowCurtainsEventArgs args)
+        void ShowCurtains(ShowCurtainsEventArgs args, Action complete)
         {
-            float cashedTime = args.Time;
+            var topTargetPosition = new Vector2(m_topPart.anchoredPosition.x, 0);
+            var bottomTargetPosition = new Vector2(m_bottomPart.anchoredPosition.x, 0);
+
             if (args.Immediately)
             {
-                m_canvasGroup.alpha = 1;
+                m_topPart.anchoredPosition = topTargetPosition;
+                m_bottomPart.anchoredPosition = bottomTargetPosition;
+                EnablePopup(true);
+                args.OnStateChanged?.Invoke(CurtainsState.Showing);
+
+                if (args.Time > 0)
+                    m_sliderRoutine = StartCoroutine(ShowSlider(args, complete));
             }
             else
             {
-                while (m_canvasGroup.alpha < 1)
-                {
-                    m_canvasGroup.alpha += Time.deltaTime / m_openCloseTime;
-                    yield return null;
-                }
-            }
+                args.OnStateChanged?.Invoke(CurtainsState.StartShow);
+                m_topPart.anchoredPosition = new Vector2(m_topPart.anchoredPosition.x, (Screen.height / 2f) * 1.2f);
+                m_bottomPart.anchoredPosition = new Vector2(m_bottomPart.anchoredPosition.x, (-Screen.height / 2f) * 1.2f);
+                EnablePopup(true);
 
+                m_topPart.DOAnchorPos(topTargetPosition, m_openCloseTime);
+                m_bottomPart.DOAnchorPos(bottomTargetPosition, m_openCloseTime).OnComplete(() =>
+                {
+                    args.OnStateChanged?.Invoke(CurtainsState.Showing);
+                    m_sliderRoutine = StartCoroutine(ShowSlider(args, complete));
+                });
+            }
+        }
+
+        IEnumerator ShowSlider(ShowCurtainsEventArgs args, Action complete)
+        {
+            float cashedTime = args.Time;
             while (cashedTime > 0)
             {
                 cashedTime -= Time.deltaTime;
@@ -51,14 +66,33 @@ namespace UI.Popup.Curtains
                 m_slider.value = (args.Time - cashedTime) / args.Time;
             }
 
-            while (m_canvasGroup.alpha > 0)
+            CloseCurtains(args, complete);
+        }
+
+        void CloseCurtains(ShowCurtainsEventArgs args, Action complete)
+        {
+            args.OnStateChanged?.Invoke(CurtainsState.StartClose);
+            var topTargetPosition = new Vector2(m_topPart.anchoredPosition.x, (Screen.height / 2f) * 1.2f);
+            var bottomTargetPosition = new Vector2(m_bottomPart.anchoredPosition.x, (-Screen.height / 2f) * 1.2f);
+
+            m_topPart.DOAnchorPos(topTargetPosition, m_openCloseTime);
+            m_bottomPart.DOAnchorPos(bottomTargetPosition, m_openCloseTime).OnComplete(() =>
             {
-                m_canvasGroup.alpha -= Time.deltaTime / m_openCloseTime;
-                yield return null;
+                EnablePopup(false);
+                args.OnStateChanged?.Invoke(CurtainsState.Close);
+                complete?.Invoke();
+            });
+        }
+
+        protected override void ClearPopup()
+        {
+            if (m_sliderRoutine != null)
+            {
+                StopCoroutine(m_sliderRoutine);
+                m_sliderRoutine = null;
             }
 
-            Close();
-            args.OnStateChanged?.Invoke(CurtainsState.Close);
+            base.ClearPopup();
         }
     }
 }

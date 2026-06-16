@@ -14,7 +14,7 @@ namespace UI.Popup
     internal class PopupManager : MonoBehaviour, IMonoNode
     {
         [SerializeField] private SerializedDictionary<PopupType, BasePopup> m_popupMap;
-        BasePopup m_openedPopup;
+        private BasePopup m_openedPopup;
         public Node Node { get; } = new();
 
         void Awake()
@@ -22,14 +22,6 @@ namespace UI.Popup
             foreach (var popup in m_popupMap.Values)
             {
                 Node.AddChild(popup.Node);
-            }
-        }
-
-        public void Init()
-        {
-            foreach (var element in m_popupMap.Values)
-            {
-                element.Close();
             }
         }
 
@@ -54,9 +46,18 @@ namespace UI.Popup
             if (m_popupMap.TryGetValue(popupType, out BasePopup popup))
             {
                 if (m_openedPopup != null)
-                    m_openedPopup.Close();
-                m_openedPopup = popup;
-                m_openedPopup.Show();
+                {
+                    m_openedPopup.Close(() =>
+                    {
+                        m_openedPopup = popup;
+                        m_openedPopup.Show();
+                    });
+                }
+                else
+                {
+                    m_openedPopup = popup;
+                    m_openedPopup.Show();
+                }
             }
         }
 
@@ -65,25 +66,32 @@ namespace UI.Popup
             if (m_popupMap.TryGetValue(popupType, out BasePopup popup))
             {
                 if (m_openedPopup != null)
-                    m_openedPopup.Close();
-                m_openedPopup = popup;
-                m_openedPopup.Show(args);
+                {
+                    if (m_openedPopup != popup && m_openedPopup.IsActive)
+                    {
+                        m_openedPopup.Close(() =>
+                        {
+                            m_openedPopup = popup;
+                            m_openedPopup.Show(args);
+                        });
+                    }
+                    else
+                    {
+                        m_openedPopup = popup;
+                        m_openedPopup.Show(args);
+                    }
+                }
+                else
+                {
+                    m_openedPopup = popup;
+                    m_openedPopup.Show(args);
+                }
             }
         }
 
-        void HidePopup(PopupType popupType)
+        public void ShowCurtains()
         {
-            if (m_openedPopup != null)
-            {
-                if (m_popupMap.TryGetValue(popupType, out BasePopup popup))
-                {
-                    if (m_openedPopup == popup)
-                    {
-                        m_openedPopup.Close();
-                        m_openedPopup = null;
-                    }
-                }
-            }
+            ShowPopup(PopupType.Curtains, new ShowCurtainsEventArgs());
         }
 
         public void ShowCurtainImmediately(float time, Action<CurtainsState> onStateChanged)
@@ -94,6 +102,12 @@ namespace UI.Popup
         public void ShowCurtainsOnTime(float time, Action<CurtainsState> onStateChanged)
         {
             ShowPopup(PopupType.Curtains, new ShowCurtainsEventArgs(time, false, onStateChanged));
+        }
+
+        public void CloseAllPopups()
+        {
+            if (m_openedPopup != null && m_openedPopup.IsActive)
+                m_openedPopup.CloseImmediately();
         }
     }
 }

@@ -15,7 +15,8 @@ MonoBehaviour:
   m_id: 8dea37bdfe554581616d280
   m_name: Data
   m_gameResourceType: 5
-  m_description: 
-  m_icon: {fileID: 21300000, guid: 21e0b61ec9e294ef987fe405ec20051c, type: 3}
+  m_description: Recovered records, signals, and technical knowledge from the old
+    world. Used for advanced upgrades, research, and base coordination.
+  m_icon: {fileID: 21300000, guid: 650d6c2bbbc98ba469784aa4f58bee9e, type: 3}
   m_baseCapacity: 20
   m_storageFactor: 0.2

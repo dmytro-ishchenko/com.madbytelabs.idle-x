@@ -23,11 +23,18 @@ namespace UI.Controller
             Node = new();
             Node.AddChild(m_popupManager.Node);
             Node.AddChild(m_placeholderView.Node);
+            Node.AddChild(m_userInfo.Node);
             m_settingsButton.onClick.AddListener(() => { m_popupManager.ShowPopup(PopupType.Settings); });
         }
 
         public void UpdateUserInfo(UserResources resources) => m_userInfo.UpdateUserResources(resources);
         public void InitPlaceHoldersView(IReadOnlyDictionary<string, PlaceholderModel> userPlaceHolderData) => m_placeholderView.InitPlaceHoldersView(userPlaceHolderData);
         public void UpdatePlaceHoldersView(PlaceholderModel model) => m_placeholderView.UpdatePlaceHoldersView(model);
+
+        public void Pause()
+        {
+            m_placeholderView.Pause();
+            m_popupManager.CloseAllPopups();
+        }
     }
 }

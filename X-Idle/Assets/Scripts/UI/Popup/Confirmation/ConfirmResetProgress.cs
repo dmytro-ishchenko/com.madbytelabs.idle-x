@@ -1,3 +1,4 @@
+using System;
 using UI.Event;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,20 +9,26 @@ namespace UI.Popup.Confirmation
     {
         [SerializeField] private Button m_buttonReset;
 
-        public override void Show()
+        public override void Show(Action complete = null)
         {
             m_buttonReset.onClick.AddListener(() =>
             {
                 Node.TriggerEvent(new ResetProgressEventArgs());
                 Close();
             });
-            base.Show();
+            base.Show(complete);
         }
 
-        public override void Close()
+        public override void Close(Action complete = null)
+        {
+            ClearPopup();
+            base.Close(complete);
+        }
+
+        protected override void ClearPopup()
         {
             m_buttonReset.onClick.RemoveAllListeners();
-            base.Close();
+            base.ClearPopup();
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Data.Model.Popup;
 using TMPro;
@@ -22,7 +23,7 @@ namespace UI.Popup.Info
         [SerializeField] private Button[] m_buttons;
         private readonly List<InfoElement> m_elements = new();
 
-        public override void Show<T>(T context)
+        public override void Show<T>(T context, Action complete = null)
         {
             if (context is SelectBuildingInfo model)
             {
@@ -78,12 +79,19 @@ namespace UI.Popup.Info
                     m_conditionBlock.gameObject.SetActive(false);
                 }
 
-                base.Show(context);
+                base.Show(context, complete);
                 resizer.Recalculate();
             }
         }
 
-        public override void Close()
+        public override void Close(Action complete = null)
+        {
+            ClearPopup();
+
+            base.Close(complete);
+        }
+
+        protected override void ClearPopup()
         {
             foreach (var element in m_elements)
             {
@@ -91,8 +99,6 @@ namespace UI.Popup.Info
             }
 
             m_elements.Clear();
-
-            base.Close();
         }
     }
 }

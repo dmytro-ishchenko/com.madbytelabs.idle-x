@@ -18,15 +18,20 @@ MonoBehaviour:
     more survivors, grow food, and keep production chains running.
   m_shortDescription: Produces water for your settlement.
   m_view: {fileID: 6450690476258816806, guid: 005a6645073aa4ec68300b7a0825e6e3, type: 3}
-  m_icon: {fileID: 21300000, guid: 47e38e2cdd37943079fbdab6a55c06ba, type: 3}
+  m_icon: {fileID: 21300000, guid: ee79aa3fa151840dbab73511cae8156f, type: 3}
+  m_iconWide: {fileID: 21300000, guid: 4a5a1df7eb6c945f694fcfced96ea0d5, type: 3}
   m_buildingContext:
     m_buildingType: 8
+    m_maxLevel: 50
     m_duplicateModel:
       m_canDuplicate: 1
       m_maxDuplicateAmount: 3
     m_createBuildingRequirements:
     - m_buildingType: 1
       m_requredLevel: 2
+    m_createCost:
+      m_costModels: []
+      m_timeCost: 0
     m_upgradeBuildingRequirements:
     - m_buildingType: 1
       m_levelMultiplier: 4
@@ -35,7 +40,7 @@ MonoBehaviour:
       - m_gameResourceTemplate: {fileID: 11400000, guid: 6368b11a4a9db4721860806690447aff, type: 2}
         m_cost: 25
         m_costGrowth: 1.15
-      m_upgradeTimeCost: 0
+      m_timeCost: 0
     m_buildingProduction:
       m_resourcesTemplate: {fileID: 11400000, guid: 8baf30164c64c4ec89994b836434ba4a, type: 2}
       m_amount: 2

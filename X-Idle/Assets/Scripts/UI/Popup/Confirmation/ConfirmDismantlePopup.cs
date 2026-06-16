@@ -1,3 +1,4 @@
+using System;
 using Data.Enum;
 using Data.Events;
 using TMPro;
@@ -14,7 +15,7 @@ namespace UI.Popup.Confirmation
         [SerializeField] private TMP_Text m_level;
         [SerializeField] private Button m_dismantleButton;
 
-        public override void Show<T>(T context)
+        public override void Show<T>(T context, Action complete = null)
         {
             if (context is ShowDismantleBuildingEventArgs model)
             {
@@ -26,15 +27,20 @@ namespace UI.Popup.Confirmation
                     Node.TriggerEvent(new BuildingProcessEventArgs(model.BuildingModel.Id, model.BuildingModel.Template.Id, BuildingActionType.DismantleBuildingRequest));
                     Close();
                 });
-                base.Show(context);
+                base.Show(context, complete);
             }
         }
 
 
-        public override void Close()
+        public override void Close(Action complete = null)
+        {
+            ClearPopup();
+            base.Close(complete);
+        }
+
+        protected override void ClearPopup()
         {
             m_dismantleButton.onClick.RemoveAllListeners();
-            base.Close();
         }
     }
 }

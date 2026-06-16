@@ -5,7 +5,6 @@ using Data.Enum;
 using Data.Events;
 using Data.Interface;
 using Data.Model.Popup;
-using UI.Popup.Controller;
 using UI.Popup.Upgrade;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,15 +29,15 @@ namespace UI.Popup.Create
         private IApplicationData m_applicationData;
         private List<RequiredElementView> m_requiredElements = new();
 
-
-        public override void Show<T>(T context)
+        public override void Show<T>(T context, Action complete = null)
         {
             m_createButton.gameObject.SetActive(false);
             m_canNotBuilding.SetActive(false);
 
             if (context is CreateBuildingContext model)
             {
-                RecalculateScrollSize();
+                m_scrollRect.verticalNormalizedPosition = 1f;
+
                 foreach (var buildingTemplate in model.Buildings)
                 {
                     var element = Instantiate(m_source);
@@ -49,14 +48,16 @@ namespace UI.Popup.Create
                     element.OnSelect += OnSelectHandler;
                 }
 
+                RecalculateScrollSize();
+
                 m_selectedPlaceHolderId = model.PlaceholderId;
                 m_applicationData = model.ApplicationData;
 
                 RectTransform rootRect = m_buildingListRoot as RectTransform;
-                rootRect.sizeDelta = new Vector2(rootRect.rect.width, m_scrollRect.GetComponent<RectTransform>().rect.height +
-                                                                      2 * m_source.GetComponent<RectTransform>().rect.height);
 
-                base.Show(context);
+                rootRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, m_scrollRect.GetComponent<RectTransform>().rect.height + 2 * m_source.GetComponent<RectTransform>().rect.height);
+
+                base.Show(context, complete);
             }
 
             m_selectedTemplateId = string.Empty;
@@ -78,7 +79,14 @@ namespace UI.Popup.Create
             resizer.Recalculate();
         }
 
-        public override void Close()
+        public override void Close(Action complete = null)
+        {
+            ClearPopup();
+
+            base.Close(complete);
+        }
+
+        protected override void ClearPopup()
         {
             foreach (var element in m_elements)
             {
@@ -89,8 +97,7 @@ namespace UI.Popup.Create
             m_elements.Clear();
 
             m_createButton.onClick.RemoveAllListeners();
-
-            base.Close();
+            m_info.Block.SetActive(false);
         }
 
         private void OnSelectHandler(BuildingElement element)

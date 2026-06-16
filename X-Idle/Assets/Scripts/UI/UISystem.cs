@@ -1,7 +1,9 @@
 using Common;
 using Common.Enum;
+using Common.Lifecycle;
 using Common.Pattern.BobbleEvent;
 using Data;
+using Data.Enum;
 using Data.Events;
 using Data.Model;
 using Data.Model.Popup;
@@ -25,6 +27,9 @@ namespace UI
 
             m_environment.OnBuildingActionRequest += OnBuildingActionRequestHandler;
             m_sceneLoader.SceneNotify.OnSceneLoaded += OnSceneLoadedHandler;
+
+            m_applicationData.OnAppStatusChanged += OnAppStatusChangedHandler;
+
             Subscribe<BuildingProcessEventArgs>(BuildingProcessHandler);
             Subscribe<SelectPlaceHolderEventArgs>(SelectPlaceHolderHandler);
             Subscribe<UnlockPlaceholderEventArgs>(UnlockPlaceholderHandler);
@@ -33,6 +38,7 @@ namespace UI
             Subscribe<ShowDismantleBuildingEventArgs>(ShowDismantleBuildingHandler);
             Subscribe<ShowResetProgressEventArgs>(ShowResetProgressHandler);
             Subscribe<ResetProgressEventArgs>(ResetProgressEventHandler);
+            Subscribe<OpenResourcesInfoEventArgs>(OpenResourcesInfoEventHandler);
         }
 
         private readonly IApplicationData m_applicationData;
@@ -42,16 +48,16 @@ namespace UI
 
         private void OnSceneLoadedHandler(Scene scene)
         {
-            if (scene.name.Equals(nameof(SceneName.Game)))
+            if (scene.name.Equals(nameof(SceneName.UI)))
             {
                 m_gameUIController = scene.GetComponent<IGameUIController>();
                 m_gameUIController.Node.SetDispatcher(this);
                 m_applicationData.OnUserResourcesChanged += OnUserResourcesChangedHandler;
                 m_applicationData.OnPlaceHolderStatusChanged += OnPlaceHolderStatusChangedHandler;
 
-                m_applicationData.OnProgressReset += InitController;
+                m_applicationData.OnProgressReset += InitControllers;
 
-                InitController();
+                m_gameUIController.UpdateUserInfo(m_applicationData.UserResources);
 
                 m_gameUIController.PopupManager.ShowCurtainImmediately(3, (state) =>
                 {
@@ -62,10 +68,21 @@ namespace UI
                             m_gameUIController.PopupManager.ShowPopup(PopupType.OfflineReward, offlineReward);
                     }
                 });
+
+                m_sceneLoader.AddScene(SceneName.Game);
+            }
+            else if (scene.name.Equals(nameof(SceneName.Game)))
+            {
+                foreach (var data in m_applicationData.UserPlaceHolderData)
+                {
+                    data.Value.SetTransform(m_environment.GetPlaceholderTransform(data.Key));
+                }
+
+                m_gameUIController.InitPlaceHoldersView(m_applicationData.UserPlaceHolderData);
             }
         }
 
-        void InitController()
+        void InitControllers()
         {
             m_gameUIController.UpdateUserInfo(m_applicationData.UserResources);
 
@@ -133,8 +150,42 @@ namespace UI
 
         private void ResetProgressEventHandler(ResetProgressEventArgs args)
         {
-            m_gameUIController.PopupManager.ShowCurtainsOnTime(2, null);
-            m_applicationData.ResetProgress();
+            m_gameUIController.PopupManager.ShowCurtainsOnTime(2, (args) =>
+            {
+                if (args == CurtainsState.Showing)
+                {
+                    m_applicationData.ResetProgress();
+                }
+            });
+        }
+
+        private void OpenResourcesInfoEventHandler(OpenResourcesInfoEventArgs args)
+        {
+            var context = m_applicationData.GetResourceInfoContext(args.ResourceType);
+            m_gameUIController.PopupManager.ShowPopup(PopupType.ResourceInfo, context);
+        }
+
+        private void OnAppStatusChangedHandler(AppStatus status)
+        {
+            if (status == AppStatus.Pause)
+            {
+                m_gameUIController.Pause();
+                m_gameUIController.PopupManager.ShowCurtains();
+            }
+            else if (status == AppStatus.Resuming)
+            {
+                m_gameUIController.UpdateUserInfo(m_applicationData.UserResources);
+
+                m_gameUIController.PopupManager.ShowCurtainImmediately(3, (state) =>
+                {
+                    if (state == CurtainsState.Close)
+                    {
+                        var offlineReward = m_applicationData.GetOfflineReward();
+                        if (offlineReward != null)
+                            m_gameUIController.PopupManager.ShowPopup(PopupType.OfflineReward, offlineReward);
+                    }
+                });
+            }
         }
     }
 }

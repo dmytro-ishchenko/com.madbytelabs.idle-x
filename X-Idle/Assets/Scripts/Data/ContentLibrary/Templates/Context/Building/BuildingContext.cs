@@ -9,6 +9,7 @@ namespace Data.ContentLibrary.Templates.Context.Building
     public class BuildingContext
     {
         [SerializeField] private BuildingType m_buildingType;
+        [SerializeField] private int m_maxLevel;
         [SerializeField] private DuplicateModel m_duplicateModel;
         [SerializeField] private List<CreateBuildingRequirementModel> m_createBuildingRequirements;
         [SerializeField] private BuildingCostModel m_createCost;
@@ -19,6 +20,7 @@ namespace Data.ContentLibrary.Templates.Context.Building
         [SerializeField] private List<BuildingLevelModelView> m_buildingLevelsView;
 
         public BuildingType BuildingType => m_buildingType;
+        public int MaxLevel => m_maxLevel;
         public DuplicateModel DuplicateModel => m_duplicateModel;
         public BuildingProductionModel BuildingProduction => m_buildingProduction;
         public ICollection<ResourcesUseModel> ResourcesUse => m_resourcesUse;

@@ -16,6 +16,6 @@ MonoBehaviour:
   m_name: Storage
   m_gameResourceType: 6
   m_description: 
-  m_icon: {fileID: 21300000, guid: 29c18d88c3e774f3fa46fe59452ffd98, type: 3}
+  m_icon: {fileID: 21300000, guid: bbf1b2dcf6d7a844e879446559b561ea, type: 3}
   m_baseCapacity: 0
   m_storageFactor: 0

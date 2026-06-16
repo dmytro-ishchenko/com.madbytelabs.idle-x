@@ -5,6 +5,12 @@ namespace UI.Event
 {
     internal class ShowCurtainsEventArgs
     {
+        public ShowCurtainsEventArgs()
+        {
+            Time = 0;
+            Immediately = true;
+        }
+
         public ShowCurtainsEventArgs(float time, bool immediately, Action<CurtainsState> onStateChanged)
         {
             Time = time;

@@ -23,7 +23,7 @@ namespace Core.Bootstrapper
             IEnvironment environment = new Environment(data, sceneLoader);
             IUISystem uiSystem = new UISystem(data, environment, sceneLoader);
 
-            data.InitApplicationData(() => { sceneLoader.SwitchToScene(SceneName.Game); });
+            data.InitApplicationData(() => { sceneLoader.SwitchToScene(SceneName.UI); });
         }
     }
 }
