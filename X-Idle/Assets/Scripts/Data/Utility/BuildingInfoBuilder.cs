@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Data.ContentLibrary;
 using Data.Enum;
 using Data.Model;
@@ -30,8 +31,7 @@ namespace Data.Utility
                 buildingModel.Template.Description, effects, storage, condition);
         }
 
-        public static (List<InfoElementModel>effects, InfoElementModel storage) GetBuildingInfo(
-            BuildingModel buildingModel, IAssetLibrary assetLibrary, UserBuildingsData userBuildingsData, int level)
+        public static (List<InfoElementModel>effects, InfoElementModel storage) GetBuildingInfo(BuildingModel buildingModel, IAssetLibrary assetLibrary, UserBuildingsData userBuildingsData, int level)
         {
             List<InfoElementModel> effects = null;
             InfoElementModel storage = null;
@@ -72,23 +72,9 @@ namespace Data.Utility
 
 
                     assetLibrary.TryGetGameResource(GameResourceType.Storage, out var storageResource);
+                    userBuildingsData.TryGetBuildingsByType(BuildingType.Warehouse, out var warehouses);
 
-                    var warehouseLevel = 0;
-
-                    if (userBuildingsData.TryGetBuildingsByType(BuildingType.Warehouse, out var warehouses))
-                    {
-                        foreach (var warehouse in warehouses)
-                        {
-                            if (warehouse.Level >= warehouseLevel)
-                                warehouseLevel = warehouse.Level;
-                        }
-                    }
-
-                    var value =
-                        buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.BaseCapacity +
-                        DataUtility.GetCapacity(
-                            buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate,
-                            warehouseLevel);
+                    var value = DataUtility.GetResourceMaxCapacity(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate, warehouses);
 
                     storage = new InfoElementModel(storageResource.Icon, storageResource.Name,
                         DataUtility.ValueToString(value), true);
@@ -129,12 +115,12 @@ namespace Data.Utility
                 default:
                     blockName = "Output";
                     resourceName = buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.Name;
-                    current =
-                        $"+{DataUtility.ValueToString(buildingModel.Template.BuildingContext.BuildingProduction.Amount * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * buildingModel.Level * 60)}/m";
-                    next =
-                        $"+{DataUtility.ValueToString(buildingModel.Template.BuildingContext.BuildingProduction.Amount * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * (buildingModel.Level + 1) * 60)}/m";
 
-                    resource = new OutputElement(current, next);
+                    userBuildingsData.TryGetBuildingsByType(BuildingType.MainBuilding, out var mainBuildings);
+                    var mainBuilding = mainBuildings.ElementAt(0);
+
+                    current = $"{DataUtility.ValueToString(DataUtility.GetProductionAmount(mainBuilding, buildingModel) * 60)}/m";
+                    next = $"{DataUtility.ValueToString(DataUtility.GetNextLevelProductionAmount(mainBuilding, buildingModel) * 60)}/m"; resource = new OutputElement(current, next);
 
                     var warehouseLevel = 0;
 
@@ -163,7 +149,7 @@ namespace Data.Utility
             return new OutputInfoModel(blockName, resourceName, icon, resource, storage, showAsBonus);
         }
 
-        public static IList<UseResourcesModel> GetUseResourcesModels(BuildingModel buildingModel, IAssetLibrary assetLibrary, UserBuildingsData userBuildingsData)
+        public static IList<UseResourcesModel> GetUseResourcesModels(BuildingModel buildingModel)
         {
             if (buildingModel.Template.BuildingContext.ResourcesUse is { Count: > 0 })
             {

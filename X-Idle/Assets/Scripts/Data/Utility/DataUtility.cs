@@ -155,7 +155,7 @@ namespace Data.Utility
 
             OutputInfoModel outputModel = BuildingInfoBuilder.GetProductionInfoModel(buildingModel, userBuildingsData);
 
-            IList<UseResourcesModel> useResourcesModels = BuildingInfoBuilder.GetUseResourcesModels(buildingModel, assetLibrary, userBuildingsData);
+            IList<UseResourcesModel> useResourcesModels = BuildingInfoBuilder.GetUseResourcesModels(buildingModel);
 
             return
                 new UpgradeBuildingContext(buildingModel.Template.Name, buildingModel.Template.Description, buildingModel.Level, buildingModel.Template.Icon,
@@ -169,7 +169,7 @@ namespace Data.Utility
 
         static float GetMainBuildingBonus(int level, float levelMultiplier)
         {
-            return 1 + levelMultiplier * (level - 1);
+            return levelMultiplier * level;
         }
 
         internal static float GetResourceUse(float baseUse, int buildingLevel, float levelMultiplier)
@@ -177,13 +177,17 @@ namespace Data.Utility
             return baseUse * levelMultiplier * buildingLevel;
         }
 
-        internal static float GetProductionAmount(BuildingModel mainBuildingModel, BuildingModel buildingModel, float useResourcesMultiplier)
+        internal static float GetProductionAmount(BuildingModel mainBuildingModel, BuildingModel buildingModel)
         {
-            return (buildingModel.Template.BuildingContext.BuildingProduction.Amount * Mathf.Pow(buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier, buildingModel.Level - 1) +
-                    (buildingModel.Level - 1)) *
-                   GetMainBuildingBonus(mainBuildingModel.Level, mainBuildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier) * useResourcesMultiplier;
+            return buildingModel.Template.BuildingContext.BuildingProduction.Amount * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * buildingModel.Level *
+                   GetMainBuildingBonus(mainBuildingModel.Level, mainBuildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier);
         }
 
+        internal static float GetNextLevelProductionAmount(BuildingModel mainBuildingModel, BuildingModel buildingModel)
+        {
+            return buildingModel.Template.BuildingContext.BuildingProduction.Amount * buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier * (buildingModel.Level + 1) *
+                   GetMainBuildingBonus(mainBuildingModel.Level, mainBuildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier);
+        }
 
         internal static float GetResourceMaxCapacity(IGameResourcesTemplate resource, ICollection<BuildingModel> warehouseModels)
         {
@@ -401,7 +405,7 @@ namespace Data.Utility
                     {
                         foreach (var buildingProduct in buildingsProduct)
                         {
-                            productAmount += GetProductionAmount(mainBuildings.ElementAt(0), buildingProduct, 1);
+                            productAmount += GetProductionAmount(mainBuildings.ElementAt(0), buildingProduct);
                         }
                     }
 

@@ -238,7 +238,7 @@ namespace Data.Processor
 
             foreach (var model in list)
             {
-                amount += DataUtility.GetProductionAmount(m_mainBuildingModel, model, 1);
+                amount += DataUtility.GetProductionAmount(m_mainBuildingModel, model);
             }
 
             return amount;

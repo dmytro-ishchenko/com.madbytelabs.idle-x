@@ -258,18 +258,22 @@ namespace Data
 
         public void OnApplicationFocus(bool hasFocus)
         {
+#if !UNITY_EDITOR
             if (!hasFocus)
                 PauseGame();
             else
                 ResumeGame();
+#endif
         }
 
         public void OnApplicationPause(bool pauseStatus)
         {
+#if !UNITY_EDITOR
             if (pauseStatus)
                 PauseGame();
             else
                 ResumeGame();
+#endif
         }
 
         void PauseGame()
@@ -290,15 +294,15 @@ namespace Data
             if (m_currentStatus == AppStatus.Pause)
             {
                 LoadSaveData();
-                
+
                 m_userData.UserResources.OnUserResourcesChanged += OnResourcesChangedHandler;
                 m_userData.UserPlaceHolderData.OnPlaceHolderStatusChanged += OnPlaceHolderStatusChangedHandler;
-                
+
                 m_userDataProcessor.StartProcessing();
 
                 m_currentStatus = AppStatus.Resuming;
                 OnAppStatusChanged?.Invoke(m_currentStatus);
-                
+
                 m_currentStatus = AppStatus.Running;
                 OnAppStatusChanged?.Invoke(m_currentStatus);
             }
