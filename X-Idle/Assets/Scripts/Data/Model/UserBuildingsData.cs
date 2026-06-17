@@ -10,7 +10,7 @@ namespace Data.Model
         private readonly Dictionary<string, BuildingModel> m_buildingsMap = new();
         private readonly Dictionary<BuildingType, List<BuildingModel>> m_buildingsMapByType = new();
         private readonly Dictionary<GameResourceType, List<BuildingModel>> m_buildingsMapByResourcesType = new();
-        private readonly Dictionary<GameResourceType, List<BuildingModel>> m_buildingsMapByUsResourcesType = new();
+        private readonly Dictionary<GameResourceType, List<BuildingModel>> m_buildingsMapByUseResourcesType = new();
         public IReadOnlyDictionary<string, BuildingModel> BuildingsMap => m_buildingsMap;
 
 
@@ -76,10 +76,10 @@ namespace Data.Model
             {
                 foreach (var resourcesUseModel in buildingModel.Template.BuildingContext.ResourcesUse)
                 {
-                    if (!m_buildingsMapByUsResourcesType.TryGetValue(resourcesUseModel.GameResource.GameResourceType, out List<BuildingModel> byUseResourceModels))
+                    if (!m_buildingsMapByUseResourcesType.TryGetValue(resourcesUseModel.GameResource.GameResourceType, out List<BuildingModel> byUseResourceModels))
                     {
                         byUseResourceModels = new List<BuildingModel>();
-                        m_buildingsMapByUsResourcesType.Add(resourcesUseModel.GameResource.GameResourceType, byUseResourceModels);
+                        m_buildingsMapByUseResourcesType.Add(resourcesUseModel.GameResource.GameResourceType, byUseResourceModels);
                     }
 
                     byUseResourceModels.Add(buildingModel);
@@ -120,7 +120,7 @@ namespace Data.Model
             {
                 foreach (var resourcesUseModel in buildingModel.Template.BuildingContext.ResourcesUse)
                 {
-                    if (m_buildingsMapByUsResourcesType.TryGetValue(resourcesUseModel.GameResource.GameResourceType, out list))
+                    if (m_buildingsMapByUseResourcesType.TryGetValue(resourcesUseModel.GameResource.GameResourceType, out list))
                     {
                         int index = list.FindIndex(e => e.Id.Equals(buildingModel.Id));
                         if (index >= 0)
@@ -129,7 +129,7 @@ namespace Data.Model
                         }
 
                         if (list.Count == 0)
-                            m_buildingsMapByUsResourcesType.Remove(resourcesUseModel.GameResource.GameResourceType);
+                            m_buildingsMapByUseResourcesType.Remove(resourcesUseModel.GameResource.GameResourceType);
                     }
                 }
             }
@@ -159,9 +159,11 @@ namespace Data.Model
             return false;
         }
 
+    
+        
         public List<GameResourceType> GetUsingResources()
         {
-            return m_buildingsMapByUsResourcesType.Keys.ToList();
+            return m_buildingsMapByUseResourcesType.Keys.ToList();
         }
 
         public List<GameResourceType> GetProductionResources()
@@ -171,7 +173,7 @@ namespace Data.Model
 
         public bool TryGetBuildingsByUseResourceType(GameResourceType type, out ICollection<BuildingModel> buildings)
         {
-            if (m_buildingsMapByUsResourcesType.TryGetValue(type, out var list))
+            if (m_buildingsMapByUseResourcesType.TryGetValue(type, out var list))
             {
                 buildings = list;
                 return true;

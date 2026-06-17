@@ -16,12 +16,9 @@ namespace Data.Processor
         private UserResources m_userResources;
         private UserBuildingsData m_userBuildingsData;
         private BuildingModel m_mainBuildingModel;
-        private ICollection<BuildingModel> m_warehouseModels;
         private IAssetLibrary m_assetLibrary;
         private readonly IProcessor m_resourcesProcessor = new Processor();
-        private Dictionary<GameResourceType, float> m_multiplierMap = new();
-        private Dictionary<GameResourceType, float> m_useResourcesMap = new();
-        private Dictionary<GameResourceType, float> m_productionResourcesMap = new();
+        private Dictionary<GameResourceType, ProductionModel> m_productionMap = new();
 
         public void Init(IAssetLibrary assetLibrary, UserData userData)
         {
@@ -40,199 +37,172 @@ namespace Data.Processor
 
         private void OnProcessHandler()
         {
-            UseResourcesPerTime(m_tickTime);
-            ProductionResourcesPerTime(m_tickTime);
-            CompleteProduction();
-
+            CalculateProductionMap();
+            CalculateProduction();
             m_userResources.InvokeUpdateResources();
         }
 
-
-        void UseResourcesPerTime(float seconds)
+        void CalculateProductionMap()
         {
-            var usingResourcesList = m_userBuildingsData.GetUsingResources();
-            m_userBuildingsData.TryGetBuildingsByType(BuildingType.Warehouse, out m_warehouseModels);
+            m_productionMap.Clear();
 
-            if (usingResourcesList is { Count: > 0 })
+
+            var productionResourcesTypes = m_userBuildingsData.GetProductionResources();
+
+            foreach (var productionType in productionResourcesTypes)
             {
-                foreach (var resource in usingResourcesList)
+                CalculateProductionMap(productionType);
+            }
+        }
+
+        void CalculateProductionMap(GameResourceType resourceType)
+        {
+            if (NeedToAddToProductionMap(resourceType))
+            {
+                if (m_userBuildingsData.TryGetBuildingsByResourceType(resourceType, out var production))
                 {
-                    float useAmount = 0;
-                    float multiplier = 1;
-
-                    m_userBuildingsData.TryGetBuildingsByUseResourceType(resource, out var buildings);
-
-                    foreach (var building in buildings)
-                    {
-                        foreach (var resourcesUseModel in building.Template.BuildingContext.ResourcesUse)
-                        {
-                            if (resourcesUseModel.GameResource.GameResourceType == resource)
-                            {
-                                useAmount += DataUtility.GetResourceUse(resourcesUseModel.Amount, building.Level, building.Template.BuildingContext.BuildingProduction.LevelMultiplier);
-                            }
-                        }
-                    }
-
                     float productionAmount = 0;
 
-                    m_userBuildingsData.TryGetBuildingsByResourceType(resource, out var productionBuildings);
-
-                    if (productionBuildings is { Count: > 0 })
+                    var resourceUse = production.ElementAt(0).Template.BuildingContext.ResourcesUse;
+                    if (resourceUse is { Count: > 0 })
                     {
-                        productionAmount = GetProductionAmount(productionBuildings);
-                    }
+                        float productionMultiplier = 1;
 
-                    var currentAmount = m_userResources.GetGameResourceValue(resource) + productionAmount;
-
-                    float coverage = Mathf.Clamp01(currentAmount / useAmount);
-
-                    multiplier = Mathf.Min(multiplier, coverage);
-                    m_multiplierMap.TryAdd(resource, multiplier);
-
-                    m_useResourcesMap.Add(resource, useAmount * multiplier * seconds);
-                }
-            }
-        }
-
-        void ProductionResourcesPerTime(float seconds)
-        {
-            var productionResources = m_userBuildingsData.GetProductionResources();
-
-            if (productionResources is { Count: > 0 })
-            {
-                foreach (var resource in productionResources)
-                {
-                    if (TryProcessResource(resource, out var value))
-                    {
-                        if (m_productionResourcesMap.ContainsKey(resource))
+                        foreach (var resourceUseModel in resourceUse)
                         {
-                            m_productionResourcesMap[resource] += value * seconds;
+                            if (!m_productionMap.ContainsKey(resourceUseModel.GameResource.GameResourceType))
+                            {
+                                CalculateProductionMap(resourceUseModel.GameResource.GameResourceType);
+                            }
+
+                            m_productionMap.TryGetValue(resourceUseModel.GameResource.GameResourceType, out var productionModel);
+
+                            var currentAmount = m_userResources.GetGameResourceValue(resourceType) + productionAmount;
+
+                            float coverage = Mathf.Clamp01(currentAmount / productionModel.UsedAmount);
+
+                            if (coverage < productionMultiplier)
+                                productionMultiplier = coverage;
                         }
-                        else
-                            m_productionResourcesMap.Add(resource, value * seconds);
+
+                        if (production is { Count: > 0 })
+                        {
+                            productionAmount = GetProductionAmount(production);
+                        }
+
+                        productionAmount *= productionMultiplier;
+
+                        m_productionMap.Add(resourceType, new ProductionModel(resourceType, productionAmount, GetUseAmount(resourceType)));
+                    }
+                    else
+                    {
+                        if (production is { Count: > 0 })
+                        {
+                            productionAmount = GetProductionAmount(production);
+                        }
+
+                        m_productionMap.Add(resourceType, new ProductionModel(resourceType, productionAmount, GetUseAmount(resourceType)));
                     }
                 }
             }
         }
 
-        void CompleteProduction()
+
+        void CalculateProduction()
         {
-            foreach (var element in m_productionResourcesMap)
+            m_userBuildingsData.TryGetBuildingsByType(BuildingType.Warehouse, out var warehouses);
+
+            foreach (var productionModel in m_productionMap.Values)
             {
-                var production = element.Value;
-                if (m_useResourcesMap.TryGetValue(element.Key, out var value))
-                {
-                    production -= value;
-                    m_useResourcesMap.Remove(element.Key);
-                }
+                m_assetLibrary.TryGetGameResource(productionModel.GameResourceType, out var resource);
+                m_userBuildingsData.TryGetBuildingsByResourceType(productionModel.GameResourceType, out var productionBuildings);
+                float maxCapacity = DataUtility.GetResourceMaxCapacity(resource, productionBuildings.Count, warehouses);
+              
+                float setAmount = m_userResources.GetGameResourceValue(productionModel.GameResourceType) + productionModel.ProductionAmount - productionModel.UsedAmount;
 
-                TryAddGameResource(element.Key, production, out var addedAmount);
+                var amount = Math.Clamp(setAmount, 0, maxCapacity);
+                m_userResources.SetGameResource(productionModel.GameResourceType, amount);
             }
-
-            m_productionResourcesMap.Clear();
-
-            if (m_useResourcesMap.Count > 0)
-            {
-                foreach (var element in m_useResourcesMap)
-                {
-                    m_userResources.SetGameResource(element.Key, m_userResources.GetGameResourceValue(element.Key) - element.Value);
-                }
-
-                m_useResourcesMap.Clear();
-            }
-
-            m_multiplierMap.Clear();
         }
 
-        (List<ResourceRewardModel>, List<StorageReachLimitModel>) CalculateOfflineProduction(IAssetLibrary assetLibrary)
+
+        float GetUseAmount(GameResourceType resourceType)
+        {
+            float useAmount = 0;
+
+            m_userBuildingsData.TryGetBuildingsByUseResourceType(resourceType, out var buildings);
+            if (buildings is { Count: > 0 })
+            {
+                foreach (var building in buildings)
+                {
+                    foreach (var resourcesUseModel in building.Template.BuildingContext.ResourcesUse)
+                    {
+                        if (resourcesUseModel.GameResource.GameResourceType == resourceType)
+                        {
+                            useAmount += DataUtility.GetResourceUse(resourcesUseModel.Amount, building.Level, building.Template.BuildingContext.BuildingProduction.LevelMultiplier);
+                        }
+                    }
+                }
+            }
+
+            return useAmount;
+        }
+
+        bool NeedToAddToProductionMap(GameResourceType resource)
+        {
+            switch (resource)
+            {
+                case GameResourceType.Data:
+                case GameResourceType.Energy:
+                case GameResourceType.Food:
+                case GameResourceType.Parts:
+                case GameResourceType.Scrap:
+                case GameResourceType.Water:
+                    return true;
+            }
+
+            return false;
+        }
+
+        (List<ResourceRewardModel>, List<StorageReachLimitModel>) CalculateOfflineProduction(float time, IAssetLibrary assetLibrary)
         {
             List<ResourceRewardModel> rewards = new();
             List<StorageReachLimitModel> resourcesStorages = new();
 
             assetLibrary.TryGetGameResource(GameResourceType.Storage, out var storage);
+            m_userBuildingsData.TryGetBuildingsByType(BuildingType.Warehouse, out var warehouses);
 
-            foreach (var element in m_productionResourcesMap)
+            foreach (var element in m_productionMap.Values)
             {
-                if (element.Key == GameResourceType.Storage || element.Key == GameResourceType.ProductionBonus || element.Key == GameResourceType.StorageBonus)
-                    continue;
+                m_assetLibrary.TryGetGameResource(element.GameResourceType, out var resource);
+                m_userBuildingsData.TryGetBuildingsByResourceType(element.GameResourceType, out var productionBuildings);
+                float maxCapacity = DataUtility.GetResourceMaxCapacity(resource, productionBuildings.Count, warehouses);
 
-                var production = element.Value;
-                if (m_useResourcesMap.TryGetValue(element.Key, out var value))
-                {
-                    production -= value;
-                    m_useResourcesMap.Remove(element.Key);
-                }
+                float productionDelta = (element.ProductionAmount - element.UsedAmount) * time;
+                float setAmount = m_userResources.GetGameResourceValue(element.GameResourceType) + productionDelta;
 
-                m_assetLibrary.TryGetGameResource(element.Key, out var resource);
-                bool addAllResources = TryAddGameResource(element.Key, production, out var addedAmount);
 
-                if (addedAmount > 1)
-                    rewards.Add(new ResourceRewardModel(resource.Icon, resource.Name, addedAmount));
-
-                if (!addAllResources)
+                if (setAmount >= maxCapacity)
                 {
                     resourcesStorages.Add(new StorageReachLimitModel(storage.Icon, resource.Name));
                 }
+
+                var amount = Math.Clamp(setAmount, 0, maxCapacity);
+
+                var addedAmount = amount - m_userResources.GetGameResourceValue(element.GameResourceType);
+                if (addedAmount > 1)
+                    rewards.Add(new ResourceRewardModel(resource.Icon, resource.Name, addedAmount));
+
+                m_userResources.SetGameResource(element.GameResourceType, amount);
             }
 
-            m_productionResourcesMap.Clear();
-
-            if (m_useResourcesMap.Count > 0)
-            {
-                foreach (var element in m_useResourcesMap)
-                {
-                    m_userResources.SetGameResource(element.Key, m_userResources.GetGameResourceValue(element.Key) - element.Value);
-                }
-
-                m_useResourcesMap.Clear();
-            }
-
-            m_multiplierMap.Clear();
             return (rewards, resourcesStorages);
-        }
-
-        bool TryProcessResource(GameResourceType type, out float amount)
-        {
-            if (m_userBuildingsData.TryGetBuildingsByResourceType(type, out var buildings))
-            {
-                amount = GetProductionAmount(buildings);
-                if (m_multiplierMap.TryGetValue(type, out var multiplier))
-                    amount *= multiplier;
-                return true;
-            }
-
-            amount = 0;
-            return false;
         }
 
         public void StopProcessing()
         {
             m_resourcesProcessor.StopProcess();
             m_resourcesProcessor.OnProcess -= OnProcessHandler;
-        }
-
-        bool TryAddGameResource(GameResourceType gameResourceType, float value, out float added)
-        {
-            m_assetLibrary.TryGetGameResource(gameResourceType, out var resource);
-
-            float setAmount = m_userResources.GetGameResourceValue(gameResourceType) + value;
-            
-            m_userBuildingsData.TryGetBuildingsByResourceType(gameResourceType, out var productionBuildings);
-            
-            float maxCapacity = DataUtility.GetResourceMaxCapacity(resource,productionBuildings.Count, m_warehouseModels);
-
-            if (maxCapacity < setAmount)
-            {
-                var amount = Math.Clamp(m_userResources.GetGameResourceValue(gameResourceType) + value, 0, maxCapacity);
-                m_userResources.SetGameResource(gameResourceType, amount);
-
-                added = value - (setAmount - maxCapacity);
-                return false;
-            }
-
-            m_userResources.SetGameResource(gameResourceType, m_userResources.GetGameResourceValue(gameResourceType) + value);
-            added = value;
-            return true;
         }
 
         float GetProductionAmount(ICollection<BuildingModel> list)
@@ -249,18 +219,30 @@ namespace Data.Processor
 
         public OfflineReward UpdateAccordingCurrentTime(IAssetLibrary assetLibrary, long prevTime)
         {
+            CalculateProductionMap();
+
             DateTime now = DateTime.UtcNow;
             var currentTime = ((DateTimeOffset)now).ToUnixTimeSeconds();
             var deltaTime = currentTime - prevTime;
 
-            var time = deltaTime / m_tickTime;
-
-            UseResourcesPerTime(time);
-            ProductionResourcesPerTime(time);
-
-            var result = CalculateOfflineProduction(assetLibrary);
+            var result = CalculateOfflineProduction(deltaTime / m_tickTime, assetLibrary);
 
             return new OfflineReward(deltaTime, result.Item1, result.Item2);
+        }
+
+
+        struct ProductionModel
+        {
+            public ProductionModel(GameResourceType gameResourceType, float productionAmount, float usedAmount)
+            {
+                GameResourceType = gameResourceType;
+                ProductionAmount = productionAmount;
+                UsedAmount = usedAmount;
+            }
+
+            public GameResourceType GameResourceType { get; }
+            public float ProductionAmount { get; }
+            public float UsedAmount { get; }
         }
     }
 }

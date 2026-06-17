@@ -55,12 +55,12 @@ namespace Data.Utility
                 default:
                     effects = new();
                     userBuildingsData.TryGetBuildingsByType(BuildingType.MainBuilding, out var mainBuildings);
-                   
-                    
+
+
                     effects.Add(new InfoElementModel(
                         buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.Icon,
                         $"{buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.Name}"
-                        , $"+{DataUtility.ValueToString( DataUtility.GetProductionAmount(mainBuildings.ElementAt(0), buildingModel) * 60)} /m",
+                        , $"+{DataUtility.ValueToString(DataUtility.GetProductionAmount(mainBuildings.ElementAt(0), buildingModel) * 60)} /m",
                         true));
 
                     if (buildingModel.Template.BuildingContext.ResourcesUse is { Count: > 0 })
@@ -69,7 +69,8 @@ namespace Data.Utility
                         {
                             effects.Add(new InfoElementModel(resourcesUseModel.GameResource.Icon,
                                 $"{resourcesUseModel.GameResource.Name}"
-                                , $"-{DataUtility.ValueToString(DataUtility.GetResourceUse(resourcesUseModel.Amount, level, buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier) * 60)} /m", false));
+                                , $"-{DataUtility.ValueToString(DataUtility.GetResourceUse(resourcesUseModel.Amount, level, buildingModel.Template.BuildingContext.BuildingProduction.LevelMultiplier) * 60)} /m",
+                                false));
                         }
                     }
 
@@ -78,9 +79,9 @@ namespace Data.Utility
                     userBuildingsData.TryGetBuildingsByType(BuildingType.Warehouse, out var warehouses);
 
                     userBuildingsData.TryGetBuildingsByResourceType(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.GameResourceType, out var productionBuildings);
-                    
-                    var value = DataUtility.GetResourceMaxCapacity(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate,productionBuildings.Count, warehouses);
 
+                    var value = DataUtility.GetResourceMaxCapacity(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate, productionBuildings.Count, warehouses);
+                  
                     storage = new InfoElementModel(storageResource.Icon, storageResource.Name,
                         DataUtility.ValueToString(value), true);
                     break;

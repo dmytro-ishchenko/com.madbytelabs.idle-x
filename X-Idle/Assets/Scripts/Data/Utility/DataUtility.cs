@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Data.ContentLibrary;
-using Data.ContentLibrary.Templates;
 using Data.ContentLibrary.Templates.GameResources;
 using Data.ContentLibrary.Templates.Placeholder;
 using Data.Enum;
