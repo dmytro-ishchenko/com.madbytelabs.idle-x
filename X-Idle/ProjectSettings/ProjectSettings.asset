@@ -837,7 +837,7 @@ PlayerSettings:
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols:
-    Android: GENA_PRO;GeNa_URP;GAIA_INPUT_SYSTEM;UPPipeline;GAIA_2023;GAIA_2023_PRO;GAIA_MESH_PRESENT;GTS_PRESENT;DOTWEEN
+    Android: GENA_PRO;GeNa_URP;GAIA_INPUT_SYSTEM;UPPipeline;GAIA_2023;GAIA_2023_PRO;GAIA_MESH_PRESENT;GTS_PRESENT;DOTWEEN;ASSET_INVENTORY
     EmbeddedLinux: DOTWEEN
     GameCoreScarlett: DOTWEEN
     GameCoreXboxOne: DOTWEEN
