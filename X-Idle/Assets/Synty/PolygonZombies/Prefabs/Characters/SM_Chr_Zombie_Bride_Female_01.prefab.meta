@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e2061805cf80c42b3a85f901d42708e1
+guid: 850102f759477fc40865ba604f3387ac
 timeCreated: 1540522574
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.0
+  packageVersion: 1.7.1
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Bride_Female_01.prefab
-  uploadId: 864496
+  uploadId: 926066

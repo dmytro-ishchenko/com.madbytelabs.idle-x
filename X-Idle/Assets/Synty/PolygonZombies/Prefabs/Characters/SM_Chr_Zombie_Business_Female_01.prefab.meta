@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 762aa005c0bfd4013ba2abdb23b4638d
+guid: 30afc95fffba1e64596474c7b455f1ae
 timeCreated: 1540522575
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.0
+  packageVersion: 1.7.1
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Business_Female_01.prefab
-  uploadId: 864496
+  uploadId: 926066

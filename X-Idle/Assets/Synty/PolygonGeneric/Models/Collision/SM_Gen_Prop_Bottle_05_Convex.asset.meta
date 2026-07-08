@@ -2,15 +2,14 @@ fileFormatVersion: 2
 guid: 15e27ca37fb439b43ae8a917a393944f
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: -7220097334280567423
+  mainObjectFileID: 11400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 234254
-  packageName: POLYGON - Swamp Marshland - Nature Biomes - 3D Environment Art by
-    Synty
-  packageVersion: 1.10.3
+  productId: 131930
+  packageName: POLYGON - City Zombies Pack - Art by Synty
+  packageVersion: 1.7.1
   assetPath: Assets/Synty/PolygonGeneric/Models/Collision/SM_Gen_Prop_Bottle_05_Convex.asset
-  uploadId: 866642
+  uploadId: 926066

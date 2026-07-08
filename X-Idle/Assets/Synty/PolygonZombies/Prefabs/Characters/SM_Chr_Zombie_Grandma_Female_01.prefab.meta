@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 83f7850b39d0f4dceb264346eb4596d3
+guid: 70c566cd1ad02e44c8ff078557e64995
 timeCreated: 1540522594
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.0
+  packageVersion: 1.7.1
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Grandma_Female_01.prefab
-  uploadId: 864496
+  uploadId: 926066

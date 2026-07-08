@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 172bffae4cbed4d48b3cc9004cc26ecb
+guid: 1903435bd80b98c44bfa272e10d3c9af
 timeCreated: 1540522584
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.0
+  packageVersion: 1.7.1
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Diver_Male_01.prefab
-  uploadId: 864496
+  uploadId: 926066

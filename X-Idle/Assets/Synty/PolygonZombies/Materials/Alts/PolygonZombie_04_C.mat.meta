@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 77a85ca0b1ab04eab81682406984be4e
+guid: 420da02e040b135448df44ce3553e3fe
 timeCreated: 1539895569
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.0
+  packageVersion: 1.7.1
   assetPath: Assets/Synty/PolygonZombies/Materials/Alts/PolygonZombie_04_C.mat
-  uploadId: 864496
+  uploadId: 926066

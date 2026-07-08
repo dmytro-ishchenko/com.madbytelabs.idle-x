@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fad206a0b75f545d398b37f714467bdd
+guid: 7e2848a1b2e57d844aaa8937c63ec626
 timeCreated: 1540522631
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.0
+  packageVersion: 1.7.1
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Tourist_Male_01.prefab
-  uploadId: 864496
+  uploadId: 926066

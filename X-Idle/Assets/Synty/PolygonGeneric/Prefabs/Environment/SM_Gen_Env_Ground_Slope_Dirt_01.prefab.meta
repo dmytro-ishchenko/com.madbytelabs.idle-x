@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 05bfaed39b1494ba19da900e86e913c6
+guid: 51c84b686c9587e44ab9a2cdd14576a0
 PrefabImporter:
   externalObjects: {}
   userData: 
@@ -7,9 +7,8 @@ PrefabImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 234254
-  packageName: POLYGON - Swamp Marshland - Nature Biomes - 3D Environment Art by
-    Synty
-  packageVersion: 1.10.3
+  productId: 131930
+  packageName: POLYGON - City Zombies Pack - Art by Synty
+  packageVersion: 1.7.1
   assetPath: Assets/Synty/PolygonGeneric/Prefabs/Environment/SM_Gen_Env_Ground_Slope_Dirt_01.prefab
-  uploadId: 866642
+  uploadId: 926066

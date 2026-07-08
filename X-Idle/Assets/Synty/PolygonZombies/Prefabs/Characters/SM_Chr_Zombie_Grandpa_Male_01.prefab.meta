@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 09476573d4cc8438fb1d4022f9d3d03b
+guid: 43cf060f7042c634ebaf2fb69154bd9c
 timeCreated: 1540522595
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.0
+  packageVersion: 1.7.1
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Grandpa_Male_01.prefab
-  uploadId: 864496
+  uploadId: 926066

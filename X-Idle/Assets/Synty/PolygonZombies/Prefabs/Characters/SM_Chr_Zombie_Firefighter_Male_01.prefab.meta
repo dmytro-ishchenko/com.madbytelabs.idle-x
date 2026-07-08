@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5b0687dfe13b24dc59a35168ba1f0501
+guid: b697575245395654b92697b255650f03
 timeCreated: 1540522589
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.0
+  packageVersion: 1.7.1
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Firefighter_Male_01.prefab
-  uploadId: 864496
+  uploadId: 926066

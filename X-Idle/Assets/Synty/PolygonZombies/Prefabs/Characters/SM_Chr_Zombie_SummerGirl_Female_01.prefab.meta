@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b9b20f723309448619d2718f73447cd7
+guid: 6ce89a2433c4a914daf701cc7a2359d6
 timeCreated: 1540522630
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.0
+  packageVersion: 1.7.1
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_SummerGirl_Female_01.prefab
-  uploadId: 864496
+  uploadId: 926066

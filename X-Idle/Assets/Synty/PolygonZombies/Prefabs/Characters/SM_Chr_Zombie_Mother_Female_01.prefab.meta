@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d8923b26c34d7494fa147b51fe3e763d
+guid: a38fed77122641244a86cc6673d90fd9
 timeCreated: 1540522606
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.0
+  packageVersion: 1.7.1
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Mother_Female_01.prefab
-  uploadId: 864496
+  uploadId: 926066

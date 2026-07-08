@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b32dd55cd3a46468488585d409f3bc99
+guid: 2baa8324cf3465945a68449a9735d8c8
 timeCreated: 1540522603
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.0
+  packageVersion: 1.7.1
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Jock_Male_01.prefab
-  uploadId: 864496
+  uploadId: 926066

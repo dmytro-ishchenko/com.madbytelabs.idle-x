@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 25c5690b9a722421eab11347da91a45d
+guid: 313cad3b09dd3dd408d56932657745d0
 timeCreated: 1540522609
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.0
+  packageVersion: 1.7.1
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Paramedic_Female_01.prefab
-  uploadId: 864496
+  uploadId: 926066

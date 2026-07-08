@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b31fe069c81514b288056e859cd4c9d1
+guid: f454815ac42967047b12ed2c3de9d066
 timeCreated: 1540522586
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.0
+  packageVersion: 1.7.1
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_FastfoodWorker_Male_01.prefab
-  uploadId: 864496
+  uploadId: 926066

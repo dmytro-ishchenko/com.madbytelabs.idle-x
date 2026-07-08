@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3275ca95443f64ae187ffd55b3761145
+guid: 646a9d4f6e99f4d459cc664eef85fc2c
 timeCreated: 1567742955
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 154193
   packageName: POLYGON - Apocalypse Pack - Art by Synty
-  packageVersion: 1.19.2
+  packageVersion: 1.19.3
   assetPath: Assets/Synty/PolygonApocalypse/Prefabs/Props/SM_Prop_TrashPile_10.prefab
-  uploadId: 861058
+  uploadId: 924194
