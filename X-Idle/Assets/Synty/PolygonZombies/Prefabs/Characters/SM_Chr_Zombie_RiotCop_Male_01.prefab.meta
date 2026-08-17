@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 038e729346b97f54e8d17902682ddae6
+guid: 311f4c56bde0c4aebb3290873812f9bd
 timeCreated: 1540522619
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.1
+  packageVersion: 1.7.2
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_RiotCop_Male_01.prefab
-  uploadId: 926066
+  uploadId: 974014

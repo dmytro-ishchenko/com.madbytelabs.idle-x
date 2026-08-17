@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a5f62e0ad94010240abe149b288b8a16
+guid: 73823b3296e27453b94bd9f7cd1689f3
 timeCreated: 1540522598
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.1
+  packageVersion: 1.7.2
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Hobo_Male_01.prefab
-  uploadId: 926066
+  uploadId: 974014

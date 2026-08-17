@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 01811cc202e8c6c47a7e3729a7ce19a3
+guid: 5f43a0413501a48f087061af93e4147a
 timeCreated: 1540522625
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.1
+  packageVersion: 1.7.2
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_ShopKeeper_Female_01.prefab
-  uploadId: 926066
+  uploadId: 974014

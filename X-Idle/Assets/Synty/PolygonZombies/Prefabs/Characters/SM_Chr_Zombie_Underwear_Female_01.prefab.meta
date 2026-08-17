@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 046eb8b276ebf8f4bac2f81b3440babc
+guid: 55139a6a002334b9d9cbccd18abd2e7b
 timeCreated: 1540522632
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.1
+  packageVersion: 1.7.2
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Underwear_Female_01.prefab
-  uploadId: 926066
+  uploadId: 974014

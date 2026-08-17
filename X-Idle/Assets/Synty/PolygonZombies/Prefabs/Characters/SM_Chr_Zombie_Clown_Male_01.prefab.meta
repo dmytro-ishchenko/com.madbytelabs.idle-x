@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d7bfbd12010d2f249b0964b96851bb19
+guid: 098eec31f024d4769859e765a02b23f4
 timeCreated: 1540522579
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.1
+  packageVersion: 1.7.2
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Clown_Male_01.prefab
-  uploadId: 926066
+  uploadId: 974014

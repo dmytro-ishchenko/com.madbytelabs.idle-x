@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3a216d71516224a4a946303c66d64a67
+guid: 7dbcfbd21669548caa48e0877ebd3831
 timeCreated: 1540522349
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.1
+  packageVersion: 1.7.2
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Bellboy_Male_01.prefab
-  uploadId: 926066
+  uploadId: 974014

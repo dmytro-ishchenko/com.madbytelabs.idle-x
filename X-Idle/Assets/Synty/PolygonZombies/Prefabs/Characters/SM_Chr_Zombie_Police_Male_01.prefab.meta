@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bac9459b8236ce34f909ae33d9bef80a
+guid: 4e32fb8ad86024d1ab1c07c0a1e6258f
 timeCreated: 1540522613
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.1
+  packageVersion: 1.7.2
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Police_Male_01.prefab
-  uploadId: 926066
+  uploadId: 974014

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c32e036fa04ea454181cc7e4414e722f
+guid: 011ec674a33ad4fc996054e8b7edb933
 timeCreated: 1540522617
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.1
+  packageVersion: 1.7.2
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Punk_Male_01.prefab
-  uploadId: 926066
+  uploadId: 974014

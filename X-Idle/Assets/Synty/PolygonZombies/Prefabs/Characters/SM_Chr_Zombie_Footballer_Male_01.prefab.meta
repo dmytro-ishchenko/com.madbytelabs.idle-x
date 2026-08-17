@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4af40cd4f6628844791c02a99f179857
+guid: dd8cd6269e82246e89a44ffc5a3dd5b7
 timeCreated: 1540522591
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.1
+  packageVersion: 1.7.2
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Footballer_Male_01.prefab
-  uploadId: 926066
+  uploadId: 974014

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d33c864507c5ced4e9dc02178e7a6397
+guid: 8413c9a476c774e20a98f1fb4b1a3fcd
 timeCreated: 1540522602
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.1
+  packageVersion: 1.7.2
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Jacket_Male_01.prefab
-  uploadId: 926066
+  uploadId: 974014

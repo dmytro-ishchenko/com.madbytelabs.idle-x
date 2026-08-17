@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 50fafed2d111c7f4e94dbba4812aff14
+guid: a9938241a5349415ea6c7496c27c5853
 timeCreated: 1540522623
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.1
+  packageVersion: 1.7.2
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_SchoolBoy_Male_01.prefab
-  uploadId: 926066
+  uploadId: 974014

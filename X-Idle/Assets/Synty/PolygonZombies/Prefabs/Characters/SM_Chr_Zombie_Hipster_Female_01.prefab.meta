@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 57a44cb9a1df0ba4c80136002f78e815
+guid: b8b78eabee67b42eab5b4a2419bddd1b
 timeCreated: 1540522596
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.1
+  packageVersion: 1.7.2
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Hipster_Female_01.prefab
-  uploadId: 926066
+  uploadId: 974014

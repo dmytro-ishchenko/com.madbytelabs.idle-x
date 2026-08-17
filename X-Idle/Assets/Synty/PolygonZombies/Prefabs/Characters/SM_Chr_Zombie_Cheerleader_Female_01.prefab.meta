@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0e1cd28615e93d346bcb4aaf0a32c9f5
+guid: cb36e1a41ebb849e1a97065c45cc1a94
 timeCreated: 1540522578
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.1
+  packageVersion: 1.7.2
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Cheerleader_Female_01.prefab
-  uploadId: 926066
+  uploadId: 974014

@@ -288,7 +288,7 @@ ModelImporter:
 AssetOrigin:
   serializedVersion: 1
   productId: 192790
-  packageName: Dog Pack - Synty POLYGON - Dog animations and controller
-  packageVersion: 1.0.3
-  assetPath: Assets/PolygonDog/Animations/Sleep/_POLYGON_Dog_Sleep_HeadUp.fbx
-  uploadId: 735269
+  packageName: POLYGON - Dog Pack - Art By Synty
+  packageVersion: 1.1.1
+  assetPath: Assets/Synty/PolygonDog/Animations/Sleep/_POLYGON_Dog_Sleep_HeadUp.fbx
+  uploadId: 974036
