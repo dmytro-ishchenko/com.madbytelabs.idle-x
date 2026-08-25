@@ -96,11 +96,12 @@ namespace Data.Processor
                     }
                     else
                     {
+                        if (m_productionMap.ContainsKey(resourceType))
+                            return;
                         if (production is { Count: > 0 })
                         {
                             productionAmount = GetProductionAmount(production);
                         }
-
                         m_productionMap.Add(resourceType, new ProductionModel(resourceType, productionAmount, GetUseAmount(resourceType)));
                     }
                 }
@@ -117,7 +118,7 @@ namespace Data.Processor
                 m_assetLibrary.TryGetGameResource(productionModel.GameResourceType, out var resource);
                 m_userBuildingsData.TryGetBuildingsByResourceType(productionModel.GameResourceType, out var productionBuildings);
                 float maxCapacity = DataUtility.GetResourceMaxCapacity(resource, productionBuildings.Count, warehouses);
-              
+
                 float setAmount = m_userResources.GetGameResourceValue(productionModel.GameResourceType) + productionModel.ProductionAmount - productionModel.UsedAmount;
 
                 var amount = Math.Clamp(setAmount, 0, maxCapacity);
