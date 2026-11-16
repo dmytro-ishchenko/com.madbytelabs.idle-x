@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.madbytelabs.environment-agent": "file:/Users/golandez/Downloads/UnityEnvironmentAgent",
     "com.madbytelabs.prefab-library": "file:/Users/golandez/Documents/ChatGPT/PostApo Idle Game/Packages/com.madbytelabs.prefab-library",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.ai.navigation": "2.0.14",

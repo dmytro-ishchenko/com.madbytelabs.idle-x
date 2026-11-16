@@ -1,11 +1,5 @@
 {
   "dependencies": {
-    "com.madbytelabs.environment-agent": {
-      "version": "file:UnityEnvironmentAgent",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
     "com.madbytelabs.prefab-library": {
       "version": "file:/Users/golandez/Documents/ChatGPT/PostApo Idle Game/Packages/com.madbytelabs.prefab-library",
       "depth": 0,
