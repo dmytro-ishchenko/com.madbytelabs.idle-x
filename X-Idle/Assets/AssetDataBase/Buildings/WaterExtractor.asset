@@ -14,12 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.data::Data.ContentLibrary.Templates.BuildingTemplate
   m_id: 8de869be52cb35456f6a7b6
   m_name: Water Extractor
-  m_description: Produces clean water for your settlement. Upgrade it to support
-    more survivors, grow food, and keep production chains running.
+  m_description: Produces clean water for your settlement. Upgrade it to support more survivors, grow food, and keep production chains running.
   m_shortDescription: Produces water for your settlement.
   m_view: {fileID: 6450690476258816806, guid: 005a6645073aa4ec68300b7a0825e6e3, type: 3}
-  m_icon: {fileID: 21300000, guid: ee79aa3fa151840dbab73511cae8156f, type: 3}
-  m_iconWide: {fileID: 21300000, guid: 4a5a1df7eb6c945f694fcfced96ea0d5, type: 3}
+  m_icon: {fileID: 21300000, guid: afd586ce2c74b4815a1f7c3d81c198d3, type: 3}
+  m_iconWide: {fileID: 21300000, guid: 0a3ba3f0989c54b30b4abe3a087e6b3a, type: 3}
   m_buildingContext:
     m_buildingType: 8
     m_maxLevel: 50

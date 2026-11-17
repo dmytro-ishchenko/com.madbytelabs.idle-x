@@ -14,12 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.data::Data.ContentLibrary.Templates.BuildingTemplate
   m_id: 8de869b2d273770a0cc3072
   m_name: Radio Tower
-  m_description: Connects your settlement to the wasteland. Upgrade it to discover
-    signals, unlock new opportunities, and expand your reach.
+  m_description: Connects your settlement to the wasteland. Upgrade it to discover signals, unlock new opportunities, and expand your reach.
   m_shortDescription: Improves communication and unlocks new opportunities.
   m_view: {fileID: 5740374362491373486, guid: 2da82fd4f184f4fd2bf06ce23dd413ed, type: 3}
-  m_icon: {fileID: 21300000, guid: d4b4b86220b0e4f97bcbcf7470914fce, type: 3}
-  m_iconWide: {fileID: 21300000, guid: 700ad09ccbd0d4c4db022e386a8d8edb, type: 3}
+  m_icon: {fileID: 21300000, guid: 8c3f61b49124d4eef9b008eac45c8d71, type: 3}
+  m_iconWide: {fileID: 21300000, guid: aa0428d3d619b4092800cdf8ad5703e9, type: 3}
   m_buildingContext:
     m_buildingType: 7
     m_maxLevel: 50

@@ -14,12 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.data::Data.ContentLibrary.Templates.BuildingTemplate
   m_id: 8de869b03e662c8e7b1ff7
   m_name: Greenhouse
-  m_description: Produces food for your settlement. Upgrade it to feed more survivors
-    and support base growth.
+  m_description: Produces food for your settlement. Upgrade it to feed more survivors and support base growth.
   m_shortDescription: Produces food for survivors.
   m_view: {fileID: 8574130953060704172, guid: 348239305469243aaad395c30ef967e8, type: 3}
-  m_icon: {fileID: 21300000, guid: eb10464d9e12b4c76bf39b21977f0abe, type: 3}
-  m_iconWide: {fileID: 21300000, guid: a88cb685036b1452aaedb3809c325726, type: 3}
+  m_icon: {fileID: 21300000, guid: 91f8b71e9131b4c5db41f6917abb350c, type: 3}
+  m_iconWide: {fileID: 21300000, guid: f4f9fbec22e2e4c9a8cf6473c2d3e17f, type: 3}
   m_buildingContext:
     m_buildingType: 4
     m_maxLevel: 50
