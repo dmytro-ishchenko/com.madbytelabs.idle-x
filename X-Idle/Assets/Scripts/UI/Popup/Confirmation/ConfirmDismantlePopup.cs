@@ -21,7 +21,7 @@ namespace UI.Popup.Confirmation
             {
                 m_name.text = model.BuildingModel.Template.Name;
                 m_icon.sprite = model.BuildingModel.Template.Icon;
-                m_level.text = model.BuildingModel.Level.ToString();
+                m_level.text = $"Lv.{model.BuildingModel.Level}";
                 m_dismantleButton.onClick.AddListener(() =>
                 {
                     Node.TriggerEvent(new BuildingProcessEventArgs(model.BuildingModel.Id, model.BuildingModel.Template.Id, BuildingActionType.DismantleBuildingRequest));
