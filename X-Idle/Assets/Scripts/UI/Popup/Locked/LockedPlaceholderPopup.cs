@@ -31,7 +31,7 @@ namespace UI.Popup.Locked
                     foreach (var element in model.RequirementsModel.Buildings)
                     {
                         var requirementElement = Instantiate(m_requiredElements[RequireElementType.Building], m_root);
-                        requirementElement.Init(element.Level >= element.RequireLevel, null, $"{element.Name} Level: {element.RequireLevel}");
+                        requirementElement.Init(element.Level >= element.RequireLevel, $"{element.Name} Lv.{element.RequireLevel}");
 
                         requirementElement.TryGetComponent<RectTransform>(out var rectTransform);
                         rectTransform.SetSiblingIndex(elementIndex);
@@ -48,7 +48,7 @@ namespace UI.Popup.Locked
                     {
                         var requirementElement = Instantiate(m_requiredElements[RequireElementType.Resource], m_root);
 
-                        requirementElement.Init(element.Count >= element.RequireAmount, null, $"{element.Name} : {DataUtility.ValueToString(element.RequireAmount)}");
+                        requirementElement.Init(element.Count >= element.RequireAmount, $"{element.Name} : {DataUtility.ValueToString(element.RequireAmount)}");
 
                         requirementElement.TryGetComponent<RectTransform>(out var rectTransform);
                         rectTransform.SetSiblingIndex(elementIndex);

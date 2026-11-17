@@ -144,7 +144,7 @@ namespace UI.Popup.Create
                 {
                     var instance = Instantiate(m_requiredBuildings.Source);
                     instance.transform.SetParent(m_requiredBuildings.Root);
-                    instance.Init(element.Level >= element.RequireLevel, null, $"{element.Name} Lv.{element.RequireLevel}");
+                    instance.Init(element.Level >= element.RequireLevel, $"{element.Name} Lv.{element.RequireLevel}");
                     instance.gameObject.SetActive(true);
                     m_requiredElements.Add(instance);
 
@@ -166,7 +166,7 @@ namespace UI.Popup.Create
                 {
                     var instance = Instantiate(m_requiredResources.Source);
                     instance.transform.SetParent(m_requiredResources.Root);
-                    instance.Init(element.Count >= element.RequireAmount, null, $"{element.Name} Lv.{element.RequireAmount}");
+                    instance.Init(element.Count >= element.RequireAmount, $"{element.Name} Lv.{element.RequireAmount}");
                     instance.gameObject.SetActive(true);
                     m_requiredElements.Add(instance);
                     if (canCreate)
