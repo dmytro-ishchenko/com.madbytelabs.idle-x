@@ -16,7 +16,7 @@ MonoBehaviour:
   categories:
   - id: 35efdc183c61462290bba74eac6704cf
     name: Buildings
-    folderGuid: 
+    folderGuid: d70d2a97fa38db24d8f888184ff28951
   - id: 7857ef8482ff4b8db9d8c00fc60c61b0
     name: Buildings Part/Antena
     folderGuid: 
@@ -977,6 +977,9 @@ MonoBehaviour:
   - id: e8b8a74542b1497bac9c14a1b2cf81b2
     name: Props/WorkShelf
     folderGuid: bcfdce768c659444aa699d5a91c2cec6
+  - id: 5fc9f6650c7a43d094fce539ada786c7
+    name: Buildings/Production
+    folderGuid: 106daf3d69e1047c4a212ccd286883cb
   entries:
   - guid: 0c045340be0090e43a49114a88f6597d
     categories:
@@ -8802,4 +8805,55 @@ MonoBehaviour:
   - guid: bf036b6d660c97945ad84a03c79646f0
     categories:
     - fd29e36f562d4cd1aa5a751a9ebae97b
+  - guid: d6967b2d875984702a4a18645cb73603
+    categories:
+    - 35efdc183c61462290bba74eac6704cf
+  - guid: a8f4d82060a6c4f3cacd78dba7666af2
+    categories:
+    - 35efdc183c61462290bba74eac6704cf
+  - guid: 127db05042ba94c0b866603e662679de
+    categories:
+    - 35efdc183c61462290bba74eac6704cf
+  - guid: 647b3d67edaff4062a748eabeeb7afcf
+    categories:
+    - 35efdc183c61462290bba74eac6704cf
+  - guid: 70eed81f0be034151acc7777319f4370
+    categories:
+    - 35efdc183c61462290bba74eac6704cf
+  - guid: b5e445d21a93f4bb3bd27e0c9bcc9496
+    categories:
+    - 35efdc183c61462290bba74eac6704cf
+  - guid: c6cf4de0c32b848a7bb7704fdb1c648f
+    categories:
+    - 35efdc183c61462290bba74eac6704cf
+  - guid: 8439b77ffb4cc4e5fb026b1c3efe12b2
+    categories:
+    - 35efdc183c61462290bba74eac6704cf
+  - guid: 15ed5fa3097e9451ebfd99c25dd87dde
+    categories:
+    - 35efdc183c61462290bba74eac6704cf
+  - guid: c5e263fe6e2f246e7a8bd3300c8e28fe
+    categories:
+    - 35efdc183c61462290bba74eac6704cf
+  - guid: 052e18e2f7112494bb0ae3d9f57c68ae
+    categories:
+    - 35efdc183c61462290bba74eac6704cf
+  - guid: 75728cd28e1504231b04dc01570cc072
+    categories:
+    - 35efdc183c61462290bba74eac6704cf
+  - guid: 1328616c868f642ff928f6c79971a634
+    categories:
+    - 144fc74a50144e39bcac9668df30ee45
+  - guid: 233fb412d7e3e497589e1f4a619fe4be
+    categories:
+    - 144fc74a50144e39bcac9668df30ee45
+  - guid: d470ad2348f994386b4918c3bc745895
+    categories:
+    - 144fc74a50144e39bcac9668df30ee45
+  - guid: f6e4cbd20049e4af6aaa46375aecb024
+    categories:
+    - fcfcbcd5a4bc481f90c305a5f45c90d8
+  - guid: 005a6645073aa4ec68300b7a0825e6e3
+    categories:
+    - 5fc9f6650c7a43d094fce539ada786c7
   folders: []
