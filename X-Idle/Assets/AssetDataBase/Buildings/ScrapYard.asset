@@ -16,7 +16,7 @@ MonoBehaviour:
   m_name: Scrap Yard
   m_description: Produces scrap for your settlement. Upgrade it to gather more materials for construction, repairs, and building upgrades.
   m_shortDescription: Produces scrap for construction.
-  m_view: {fileID: 477168867792817640, guid: 75e94d16c1b57410680ea93029302c2b, type: 3}
+  m_view: {fileID: 8843342838475319748, guid: 7ea7f8fab351d4788b857d9dc164baa1, type: 3}
   m_icon: {fileID: 21300000, guid: e188744736a5f47ce90d12b7bf2d8fc3, type: 3}
   m_iconWide: {fileID: 21300000, guid: 4661faa580dab49bc9b72c781f9f3470, type: 3}
   m_buildingContext:

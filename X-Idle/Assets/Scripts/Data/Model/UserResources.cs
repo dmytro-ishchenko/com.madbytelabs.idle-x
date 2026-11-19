@@ -19,12 +19,18 @@ namespace Data.Model
         public void SetGameResource(GameResourceType type, float value)
         {
             if (value < 0)
+            {
                 value = 0;
+            }
 
             if (!m_resources.TryGetValue(type, out _))
+            {
                 m_resources.Add(type, value);
+            }
             else
+            {
                 m_resources[type] = value;
+            }
         }
 
         public void InvokeUpdateResources()

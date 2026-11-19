@@ -199,6 +199,7 @@ namespace Data.Utility
                 {
                     maxCapacity += GetCapacity(resource, warehouseModel.Level);
                 }
+
                 return maxCapacity * productionBuildingsCount;
             }
             else
@@ -403,9 +404,12 @@ namespace Data.Utility
 
                     if (userBuildingsData.TryGetBuildingsByResourceType(useResource.GameResource.GameResourceType, out var buildingsProduct))
                     {
-                        foreach (var buildingProduct in buildingsProduct)
+                        if (buildingsProduct != null)
                         {
-                            productAmount += GetProductionAmount(mainBuildings.ElementAt(0), buildingProduct);
+                            foreach (var buildingProduct in buildingsProduct)
+                            {
+                                productAmount += GetProductionAmount(mainBuildings.ElementAt(0), buildingProduct);
+                            }
                         }
                     }
 

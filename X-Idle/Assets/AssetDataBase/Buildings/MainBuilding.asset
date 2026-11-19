@@ -16,7 +16,7 @@ MonoBehaviour:
   m_name: Main Building
   m_description: The heart of your settlement. Upgrade it to unlock new buildings, expand your base, and improve your chances of survival.
   m_shortDescription: 
-  m_view: {fileID: 2441952808027099099, guid: 26cf07683616744e0826bbec1ee88399, type: 3}
+  m_view: {fileID: 8525283694460235379, guid: 58408b9b4ff894945a6aac05919e7c2b, type: 3}
   m_icon: {fileID: 21300000, guid: 9b528b7fe4def422c8aa7aa2162dcd23, type: 3}
   m_iconWide: {fileID: 21300000, guid: 7d0f4b11d85b741c7875f9234d67432b, type: 3}
   m_buildingContext:
