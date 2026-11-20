@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9e5a3f16d4b5e8a0c3f7b9d2e1a4c36, type: 3}
+  m_Name: Road Endpoint Fade
+  m_EditorClassIdentifier: 
+  m_isSelected: 0
+  m_isActive: 1
+  m_spline: {fileID: 0}
+  m_startHiddenLength: 0
+  m_endHiddenLength: 0
+  m_startFadeLength: 20
+  m_endFadeLength: 20
+  m_endpointDetail: 4
+  m_surfaceBreakup: 0.8
+  m_seed: 1847
+  m_segments: []

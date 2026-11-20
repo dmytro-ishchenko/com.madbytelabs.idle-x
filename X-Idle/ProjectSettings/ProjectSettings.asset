@@ -804,7 +804,7 @@ PlayerSettings:
     WebGL: DOTWEEN
     Windows Store Apps: DOTWEEN
     XboxOne: DOTWEEN
-    iPhone: DOTWEEN
+    iPhone: DOTWEEN;GENA_PRO;GeNa_URP
     tvOS: DOTWEEN
   additionalCompilerArguments: {}
   platformArchitecture: {}
