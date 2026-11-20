@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dddd6d7200c7dd4ba871e8d0d1bd6c3, type: 3}
+  m_Script: {fileID: -1460817625, guid: 0b1e2c5d5a3bb6e4d9cbd9f5f88e20c7, type: 3}
   m_Name: GenaDefaults
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: GeNa.Scripts.Core.dll::GeNa.Core.GenaDefaults
   m_keyDeleteSpawnedResources: 8
   m_keyLeft: 276
   m_keyRight: 275
@@ -27,3 +27,4 @@ MonoBehaviour:
   m_critSpawnCollisionLayers:
     serializedVersion: 2
     m_Bits: 1
+  m_renderPipeline: 0
