@@ -86,6 +86,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Smoothness: 0.2
+    - _XRMotionVectorsPass: 1
     - __dirty: 0
     m_Colors:
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 0}

@@ -123,6 +123,7 @@ Material:
     - _UseSmoothnessMap: 0
     - _Use_Metallic_Map: 0
     - _Use_Smoothness_Map: 0
+    - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
