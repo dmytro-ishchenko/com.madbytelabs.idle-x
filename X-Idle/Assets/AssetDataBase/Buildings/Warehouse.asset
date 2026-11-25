@@ -14,12 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.data::Data.ContentLibrary.Templates.BuildingTemplate
   m_id: 8de869aee64cb6a1fa1260b
   m_name: Warehouse
-  m_description: A reinforced storage depot for vital supplies. Upgrade it to increase
-    resource storage limits and keep your settlement growing.
+  m_description: A reinforced storage depot for vital supplies. Upgrade it to increase resource storage limits and keep your settlement growing.
   m_shortDescription: Increases resource storage capacity.
-  m_view: {fileID: 4573677491782839015, guid: d8ea6e9efc37745f5a813147655b8c37, type: 3}
-  m_icon: {fileID: 21300000, guid: f168f7ab15dd44b898bc4bad11a0659f, type: 3}
-  m_iconWide: {fileID: 21300000, guid: 5637449fa017747e6bc5bf522b36eab6, type: 3}
+  m_view: {fileID: 545472443301847160, guid: 3138298a9e4a24985bcb3a7635a30825, type: 3}
+  m_icon: {fileID: 21300000, guid: 034ab6f6f32cf4262a41a5347ad2f196, type: 3}
+  m_iconWide: {fileID: 21300000, guid: 6f22e31bb70874b59bb16601068cea29, type: 3}
   m_buildingContext:
     m_buildingType: 2
     m_maxLevel: 50

@@ -80,7 +80,7 @@ namespace Data.Utility
 
                     userBuildingsData.TryGetBuildingsByResourceType(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate.GameResourceType, out var productionBuildings);
 
-                    var value = DataUtility.GetResourceMaxCapacity(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate, productionBuildings.Count, warehouses);
+                    var value = DataUtility.GetResourceMaxCapacity(buildingModel.Template.BuildingContext.BuildingProduction.ResourcesTemplate, productionBuildings?.Count ?? 0, warehouses);
                   
                     storage = new InfoElementModel(storageResource.Icon, storageResource.Name,
                         DataUtility.ValueToString(value), true);

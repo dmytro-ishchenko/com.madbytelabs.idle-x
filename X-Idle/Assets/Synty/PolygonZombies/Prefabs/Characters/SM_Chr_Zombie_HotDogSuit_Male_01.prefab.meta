@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 57565b87db2c248bcafdc94df01b1456
+guid: 8e3f885614ddf4190b9d028864132513
 timeCreated: 1540522600
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.0
+  packageVersion: 1.7.2
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_HotDogSuit_Male_01.prefab
-  uploadId: 864496
+  uploadId: 974014

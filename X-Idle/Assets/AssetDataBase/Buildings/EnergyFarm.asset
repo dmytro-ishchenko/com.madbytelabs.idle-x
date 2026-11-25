@@ -14,12 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: com.madbytelabs.data::Data.ContentLibrary.Templates.BuildingTemplate
   m_id: 8de869af6ed8a928858cc40
   m_name: Energy Farm
-  m_description: Generates energy for your settlement. Upgrade it to power more buildings
-    and keep production running.
+  m_description: Generates energy for your settlement. Upgrade it to power more buildings and keep production running.
   m_shortDescription: Produces energy for buildings.
-  m_view: {fileID: 3050995289237018250, guid: bf6772e29d7a8450ab83c25bea20172c, type: 3}
-  m_icon: {fileID: 21300000, guid: b436e6a227db0458197156525fe846d6, type: 3}
-  m_iconWide: {fileID: 21300000, guid: 923a18e8b7c7a455694c8eb0b2618b64, type: 3}
+  m_view: {fileID: 4277039347599855909, guid: b24c97f55d2694fb9806c19ead5a66b4, type: 3}
+  m_icon: {fileID: 21300000, guid: 046715b49e388488dac8b7b483443fbd, type: 3}
+  m_iconWide: {fileID: 21300000, guid: eeb16cc2572934c20836152d96fad76c, type: 3}
   m_buildingContext:
     m_buildingType: 3
     m_maxLevel: 50

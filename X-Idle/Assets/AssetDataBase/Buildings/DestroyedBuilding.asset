@@ -15,5 +15,27 @@ MonoBehaviour:
   m_id: 8de81064985f4a0531c11d2
   m_name: Destroyed Building
   m_description: 
-  m_view: {fileID: 1066912456721842, guid: 29ee86b32d8ecfc46a77844a81b91021, type: 3}
-  m_contentContext: {fileID: 0}
+  m_shortDescription: 
+  m_view: {fileID: 290511567994335328, guid: 0f93ebd6f67484047a198dc0d27805f8, type: 3}
+  m_icon: {fileID: 0}
+  m_iconWide: {fileID: 0}
+  m_buildingContext:
+    m_buildingType: 0
+    m_maxLevel: 0
+    m_duplicateModel:
+      m_canDuplicate: 0
+      m_maxDuplicateAmount: 0
+    m_createBuildingRequirements: []
+    m_createCost:
+      m_costModels: []
+      m_timeCost: 0
+    m_upgradeBuildingRequirements: []
+    m_upgradeCost:
+      m_costModels: []
+      m_timeCost: 0
+    m_buildingProduction:
+      m_resourcesTemplate: {fileID: 0}
+      m_amount: 0
+      m_levelMultiplier: 0
+    m_resourcesUse: []
+    m_buildingLevelsView: []

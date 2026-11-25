@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 97c83e60d8408443f956fca6fe3594a8
+guid: 9674ca0ca12614cb399af14856ac4f8c
 timeCreated: 1540522611
 licenseType: Store
 NativeFormatImporter:
@@ -11,6 +11,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 131930
   packageName: POLYGON - City Zombies Pack - Art by Synty
-  packageVersion: 1.7.0
+  packageVersion: 1.7.2
   assetPath: Assets/Synty/PolygonZombies/Prefabs/Characters/SM_Chr_Zombie_Patient_Female_01.prefab
-  uploadId: 864496
+  uploadId: 974014

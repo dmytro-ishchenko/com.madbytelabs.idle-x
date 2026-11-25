@@ -55,7 +55,7 @@ namespace UI.Popup.Offline
                         var view = Instantiate(m_storageBlock.ResourceSource);
                         view.transform.SetParent(m_storageBlock.Root.transform);
                         m_views.Add(view);
-                        view.Init(element.Icon, $"Storage for {element.ResourceName} reach limit", string.Empty, UIConfig.Instance.NegativeEffectColor);
+                        view.Init(element.Icon, $"{char.ToUpper(element.ResourceName[0]) + element.ResourceName.Substring(1)} storage full", string.Empty, UIConfig.Instance.NegativeEffectColor);
                         view.gameObject.SetActive(true);
                     }
                 }

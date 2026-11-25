@@ -18,7 +18,8 @@ namespace Data.Processor
         private BuildingModel m_mainBuildingModel;
         private IAssetLibrary m_assetLibrary;
         private readonly IProcessor m_resourcesProcessor = new Processor();
-        private Dictionary<GameResourceType, ProductionModel> m_productionMap = new();
+
+        private readonly Dictionary<GameResourceType, ProductionModel> m_productionMap = new();
 
         public void Init(IAssetLibrary assetLibrary, UserData userData)
         {
@@ -42,7 +43,7 @@ namespace Data.Processor
             m_userResources.InvokeUpdateResources();
         }
 
-        void CalculateProductionMap()
+        private void CalculateProductionMap()
         {
             m_productionMap.Clear();
 
@@ -63,46 +64,56 @@ namespace Data.Processor
                 {
                     float productionAmount = 0;
 
-                    var resourceUse = production.ElementAt(0).Template.BuildingContext.ResourcesUse;
-                    if (resourceUse is { Count: > 0 })
+                    if (production != null)
                     {
-                        float productionMultiplier = 1;
+                        var resourceUse = production.ElementAt(0).Template.BuildingContext.ResourcesUse;
 
-                        foreach (var resourceUseModel in resourceUse)
+                        if (resourceUse is { Count: > 0 })
                         {
-                            if (!m_productionMap.ContainsKey(resourceUseModel.GameResource.GameResourceType))
+                            float productionMultiplier = 1;
+
+                            foreach (var resourceUseModel in resourceUse)
                             {
-                                CalculateProductionMap(resourceUseModel.GameResource.GameResourceType);
+                                if (!m_productionMap.ContainsKey(resourceUseModel.GameResource.GameResourceType))
+                                {
+                                    CalculateProductionMap(resourceUseModel.GameResource.GameResourceType);
+                                }
+
+                                m_productionMap.TryGetValue(resourceUseModel.GameResource.GameResourceType,
+                                    out var productionModel);
+
+                                var currentAmount = m_userResources.GetGameResourceValue(resourceType) +
+                                                    productionAmount;
+
+                                float coverage = Mathf.Clamp01(currentAmount / productionModel.UsedAmount);
+
+                                if (coverage < productionMultiplier)
+                                    productionMultiplier = coverage;
                             }
 
-                            m_productionMap.TryGetValue(resourceUseModel.GameResource.GameResourceType, out var productionModel);
+                            if (production is { Count: > 0 })
+                            {
+                                productionAmount = GetProductionAmount(production);
+                            }
 
-                            var currentAmount = m_userResources.GetGameResourceValue(resourceType) + productionAmount;
+                            productionAmount *= productionMultiplier;
 
-                            float coverage = Mathf.Clamp01(currentAmount / productionModel.UsedAmount);
+                            m_productionMap.Add(resourceType,
+                                new ProductionModel(resourceType, productionAmount, GetUseAmount(resourceType)));
 
-                            if (coverage < productionMultiplier)
-                                productionMultiplier = coverage;
+                            return;
                         }
-
-                        if (production is { Count: > 0 })
-                        {
-                            productionAmount = GetProductionAmount(production);
-                        }
-
-                        productionAmount *= productionMultiplier;
-
-                        m_productionMap.Add(resourceType, new ProductionModel(resourceType, productionAmount, GetUseAmount(resourceType)));
                     }
-                    else
+
+                    if (m_productionMap.ContainsKey(resourceType))
+                        return;
+                    if (production is { Count: > 0 })
                     {
-                        if (production is { Count: > 0 })
-                        {
-                            productionAmount = GetProductionAmount(production);
-                        }
-
-                        m_productionMap.Add(resourceType, new ProductionModel(resourceType, productionAmount, GetUseAmount(resourceType)));
+                        productionAmount = GetProductionAmount(production);
                     }
+
+                    m_productionMap.Add(resourceType,
+                        new ProductionModel(resourceType, productionAmount, GetUseAmount(resourceType)));
                 }
             }
         }
@@ -115,10 +126,13 @@ namespace Data.Processor
             foreach (var productionModel in m_productionMap.Values)
             {
                 m_assetLibrary.TryGetGameResource(productionModel.GameResourceType, out var resource);
-                m_userBuildingsData.TryGetBuildingsByResourceType(productionModel.GameResourceType, out var productionBuildings);
-                float maxCapacity = DataUtility.GetResourceMaxCapacity(resource, productionBuildings.Count, warehouses);
-              
-                float setAmount = m_userResources.GetGameResourceValue(productionModel.GameResourceType) + productionModel.ProductionAmount - productionModel.UsedAmount;
+                m_userBuildingsData.TryGetBuildingsByResourceType(productionModel.GameResourceType,
+                    out var productionBuildings);
+                float maxCapacity =
+                    DataUtility.GetResourceMaxCapacity(resource, productionBuildings?.Count ?? 0, warehouses);
+
+                float setAmount = m_userResources.GetGameResourceValue(productionModel.GameResourceType) +
+                    productionModel.ProductionAmount - productionModel.UsedAmount;
 
                 var amount = Math.Clamp(setAmount, 0, maxCapacity);
                 m_userResources.SetGameResource(productionModel.GameResourceType, amount);
@@ -139,7 +153,8 @@ namespace Data.Processor
                     {
                         if (resourcesUseModel.GameResource.GameResourceType == resourceType)
                         {
-                            useAmount += DataUtility.GetResourceUse(resourcesUseModel.Amount, building.Level, building.Template.BuildingContext.BuildingProduction.LevelMultiplier);
+                            useAmount += DataUtility.GetResourceUse(resourcesUseModel.Amount, building.Level,
+                                building.Template.BuildingContext.BuildingProduction.LevelMultiplier);
                         }
                     }
                 }
@@ -164,7 +179,8 @@ namespace Data.Processor
             return false;
         }
 
-        (List<ResourceRewardModel>, List<StorageReachLimitModel>) CalculateOfflineProduction(float time, IAssetLibrary assetLibrary)
+        (List<ResourceRewardModel>, List<StorageReachLimitModel>) CalculateOfflineProduction(float time,
+            IAssetLibrary assetLibrary)
         {
             List<ResourceRewardModel> rewards = new();
             List<StorageReachLimitModel> resourcesStorages = new();
@@ -175,8 +191,10 @@ namespace Data.Processor
             foreach (var element in m_productionMap.Values)
             {
                 m_assetLibrary.TryGetGameResource(element.GameResourceType, out var resource);
-                m_userBuildingsData.TryGetBuildingsByResourceType(element.GameResourceType, out var productionBuildings);
-                float maxCapacity = DataUtility.GetResourceMaxCapacity(resource, productionBuildings.Count, warehouses);
+                m_userBuildingsData.TryGetBuildingsByResourceType(element.GameResourceType,
+                    out var productionBuildings);
+                float maxCapacity =
+                    DataUtility.GetResourceMaxCapacity(resource, productionBuildings?.Count ?? 0, warehouses);
 
                 float productionDelta = (element.ProductionAmount - element.UsedAmount) * time;
                 float setAmount = m_userResources.GetGameResourceValue(element.GameResourceType) + productionDelta;

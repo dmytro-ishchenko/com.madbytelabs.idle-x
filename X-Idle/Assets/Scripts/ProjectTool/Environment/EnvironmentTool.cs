@@ -31,7 +31,7 @@ namespace Tool.Environment
             placeholder.transform.localPosition = Vector3.zero;
             placeholder.transform.localRotation = Quaternion.identity;
 
-            root.AddPlaceholder(component);
+
         }
 
         [MenuItem("AFTER/Scene/Save Scene", false, 1)]

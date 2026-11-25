@@ -15,7 +15,6 @@ namespace GameEnvironment.Factory
 
             component.Init(new BuildingModel(placeHolderId, contentTemplate, 1));
 
-
             return view.GetComponent<BuildingView>();
         }
     }
