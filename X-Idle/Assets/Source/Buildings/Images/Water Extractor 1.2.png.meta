@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7be2af7824b0e4167b32455531c31f02
+guid: 8d6f0ec01775d4c6fbbbb4e3ef7ff08e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1500804750828051291
-    second: Post-Apocalyptic Base at Sunset_0
+      213: 7621246651835159778
+    second: Water Extractor 1.2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -128,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Post-Apocalyptic Base at Sunset_0
+      name: Water Extractor 1.2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 948
-        height: 1659
+        width: 1445
+        height: 1088
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,8 +143,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b5b135228fde3d410800000000000000
-      internalID: 1500804750828051291
+      spriteID: 2e41544637b14c960800000000000000
+      internalID: 7621246651835159778
       vertices: []
       indices: 
       edges: []
