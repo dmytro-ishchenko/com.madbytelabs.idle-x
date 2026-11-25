@@ -1,10 +1,9 @@
 {
   "dependencies": {
-    "com.madbytelabs.prefab-library": "file:/Users/golandez/Documents/ChatGPT/PostApo Idle Game/Packages/com.madbytelabs.prefab-library",
     "com.unity.2d.sprite": "1.0.0",
-    "com.unity.ai.navigation": "2.0.14",
+    "com.unity.ai.navigation": "2.0.17",
     "com.unity.editorcoroutines": "6.6.0",
-    "com.unity.ide.rider": "3.0.40",
+    "com.unity.ide.rider": "3.1.1",
     "com.unity.inputsystem": "1.20.1",
     "com.unity.nuget.newtonsoft-json": "3.2.2",
     "com.unity.purchasing": "5.5.1",

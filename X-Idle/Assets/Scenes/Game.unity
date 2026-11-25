@@ -162,7 +162,6 @@ Transform:
   - {fileID: 1160234427}
   - {fileID: 970507424}
   - {fileID: 6439219645231436736}
-  - {fileID: 750587763}
   - {fileID: 540447685}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -342,11 +341,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!4 &750587763 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4797536564577848223, guid: f6b5b95ab71ae0e42b160acc4b82f015, type: 3}
-  m_PrefabInstance: {fileID: 4797536565308558350}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &970507423
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,8 +604,6 @@ GameObject:
   - component: {fileID: 6439219645231436736}
   - component: {fileID: 5083089214166639478}
   - component: {fileID: 2872805034255525204}
-  - component: {fileID: 4671433286032197284}
-  - component: {fileID: 8643598061372213890}
   - component: {fileID: 3501539247823825331}
   - component: {fileID: 8643598061372213891}
   m_Layer: 0
@@ -674,133 +666,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!114 &4671433286032197284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2397055462699033002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83b53dcf54b70494182b0b6f15b8ba17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultMode: 1
-  rightClickDrag: 0
-  middleClickDrag: 0
-  oneFingerDrag: 0
-  twoFingerDrag: 0
-  twoFingerPinch: 2
-  scrollWheel: 0
-  groundHeight: 0
-  groundHeightAnim:
-    halfLife: 0.1
-    distanceFromTargetToComplete: 0.01
-  allowPitchRotation: 0
-  PitchSensitivity: 0.25
-  PitchClamp: 1
-  PitchMinMax: {x: 0, y: 90}
-  allowYawRotation: 0
-  YawSensitivity: 0.25
-  YawClamp: 0
-  YawMinMax: {x: -100, y: 100}
-  maxTranslationSpeed: 5
-  focusRadiusMultiplier: 0.5
-  followMove:
-    halfLife: 0.1
-    distanceFromTargetToComplete: 0.01
-  enableTranslationInertia: 0
-  positionInertiaMove:
-    moveType: 0
-    maxVelocity: 0
-    minVelocity: 0
-    A: 0
-    B: 0
-    D: 0
-    logBase: 0
-  positionAcceleration:
-    samples: 22
-    maxMagnitude: 0
-    accelerationFactor: 100
-  positionInertiaForce: 1
-  enableRotationInertia: 0
-  rotationInertiaMove:
-    moveType: 0
-    maxVelocity: 0
-    minVelocity: 0
-    A: 0
-    B: 0
-    D: 0
-    logBase: 0
-  rotationAcceleration:
-    samples: 22
-    maxMagnitude: 0
-    accelerationFactor: 100
-  rotationInertiaForce: 1
-  sizeMinMax: {x: 40, y: 100}
-  fixedDistance: 60
---- !u!1001 &4797536565308558350
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 386840837}
-    m_Modifications:
-    - target: {fileID: 4797536564577848193, guid: f6b5b95ab71ae0e42b160acc4b82f015, type: 3}
-      propertyPath: m_Name
-      value: TouchCameraInputs
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797536564577848223, guid: f6b5b95ab71ae0e42b160acc4b82f015, type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797536564577848223, guid: f6b5b95ab71ae0e42b160acc4b82f015, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797536564577848223, guid: f6b5b95ab71ae0e42b160acc4b82f015, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797536564577848223, guid: f6b5b95ab71ae0e42b160acc4b82f015, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797536564577848223, guid: f6b5b95ab71ae0e42b160acc4b82f015, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797536564577848223, guid: f6b5b95ab71ae0e42b160acc4b82f015, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797536564577848223, guid: f6b5b95ab71ae0e42b160acc4b82f015, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797536564577848223, guid: f6b5b95ab71ae0e42b160acc4b82f015, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797536564577848223, guid: f6b5b95ab71ae0e42b160acc4b82f015, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797536564577848223, guid: f6b5b95ab71ae0e42b160acc4b82f015, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797536564577848223, guid: f6b5b95ab71ae0e42b160acc4b82f015, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f6b5b95ab71ae0e42b160acc4b82f015, type: 3}
 --- !u!20 &5083089214166639478
 Camera:
   m_ObjectHideFlags: 0
@@ -925,30 +790,6 @@ Transform:
   - {fileID: 683909318}
   m_Father: {fileID: 386840837}
   m_LocalEulerAnglesHint: {x: 35, y: 45, z: 0}
---- !u!114 &8643598061372213890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2397055462699033002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0703de1087d14a49ac22d0c9b6af02a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  movementType: 0
-  elasticity: 0.05
-  elasticSpace: 5
-  bounderiesCollider: {fileID: 0}
-  sphereCollider: {fileID: 0}
-  boxCollider: {fileID: 0}
-  mode: 0
-  pitchThreshold: 60
-  insideThreshold: 0.5
-  drawGizmos: 0
-  drawElasticGizmos: 0
 --- !u!114 &8643598061372213891
 MonoBehaviour:
   m_ObjectHideFlags: 0
